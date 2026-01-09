@@ -1,96 +1,25 @@
-[gd_scene load_steps=9 format=3 uid="uid://b64n2vugr0k72"]
+[gd_scene load_steps=5 format=3 uid="uid://b64n2vugr0k72"]
 
-[ext_resource type="Script" uid="uid://c38wmb61wavf1" path="res://scripts/player.gd" id="1_o5qli"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_sgp6g"]
-size = Vector3(4, 1, 4)
-
-[sub_resource type="BoxMesh" id="BoxMesh_o5qli"]
-size = Vector3(4, 1, 4)
-
-[sub_resource type="Animation" id="Animation_0wfyh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_o5qli"]
-resource_name = "new_animation"
-length = 20.0
-markers = [{
-"color": Color(1, 1, 1, 1),
-"name": &"new_marker",
-"time": -0.23333333
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"new_marker_2",
-"time": -2.3999996
-}]
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 10.03, 20),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 3.1415927, 0), Vector3(0, 6.2831855, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_sugp2"]
-_data = {
-&"RESET": SubResource("Animation_0wfyh"),
-&"new_animation": SubResource("Animation_o5qli")
-}
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0wfyh"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_sugp2"]
+[ext_resource type="PackedScene" uid="uid://ck2nk1xw7ihca" path="res://scenes/square_platform.tscn" id="1_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://c0thkvhu37he4" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="ArrayMesh" uid="uid://d3ywv5epcksy6" path="res://assets/staircase.obj" id="2_sugp2"]
+[ext_resource type="Shape3D" uid="uid://b6nqhrfkchyh8" path="res://assets/staircase.tres" id="3_sugp2"]
 
 [node name="Node3D" type="Node3D"]
 
-[node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
+[node name="SquarePlatform" parent="." instance=ExtResource("1_jyhfs")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
-shape = SubResource("BoxShape3D_sgp6g")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="AnimatableBody3D"]
-mesh = SubResource("BoxMesh_o5qli")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatableBody3D"]
-deterministic = true
-libraries = {
-&"": SubResource("AnimationLibrary_sugp2")
-}
-autoplay = "new_animation"
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-floor_constant_speed = true
-script = ExtResource("1_o5qli")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_0wfyh")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-visible = false
-mesh = SubResource("CapsuleMesh_sugp2")
-
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_o5qli")]
+transform = Transform3D(-0.14483972, 0, 0.9894551, 0, 1, 0, -0.9894551, 0, -0.14483972, 2.8130512, 4.254733, -2.2026155)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.8435696, 0, -0.53701985, 0.47806197, 0.45554492, 0.7509564, 0.24463668, -0.89021283, 0.38428384, 0, 5.97336, 0)
+
+[node name="RotatingStaircase" type="AnimatableBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.25, 5.625, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RotatingStaircase"]
+mesh = ExtResource("2_sugp2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RotatingStaircase"]
+shape = ExtResource("3_sugp2")

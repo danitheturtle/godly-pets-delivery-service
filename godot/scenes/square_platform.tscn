@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://ck2nk1xw7ihca"]
+
+[ext_resource type="Script" uid="uid://b6r0nkerqmy6f" path="res://scripts/platform.gd" id="1_klhda"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sgp6g"]
+size = Vector3(9, 3, 9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o5qli"]
+size = Vector3(9, 3, 9)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pi4wo"]
+
+[node name="SquarePlatform" type="AnimatableBody3D"]
+script = ExtResource("1_klhda")
+
+[node name="FloorCollider" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_sgp6g")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_o5qli")
+
+[node name="Pivots" type="Node3D" parent="."]
+
+[node name="xPosPivot" type="Area3D" parent="Pivots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 0)
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivots/xPosPivot"]
+shape = SubResource("SphereShape3D_pi4wo")
+
+[node name="xNegPivot" type="Area3D" parent="Pivots"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.5, 0, 0)
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivots/xNegPivot"]
+shape = SubResource("SphereShape3D_pi4wo")
+
+[node name="zPosPivot" type="Area3D" parent="Pivots"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 4.5)
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivots/zPosPivot"]
+shape = SubResource("SphereShape3D_pi4wo")
+
+[node name="zNegPivot" type="Area3D" parent="Pivots"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -4.5)
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivots/zNegPivot"]
+shape = SubResource("SphereShape3D_pi4wo")

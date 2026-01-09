@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export var GRAVITY = -2
-@export var PLAYER_SPEED = 1.5
+@export var PLAYER_SPEED = 3
 @export var CAMERA_ANGULAR_VELOCITY = 0.1
 var moveDir = Vector2(0.0,0.0)
 var cameraMoveDir = Vector2(0.0,0.0)
@@ -23,6 +23,8 @@ func _physics_process(_delta: float) -> void:
 	if (cameraMoveDir.y < 0 && camera.rotation_degrees.x < 85) || (cameraMoveDir.y > 0 && camera.rotation_degrees.x > -85):
 		camera.rotate_x(cameraMoveDir.y * -CAMERA_ANGULAR_VELOCITY)		
 	rotate_y(cameraMoveDir.x * -CAMERA_ANGULAR_VELOCITY)
+	if (mouseCaptured):
+		cameraMoveDir = Vector2.ZERO
 	#multiply basis vectors by input direction
 	velocity = Vector3(basis.x * moveDir.x + basis.z * moveDir.y).limit_length() * PLAYER_SPEED
 	#apply gravity
@@ -45,80 +47,34 @@ func handle_mouse_input(event: InputEventMouseMotion) -> void:
 
 func handle_key_input(event: InputEvent ) -> void:
 	var eventHandled: bool = false
-	# forward is pressed
+	# movement
 	if (event.is_action_pressed("forward")):
 		moveDir = Vector2(moveDir.x, -1)
-		movePriority.backward = false
-		movePriority.forward = !movePriority.left && !movePriority.right
 		eventHandled = true
-	# forward is released
-	if (event.is_action_released("forward")):
-		movePriority.forward = false
-		if (Input.is_action_pressed("backward")):
-			moveDir = Vector2(moveDir.x, 1)
-			movePriority.backward = !movePriority.left && !movePriority.right
-		else:
-			moveDir = Vector2(moveDir.x, 0)
-			movePriority.left = true if moveDir.x < 0 else false
-			movePriority.right = true if moveDir.x > 0 else false
+	elif (event.is_action_released("forward")):
+		moveDir = Vector2(moveDir.x, 1.0 if Input.is_action_pressed("backward") else 0.0)
 		eventHandled = true
-
-	# backward is pressed
-	if (event.is_action_pressed("backward")):
+	elif (event.is_action_pressed("backward")):
 		moveDir = Vector2(moveDir.x, 1)
-		movePriority.forward = false
-		movePriority.backward = !movePriority.left && !movePriority.right
 		eventHandled = true
-	# backward is released
-	if (event.is_action_released("backward")):
-		if (Input.is_action_pressed("forward")):
-			moveDir = Vector2(moveDir.x, -1)
-			movePriority.forward = !movePriority.left && !movePriority.right
-		else:
-			moveDir = Vector2(moveDir.x, 0)
-			movePriority.left = true if moveDir.x < 0 else false
-			movePriority.right = true if moveDir.x > 0 else false
-		movePriority.backward = false
+	elif (event.is_action_released("backward")):
+		moveDir = Vector2(moveDir.x, -1.0 if Input.is_action_pressed("forward") else 0.0)
 		eventHandled = true
-
-	# left is pressed
-	if (event.is_action_pressed("left")):
+	elif (event.is_action_pressed("left")):
 		moveDir = Vector2(-1, moveDir.y)
-		movePriority.right = false
-		movePriority.left = !movePriority.forward && !movePriority.backward
 		eventHandled = true
-	# left is released
-	if (event.is_action_released("left")):
-		if (Input.is_action_pressed("right")):
-			moveDir = Vector2(1, moveDir.y)
-			movePriority.right = !movePriority.forward && !movePriority.backward
-		else:
-			moveDir = Vector2(0, moveDir.y)
-			movePriority.backward = true if moveDir.y < 0 else false
-			movePriority.forward = true if moveDir.y > 0 else false
-		movePriority.left = false
+	elif (event.is_action_released("left")):
+		moveDir = Vector2(1.0 if Input.is_action_pressed("right") else 0.0, moveDir.y)
 		eventHandled = true
-
-	# right is pressed
-	if (event.is_action_pressed("right")):
-		moveDir = Vector2(1, moveDir.y)
-		movePriority.left = false
-		movePriority.right = !movePriority.forward && !movePriority.backward
+	elif (event.is_action_pressed("right")):
+		moveDir = Vector2(1.0, moveDir.y)
 		eventHandled = true
-	# right is released
-	if (event.is_action_released("right")):
-		if (Input.is_action_pressed("left")):
-			moveDir = Vector2(-1, moveDir.y)
-			movePriority.left = !movePriority.forward && !movePriority.backward
-		else:
-			moveDir = Vector2(0, moveDir.y)
-			movePriority.backward = true if moveDir.y < 0 else false
-			movePriority.forward = true if moveDir.y > 0 else false
-		movePriority.right = false
+	elif (event.is_action_released("right")):
+		moveDir = Vector2(-1.0 if Input.is_action_pressed("left") else 0.0, moveDir.y)
 		eventHandled = true
-	
 	moveDir = moveDir.normalized()
 	
+	# cursor capture. lets player get mouse back to interact with UI
 	if (event.is_action_pressed("capture_cursor") && !mouseCaptured):
 		Input.set_mouse_mode(Input.MouseMode.MOUSE_MODE_CAPTURED)
 		mouseCaptured = true
@@ -134,7 +90,7 @@ func handle_key_input(event: InputEvent ) -> void:
 		else:
 			Input.set_mouse_mode(Input.MouseMode.MOUSE_MODE_CAPTURED)
 			mouseCaptured = true
-	
+	# tell game event was handled and stop propagating
 	if (eventHandled):
 		get_tree().root.set_input_as_handled()
 
@@ -160,5 +116,6 @@ func handle_axis_input(event: InputEventJoypadMotion) -> void:
 		moveDir = Vector2(0.0,0.0)
 	if (cameraMoveDir.length_squared() < 0.01):
 		cameraMoveDir = Vector2(0.0,0.0)
+	# tell game event was handled and stop propagating
 	if (eventHandled):
 		get_tree().root.set_input_as_handled()

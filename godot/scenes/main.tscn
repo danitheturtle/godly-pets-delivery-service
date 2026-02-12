@@ -8,6 +8,8 @@
 [node name="Node3D" type="Node3D"]
 
 [node name="SquarePlatform" parent="." instance=ExtResource("1_jyhfs")]
+secondsPerRotation = 1.0
+rotationStops = 4
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_o5qli")]
 transform = Transform3D(-0.14483972, 0, 0.9894551, 0, 1, 0, -0.9894551, 0, -0.14483972, 2.8130512, 4.254733, -2.2026155)

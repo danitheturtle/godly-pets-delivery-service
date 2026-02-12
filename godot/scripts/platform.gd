@@ -1,39 +1,59 @@
 extends AnimatableBody3D
-@export var secondsPerRotation = 3.0
-var startAngle = 0
-var rotating = false
-var cw_rotate_queued = false
-var ccw_rotate_queued = false
+@export var secondsPerRotation = 1.0
+@export var rotationStops = 4
+@export var displayBasis: Basis = transform.basis
 
-# Called when the node enters the scene tree for the first time.
+var basisStops: Array[Basis] = []
+var rotationIndex: int = 0
+var rotationTimer: float = 0.0
+
+var rotationDir = 0
+var cw_queued = false
+var ccw_queued = false
+
 func _ready() -> void:
-	pass # Replace with function body.
+	# calculate the bases this platform can stop at
+	basisStops.append(Basis(transform.basis))
+	var rotationPerStepRad = TAU / rotationStops
+	for i in range(1, rotationStops):
+		basisStops.append(basisStops[0].rotated(Vector3.UP, i*rotationPerStepRad).orthonormalized())
 
 func _physics_process(delta: float) -> void:
-	if (!rotating):
-		rotating = true
-		startAngle = rotation_degrees.y
+	displayBasis = transform.basis
+	
+	if (rotationDir == 0):
+		if (cw_queued):
+			cw_queued = false
+			rotationDir = -1
+		if (ccw_queued):
+			ccw_queued = false
+			rotationDir = 1
 	else:
-		if (cw_rotate_queued):
-			rotate_y(deg_to_rad((90.0 / secondsPerRotation) * delta))
-		if (ccw_rotate_queued):
-			rotate_y(deg_to_rad((-90.0 / secondsPerRotation) * delta))
-		if (abs(rotation_degrees.y - startAngle) >= 90):
-			rotating = false
-			cw_rotate_queued = false
-			ccw_rotate_queued = false
+		rotate_platform(rotationDir, delta)
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	var eventHandled: bool = false
 	# movement
 	if (event.is_action_pressed("rotate_cw")):
-		ccw_rotate_queued = false
-		cw_rotate_queued = true
+		ccw_queued = false
+		cw_queued = true
 		eventHandled = true
 	if (event.is_action_pressed("rotate_ccw")):
-		cw_rotate_queued = false
-		ccw_rotate_queued = true
+		cw_queued = false
+		ccw_queued = true
 		eventHandled = true
 	# tell game event was handled and stop propagating
 	if (eventHandled):
 		get_tree().root.set_input_as_handled()
+
+func rotate_platform(dir: int, delta: float) -> void:
+	rotationTimer += delta
+	var fromIndex: int = rotationIndex
+	var toIndex: int = wrapi(rotationIndex + dir, 0, rotationStops)
+	var normalizedPositionInRotation = Utils.easeInOutCubic(Utils.normf(rotationTimer, 0.0, secondsPerRotation))
+	transform.basis = Basis(basisStops[fromIndex]).slerp(basisStops[toIndex], normalizedPositionInRotation).orthonormalized()
+	# if rotation finished
+	if (normalizedPositionInRotation >= 1.0):
+		rotationIndex = toIndex
+		rotationDir = 0
+		rotationTimer = 0.0

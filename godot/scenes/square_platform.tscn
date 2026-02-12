@@ -12,6 +12,8 @@ size = Vector3(9, 3, 9)
 
 [node name="SquarePlatform" type="AnimatableBody3D"]
 script = ExtResource("1_klhda")
+secondsPerRotation = null
+rotationStops = null
 
 [node name="FloorCollider" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_sgp6g")

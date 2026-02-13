@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+class_name Player
+
 @export var GRAVITY = -2
 @export var PLAYER_SPEED = 3
 @export var CAMERA_ANGULAR_VELOCITY = 0.1
@@ -9,8 +11,8 @@ var movePriority = { left = false, right = false, forward = false, backward = fa
 var mouseCaptured = false
 
 # child nodes
-@onready var camera = $Camera3D
-@onready var collider = $CollisionShape3D
+@onready var camera = $PlayerCamera
+@onready var collider = $PlayerCollisionShape3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

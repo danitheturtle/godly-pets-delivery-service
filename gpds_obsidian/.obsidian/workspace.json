@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Game Pitch.md",
+                "file": "Mechanics/Platforms With Nodes On A Path.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Game Pitch"
+              "title": "Platforms With Nodes On A Path"
             }
           }
         ]
@@ -171,7 +171,12 @@
   },
   "active": "82f840f9801c2bcd",
   "lastOpenFiles": [
-    "Welcome.md",
-    "Game Pitch.md"
+    "Pets/Tentacle monster delivered to Cthulu.md",
+    "Mechanics/Platforms With Nodes On A Path.md",
+    "Pets/Cerberus delivered to Hades.md",
+    "Game Pitch.md",
+    "Pets",
+    "Mechanics",
+    "Welcome.md"
   ]
 }

@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "9406fa46f049b976",
+        "id": "4afd14f3777f16af",
         "type": "tabs",
         "children": [
           {
-            "id": "82f840f9801c2bcd",
+            "id": "05c536962d781d60",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Mechanics/Platforms With Nodes On A Path.md",
+                "file": "Core Pillars.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Platforms With Nodes On A Path"
+              "title": "Core Pillars"
             }
           }
         ]
@@ -169,12 +169,18 @@
       "bases:Create new base": false
     }
   },
-  "active": "82f840f9801c2bcd",
+  "active": "05c536962d781d60",
   "lastOpenFiles": [
-    "Pets/Tentacle monster delivered to Cthulu.md",
-    "Mechanics/Platforms With Nodes On A Path.md",
-    "Pets/Cerberus delivered to Hades.md",
     "Game Pitch.md",
+    "Core Pillars.md",
+    "Mechanics/Walls that physically block rotation.md",
+    "Decorations/Ian Hubert moths on a lantern.md",
+    "Decorations/Untitled.md",
+    "Decorations/Flocking.md",
+    "Mechanics/Platforms With Nodes On A Path.md",
+    "Decorations",
+    "Pets/Tentacle monster delivered to Cthulu.md",
+    "Pets/Cerberus delivered to Hades.md",
     "Pets",
     "Mechanics",
     "Welcome.md"

@@ -1,4 +1,4 @@
-A game about delivering very particular lil guys to eldrich gods by climbing the puzzle staircase in each of their realms.
+A puzzle game about delivering very particular lil guys to eldrich gods by climbing a stairway to the heavens.
 
 Godly Pets Delivery Service is a puzzle game where you rotate platforms and staircases to climb to the throne of eldrich gods. Your job is to deliver them custom ordered, very particular lil guys. The cutest weird creatures from all over the multiverse.
 

@@ -1,0 +1,1 @@
+combine with the reset feature so there's no penalty for messing up

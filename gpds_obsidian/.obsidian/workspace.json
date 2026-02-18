@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Core Pillars.md",
+                "file": "Game Pitch.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Core Pillars"
+              "title": "Game Pitch"
             }
           }
         ]
@@ -171,8 +171,17 @@
   },
   "active": "05c536962d781d60",
   "lastOpenFiles": [
-    "Game Pitch.md",
+    "Todo/State singleton.md",
+    "Mechanics/Reset level.md",
+    "Mechanics/Stairs that can only move X times.md",
+    "Mechanics/Stretch/Target low move count like opus magnum.md",
+    "Mechanics/Stretch/Optional hidden exits like monkeyball.md",
+    "Mechanics/Rotate stairs into target position to activate.md",
+    "Mechanics/Stretch",
+    "Todo",
+    "Mechanics/Platform control tablet.md",
     "Core Pillars.md",
+    "Game Pitch.md",
     "Mechanics/Walls that physically block rotation.md",
     "Decorations/Ian Hubert moths on a lantern.md",
     "Decorations/Untitled.md",

@@ -1,16 +1,16 @@
 extends AnimatableBody3D
 class_name Platform
 
-@export var secondsPerRotation = 1.0
-@export var secondsPerStairRotation = 1.0
-@export var rotationStops = 4
-@export var displayBasis: Basis = transform.basis
+@export var secondsPerRotation: float = 1.0
+@export var secondsPerStairRotation: float = 1.0
+@export var rotationStops: int = 4
 
-@onready var pivotsParent = $Pivots
-@onready var actorDetector = $ActorDetector
+@onready var pivotsParent: Node3D = $Pivots
+@onready var actorDetector: Area3D = $ActorDetector
+@onready var initialTransform: Transform3D = Transform3D(transform)
 
 var basisStops: Array[Basis] = []
-var rotationDir = 0
+var rotationDir: int = 0
 var rotationIndex: int = 0
 var rotationTimer: float = 0.0
 
@@ -20,17 +20,17 @@ var pivotsRotationDir: int = 0
 var pivotsRotationIndex: int = 0
 var pivotsRotationTimer: float = 0.0
 
-var platformControlled = false
+var platformControlled: bool = false
 
-var clockwiseQueued = false
-var counterClockwiseQueued = false
-var pivotsClockwiseQueued = false
-var pivotsCounterClockwiseQueued = false
+var clockwiseQueued: bool = false
+var counterClockwiseQueued: bool = false
+var pivotsClockwiseQueued: bool = false
+var pivotsCounterClockwiseQueued: bool = false
 
 func _ready() -> void:
 	# calculate the bases this platform can stop at
 	basisStops.append(Basis(transform.basis))
-	var rotationPerStepRad = TAU / rotationStops
+	var rotationPerStepRad: float = TAU / rotationStops
 	for i in range(1, rotationStops):
 		basisStops.append(basisStops[0].rotated(Vector3.UP, i*rotationPerStepRad).orthonormalized())
 	
@@ -46,7 +46,6 @@ func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	displayBasis = pivots[0].transform.basis
 	if (rotationDir == 0):
 		if (clockwiseQueued):
 			clockwiseQueued = false
@@ -93,8 +92,22 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		eventHandled = true
 	# tell game event was handled and stop propagating
 	if (eventHandled):
+		State.touchedNodes.append(self)
 		get_tree().root.set_input_as_handled()
 	pass
+
+func reset() -> void:
+	rotationDir = 0
+	rotationIndex = 0
+	rotationTimer = 0.0
+	pivotsRotationDir = 0
+	pivotsRotationIndex = 0
+	pivotsRotationTimer = 0.0
+	clockwiseQueued = false
+	counterClockwiseQueued = false
+	pivotsClockwiseQueued = false
+	pivotsCounterClockwiseQueued = false
+	transform = initialTransform
 
 func rotate_platform(delta: float) -> void:
 	rotationTimer += delta
@@ -127,6 +140,7 @@ func attach_adjacent_stairs() -> void:
 		var pivotCollisions = nextPivot.get_overlapping_bodies()
 		for col in pivotCollisions:
 			if (col is Stairs && col.get_parent() != nextPivot):
+				State.touchedNodes.append(col)
 				col.reparent(nextPivot, true)
 	pass
 

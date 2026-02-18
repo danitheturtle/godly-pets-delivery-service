@@ -1,12 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://b64n2vugr0k72"]
+[gd_scene load_steps=5 format=3 uid="uid://b64n2vugr0k72"]
 
-[ext_resource type="PackedScene" uid="uid://ck2nk1xw7ihca" path="res://scenes/square_platform.tscn" id="1_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://c0thkvhu37he4" path="res://scenes/player.tscn" id="1_o5qli"]
-[ext_resource type="PackedScene" uid="uid://b7ncvtwv1mvuy" path="res://scenes/stairs.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://ck2nk1xw7ihca" path="res://scenes/platform/square_platform.tscn" id="1_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://c0thkvhu37he4" path="res://scenes/player/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://cyksofbl60ciy" path="res://scenes/checkpoint/checkpoint.tscn" id="1_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://b7ncvtwv1mvuy" path="res://scenes/stairs/stairs.tscn" id="3_sugp2"]
 
 [node name="Node3D" type="Node3D"]
 
 [node name="SquarePlatform" parent="." instance=ExtResource("1_jyhfs")]
+
+[node name="Checkpoint" parent="SquarePlatform" instance=ExtResource("1_tbgi4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.872136, 1.4925458, 3.1202965)
+isFirstInLevel = true
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_o5qli")]
 transform = Transform3D(-0.14483972, 0, 0.9894551, 0, 1, 0, -0.9894551, 0, -0.14483972, 2.8130512, 4.254733, -2.2026155)
@@ -16,3 +21,6 @@ transform = Transform3D(0.8435696, 0, -0.53701985, 0.47806197, 0.45554492, 0.750
 
 [node name="RotatingStaircase" parent="." instance=ExtResource("3_sugp2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.25, 5.625, 0)
+
+[node name="SquarePlatform2" parent="." instance=ExtResource("1_jyhfs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.5, 11.25, 0)

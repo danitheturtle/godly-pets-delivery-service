@@ -1,5 +1,4 @@
 extends CharacterBody3D
-
 class_name Player
 
 @export var GRAVITY = -2
@@ -16,10 +15,10 @@ var mouseCaptured = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	State.player = self
 
-func _process(_delta: float) -> void:
-	pass
+#func _process(_delta: float) -> void:
+	#pass
 
 func _physics_process(_delta: float) -> void:
 	if (cameraMoveDir.y < 0 && camera.rotation_degrees.x < 85) || (cameraMoveDir.y > 0 && camera.rotation_degrees.x > -85):

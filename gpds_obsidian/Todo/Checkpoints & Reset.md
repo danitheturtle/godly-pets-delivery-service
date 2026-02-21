@@ -7,3 +7,4 @@ Checkpoints are:
 
 The reset hotkey takes the player and pet back to the last checkpoint and resets all platforms/stairs after the checkpoint to their initial position.
 * do this programmatically with an array of changed node refs. gets cleared when player activates a checkpoint or resets, and keeps track of all objs they touch.
+* store the initial position at the time of adding object to touched array. Full reset can be done by reloading level from a pause menu or something

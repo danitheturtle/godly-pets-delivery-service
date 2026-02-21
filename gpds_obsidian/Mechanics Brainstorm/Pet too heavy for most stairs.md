@@ -1,0 +1,1 @@
+Level where you've got a chonky boi who is too heavy for all but the strongest staircases. The player moves independently of the creature on this level and has to use lightweight staircases to assemble a path

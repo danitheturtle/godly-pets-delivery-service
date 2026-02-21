@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyksofbl60ciy"]
+[gd_scene format=3 uid="uid://cyksofbl60ciy"]
 
 [ext_resource type="Script" uid="uid://dnavovcj455q7" path="res://scenes/checkpoint/checkpoint.gd" id="1_w77t2"]
 
@@ -11,14 +11,14 @@ albedo_color = Color(0.21176471, 0.6627451, 0.35686275, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_tefeu"]
 size = Vector3(3, 2, 3)
 
-[node name="Checkpoint" type="Area3D"]
+[node name="Checkpoint" type="Area3D" unique_id=24656330]
 script = ExtResource("1_w77t2")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=212208265]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("BoxMesh_w77t2")
 surface_material_override/0 = SubResource("StandardMaterial3D_w77t2")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=726556215]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_tefeu")

@@ -23,7 +23,7 @@ config/icon="res://icon.svg"
 
 Utils="*res://scripts/globals/utils.gd"
 State="*res://scripts/globals/state.gd"
-SnapState="*uid://d2c1aj07b0bx1"
+StairGridState="*uid://d2c1aj07b0bx1"
 
 [display]
 

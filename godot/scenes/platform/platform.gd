@@ -38,6 +38,21 @@ func _ready() -> void:
 	actorDetector.body_entered.connect(_entered_control_area)
 	actorDetector.body_exited.connect(_exited_control_area)
 	
+	var pivotAngleRad = 0.0
+	var handleVecLength = 4
+	for i in range(3):
+		pivotAngleRad += i * (TAU / 4)
+		var rotationMatrix = Basis.IDENTITY.rotated(Vector3.UP, pivotAngleRad)
+		var nextTop = rotationMatrix * Vector3(handleVecLength, 0.5, 0)
+		var nextRight = rotationMatrix * Vector3(handleVecLength, 0, 0.5)
+		var nextBottom = rotationMatrix * Vector3(handleVecLength, -0.5, 0)
+		var nextLeft = rotationMatrix * Vector3(handleVecLength, 0, -0.5)
+		#handles.push_back(nextTop)
+		#handles.push_back(nextRight)
+		#handles.push_back(nextBottom)
+		#handles.push_back(nextLeft)
+		var test = 0
+	
 	# get array of stair pivot areas and their basis stops
 	for childPivot: Node in pivotsParent.get_children():
 		if childPivot is Area3D:

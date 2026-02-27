@@ -78,6 +78,7 @@ text = "Platform Side Length"
 layout_mode = 2
 max_value = 0.0
 step = 0.01
+value = 9.0
 allow_greater = true
 allow_lesser = true
 custom_arrow_step = 0.25
@@ -108,6 +109,7 @@ text = "Rise"
 [node name="StairRise" type="SpinBox" parent="Scroll/VBox/StairSlopeWrapper" unique_id=2005251170]
 layout_mode = 2
 step = 0.0
+value = 11.25
 allow_greater = true
 custom_arrow_step = 0.25
 
@@ -118,5 +120,6 @@ text = "Run"
 [node name="StairRun" type="SpinBox" parent="Scroll/VBox/StairSlopeWrapper" unique_id=1637957147]
 layout_mode = 2
 step = 0.0
+value = 19.5
 allow_greater = true
 custom_arrow_step = 0.25

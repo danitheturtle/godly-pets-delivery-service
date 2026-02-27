@@ -27,12 +27,11 @@ func _enter_tree() -> void:
 	dock.title = "Stair Grid Snap Settings"
 	dock.default_slot = EditorDock.DOCK_SLOT_RIGHT_BL
 	var settingsDock = preload("res://addons/snap_to_stair_grid_gizmo/stair_grid_settings_dock.tscn").instantiate()
-	settingsDock.pluginRef = self
-	settingsDock.request_ready()
+	settingsDock.setup(self, stairGridState)
 	dock.add_child(settingsDock)
 	add_dock(dock)
 	# put gizmos in tree
-	createAdjacentGizmo.pluginRef = self
+	createAdjacentGizmo.setup(self, stairGridState)
 	add_node_3d_gizmo_plugin(createAdjacentGizmo)
 
 func _exit_tree() -> void:
@@ -45,9 +44,9 @@ func _exit_tree() -> void:
 
 func _mode_switch_toggled(toggledOn: bool):
 	if (toggledOn):
-		stairGridState.placementMode = "platforms"
-	else:
 		stairGridState.placementMode = "stairs"
+	else:
+		stairGridState.placementMode = "platforms"
 
 func _grid_origin_x_changed(nextX: float):
 	stairGridState.gridOrigin.x = nextX

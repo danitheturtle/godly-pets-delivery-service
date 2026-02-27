@@ -14,7 +14,7 @@ var rotationDir: int = 0
 var rotationIndex: int = 0
 var rotationTimer: float = 0.0
 
-var pivots: Array[Area3D] = []
+var pivots: Array[CollisionShape3D] = []
 var pivotsBasisStops: Array[Basis] = [] # 4 for each pivot
 var pivotsRotationDir: int = 0
 var pivotsRotationIndex: int = 0
@@ -37,27 +37,13 @@ func _ready() -> void:
 	# make sure the actor detector is monitoring for changes, and rig up its collision signal to a local function
 	actorDetector.body_entered.connect(_entered_control_area)
 	actorDetector.body_exited.connect(_exited_control_area)
-	
-	var pivotAngleRad = 0.0
-	var handleVecLength = 4
-	for i in range(3):
-		pivotAngleRad += i * (TAU / 4)
-		var rotationMatrix = Basis.IDENTITY.rotated(Vector3.UP, pivotAngleRad)
-		var nextTop = rotationMatrix * Vector3(handleVecLength, 0.5, 0)
-		var nextRight = rotationMatrix * Vector3(handleVecLength, 0, 0.5)
-		var nextBottom = rotationMatrix * Vector3(handleVecLength, -0.5, 0)
-		var nextLeft = rotationMatrix * Vector3(handleVecLength, 0, -0.5)
-		#handles.push_back(nextTop)
-		#handles.push_back(nextRight)
-		#handles.push_back(nextBottom)
-		#handles.push_back(nextLeft)
-		var test = 0
-	
+		
 	# get array of stair pivot areas and their basis stops
 	for childPivot: Node in pivotsParent.get_children():
 		if childPivot is Area3D:
-			pivots.append(childPivot)
-			get_pivot_basis_stops(childPivot)
+			var collider = childPivot.get_child(0)
+			pivots.append(collider)
+			get_pivot_basis_stops(collider)
 	pass
 
 func _physics_process(delta: float) -> void:
@@ -123,6 +109,8 @@ func reset() -> void:
 	pivotsClockwiseQueued = false
 	pivotsCounterClockwiseQueued = false
 	transform = initialTransform
+	for i in rotationStops:
+		pivots[i].transform = pivotsBasisStops[i*rotationStops]
 
 func rotate_platform(delta: float) -> void:
 	rotationTimer += delta
@@ -142,8 +130,8 @@ func rotate_pivots(delta: float) -> void:
 	var fromIndex: int = pivotsRotationIndex
 	var toIndex: int = wrapi(pivotsRotationIndex + pivotsRotationDir, 0, 4)
 	var normalizedPositionInRotation = Utils.easeInOutCubic(Utils.normf(pivotsRotationTimer, 0.0, secondsPerStairRotation))
-	for i in range(3):
-		pivots[i].transform.basis = Basis(pivotsBasisStops[i*4 + fromIndex]).slerp(pivotsBasisStops[i*4 + toIndex], normalizedPositionInRotation).orthonormalized()
+	for i in range(rotationStops):
+		pivots[i].transform.basis = Basis(pivotsBasisStops[i*rotationStops + fromIndex]).slerp(pivotsBasisStops[i*rotationStops + toIndex], normalizedPositionInRotation).orthonormalized()
 	if (normalizedPositionInRotation >= 1.0):
 		pivotsRotationIndex = toIndex
 		pivotsRotationDir = 0
@@ -152,18 +140,18 @@ func rotate_pivots(delta: float) -> void:
 
 func attach_adjacent_stairs() -> void:
 	for nextPivot in pivots:
-		var pivotCollisions = nextPivot.get_overlapping_bodies()
+		var pivotCollisions = nextPivot.get_parent().get_overlapping_bodies()
 		for col in pivotCollisions:
 			if (col is Stairs && col.get_parent() != nextPivot):
 				State.touchedNodes.append(col)
 				col.reparent(nextPivot, true)
 	pass
 
-func get_pivot_basis_stops(pivot: Area3D):
+func get_pivot_basis_stops(pivot: CollisionShape3D):
 	var childPivotBasisIndex = pivotsBasisStops.size()
 	pivotsBasisStops.append(Basis(pivot.transform.basis))
 	for j in range(1,4):
-		pivotsBasisStops.append(pivotsBasisStops[childPivotBasisIndex].rotated(Vector3.RIGHT, j*(PI/2)).orthonormalized())
+		pivotsBasisStops.append(pivotsBasisStops[childPivotBasisIndex].rotated(Vector3.RIGHT, -j*(PI/2)).orthonormalized())
 	pass
 
 func _entered_control_area(node: Node):

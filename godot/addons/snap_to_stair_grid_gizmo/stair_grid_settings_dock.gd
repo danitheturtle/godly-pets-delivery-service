@@ -12,6 +12,7 @@ class_name StairGridSettingsDock
 @onready var stairSlopeRun = $Scroll/VBox/StairSlopeWrapper/StairRun
 
 var pluginRef = null
+var stairGridState = {}
 
 func _ready() -> void:
 	if (pluginRef != null):
@@ -23,7 +24,11 @@ func _ready() -> void:
 		platformSideCountInput.changed.connect(pluginRef._platform_side_count_changed)
 		stairSlopeRise.changed.connect(pluginRef._stair_slope_rise_changed)
 		stairSlopeRun.changed.connect(pluginRef._stair_slope_run_changed)
-		initializeFromState(pluginRef.stairGridState)
+		initializeFromState(stairGridState)
+
+func setup(_pluginRef, _stairGridState):
+	pluginRef = _pluginRef
+	stairGridState = _stairGridState
 
 func initializeFromState(stairGridState) -> void:
 	gridOriginX.set_value_no_signal(stairGridState.gridOrigin.x);

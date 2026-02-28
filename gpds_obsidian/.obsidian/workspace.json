@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Todo/Level Select.md",
+                "file": "Todo/Main Menu.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Level Select"
+              "title": "Main Menu"
             }
           },
           {
@@ -185,14 +185,14 @@
   },
   "active": "05c536962d781d60",
   "lastOpenFiles": [
-    "Todo/Checkpoints & Reset.md",
+    "Todo/Pause Menu.md",
     "Todo/Level Select.md",
+    "Todo/Checkpoints & Reset.md",
     "Todo/State singleton.md",
     "Todo/Main Menu.md",
     "Mechanics Brainstorm/Drone freecam.md",
     "Todo/Iterate player controller.md",
     "Todo/Save system.md",
-    "Todo/Pause Menu.md",
     "Mechanics Brainstorm/Iterate level editor gizmo.md",
     "Mechanics Implemented/Level Edit Gizmo.md",
     "Mechanics Brainstorm/Walls that physically block rotation.md",

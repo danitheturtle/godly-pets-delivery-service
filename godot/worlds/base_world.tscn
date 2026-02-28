@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cv8kat48ol8pp"]
+
+[ext_resource type="Script" uid="uid://blpr7nwx60m3o" path="res://scripts/world.gd" id="1_pk8mh"]
+[ext_resource type="PackedScene" uid="uid://c0thkvhu37he4" path="res://game_objects/player/player.tscn" id="2_uuore"]
+[ext_resource type="Script" uid="uid://bn4n5sbcei8x4" path="res://scripts/level.gd" id="3_whu56"]
+[ext_resource type="PackedScene" uid="uid://ck2nk1xw7ihca" path="res://game_objects/platform/square_platform.tscn" id="4_26h4x"]
+[ext_resource type="PackedScene" uid="uid://cyksofbl60ciy" path="res://game_objects/checkpoint/checkpoint.tscn" id="5_4wvuw"]
+
+[node name="BaseWorld" type="Node3D" unique_id=206715187]
+script = ExtResource("1_pk8mh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1250152210]
+transform = Transform3D(0.8435696, 0, -0.53701985, 0.47806197, 0.45554492, 0.7509564, 0.24463668, -0.89021283, 0.38428384, 0, 5.97336, 0)
+
+[node name="Player" parent="." unique_id=66642413 instance=ExtResource("2_uuore")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Level1" type="Node3D" parent="." unique_id=2012754574]
+script = ExtResource("3_whu56")
+
+[node name="L1Platform1" parent="Level1" unique_id=322832196 instance=ExtResource("4_26h4x")]
+
+[node name="L1Checkpoint" parent="Level1" unique_id=24656330 instance=ExtResource("5_4wvuw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+isFirstInScene = true

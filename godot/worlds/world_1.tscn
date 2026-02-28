@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dkl7bol7u2q87"]
+
+[ext_resource type="PackedScene" uid="uid://cv8kat48ol8pp" path="res://worlds/base_world.tscn" id="1_nlsqv"]
+[ext_resource type="PackedScene" uid="uid://ck2nk1xw7ihca" path="res://game_objects/platform/square_platform.tscn" id="2_d46pn"]
+[ext_resource type="PackedScene" uid="uid://b7ncvtwv1mvuy" path="res://game_objects/stairs/stairs.tscn" id="4_hbdd5"]
+[ext_resource type="PackedScene" uid="uid://cyksofbl60ciy" path="res://game_objects/checkpoint/checkpoint.tscn" id="6_uhyjc"]
+
+[node name="World1" unique_id=206715187 instance=ExtResource("1_nlsqv")]
+
+[node name="Player" parent="." index="1" unique_id=66642413]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0622125, 2, 2.3944464)
+
+[node name="L1Platform2" parent="Level1" parent_id_path=PackedInt32Array(2012754574) index="2" unique_id=322832196 instance=ExtResource("2_d46pn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.25, -28.5)
+
+[node name="L1RotatingStaircase" parent="Level1" parent_id_path=PackedInt32Array(2012754574) index="3" unique_id=1037820242 instance=ExtResource("4_hbdd5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.625, -14.25)
+
+[node name="L1Platform3" parent="Level1" parent_id_path=PackedInt32Array(2012754574) index="4" unique_id=899083426 instance=ExtResource("2_d46pn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.5, -57)
+
+[node name="L1Platform4" parent="Level1" parent_id_path=PackedInt32Array(2012754574) index="5" unique_id=790091825 instance=ExtResource("2_d46pn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.5, 22.5, -45.75)
+
+[node name="Checkpoint" parent="Level1/L1Platform4" index="4" unique_id=24656330 instance=ExtResource("6_uhyjc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1634884, 1.5, -2.5709305)

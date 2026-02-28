@@ -3,7 +3,6 @@ extends EditorPlugin
 class_name StairGridPlugin
 
 var dock
-
 const CreateAdjacentGizmoRes = preload("res://addons/snap_to_stair_grid_gizmo/create_adjacent_gizmo.gd")
 var createAdjacentGizmo = CreateAdjacentGizmoRes.new()
 var stairGridState = {
@@ -15,11 +14,11 @@ var stairGridState = {
 	stairSlopeRun = 19.5
 }
 
-func _enable_plugin() -> void:
-	pass
+#func _enable_plugin() -> void:
+	#pass
 
-func _disable_plugin() -> void:
-	pass
+#func _disable_plugin() -> void:
+	#pass
 
 func _enter_tree() -> void:
 	# create the settings dock
@@ -42,29 +41,29 @@ func _exit_tree() -> void:
 	# remove gizmos
 	remove_node_3d_gizmo_plugin(createAdjacentGizmo)
 
-func _mode_switch_toggled(toggledOn: bool):
+func _mode_switch_toggled(toggledOn: bool) -> void:
 	if (toggledOn):
 		stairGridState.placementMode = "stairs"
 	else:
 		stairGridState.placementMode = "platforms"
 
-func _grid_origin_x_changed(nextX: float):
+func _grid_origin_x_changed(nextX: float) -> void:
 	stairGridState.gridOrigin.x = nextX
 	
-func _grid_origin_y_changed(nextY: float):
+func _grid_origin_y_changed(nextY: float) -> void:
 	stairGridState.gridOrigin.y = nextY
 
-func _grid_origin_z_changed(nextZ: float):
+func _grid_origin_z_changed(nextZ: float) -> void:
 	stairGridState.gridOrigin.z = nextZ
 
-func _platform_side_length_changed(nextLength: float):
+func _platform_side_length_changed(nextLength: float) -> void:
 	stairGridState.platformSideLength = nextLength
 
-func _platform_side_count_changed(nextCount: int):
+func _platform_side_count_changed(nextCount: int) -> void:
 	stairGridState.platformSideCount = nextCount
 
-func _stair_slope_rise_changed(nextRise: float):
+func _stair_slope_rise_changed(nextRise: float) -> void:
 	stairGridState.stairSlopeRise = nextRise
 
-func _stair_slope_run_changed(nextRun: float):
+func _stair_slope_run_changed(nextRun: float) -> void:
 	stairGridState.stairSlopeRun = nextRun

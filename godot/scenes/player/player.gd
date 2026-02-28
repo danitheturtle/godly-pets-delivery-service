@@ -4,16 +4,17 @@ class_name Player
 @export var GRAVITY = -2
 @export var PLAYER_SPEED = 3
 @export var CAMERA_ANGULAR_VELOCITY = 0.1
-var moveDir = Vector2(0.0,0.0)
-var cameraMoveDir = Vector2(0.0,0.0)
-var movePriority = { left = false, right = false, forward = false, backward = false }
-var mouseCaptured = false
 
 # child nodes
 @onready var camera = $PlayerCamera
 @onready var collider = $PlayerCollisionShape3D
 
-# Called when the node enters the scene tree for the first time.
+# local state
+var moveDir = Vector2(0.0,0.0)
+var cameraMoveDir = Vector2(0.0,0.0)
+var movePriority = { left = false, right = false, forward = false, backward = false }
+var mouseCaptured = false
+
 func _ready() -> void:
 	State.player = self
 
@@ -22,7 +23,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if (cameraMoveDir.y < 0 && camera.rotation_degrees.x < 85) || (cameraMoveDir.y > 0 && camera.rotation_degrees.x > -85):
-		camera.rotate_x(cameraMoveDir.y * -CAMERA_ANGULAR_VELOCITY)		
+		camera.rotate_x(cameraMoveDir.y * -CAMERA_ANGULAR_VELOCITY)
 	rotate_y(cameraMoveDir.x * -CAMERA_ANGULAR_VELOCITY)
 	if (mouseCaptured):
 		cameraMoveDir = Vector2.ZERO
@@ -31,7 +32,6 @@ func _physics_process(_delta: float) -> void:
 	#apply gravity
 	velocity += Vector3(0.0, GRAVITY, 0.0)
 	move_and_slide()
-	pass;
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

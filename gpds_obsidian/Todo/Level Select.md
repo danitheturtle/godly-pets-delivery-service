@@ -1,10 +1,20 @@
-Via hotkey the player can open a 2d menu to quickly change levels, restart the current one, or go to the level select scene.
+* Each pet is associated with a world and the god at the end of it.
+* Every world has many sequential levels.
+* Every level starts at the last level's checkpoint and ends with its own goal checkpoint
+	* optional sub-checkpoints for longer or more intricate levels.
+* Via hotkey the player can open a 2d menu to quickly change levels, fully restart the current one, or go to the level select scene (placeholder for now).
+* The player can select the world and level they play next from this UI or return to previous levels
+* All objects in a level are grouped under it's root Node3D, which contains the level script
+
+===
 
 The level select scene is a 3d non-puzzle zone for progression NPCs and doors / portals to each level.
 
-The player can select the world and level they play next from this UI or return to previous levels to get a better score.
-
-Scores are viewable from here.
+Scoring system eventually is displayed here.
+* Track score for:
+	* number of moves
+	* stairs used
+	* resets
 - For the 3d level select, it would be cool to have some type of "visible from a distance" score representation for each level, letting the player collect-a-thon and light up all of them.
 
 Build level select UI first. Easier and less fiddly. 3d representation can come later if it even happens.

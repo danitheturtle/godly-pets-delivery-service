@@ -13,12 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Todo/State singleton.md",
+                "file": "Todo/Level Select.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "State singleton"
+              "title": "Level Select"
+            }
+          },
+          {
+            "id": "22ca6dd7b1e373c5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Todo/Checkpoints & Reset.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Checkpoints & Reset"
             }
           }
         ]
@@ -171,36 +185,38 @@
   },
   "active": "05c536962d781d60",
   "lastOpenFiles": [
-    "Todo/Puzzle grid.md",
+    "Todo/Checkpoints & Reset.md",
     "Todo/Level Select.md",
+    "Todo/State singleton.md",
+    "Todo/Main Menu.md",
+    "Mechanics Brainstorm/Drone freecam.md",
+    "Todo/Iterate player controller.md",
+    "Todo/Save system.md",
+    "Todo/Pause Menu.md",
+    "Mechanics Brainstorm/Iterate level editor gizmo.md",
+    "Mechanics Implemented/Level Edit Gizmo.md",
+    "Mechanics Brainstorm/Walls that physically block rotation.md",
+    "Mechanics Brainstorm/Rotate stairs into target position to activate.md",
+    "Pets/Pet too heavy for most stairs.md",
+    "Mechanics Brainstorm/pets",
+    "Todo/Puzzle grid.md",
     "Mechanics Implemented/Stair and Platform Rotation.md",
     "Mechanics Implemented/Reset level.md",
-    "Todo/Custom gizmo for level editing.md",
-    "Todo/Checkpoints & Reset.md",
-    "Todo/Main Menu.md",
-    "Todo/Pause Menu.md",
-    "Mechanics Brainstorm/Pet too heavy for most stairs.md",
     "Mechanics Implemented",
     "Game Pitch.md",
-    "Todo/State singleton.md",
     "Mechanics Brainstorm/Stairs that can only move X times.md",
     "Mechanics Brainstorm/Stretch/Target low move count like opus magnum.md",
     "Mechanics Brainstorm/Stretch/Optional hidden exits like monkeyball.md",
-    "Mechanics Brainstorm/Rotate stairs into target position to activate.md",
     "Mechanics Brainstorm/Stretch",
     "Todo",
     "Mechanics Brainstorm/Platform control tablet.md",
     "Core Pillars.md",
-    "Mechanics Brainstorm/Walls that physically block rotation.md",
     "Decorations/Ian Hubert moths on a lantern.md",
     "Decorations/Untitled.md",
     "Decorations/Flocking.md",
     "Mechanics Brainstorm/Platforms With Nodes On A Path.md",
     "Decorations",
-    "Pets/Tentacle monster delivered to Cthulu.md",
-    "Pets/Cerberus delivered to Hades.md",
     "Pets",
-    "Mechanics Brainstorm",
-    "Welcome.md"
+    "Mechanics Brainstorm"
   ]
 }

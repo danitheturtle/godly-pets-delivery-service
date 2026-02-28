@@ -10,21 +10,21 @@ var stairGridState = {}
 func _get_gizmo_name() -> String:
 	return "SnapGizmo"
 
-func _init():
+func _init() -> void:
 	# todo make it look better
 	create_material("main", Color(1,0,0))
 	create_handle_material("handles")
 
-func setup(_pluginRef, _stairGridState):
+func setup(_pluginRef, _stairGridState) -> void:
 	pluginRef = _pluginRef
 	stairGridState = _stairGridState
 
-func _has_gizmo(node):
+func _has_gizmo(node) -> bool:
 	if (node is Platform):
 		return true
 	return false
 
-func _redraw(gizmo):
+func _redraw(gizmo) -> void:
 	gizmo.clear()
 	var editedNode = gizmo.get_node_3d()
 	var handles = PackedVector3Array()
@@ -39,14 +39,13 @@ func _redraw(gizmo):
 		handles.push_back(rotationToPivot * Vector3(0.5, 0, -pivotDist))
 		handles.push_back(rotationToPivot * Vector3(0, -0.5, -pivotDist))
 		handles.push_back(rotationToPivot * Vector3(-0.5, 0, -pivotDist))
-		pass
 	gizmo.add_handles(handles, get_material("handles", gizmo), [])
 
-func _get_handle_name(gizmo, handleId, isSecondary):
+func _get_handle_name(gizmo, handleId, isSecondary) -> String:
 	return "Pivot " + str(floor(handleId / stairGridState.platformSideCount)) + " Pos " + str(handleId % 4)
 
 # handleId is order in which it was added
-func _commit_handle(gizmo, handleId, isSecondary, restore, cancel):
+func _commit_handle(gizmo, handleId, isSecondary, restore, cancel) -> void:
 	var sceneRoot = EditorInterface.get_edited_scene_root()
 	var editedNode = gizmo.get_node_3d()
 	
@@ -73,7 +72,7 @@ func _commit_handle(gizmo, handleId, isSecondary, restore, cancel):
 		editedNode.get_parent().add_child(newStairs)
 		newStairs.owner = sceneRoot
 
-func get_next_platform_transform(handleIndex: int, pivotIndex: int):
+func get_next_platform_transform(handleIndex: int, pivotIndex: int) -> Transform3D:
 	var nextPlatformTransform = Transform3D(
 		Basis.IDENTITY,
 		Vector3(0,0,-stairGridState.stairSlopeRun - stairGridState.platformSideLength)
@@ -89,7 +88,7 @@ func get_next_platform_transform(handleIndex: int, pivotIndex: int):
 			nextPlatformTransform.origin.x = -1 * stairGridState.stairSlopeRise
 	return nextPlatformTransform
 
-func get_next_stair_transform(handleIndex: int, pivotIndex: int):
+func get_next_stair_transform(handleIndex: int, pivotIndex: int) -> Transform3D:
 	var nextStairTransform = Transform3D(
 		Basis.IDENTITY, 
 		Vector3(0,0,-stairGridState.stairSlopeRun / 2 - stairGridState.platformSideLength / 2)

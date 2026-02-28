@@ -26,7 +26,7 @@ func _ready() -> void:
 		stairSlopeRun.changed.connect(pluginRef._stair_slope_run_changed)
 		initializeFromState(stairGridState)
 
-func setup(_pluginRef, _stairGridState):
+func setup(_pluginRef, _stairGridState) -> void:
 	pluginRef = _pluginRef
 	stairGridState = _stairGridState
 

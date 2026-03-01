@@ -1,26 +1,76 @@
 [gd_scene format=3 uid="uid://dkl7bol7u2q87"]
 
 [ext_resource type="PackedScene" uid="uid://cv8kat48ol8pp" path="res://worlds/base_world.tscn" id="1_nlsqv"]
-[ext_resource type="PackedScene" uid="uid://ck2nk1xw7ihca" path="res://game_objects/platform/square_platform.tscn" id="2_d46pn"]
-[ext_resource type="PackedScene" uid="uid://b7ncvtwv1mvuy" path="res://game_objects/stairs/stairs.tscn" id="4_hbdd5"]
-[ext_resource type="PackedScene" uid="uid://cyksofbl60ciy" path="res://game_objects/checkpoint/checkpoint.tscn" id="6_uhyjc"]
+[ext_resource type="PackedScene" uid="uid://b7ncvtwv1mvuy" path="res://game_objects/stairs/stairs.tscn" id="2_38vaf"]
+[ext_resource type="PackedScene" uid="uid://ch2wrgrciwb6i" path="res://game_objects/checkpoint/sub_checkpoint.tscn" id="4_baolv"]
+[ext_resource type="PackedScene" uid="uid://ck2nk1xw7ihca" path="res://game_objects/platform/square_platform.tscn" id="4_fwsfs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fwsfs"]
+size = Vector3(21, 1, 11)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0p53a"]
+size = Vector3(21, 1, 11)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0p53a"]
+size = Vector3(21, 1, 9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wkq5h"]
+size = Vector3(21, 1, 9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wkq5h"]
+size = Vector3(11, 1, 11)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a02j0"]
+size = Vector3(11, 1, 11)
 
 [node name="World1" unique_id=206715187 instance=ExtResource("1_nlsqv")]
 
 [node name="Player" parent="." index="1" unique_id=66642413]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0622125, 2, 2.3944464)
+transform = Transform3D(0.9643868, 0, -0.26449588, 0, 1, 0, 0.26449588, 0, 0.9643868, -7.736566, -9.574846, 32.740673)
 
-[node name="L1Platform2" parent="Level1" parent_id_path=PackedInt32Array(2012754574) index="2" unique_id=322832196 instance=ExtResource("2_d46pn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.25, -28.5)
+[node name="L1_Checkpoint" parent="Level1" parent_id_path=PackedInt32Array(2012754574) index="0" unique_id=24656330]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1048985, -9.670566, 30.057371)
 
-[node name="L1RotatingStaircase" parent="Level1" parent_id_path=PackedInt32Array(2012754574) index="3" unique_id=1037820242 instance=ExtResource("4_hbdd5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.625, -14.25)
+[node name="L1-0_Staircase1" parent="Level1" parent_id_path=PackedInt32Array(2012754574) index="2" unique_id=1037820242 instance=ExtResource("2_38vaf")]
+transform = Transform3D(1, 8.742278e-08, 8.742278e-08, 8.742278e-08, -1, 0, 8.742278e-08, 7.642742e-15, -1, -1.2457746e-06, -5.625, 14.25)
 
-[node name="L1Platform3" parent="Level1" parent_id_path=PackedInt32Array(2012754574) index="4" unique_id=899083426 instance=ExtResource("2_d46pn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.5, -57)
+[node name="L1-1_Platform1" parent="Level1" parent_id_path=PackedInt32Array(2012754574) index="3" unique_id=322832196 instance=ExtResource("4_fwsfs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.250003, -11.25, -57)
 
-[node name="L1Platform4" parent="Level1" parent_id_path=PackedInt32Array(2012754574) index="5" unique_id=790091825 instance=ExtResource("2_d46pn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.5, 22.5, -45.75)
+[node name="L1-1_Staircase1" parent="Level1" parent_id_path=PackedInt32Array(2012754574) index="4" unique_id=1194273107 instance=ExtResource("2_38vaf")]
+transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, -5.6250043, -11.25, -42.75)
 
-[node name="Checkpoint" parent="Level1/L1Platform4" index="4" unique_id=24656330 instance=ExtResource("6_uhyjc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1634884, 1.5, -2.5709305)
+[node name="Static" type="Node3D" parent="Level1" parent_id_path=PackedInt32Array(2012754574) index="5" unique_id=695133757]
+
+[node name="L1-0_Ground" type="StaticBody3D" parent="Level1/Static" index="0" unique_id=1363727340]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.227724, 29.443853)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level1/Static/L1-0_Ground" index="0" unique_id=832498751]
+shape = SubResource("BoxShape3D_fwsfs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level1/Static/L1-0_Ground" index="1" unique_id=1877679566]
+mesh = SubResource("BoxMesh_0p53a")
+
+[node name="L1-1_Ground" type="StaticBody3D" parent="Level1/Static" index="1" unique_id=871813117]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.235, -28.501228)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level1/Static/L1-1_Ground" index="0" unique_id=1893443339]
+shape = SubResource("BoxShape3D_0p53a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level1/Static/L1-1_Ground" index="1" unique_id=2014488141]
+mesh = SubResource("BoxMesh_wkq5h")
+
+[node name="L1-2_Ground" type="StaticBody3D" parent="Level1/Static" index="2" unique_id=1587029333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.256678, 0.9962841, -56.143208)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level1/Static/L1-2_Ground" index="0" unique_id=1817873285]
+shape = SubResource("BoxShape3D_wkq5h")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level1/Static/L1-2_Ground" index="1" unique_id=942381116]
+mesh = SubResource("BoxMesh_a02j0")
+
+[node name="SubCheckpoint" parent="Level1/Static" index="3" unique_id=1155096228 instance=ExtResource("4_baolv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.496155, -9.735, -29.411795)
+
+[node name="SubCheckpoint2" parent="Level1/Static" index="4" unique_id=1607201582 instance=ExtResource("4_baolv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.18628, 1.4962841, -52.732258)

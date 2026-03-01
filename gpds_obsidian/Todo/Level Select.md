@@ -1,6 +1,6 @@
 * Each pet is associated with a world and the god at the end of it.
 * Every world has many sequential levels.
-* Every level starts at the last level's checkpoint and ends with its own goal checkpoint
+* Every level starts with its own checkpoint and ends at the next level's checkpoint
 	* optional sub-checkpoints for longer or more intricate levels.
 * Via hotkey the player can open a 2d menu to quickly change levels, fully restart the current one, or go to the level select scene (placeholder for now).
 * The player can select the world and level they play next from this UI or return to previous levels

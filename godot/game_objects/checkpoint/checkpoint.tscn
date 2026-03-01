@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dnavovcj455q7" path="res://game_objects/checkpoint/checkpoint.gd" id="1_w77t2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_w77t2"]
-size = Vector3(0.5, 4, 0.5)
+size = Vector3(0.5, 8, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w77t2"]
 albedo_color = Color(0.21176471, 0.6627451, 0.35686275, 1)
@@ -53,7 +53,7 @@ size = Vector3(3, 2, 3)
 script = ExtResource("1_w77t2")
 
 [node name="CheckpointMesh" type="MeshInstance3D" parent="." unique_id=212208265]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 mesh = SubResource("BoxMesh_w77t2")
 surface_material_override/0 = SubResource("StandardMaterial3D_w77t2")
 

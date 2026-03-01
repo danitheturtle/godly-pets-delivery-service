@@ -1,9 +1,11 @@
 extends CharacterBody3D
 class_name Player
 
-@export var GRAVITY = -3
 @export var PLAYER_SPEED = 6
 @export var CAMERA_ANGULAR_VELOCITY = 0.1
+@export var GRAVITY = -9.8
+@export var JUMP_ACCELERATION = 80.0
+@export var JUMP_JERK = -300.0
 
 # child nodes
 @onready var camera = $PlayerCamera
@@ -14,14 +16,13 @@ var moveDir = Vector2(0.0,0.0)
 var cameraMoveDir = Vector2(0.0,0.0)
 var movePriority = { left = false, right = false, forward = false, backward = false }
 var mouseCaptured = false
+var jumping = false
+var jumpAcceleration = 0.0
 
 func _ready() -> void:
     State.player = self
     Input.set_mouse_mode(Input.MouseMode.MOUSE_MODE_CAPTURED)
     mouseCaptured = true
-
-#func _process(_delta: float) -> void:
-    #pass
 
 func _physics_process(_delta: float) -> void:
     if (cameraMoveDir.y < 0 && camera.rotation_degrees.x < 85) || (cameraMoveDir.y > 0 && camera.rotation_degrees.x > -85):
@@ -29,10 +30,18 @@ func _physics_process(_delta: float) -> void:
     rotate_y(cameraMoveDir.x * -CAMERA_ANGULAR_VELOCITY)
     if (mouseCaptured):
         cameraMoveDir = Vector2.ZERO
-    #multiply basis vectors by input direction
-    velocity = Vector3(basis.x * moveDir.x + basis.z * moveDir.y).limit_length() * PLAYER_SPEED
-    #apply gravity
-    velocity += Vector3(0.0, GRAVITY, 0.0)
+    #multiply basis vectors by input direction. preserve vertical velocity
+    velocity = Vector3(0,velocity.y,0) + Vector3(basis.x * moveDir.x + basis.z * moveDir.y).limit_length() * PLAYER_SPEED
+    #apply then jerk the jump acceleration
+    if jumping:
+        velocity += Vector3(0,jumpAcceleration*_delta,0)
+        jumpAcceleration += JUMP_JERK*_delta
+    #apply gravity acceleration. apply more strongly if falling
+    if (velocity.y >= 0.0):
+        velocity += Vector3(0,GRAVITY * _delta,0)
+    else:
+        jumping = false
+        velocity += Vector3(0,GRAVITY*3*_delta,0)
     move_and_slide()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -51,7 +60,12 @@ func handle_mouse_input(event: InputEventMouseMotion) -> void:
 func handle_key_input(event: InputEvent ) -> void:
     var eventHandled: bool = false
     # movement
-    if (event.is_action_pressed("forward")):
+    if (event.is_action_pressed("jump") && !jumping):
+        if is_on_floor():
+            jumping = true
+            jumpAcceleration = JUMP_ACCELERATION
+            eventHandled = true
+    elif (event.is_action_pressed("forward")):
         moveDir = Vector2(moveDir.x, -1)
         eventHandled = true
     elif (event.is_action_released("forward")):

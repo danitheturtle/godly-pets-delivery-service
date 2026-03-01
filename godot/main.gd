@@ -1,6 +1,7 @@
 extends Node3D
 class_name Main
 
+@onready var viewport = get_tree().root
 @onready var mainMenu = $MainMenu
 @onready var pauseMenu = $PauseMenu
 
@@ -13,6 +14,8 @@ func _ready() -> void:
     pauseMenu.goto_main_menu.connect(main_menu)
     SignalBus.game_exited.connect(quit_game)
     SignalBus.game_paused.connect(pause_game)
+    # debug
+    new_game()
 
 func main_menu() -> void:
     get_tree().paused = false
@@ -25,7 +28,7 @@ func new_game() -> void:
         State.loadedWorld.free()
     State.reinit()
     var world1 = World1Resource.instantiate()
-    get_tree().root.add_child(world1)
+    get_tree().root.add_child.call_deferred(world1)
 
 func quit_game() -> void:
     get_tree().quit()

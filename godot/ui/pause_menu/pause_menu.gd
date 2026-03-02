@@ -2,12 +2,10 @@ extends CanvasLayer
 class_name PauseMenu
 
 signal continue_game
-#signal restart_level
-signal reset_to_checkpoint
 signal goto_main_menu
 
 @onready var continueButton = $CenterContainer/VBoxContainer/ContinueButton
-#@onready var restartLevelButton = $CenterContainer/VBoxContainer/RestartLevelButton
+@onready var restartLevelButton = $CenterContainer/VBoxContainer/RestartLevelButton
 @onready var resetToCheckpoint = $CenterContainer/VBoxContainer/ResetToCheckpointButton
 #@onready var levelSelectButton = $CenterContainer/VBoxContainer/LevelSelectButton
 #@onready var settingsButton = $CenterContainer/VBoxContainer/SettingsButton
@@ -15,10 +13,11 @@ signal goto_main_menu
 @onready var quitButton = $CenterContainer/VBoxContainer/QuitButton
 
 func _ready() -> void:
-    continueButton.button_up.connect(_continue_pressed)
-    resetToCheckpoint.button_up.connect(_reset_to_checkpoint_pressed)
-    mainMenuButton.button_up.connect(_main_menu_pressed)
-    quitButton.button_up.connect(_quit_pressed)
+    continueButton.button_up.connect(on_continue_pressed)
+    restartLevelButton.button_up.connect(on_restart_level)
+    resetToCheckpoint.button_up.connect(on_reset_to_checkpoint_pressed)
+    mainMenuButton.button_up.connect(on_main_menu_pressed)
+    quitButton.button_up.connect(on_quit_pressed)
 
 func handle_key_input(event: InputEvent ) -> void:
     var eventHandled = false
@@ -27,14 +26,17 @@ func handle_key_input(event: InputEvent ) -> void:
     if (eventHandled):
         get_tree().root.set_input_as_handled()
 
-func _continue_pressed() -> void:
+func on_continue_pressed() -> void:
     continue_game.emit()
-    
-func _reset_to_checkpoint_pressed() -> void:
-    reset_to_checkpoint.emit()
 
-func _main_menu_pressed() -> void:
+func on_restart_level() -> void:
+    SignalBus.level_restarted.emit()
+
+func on_reset_to_checkpoint_pressed() -> void:
+    SignalBus.reset_to_checkpoint.emit()
+
+func on_main_menu_pressed() -> void:
     goto_main_menu.emit()
 
-func _quit_pressed() -> void:
+func on_quit_pressed() -> void:
     SignalBus.game_exited.emit()

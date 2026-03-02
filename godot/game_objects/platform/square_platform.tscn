@@ -13,7 +13,7 @@ size = Vector3(7, 3, 7)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pi4wo"]
 
-[node name="SquarePlatform" type="AnimatableBody3D" unique_id=322832196]
+[node name="SquarePlatform" type="AnimatableBody3D" unique_id=322832196 groups=["resetable"]]
 script = ExtResource("1_klhda")
 
 [node name="FloorCollider" type="CollisionShape3D" parent="." unique_id=221595719]

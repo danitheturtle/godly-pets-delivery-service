@@ -9,6 +9,7 @@ size = Vector3(0.5, 4, 0.5)
 albedo_color = Color(0.2569852, 0.63109255, 0.6215391, 1)
 
 [node name="SubCheckpoint" unique_id=24656330 instance=ExtResource("1_4lmp5")]
+isSubCheckpoint = true
 
 [node name="CheckpointMesh" parent="." index="0" unique_id=212208265]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

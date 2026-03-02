@@ -30,7 +30,6 @@ text = "Continue"
 
 [node name="RestartLevelButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1210135419]
 layout_mode = 2
-disabled = true
 text = "Restart Level"
 
 [node name="ResetToCheckpointButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=567361567]

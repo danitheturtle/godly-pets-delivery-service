@@ -4,7 +4,7 @@
 [ext_resource type="ArrayMesh" uid="uid://d3ywv5epcksy6" path="res://assets/stairs.obj" id="2_alqbs"]
 [ext_resource type="Shape3D" uid="uid://b6nqhrfkchyh8" path="res://assets/stairs.tres" id="3_frutw"]
 
-[node name="RotatingStaircase" type="AnimatableBody3D" unique_id=1037820242]
+[node name="RotatingStaircase" type="AnimatableBody3D" unique_id=1037820242 groups=["resetable"]]
 sync_to_physics = false
 script = ExtResource("1_t8gvg")
 

@@ -59,12 +59,17 @@ func handle_mouse_input(event: InputEventMouseMotion) -> void:
 
 func handle_key_input(event: InputEvent ) -> void:
     var eventHandled: bool = false
-    # movement
     if (event.is_action_pressed("jump") && !jumping):
         if is_on_floor():
             jumping = true
             jumpAcceleration = JUMP_ACCELERATION
             eventHandled = true
+    elif (event.is_action_released("reset")):
+        SignalBus.reset_to_checkpoint.emit()
+        eventHandled = true
+    elif (event.is_action_released("interact")):
+        SignalBus.player_interacted.emit()
+        eventHandled = true
     elif (event.is_action_pressed("forward")):
         moveDir = Vector2(moveDir.x, -1)
         eventHandled = true

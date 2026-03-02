@@ -18,8 +18,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 [node name="Level1" type="Node3D" parent="." unique_id=2012754574]
 script = ExtResource("3_whu56")
 
-[node name="L1_Checkpoint" parent="Level1" unique_id=24656330 instance=ExtResource("5_4wvuw")]
+[node name="Checkpoint" parent="Level1" unique_id=24656330 instance=ExtResource("5_4wvuw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 isFirstInScene = true
 
-[node name="L1-0_Platform1" parent="Level1" unique_id=322832196 instance=ExtResource("4_26h4x")]
+[node name="Platform" parent="Level1" unique_id=322832196 instance=ExtResource("4_26h4x")]

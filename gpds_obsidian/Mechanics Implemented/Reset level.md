@@ -1,1 +1,0 @@
-Reset to the last checkpoint with hotkey

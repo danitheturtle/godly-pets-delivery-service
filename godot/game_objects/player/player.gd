@@ -21,8 +21,7 @@ var jumpAcceleration = 0.0
 
 func _ready() -> void:
     State.player = self
-    Input.set_mouse_mode(Input.MouseMode.MOUSE_MODE_CAPTURED)
-    mouseCaptured = true
+    capture_mouse()
 
 func _physics_process(_delta: float) -> void:
     if (cameraMoveDir.y < 0 && camera.rotation_degrees.x < 85) || (cameraMoveDir.y > 0 && camera.rotation_degrees.x > -85):
@@ -98,23 +97,24 @@ func handle_key_input(event: InputEvent ) -> void:
     
     # cursor capture. lets player get mouse back to interact with UI
     if (event.is_action_pressed("capture_cursor") && !mouseCaptured):
-        Input.set_mouse_mode(Input.MouseMode.MOUSE_MODE_CAPTURED)
-        mouseCaptured = true
+        capture_mouse()
         eventHandled = true
     if (event.is_action_pressed("toggle_cursor")):
         if (mouseCaptured):
-            Input.set_mouse_mode(Input.MouseMode.MOUSE_MODE_VISIBLE)
-            mouseCaptured = false
+            release_mouse()
         else:
-            Input.set_mouse_mode(Input.MouseMode.MOUSE_MODE_CAPTURED)
-            mouseCaptured = true
+            capture_mouse()
     # handle pause game
     if (event.is_action_pressed("pause_game")):
         if (mouseCaptured):
-            Input.set_mouse_mode(Input.MouseMode.MOUSE_MODE_VISIBLE)
-            mouseCaptured = false
+            release_mouse()
         eventHandled = true
         SignalBus.game_paused.emit()
+    if (event.is_action_pressed("level_select")):
+        if (mouseCaptured):
+            release_mouse()
+        eventHandled = true
+        SignalBus.level_select_opened.emit()
     # tell game event was handled and stop propagating
     if (eventHandled):
         get_tree().root.set_input_as_handled()
@@ -144,3 +144,11 @@ func handle_axis_input(event: InputEventJoypadMotion) -> void:
     # tell game event was handled and stop propagating
     if (eventHandled):
         get_tree().root.set_input_as_handled()
+
+func release_mouse() -> void:
+    Input.set_mouse_mode(Input.MouseMode.MOUSE_MODE_VISIBLE)
+    mouseCaptured = false
+
+func capture_mouse() -> void:
+    Input.set_mouse_mode(Input.MouseMode.MOUSE_MODE_CAPTURED)
+    mouseCaptured = true

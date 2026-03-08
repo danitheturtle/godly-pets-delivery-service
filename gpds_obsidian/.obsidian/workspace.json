@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Todo/Started/Checkpoints & Reset.md",
+                "file": "Todo/Menuing & Actions with controller.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Checkpoints & Reset"
+              "title": "Menuing & Actions with controller"
             }
           },
           {
@@ -186,6 +186,15 @@
   "active": "05c536962d781d60",
   "lastOpenFiles": [
     "Todo/Level Select.md",
+    "Todo/Menuing & Actions with controller.md",
+    "Pets/Chonky duck. Swims between plats, glides down.md",
+    "Pets/Pet that can teleport to the player.md",
+    "Mechanics/Buttons on platforms.md",
+    "Mechanics/Toggle pet following you.md",
+    "Todo/Iterate player controller.md",
+    "Todo/Save system.md",
+    "Mechanics Implemented/Checkpoints & Reset.md",
+    "Mechanics Implemented/Reset level.md",
     "Mechanics/Levers activated by specific stair movement.md",
     "Mechanics/Gizmo for.md",
     "Mechanics/Walls that physically block rotation.md",
@@ -194,28 +203,19 @@
     "Mechanics/Iterate level editor gizmo.md",
     "Mechanics Implemented/Level Edit Gizmo.md",
     "Mechanics/Puzzle grid.md",
-    "Todo/Save system.md",
     "Todo/Started/State singleton.md",
     "Todo/Started/Pause Menu.md",
     "Todo/Started/Main Menu.md",
-    "Todo/Started/Checkpoints & Reset.md",
     "Todo/I18n singleton.md",
-    "Mechanics Implemented/Reset level.md",
     "Todo/Started",
     "Mechanics/Drone freecam.md",
-    "Todo/Iterate player controller.md",
     "Pets/Pet too heavy for most stairs.md",
     "Mechanics Brainstorm/pets",
     "Mechanics Implemented/Stair and Platform Rotation.md",
     "Mechanics Implemented",
     "Game Pitch.md",
-    "Mechanics/Stretch/Target low move count like opus magnum.md",
-    "Mechanics/Stretch/Optional hidden exits like monkeyball.md",
     "Mechanics/Stretch",
     "Todo",
-    "Mechanics/Platform control tablet.md",
-    "Core Pillars.md",
-    "Decorations/Ian Hubert moths on a lantern.md",
     "Decorations",
     "Pets",
     "Mechanics"

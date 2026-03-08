@@ -38,7 +38,6 @@ text = "Reset To Checkpoint"
 
 [node name="LevelSelectButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1375777470]
 layout_mode = 2
-disabled = true
 text = "Level Select"
 
 [node name="SettingsButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1660507431]

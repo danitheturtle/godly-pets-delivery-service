@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dj3k3g1upt56r"]
+
+[ext_resource type="PackedScene" uid="uid://cv8kat48ol8pp" path="res://worlds/base_world.tscn" id="1_d1a7n"]
+
+[node name="World2" unique_id=206715187 instance=ExtResource("1_d1a7n")]
+worldNumber = 2

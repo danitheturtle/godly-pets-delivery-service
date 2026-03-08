@@ -1,0 +1,1 @@
+Toggle pet following you. Allows player to place the pet on a paltform and go get something relevant to the solution elsewhere without it.

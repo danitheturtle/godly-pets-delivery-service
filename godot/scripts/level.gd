@@ -1,6 +1,8 @@
 extends Node
 class_name Level
 
+@export var levelNumber: int = 1
+
 @onready var levelCheckpoint = $Checkpoint
 
 func restart_level():

@@ -17,8 +17,7 @@ func _ready() -> void:
         activate_checkpoint()
 
 func activate_checkpoint() -> void:
-    if State.level != parentLevel && parentLevel != null:
-        State.level = parentLevel
+    State.set_level(parentLevel)
     if State.lastCheckpoint != null:
         if State.lastCheckpoint.animationPlayer is AnimationPlayer:
             State.lastCheckpoint.animationPlayer.stop()

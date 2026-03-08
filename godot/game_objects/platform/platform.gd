@@ -172,8 +172,7 @@ func get_pivot_basis_stops(pivot: CollisionShape3D) -> void:
 func on_entered_control_area(node: Node) -> void:
     if (node is Player):
         platformControlled = true
-        if State.level != parentLevel && parentLevel != null:
-            State.level = parentLevel
+        State.set_level(parentLevel)
 
 func on_exited_control_area(node: Node) -> void:
     if (node is Player):

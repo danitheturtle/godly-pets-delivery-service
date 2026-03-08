@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dg2syok074vh4" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dip6qkew0xpsc" path="res://ui/main_menu/main_menu.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://s8lcj8fuwufh" path="res://ui/level_select_menu/level_select_menu.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://c2faun8ojgbxn" path="res://ui/pause_menu/pause_menu.tscn" id="3_h2yge"]
 
 [node name="Main" type="Node3D" unique_id=2119579566]
@@ -9,6 +10,9 @@ process_mode = 3
 script = ExtResource("1_0xm2m")
 
 [node name="MainMenu" parent="." unique_id=1523116074 instance=ExtResource("2_h2yge")]
+
+[node name="LevelSelectMenu" parent="." unique_id=560411588 instance=ExtResource("3_1bvp3")]
+visible = false
 
 [node name="PauseMenu" parent="." unique_id=650517184 instance=ExtResource("3_h2yge")]
 visible = false

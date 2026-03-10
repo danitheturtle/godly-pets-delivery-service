@@ -205,8 +205,11 @@ func on_checkpoint_reached() -> void:
     storedPivotsRotationIndex = pivotsRotationIndex
 
 func on_body_entered_stair_area(body: Node3D) -> void:
-    if attachedStairRefs.has(body) || body is PhysicsBody3D && !body.get_collision_layer_value(2):
+    if body == self || (body is PhysicsBody3D && !body.get_collision_layer_value(2)):
         return
+    for nextAttachedStair in attachedStairRefs:
+        if body == nextAttachedStair:
+            return
     if rotationDir != 0 && !rotationCancelled:
         rotationCancelled = true
         rotationIndex = wrapi(rotationIndex + rotationDir, 0, rotationStops)

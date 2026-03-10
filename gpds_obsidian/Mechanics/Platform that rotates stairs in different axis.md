@@ -1,0 +1,1 @@
+For a tight corridor where rotating isn't possible, a platform that pivots 180 vertically could be useful for moving stairs.

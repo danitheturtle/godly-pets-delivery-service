@@ -1,3 +1,5 @@
+* reset all levels after selected level so player isn't stuck when they finish
+* 
 * Each pet is associated with a world and the god at the end of it.
 * Every world has many sequential levels.
 * Every level starts with its own checkpoint and ends at the next level's checkpoint

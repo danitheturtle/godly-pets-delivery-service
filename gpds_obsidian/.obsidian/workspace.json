@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Todo/Menuing & Actions with controller.md",
+                "file": "Mechanics/Two stairs that meet end-to-end connect.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Menuing & Actions with controller"
+              "title": "Two stairs that meet end-to-end connect"
             }
           },
           {
@@ -185,14 +185,21 @@
   },
   "active": "05c536962d781d60",
   "lastOpenFiles": [
-    "Todo/Level Select.md",
+    "Mechanics/Platform that rotates stairs in different axis.md",
+    "Mechanics/Two stairs that meet end-to-end connect.md",
+    "Todo/Started/Level Select.md",
+    "Todo/Config system.md",
+    "Todo/Save system.md",
+    "Todo/I18n singleton.md",
+    "Todo/Started/State singleton.md",
+    "Todo/Started/Main Menu.md",
+    "Todo/Started/Pause Menu.md",
     "Todo/Menuing & Actions with controller.md",
     "Pets/Chonky duck. Swims between plats, glides down.md",
     "Pets/Pet that can teleport to the player.md",
     "Mechanics/Buttons on platforms.md",
     "Mechanics/Toggle pet following you.md",
     "Todo/Iterate player controller.md",
-    "Todo/Save system.md",
     "Mechanics Implemented/Checkpoints & Reset.md",
     "Mechanics Implemented/Reset level.md",
     "Mechanics/Levers activated by specific stair movement.md",
@@ -203,17 +210,10 @@
     "Mechanics/Iterate level editor gizmo.md",
     "Mechanics Implemented/Level Edit Gizmo.md",
     "Mechanics/Puzzle grid.md",
-    "Todo/Started/State singleton.md",
-    "Todo/Started/Pause Menu.md",
-    "Todo/Started/Main Menu.md",
-    "Todo/I18n singleton.md",
     "Todo/Started",
     "Mechanics/Drone freecam.md",
-    "Pets/Pet too heavy for most stairs.md",
     "Mechanics Brainstorm/pets",
-    "Mechanics Implemented/Stair and Platform Rotation.md",
     "Mechanics Implemented",
-    "Game Pitch.md",
     "Mechanics/Stretch",
     "Todo",
     "Decorations",

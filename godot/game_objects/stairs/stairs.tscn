@@ -4,7 +4,8 @@
 [ext_resource type="ArrayMesh" uid="uid://d3ywv5epcksy6" path="res://assets/stairs.obj" id="2_alqbs"]
 [ext_resource type="Shape3D" uid="uid://b6nqhrfkchyh8" path="res://assets/stairs.tres" id="3_frutw"]
 
-[node name="RotatingStaircase" type="AnimatableBody3D" unique_id=1037820242 groups=["resetable"]]
+[node name="RotatingStaircase" type="AnimatableBody3D" unique_id=131645656 groups=["resetable"]]
+collision_layer = 3
 sync_to_physics = false
 script = ExtResource("1_t8gvg")
 
@@ -13,5 +14,12 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0
 mesh = ExtResource("2_alqbs")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1129599342]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+shape = ExtResource("3_frutw")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=2065246267]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=200964753]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 shape = ExtResource("3_frutw")

@@ -17,7 +17,7 @@ func _ready() -> void:
     SignalBus.level_select_opened.connect(level_select_menu)
     SignalBus.level_selected.connect(goto_level)
     # debug
-    #new_game()
+    new_game()
 
 func main_menu() -> void:
     get_tree().paused = false

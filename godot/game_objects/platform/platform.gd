@@ -14,6 +14,7 @@ var basisStops: Array[Basis] = []
 var rotationDir: int = 0
 var rotationIndex: int = 0
 var rotationTimer: float = 0.0
+var rotationCancelled: bool = false
 var clockwiseQueued: bool = false
 var counterClockwiseQueued: bool = false
 
@@ -23,6 +24,7 @@ var pivotsBasisStops: Array[Basis] = [] # 4 for each pivot
 var pivotsRotationDir: int = 0
 var pivotsRotationIndex: int = 0
 var pivotsRotationTimer: float = 0.0
+var pivotsRotationCancelled: bool = false
 var pivotsClockwiseQueued: bool = false
 var pivotsCounterClockwiseQueued: bool = false
 
@@ -36,6 +38,8 @@ var storedPivotsRotationIndex: int
 
 #local state
 var platformControlled: bool = false
+var attachedStairRefs: Array[Stairs] = []
+
 
 func _ready() -> void:
     # calculate the bases this platform can stop at
@@ -118,12 +122,15 @@ func reset(hard: bool = false) -> void:
     # reinitialize animation variables
     rotationDir = 0
     rotationTimer = 0.0
+    rotationCancelled = false
     pivotsRotationDir = 0
     pivotsRotationTimer = 0.0
+    pivotsRotationCancelled = false
     clockwiseQueued = false
     counterClockwiseQueued = false
     pivotsClockwiseQueued = false
     pivotsCounterClockwiseQueued = false
+    disconnect_attached_stair_signals()
     # hard or soft reset variables
     rotationIndex = 0 if hard else storedRotationIndex
     pivotsRotationIndex = 0 if hard else storedPivotsRotationIndex
@@ -139,6 +146,7 @@ func rotate_platform(delta: float) -> void:
     transform.basis = Basis(basisStops[fromIndex]).slerp(basisStops[toIndex], normalizedPositionInRotation).orthonormalized()
     # if rotation finished
     if (normalizedPositionInRotation >= 1.0):
+        rotationCancelled = false
         rotationIndex = toIndex
         rotationDir = 0
         rotationTimer = 0.0
@@ -151,17 +159,28 @@ func rotate_pivots(delta: float) -> void:
     for i in range(rotationStops):
         pivots[i].transform.basis = Basis(pivotsBasisStops[i*rotationStops + fromIndex]).slerp(pivotsBasisStops[i*rotationStops + toIndex], normalizedPositionInRotation).orthonormalized()
     if (normalizedPositionInRotation >= 1.0):
+        pivotsRotationCancelled = false
         pivotsRotationIndex = toIndex
         pivotsRotationDir = 0
         pivotsRotationTimer = 0.0
 
 func attach_adjacent_stairs() -> void:
+    disconnect_attached_stair_signals()
+    attachedStairRefs = []
     for nextPivot in pivots:
         var pivotCollisions = nextPivot.get_parent().get_overlapping_bodies()
         for col in pivotCollisions:
-            if (col is Stairs && col.get_parent() != nextPivot):
-                State.touchedNodes.append(col)
-                col.reparent(nextPivot, true)
+            if col is Stairs:
+                attachedStairRefs.append(col)
+                col.collisionArea.body_entered.connect(on_body_entered_stair_area)
+                if col.get_parent() != nextPivot:
+                    State.touchedNodes.append(col)
+                    col.reparent(nextPivot, true)
+
+func disconnect_attached_stair_signals() -> void:
+    for attachedStair in attachedStairRefs:
+        if attachedStair.collisionArea.is_connected("body_entered", on_body_entered_stair_area):
+            attachedStair.collisionArea.body_entered.disconnect(on_body_entered_stair_area)
 
 func get_pivot_basis_stops(pivot: CollisionShape3D) -> void:
     var childPivotBasisIndex = pivotsBasisStops.size()
@@ -184,3 +203,17 @@ func on_checkpoint_reached() -> void:
         storedPivotsBases[i] = pivots[i].transform.basis
     storedRotationIndex = rotationIndex
     storedPivotsRotationIndex = pivotsRotationIndex
+
+func on_body_entered_stair_area(body: Node3D) -> void:
+    if attachedStairRefs.has(body) || body is PhysicsBody3D && !body.get_collision_layer_value(2):
+        return
+    if rotationDir != 0 && !rotationCancelled:
+        rotationCancelled = true
+        rotationIndex = wrapi(rotationIndex + rotationDir, 0, rotationStops)
+        rotationDir *= -1
+        rotationTimer = secondsPerRotation - rotationTimer
+    if pivotsRotationDir != 0 && !pivotsRotationCancelled:
+        pivotsRotationCancelled = true
+        pivotsRotationIndex = wrapi(pivotsRotationIndex + pivotsRotationDir, 0, 4)
+        pivotsRotationDir *= -1
+        pivotsRotationTimer = secondsPerRotation - pivotsRotationTimer

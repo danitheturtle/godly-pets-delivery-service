@@ -1,26 +1,29 @@
 extends AnimatableBody3D
 class_name Stairs
 
+@onready var collisionArea = $Area3D
 @onready var initialParent = get_parent()
 @onready var initialTransform = Transform3D(transform)
+
+var attachedToPlatform: Platform = null
 
 var storedParent
 var storedTransform
 
 func _ready() -> void:
-	storedParent = initialParent
-	storedTransform = initialTransform
-	# listen for checkpoints
-	SignalBus.checkpoint_activated.connect(_checkpoint_reached)
+    storedParent = initialParent
+    storedTransform = initialTransform
+    # listen for checkpoints
+    SignalBus.checkpoint_activated.connect(on_checkpoint_reached)
 
 func reset(hard: bool = false) -> void:
-	if (!hard):
-		reparent(storedParent, false)
-		transform = storedTransform
-	else:
-		reparent(initialParent, false)
-		transform = initialTransform
+    if (!hard):
+        reparent(storedParent, false)
+        transform = storedTransform
+    else:
+        reparent(initialParent, false)
+        transform = initialTransform
 
-func _checkpoint_reached() -> void:
-	storedParent = get_parent()
-	storedTransform = Transform3D(transform)
+func on_checkpoint_reached() -> void:
+    storedParent = get_parent()
+    storedTransform = Transform3D(transform)

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Todo/Started/Walls that physically block rotation.md",
+                "file": "Mechanics/Screenspace relative pointer.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Walls that physically block rotation"
+              "title": "Screenspace relative pointer"
             }
           },
           {
@@ -185,6 +185,8 @@
   },
   "active": "328136d1d053f47e",
   "lastOpenFiles": [
+    "Todo/Started/Walls that physically block rotation.md",
+    "Mechanics/Screenspace relative pointer.md",
     "Mechanics/Rotate stairs into target position to activate.md",
     "Mechanics/Platform control tablet.md",
     "Mechanics/Two stairs that meet end-to-end connect.md",
@@ -206,11 +208,9 @@
     "Mechanics Implemented/Reset level.md",
     "Mechanics/Levers activated by specific stair movement.md",
     "Mechanics/Gizmo for.md",
-    "Todo/Started/Walls that physically block rotation.md",
     "Mechanics/Stairs that can only move X times.md",
     "Mechanics/Iterate level editor gizmo.md",
     "Mechanics Implemented/Level Edit Gizmo.md",
-    "Mechanics/Puzzle grid.md",
     "Todo/Started",
     "Mechanics Brainstorm/pets",
     "Mechanics Implemented",

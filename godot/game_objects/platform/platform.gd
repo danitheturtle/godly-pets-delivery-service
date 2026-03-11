@@ -5,6 +5,8 @@ class_name Platform
 @export var secondsPerStairRotation: float = 1.0
 @export var rotationStops: int = 4
 
+const collisionErrorMaterial: Material = preload("res://assets/materials/rotation_error.material")
+
 @onready var pivotsParent: Node3D = $Pivots
 @onready var actorDetector: Area3D = $ActorDetector
 @onready var parentLevel = Utils.get_parent_level(self)
@@ -205,18 +207,34 @@ func on_checkpoint_reached() -> void:
     storedPivotsRotationIndex = pivotsRotationIndex
 
 func on_body_entered_stair_area(body: Node3D) -> void:
+    # TODO: collide with other platforms
     if body == self || (body is PhysicsBody3D && !body.get_collision_layer_value(2)):
         return
     for nextAttachedStair in attachedStairRefs:
         if body == nextAttachedStair:
             return
+    # play animation and error sound on entering body
     if rotationDir != 0 && !rotationCancelled:
         rotationCancelled = true
         rotationIndex = wrapi(rotationIndex + rotationDir, 0, rotationStops)
         rotationDir *= -1
         rotationTimer = secondsPerRotation - rotationTimer
+        play_collision_animation(body)
     if pivotsRotationDir != 0 && !pivotsRotationCancelled:
         pivotsRotationCancelled = true
         pivotsRotationIndex = wrapi(pivotsRotationIndex + pivotsRotationDir, 0, 4)
         pivotsRotationDir *= -1
         pivotsRotationTimer = secondsPerRotation - pivotsRotationTimer
+        play_collision_animation(body)
+
+func play_collision_animation(body: PhysicsBody3D) -> void:
+    # get physics object's mesh
+    var meshInstance = []
+    for nextChild in body.get_children():
+        if nextChild is MeshInstance3D:
+            meshInstance.append(nextChild)
+    for nextMesh in meshInstance:
+        nextMesh.material_overlay = collisionErrorMaterial
+    await get_tree().create_timer(1.0).timeout
+    for nextMesh in meshInstance:
+        nextMesh.material_overlay = null

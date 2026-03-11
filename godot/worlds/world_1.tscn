@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://ch2wrgrciwb6i" path="res://game_objects/checkpoint/sub_checkpoint.tscn" id="4_baolv"]
 [ext_resource type="PackedScene" uid="uid://ck2nk1xw7ihca" path="res://game_objects/platform/square_platform.tscn" id="4_fwsfs"]
 [ext_resource type="Script" uid="uid://bn4n5sbcei8x4" path="res://scripts/level.gd" id="5_0p53a"]
-[ext_resource type="Script" uid="uid://b6r0nkerqmy6f" path="res://game_objects/platform/platform.gd" id="5_a02j0"]
 [ext_resource type="PackedScene" uid="uid://cyksofbl60ciy" path="res://game_objects/checkpoint/checkpoint.tscn" id="6_wkq5h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fwsfs"]
@@ -35,7 +34,7 @@ size = Vector3(5, 3, 5)
 [node name="World1" unique_id=206715187 instance=ExtResource("1_nlsqv")]
 
 [node name="Player" parent="." index="1" unique_id=66642413]
-transform = Transform3D(0.9643868, 0, -0.26449588, 0, 1, 0, 0.26449588, 0, 0.9643868, -7.700648, -9.727724, 32.51276)
+transform = Transform3D(0.9643868, 0, -0.26449588, 0, 1, 0, 0.26449588, 0, 0.9643868, -2.4506493, 35.232525, 84.51276)
 
 [node name="Checkpoint" parent="Level1" parent_id_path=PackedInt32Array(2012754574) index="0" unique_id=24656330]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1048985, -9.670566, 30.057371)
@@ -147,24 +146,20 @@ mesh = SubResource("BoxMesh_a02j0")
 [node name="1Platform" parent="Level2" index="9" unique_id=826147174 instance=ExtResource("4_fwsfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.00002, 45, 57)
 
-[node name="1Platform1" type="AnimatableBody3D" parent="Level2" index="10" unique_id=1249468669 groups=["resetable"] instance=ExtResource("4_fwsfs")]
+[node name="1Platform1" parent="Level2" index="10" unique_id=1249468669 instance=ExtResource("4_fwsfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -85.500015, 45, 45.75)
-script = ExtResource("5_a02j0")
 
-[node name="1Platform2" type="AnimatableBody3D" parent="Level2" index="11" unique_id=1323766847 groups=["resetable"] instance=ExtResource("4_fwsfs")]
+[node name="1Platform2" parent="Level2" index="11" unique_id=1323766847 instance=ExtResource("4_fwsfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -85.500015, 33.75, 17.25)
-script = ExtResource("5_a02j0")
 
-[node name="1Platform3" type="AnimatableBody3D" parent="Level2" index="12" unique_id=1712166749 groups=["resetable"] instance=ExtResource("4_fwsfs")]
+[node name="1Platform3" parent="Level2" index="12" unique_id=1712166749 instance=ExtResource("4_fwsfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -85.500015, 45, -11.25)
-script = ExtResource("5_a02j0")
 
 [node name="1Platform4" parent="Level2" index="13" unique_id=333908949 instance=ExtResource("4_fwsfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.00002, 45, 0)
 
-[node name="1Platform5" type="AnimatableBody3D" parent="Level2" index="14" unique_id=2071385862 groups=["resetable"] instance=ExtResource("4_fwsfs")]
+[node name="1Platform5" parent="Level2" index="14" unique_id=2071385862 instance=ExtResource("4_fwsfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.000023, 33.75, 28.5)
-script = ExtResource("5_a02j0")
 
 [node name="1Platform6" parent="Level2" index="15" unique_id=1945654869 instance=ExtResource("4_fwsfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.00002, 56.25, 28.5)

@@ -160,6 +160,7 @@ level_select={
 
 3d_physics/layer_1="collides_with_actors"
 3d_physics/layer_2="collides_with_stairs"
+3d_physics/layer_3="bake_navmesh"
 
 [physics]
 

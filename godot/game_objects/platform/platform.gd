@@ -1,15 +1,19 @@
 extends AnimatableBody3D
 class_name Platform
 
+# imports
+const collisionErrorMaterial: Material = preload("res://assets/materials/rotation_error.material")
+# editor-controlled values
 @export var secondsPerRotation: float = 1.0
 @export var secondsPerStairRotation: float = 1.0
 @export var rotationStops: int = 4
 
-const collisionErrorMaterial: Material = preload("res://assets/materials/rotation_error.material")
-
 @onready var pivotsParent: Node3D = $Pivots
 @onready var actorDetector: Area3D = $ActorDetector
 @onready var parentLevel = Utils.get_parent_level(self)
+
+# StiarGrid info representing place in the level
+var closestCheckpoint: Checkpoint
 
 #rotation animation state
 var basisStops: Array[Basis] = []
@@ -42,8 +46,12 @@ var storedPivotsRotationIndex: int
 var platformControlled: bool = false
 var attachedStairRefs: Array[Stairs] = []
 
-
 func _ready() -> void:
+    # get nearest checkpoint
+    for nextChild in get_parent().get_children():
+        if nextChild is Checkpoint:
+            closestCheckpoint = nextChild
+            break
     # calculate the bases this platform can stop at
     basisStops.append(Basis(transform.basis))
     var rotationPerStepRad: float = TAU / rotationStops
@@ -193,7 +201,8 @@ func get_pivot_basis_stops(pivot: CollisionShape3D) -> void:
 func on_entered_control_area(node: Node) -> void:
     if (node is Player):
         platformControlled = true
-        State.set_level(parentLevel)
+        if (closestCheckpoint != State.lastCheckpoint):
+            closestCheckpoint.activate_checkpoint()
 
 func on_exited_control_area(node: Node) -> void:
     if (node is Player):

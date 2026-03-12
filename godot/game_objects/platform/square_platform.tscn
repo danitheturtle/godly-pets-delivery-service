@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ck2nk1xw7ihca"]
 
 [ext_resource type="Script" uid="uid://b6r0nkerqmy6f" path="res://game_objects/platform/platform.gd" id="1_klhda"]
+[ext_resource type="Material" uid="uid://c3m6scgkjn1xq" path="res://assets/materials/rotating_platform.material" id="2_ia4b8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sgp6g"]
 size = Vector3(9.75, 3, 9.75)
@@ -14,12 +15,14 @@ size = Vector3(7, 3, 7)
 [sub_resource type="SphereShape3D" id="SphereShape3D_pi4wo"]
 
 [node name="SquarePlatform" type="AnimatableBody3D" unique_id=322832196 groups=["resetable"]]
+collision_layer = 3
 script = ExtResource("1_klhda")
 
 [node name="FloorCollider" type="CollisionShape3D" parent="." unique_id=221595719]
 shape = SubResource("BoxShape3D_sgp6g")
 
 [node name="FloorMesh" type="MeshInstance3D" parent="." unique_id=385756966]
+material_override = ExtResource("2_ia4b8")
 mesh = SubResource("BoxMesh_o5qli")
 
 [node name="ActorDetector" type="Area3D" parent="." unique_id=162572149]

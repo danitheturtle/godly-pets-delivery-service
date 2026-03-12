@@ -6,6 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://ck2nk1xw7ihca" path="res://game_objects/platform/square_platform.tscn" id="4_26h4x"]
 [ext_resource type="PackedScene" uid="uid://cyksofbl60ciy" path="res://game_objects/checkpoint/checkpoint.tscn" id="5_4wvuw"]
 
+[sub_resource type="Environment" id="Environment_1ja0i"]
+background_mode = 1
+background_color = Color(0.63750005, 0.72375, 0.75, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.55562025, 0.5556199, 0.5556197, 1)
+
 [node name="BaseWorld" type="Node3D" unique_id=206715187]
 script = ExtResource("1_pk8mh")
 
@@ -14,6 +20,9 @@ transform = Transform3D(0.8435696, 0, -0.53701985, 0.47806197, 0.45554492, 0.750
 
 [node name="Player" parent="." unique_id=66642413 instance=ExtResource("2_uuore")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=967141768]
+environment = SubResource("Environment_1ja0i")
 
 [node name="Level1" type="Node3D" parent="." unique_id=2012754574]
 script = ExtResource("3_whu56")

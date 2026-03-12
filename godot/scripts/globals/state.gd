@@ -22,7 +22,7 @@ func reinit() -> void:
     level = null
     lastCheckpoint = null
     touchedNodes = []
-    highestWorldReached = 2
+    highestWorldReached = 1
     highestLevelReached = 1
 
 func set_world(_world: World) -> void:
@@ -34,5 +34,5 @@ func set_world(_world: World) -> void:
 func set_level(_level: Level) -> void:
     if (level != _level && _level != null):
         level = _level
-        if highestLevelReached < level.levelNumber:
+        if world != null && highestWorldReached == world.worldNumber && highestLevelReached < level.levelNumber:
             highestLevelReached = level.levelNumber

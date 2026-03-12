@@ -34,7 +34,7 @@ size = Vector3(5, 3, 5)
 [node name="World1" unique_id=206715187 instance=ExtResource("1_nlsqv")]
 
 [node name="Player" parent="." index="1" unique_id=66642413]
-transform = Transform3D(0.9643868, 0, -0.26449588, 0, 1, 0, 0.26449588, 0, 0.9643868, -2.4506493, -9.727724, 32.372574)
+transform = Transform3D(0.9643868, 0, -0.26449588, 0, 1, 0, 0.26449588, 0, 0.9643868, -7.524418, -9.727724, 33.281963)
 
 [node name="Checkpoint" parent="Level1/Sub1" parent_id_path=PackedInt32Array(1133198089) index="0" unique_id=24656330]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.70969, -9.727724, 29.761488)
@@ -57,7 +57,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.25, -11.25, -58.5)
 [node name="SubCheckpoint" parent="Level1/Sub2" index="0" unique_id=1155096228 instance=ExtResource("4_baolv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.753845, 1.5150003, 28.344904)
 
-[node name="Platform" parent="Level1/Sub2" index="1" unique_id=322832196 instance=ExtResource("4_fwsfs")]
+[node name="Platform" parent="Level1/Sub2" index="1" unique_id=1874884055 instance=ExtResource("4_fwsfs")]
 
 [node name="Staircase" parent="Level1/Sub2" index="2" unique_id=1691696802 instance=ExtResource("2_38vaf")]
 transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, 5.6249986, 0, 14.625)
@@ -99,7 +99,7 @@ shape = SubResource("BoxShape3D_wkq5h")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014362812, 0)
 mesh = SubResource("BoxMesh_a02j0")
 
-[node name="Level2" type="Node3D" parent="." index="3" unique_id=1292469914]
+[node name="Level2" type="Node3D" parent="." index="4" unique_id=186058055]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.25, 11.25, 58.5)
 script = ExtResource("5_0p53a")
 levelNumber = 2
@@ -131,6 +131,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9073486e-05, 16.875, 14.62
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Level2/Sub1/Static" index="0" unique_id=1685891372]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3288269, -10.248693, -29.005795)
+collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level2/Sub1/Static/StaticBody3D" index="0" unique_id=1777088797]
 shape = SubResource("BoxShape3D_fwsfs")
@@ -174,6 +175,7 @@ transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 0, 5
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Level2/Sub2/Static" index="0" unique_id=181032458]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.642849, -10.257938, -0.018791199)
+collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level2/Sub2/Static/StaticBody3D" index="0" unique_id=494800254]
 shape = SubResource("BoxShape3D_wkq5h")
@@ -183,7 +185,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014362812, 0)
 mesh = SubResource("BoxMesh_a02j0")
 
 [node name="StairBlocker" type="StaticBody3D" parent="Level2/Sub2/Static" index="1" unique_id=590627162]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7688255, 2.9342117, -51.022064)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7688255, 4.094757, -51.022064)
 collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level2/Sub2/Static/StairBlocker" index="0" unique_id=1056507101]
@@ -194,7 +196,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014362812, 0)
 mesh = SubResource("BoxMesh_s2u2n")
 
 [node name="StairBlocker1" type="StaticBody3D" parent="Level2/Sub2/Static" index="2" unique_id=1784285130]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7601776, 2.9342117, -51.050064)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7601776, 4.094757, -51.050064)
 collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level2/Sub2/Static/StairBlocker1" index="0" unique_id=406149835]

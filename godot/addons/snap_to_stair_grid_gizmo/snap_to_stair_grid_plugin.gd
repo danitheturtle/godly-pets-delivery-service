@@ -3,13 +3,16 @@ extends EditorPlugin
 class_name StairGridPlugin
 
 var dock
+
 const CreateAdjacentGizmoRes = preload("res://addons/snap_to_stair_grid_gizmo/create_adjacent_gizmo.gd")
+var TesselatePlatforms = preload("res://addons/snap_to_stair_grid_gizmo/tesselate_platforms.gd").new()
+
 var createAdjacentGizmo = CreateAdjacentGizmoRes.new()
 var stairGridState = {
     placementMode = "platforms",
     gridOrigin = Vector3(0,0,0),
     platformSideCount = 4,
-    platformSideLength = 9.0,
+    platformSideLength = 9.75,
     stairSlopeRise = 11.25,
     stairSlopeRun = 19.5
 }
@@ -67,3 +70,6 @@ func _stair_slope_rise_changed(nextRise: float) -> void:
 
 func _stair_slope_run_changed(nextRun: float) -> void:
     stairGridState.stairSlopeRun = nextRun
+
+func _tesselate_platforms_clicked() -> void:
+    TesselatePlatforms.tesselate(stairGridState)

@@ -3,7 +3,7 @@ class_name Level
 
 @export var levelNumber: int = 1
 
-@onready var levelCheckpoint = $Checkpoint
+@onready var levelCheckpoint = $Sub1/Checkpoint
 
 func restart_level():
     var resetableChildren = find_children("*")

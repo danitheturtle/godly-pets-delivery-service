@@ -1,11 +1,12 @@
 extends CharacterBody3D
 class_name Player
 
-@export var PLAYER_SPEED = 6
+@export var PLAYER_SPEED = 8
 @export var CAMERA_ANGULAR_VELOCITY = 0.1
-@export var GRAVITY = -9.8
-@export var JUMP_ACCELERATION = 80.0
-@export var JUMP_JERK = -300.0
+@export var GRAVITY = -30
+@export var STRONGER_DOWNWARD_GRAVITY_THRESHOLD = 3.0
+@export var STRONGER_GRAVITY_MULTIPLIER = 1.75
+@export var JUMP_IMPULSE = 12
 
 # child nodes
 @onready var camera = $PlayerCamera
@@ -33,14 +34,13 @@ func _physics_process(_delta: float) -> void:
     velocity = Vector3(0,velocity.y,0) + Vector3(basis.x * moveDir.x + basis.z * moveDir.y).limit_length() * PLAYER_SPEED
     #apply then jerk the jump acceleration
     if jumping:
-        velocity += Vector3(0,jumpAcceleration*_delta,0)
-        jumpAcceleration += JUMP_JERK*_delta
-    #apply gravity acceleration. apply more strongly if falling
-    if (velocity.y >= 0.0):
-        velocity += Vector3(0,GRAVITY * _delta,0)
-    else:
+        velocity += Vector3(0,JUMP_IMPULSE,0)
         jumping = false
-        velocity += Vector3(0,GRAVITY*3*_delta,0)
+    #apply gravity acceleration. apply more strongly if falling
+    if (velocity.y >= STRONGER_DOWNWARD_GRAVITY_THRESHOLD):
+        velocity += Vector3(0,GRAVITY*_delta,0)
+    else:
+        velocity += Vector3(0,GRAVITY*STRONGER_GRAVITY_MULTIPLIER*_delta,0)
     move_and_slide()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -61,7 +61,6 @@ func handle_key_input(event: InputEvent ) -> void:
     if (event.is_action_pressed("jump") && !jumping):
         if is_on_floor():
             jumping = true
-            jumpAcceleration = JUMP_ACCELERATION
             eventHandled = true
     elif (event.is_action_released("reset")):
         SignalBus.reset_to_checkpoint.emit()

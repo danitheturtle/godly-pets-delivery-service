@@ -2,6 +2,7 @@ extends AnimatableBody3D
 class_name Stairs
 
 @onready var collisionArea = $Area3D
+@onready var secondaryCollisionArea = $Area3DSecondary
 @onready var initialParent = get_parent()
 @onready var initialTransform = Transform3D(transform)
 

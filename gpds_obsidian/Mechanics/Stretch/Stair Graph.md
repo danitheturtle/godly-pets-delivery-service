@@ -20,4 +20,4 @@ A full edge guaruntees platforms are connected
 
 A staircase rotated into an edge that does not exist creates a temporary null-terminated edge
 
-StairGraph should automatically collect refs to 
+Make use of pass by reference so that the parent stair graph has refs to everything and each platform has a ref to the same edge if they share it

@@ -183,6 +183,7 @@ func attach_adjacent_stairs() -> void:
             if col is Stairs:
                 attachedStairRefs.append(col)
                 col.collisionArea.body_entered.connect(on_body_entered_stair_area)
+                col.secondaryCollisionArea.body_entered.connect(on_body_entered_stair_secondary_area)
                 if col.get_parent() != nextPivot:
                     State.touchedNodes.append(col)
                     col.reparent(nextPivot, true)
@@ -191,6 +192,8 @@ func disconnect_attached_stair_signals() -> void:
     for attachedStair in attachedStairRefs:
         if attachedStair.collisionArea.is_connected("body_entered", on_body_entered_stair_area):
             attachedStair.collisionArea.body_entered.disconnect(on_body_entered_stair_area)
+        if attachedStair.secondaryCollisionArea.is_connected("body_entered", on_body_entered_stair_secondary_area):
+            attachedStair.secondaryCollisionArea.body_entered.disconnect(on_body_entered_stair_secondary_area)
 
 func get_pivot_basis_stops(pivot: CollisionShape3D) -> void:
     var childPivotBasisIndex = pivotsBasisStops.size()
@@ -216,8 +219,13 @@ func on_checkpoint_reached() -> void:
     storedPivotsRotationIndex = pivotsRotationIndex
 
 func on_body_entered_stair_area(body: Node3D) -> void:
-    # TODO: collide with other platforms
-    if body == self || (body is PhysicsBody3D && !body.get_collision_layer_value(2)):
+    handle_collision(2, body)
+
+func on_body_entered_stair_secondary_area(body: Node3D) -> void:
+    handle_collision(3, body)
+
+func handle_collision(collisionLayer: int, body: Node3D):
+    if body == self || (body is PhysicsBody3D && (!body.get_collision_layer_value(collisionLayer))):
         return
     for nextAttachedStair in attachedStairRefs:
         if body == nextAttachedStair:

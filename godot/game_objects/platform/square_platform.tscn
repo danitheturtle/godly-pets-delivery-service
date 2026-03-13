@@ -9,6 +9,13 @@ size = Vector3(9.75, 3, 9.75)
 [sub_resource type="BoxMesh" id="BoxMesh_o5qli"]
 size = Vector3(9.75, 3, 9.75)
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_ia4b8"]
+vertices = PackedVector3Array(-4.125, 2, -4.125, -4.125, 2, 4.125, 4.125, 2, 4.125, 4.125, 2, -4.125)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+geometry_parsed_geometry_type = 1
+agent_height = 3.0
+agent_radius = 0.75
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_klhda"]
 size = Vector3(7, 3, 7)
 
@@ -24,6 +31,16 @@ shape = SubResource("BoxShape3D_sgp6g")
 [node name="FloorMesh" type="MeshInstance3D" parent="." unique_id=385756966]
 material_override = ExtResource("2_ia4b8")
 mesh = SubResource("BoxMesh_o5qli")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=791488372]
+navigation_mesh = SubResource("NavigationMesh_ia4b8")
+
+[node name="FloorNavStaticBody" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1688852182]
+collision_layer = 16
+collision_mask = 0
+
+[node name="FloorCollider" type="CollisionShape3D" parent="NavigationRegion3D/FloorNavStaticBody" unique_id=781862863]
+shape = SubResource("BoxShape3D_sgp6g")
 
 [node name="ActorDetector" type="Area3D" parent="." unique_id=162572149]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)

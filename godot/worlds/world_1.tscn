@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cyksofbl60ciy" path="res://game_objects/checkpoint/checkpoint.tscn" id="6_wkq5h"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0p53a"]
+vertices = PackedVector3Array(13.75, 1.7650003, -63.85872, 13.75, 1.7650003, -54.35872, 23.5, 1.7650003, -54.35872, 23.5, 1.7650003, -63.85872, -9.75, -9.235, -33.60872, -9.75, -9.235, -24.858719, 9.75, -9.235, -24.858719, 9.75, -9.235, -33.60872, 19.75, 1.7650003, 24.641281, 19.75, 1.7650003, 34.39128, 39.25, 1.7650003, 34.39128, 39.25, 1.7650003, 24.641281, -9.75, -9.235, 24.891281, -9.75, -9.235, 34.64128, 9.75, -9.235, 34.64128, 9.75, -9.235, 24.891281, -4.25, 69.265, 32.14128, -4.25, 69.265, 51.89128, 5.5, 69.265, 51.89128, 5.5, 69.265, 32.14128, -5.5, 35.515, 82.89128, -5.5, 35.515, 92.39128, 4.25, 35.515, 92.39128, 4.25, 35.515, 82.89128)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13), PackedInt32Array(19, 18, 16), PackedInt32Array(16, 18, 17), PackedInt32Array(23, 22, 20), PackedInt32Array(20, 22, 21)]
 geometry_parsed_geometry_type = 1
 geometry_source_geometry_mode = 1
 geometry_source_group_name = &"bake_navmesh"

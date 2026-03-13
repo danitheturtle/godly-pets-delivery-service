@@ -162,6 +162,11 @@ level_select={
 3d_physics/layer_1="collides_with_actors"
 3d_physics/layer_2="collides_with_stair_ends"
 3d_physics/layer_3="collides_with_stairs"
+3d_physics/layer_5="navmesh_only"
+
+[navigation]
+
+3d/default_edge_connection_margin=0.5
 
 [physics]
 

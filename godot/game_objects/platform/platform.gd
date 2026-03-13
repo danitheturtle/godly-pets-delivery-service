@@ -1,7 +1,8 @@
 extends AnimatableBody3D
 class_name Platform
 
-# imports
+# imports0
+const PlatformNavmeshRes = preload("res://game_objects/platform/platform_navmesh.gd")
 const collisionErrorMaterial: Material = preload("res://assets/materials/rotation_error.material")
 # editor-controlled values
 @export var secondsPerRotation: float = 1.0
@@ -14,6 +15,7 @@ const collisionErrorMaterial: Material = preload("res://assets/materials/rotatio
 
 # StiarGrid info representing place in the level
 var closestCheckpoint: Checkpoint
+var nav: PlatformNavmesh
 
 #rotation animation state
 var basisStops: Array[Basis] = []
@@ -76,6 +78,8 @@ func _ready() -> void:
     actorDetector.body_exited.connect(on_exited_control_area)
     # listen for checkpoints
     SignalBus.checkpoint_activated.connect(on_checkpoint_reached)
+    #generate navmesh
+    nav = PlatformNavmeshRes.new(get_world_3d(), self)
 
 func _physics_process(delta: float) -> void:
     # handle platform animation

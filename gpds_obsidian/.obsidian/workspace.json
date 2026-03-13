@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Mechanics/Stretch/Stair Graph.md",
+                "file": "Todo/Navmesh.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Stair Graph"
+              "title": "Navmesh"
             }
           }
         ]
@@ -172,11 +172,11 @@
   "active": "05c536962d781d60",
   "lastOpenFiles": [
     "Todo/Fix stair collision.md",
+    "Todo/Navmesh.md",
+    "Mechanics/Stretch/Stair Graph.md",
     "Prototype Stuff Implemented/Player Controller.md",
     "Todo/I18n singleton.md",
-    "Todo/Navmesh.md",
     "Todo/Iterate player controller.md",
-    "Mechanics/Stretch/Stair Graph.md",
     "Mechanics/Iterate level editor gizmo.md",
     "Mechanics/Toggle pet following you.md",
     "Mechanics/Stairs that can only move X times.md",

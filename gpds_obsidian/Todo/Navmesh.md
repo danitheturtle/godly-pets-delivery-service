@@ -1,4 +1,6 @@
-Every level object is a navmesh region for static geometry that gets baked based on collision layer 3
+Every level object is a navmesh region for static geometry that gets baked based on a group name (source_geometry_mode in the navigationmesh)
+
+switch from using collision layer 3
 
 Every sub-level has its own navmesh region that dynamically populates at runtime to cover the level pieces.
 * When a part of the level moves, the navmesh for the sublevel gets updated.

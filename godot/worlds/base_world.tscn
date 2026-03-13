@@ -24,7 +24,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=967141768]
 environment = SubResource("Environment_1ja0i")
 
-[node name="Level1" type="Node3D" parent="." unique_id=2012754574]
+[node name="Level1" type="Node3D" parent="." unique_id=82572587]
 script = ExtResource("3_whu56")
 
 [node name="Sub1" type="Node3D" parent="Level1" unique_id=1133198089]
@@ -35,4 +35,4 @@ isFirstInScene = true
 
 [node name="Platform" parent="Level1/Sub1" unique_id=322832196 instance=ExtResource("4_26h4x")]
 
-[node name="Static" type="Node3D" parent="Level1/Sub1" unique_id=713561273]
+[node name="Static" type="Node3D" parent="Level1/Sub1" unique_id=713561273 groups=["bake_navmesh"]]

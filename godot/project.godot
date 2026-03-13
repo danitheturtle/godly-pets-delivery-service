@@ -39,6 +39,7 @@ enabled=PackedStringArray("res://addons/snap_to_stair_grid_gizmo/plugin.cfg")
 [global_group]
 
 resetable=""
+bake_navmesh=""
 
 [input]
 
@@ -161,7 +162,6 @@ level_select={
 3d_physics/layer_1="collides_with_actors"
 3d_physics/layer_2="collides_with_stair_ends"
 3d_physics/layer_3="collides_with_stairs"
-3d_physics/layer_4="bake_navmesh"
 
 [physics]
 

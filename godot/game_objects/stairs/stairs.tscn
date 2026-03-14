@@ -34,21 +34,23 @@ mesh = ExtResource("2_alqbs")
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 shape = ExtResource("3_frutw")
 
-[node name="TopNavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1764758248]
-top_level = true
+[node name="Navigation" type="Node3D" parent="." unique_id=1552134837]
+
+[node name="TopRegion" type="NavigationRegion3D" parent="Navigation" unique_id=1764758248]
 navigation_mesh = SubResource("NavigationMesh_7w3rt")
+enabled = false
 
-[node name="RightNavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=650677780]
-top_level = true
+[node name="RightRegion" type="NavigationRegion3D" parent="Navigation" unique_id=650677780]
 navigation_mesh = SubResource("NavigationMesh_jbq1l")
+enabled = false
 
-[node name="BottomNavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1438237155]
-top_level = true
+[node name="BottomRegion" type="NavigationRegion3D" parent="Navigation" unique_id=1438237155]
 navigation_mesh = SubResource("NavigationMesh_qnmon")
+enabled = false
 
-[node name="LeftNavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1258610695]
-top_level = true
+[node name="LeftRegion" type="NavigationRegion3D" parent="Navigation" unique_id=1258610695]
 navigation_mesh = SubResource("NavigationMesh_hn3cy")
+enabled = false
 
 [node name="CenterCollisionArea3D" type="Area3D" parent="." unique_id=2065246267]
 collision_layer = 0

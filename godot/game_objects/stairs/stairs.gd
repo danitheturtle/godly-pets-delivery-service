@@ -5,38 +5,37 @@ class_name Stairs
 @export var stairRise: float = 11.25
 @export var stairRun: float = 19.5
 @export var navAgentRadius: float = 0.75
-@export var navCellHeight: float = 0.25
+@export var navCellHeight: float = 0.5
 
 @onready var initialParent = get_parent()
 @onready var initialTransform = Transform3D(transform)
 @onready var collisionArea = $CenterCollisionArea3D
 @onready var secondaryCollisionArea = $EndsArea3D
-@onready var navRegionsBySide: Dictionary[float, NavigationRegion3D] = {
-    0.0: $TopNavigationRegion3D,
-    -90.0: $RightNavigationRegion3D,
-    180.0: $BottomNavigationRegion3D,
-    90.0: $LeftNavigationRegion3D
-}
-
 # if needed, can use colliders to derive stair orientation
 #@onready var topCollider = $Area3D/TopSphereShape3D
 #@onready var bottomCollider = $Area3D/BottomSphereShape3D
-# example:
-# var pivotedFromBottom = topCollider.global_transform.origin.y > bottomCollider.global_transform.origin.y
+@onready var navRegionsBySide: Dictionary[float, NavigationRegion3D] = {
+    0.0: $Navigation/TopRegion,
+    -90.0: $Navigation/RightRegion,
+    180.0: $Navigation/BottomRegion,
+    90.0: $Navigation/LeftRegion
+}
 
 var attachedToPlatform: Platform = null
 var storedParent: Node3D
 var storedTransform: Transform3D
 
-var pivoting: bool = false
+func _enter_tree() -> void:
+    # nav regions have relative transforms until runtime to prevent weird object bounding box issues
+    for nextNavRegion in find_child("Navigation").get_children():
+        nextNavRegion.top_level = true
 
 func _ready() -> void:
     storedParent = initialParent
     storedTransform = initialTransform
     # listen for checkpoints
     SignalBus.checkpoint_activated.connect(on_checkpoint_reached)
-    build_nav_regions()
-    detect_and_enable_floor_navregion()
+    nav_build_meshes_and_init.call_deferred()
 
 func reset(hard: bool = false) -> void:
     if (!hard):
@@ -45,19 +44,44 @@ func reset(hard: bool = false) -> void:
     else:
         reparent(initialParent, false)
         transform = initialTransform
+    nav_apply_transform_to_regions()
+    nav_detect_and_enable_only_floor()
 
 func attach_to_platform(platform: Platform) -> void:
     if platform != attachedToPlatform:
         if attachedToPlatform != null:
-            if attachedToPlatform.is_connected("stairs_pivot_started", on_stairs_pivot_started):
-                attachedToPlatform.stairs_pivot_started.disconnect(on_stairs_pivot_started)
-            if attachedToPlatform.is_connected("stairs_pivot_finished", on_stairs_pivot_finished):
-                attachedToPlatform.stairs_pivot_finished.disconnect(on_stairs_pivot_finished)
-        platform.stairs_pivot_started.connect(on_stairs_pivot_started)
-        platform.stairs_pivot_finished.connect(on_stairs_pivot_finished)
+            if attachedToPlatform.is_connected("stairs_pivot_started", on_pivot_started):
+                attachedToPlatform.stairs_pivot_started.disconnect(on_pivot_started)
+            if attachedToPlatform.is_connected("platform_rotation_started", on_pivot_started):
+                attachedToPlatform.platform_rotation_started.disconnect(on_pivot_started)
+            if attachedToPlatform.is_connected("stairs_pivot_finished", on_pivot_finished):
+                attachedToPlatform.stairs_pivot_finished.disconnect(on_pivot_finished)
+            if attachedToPlatform.is_connected("platform_rotation_finished", on_pivot_started):
+                attachedToPlatform.platform_rotation_finished.disconnect(on_pivot_started)
+        platform.stairs_pivot_started.connect(on_pivot_started)
+        platform.platform_rotation_started.connect(on_pivot_started)
+        platform.stairs_pivot_finished.connect(on_pivot_finished)
+        platform.platform_rotation_finished.connect(on_pivot_finished)
         attachedToPlatform = platform
 
-func build_nav_regions() -> void:
+func on_checkpoint_reached() -> void:
+    storedParent = get_parent()
+    storedTransform = Transform3D(transform)
+
+func on_pivot_started():
+    nav_disable_regions()
+
+@warning_ignore("unused_parameter")
+func on_pivot_finished(cancelled: bool):
+    nav_apply_transform_to_regions()
+    nav_detect_and_enable_only_floor()
+
+# 
+#  NAVMESH STUFF
+#
+func nav_build_meshes_and_init() -> void:
+    nav_apply_transform_to_regions()
+    await get_tree().physics_frame
     for deg in range(-90, 181, 90):
         var newRegion = navRegionsBySide[deg]
         var regionNavMesh: NavigationMesh = newRegion.navigation_mesh
@@ -65,46 +89,48 @@ func build_nav_regions() -> void:
         var vertices: PackedVector3Array
         # build vert array and tris based on stair position, in clockwise order
         match deg:
-            0: vertices = get_top_nav_verts()
-            -90: vertices = get_right_nav_verts()
-            180: vertices = get_bottom_nav_verts()
-            90: vertices = get_left_nav_verts()
+            0: vertices = nav_get_top_verts()
+            -90: vertices = nav_get_right_verts()
+            180: vertices = nav_get_bottom_verts()
+            90: vertices = nav_get_left_verts()
         regionNavMesh.set_vertices(vertices)
         regionNavMesh.add_polygon(PackedInt32Array([0, 1, 2]))
         regionNavMesh.add_polygon(PackedInt32Array([2, 1, 3]))
-        # set transform but only the basis
-        update_nav_region_transform(newRegion)
-        #set_nav_region_enabled(newRegionRID, false)
+    nav_detect_and_enable_only_floor()
 
-func update_nav_region_transform(region):
-    region.transform.origin = global_transform.origin
-    region.transform.basis = Basis.IDENTITY.rotated(Vector3.UP, global_rotation.y)
+func nav_apply_transform_to_regions() -> void:
+    for deg in navRegionsBySide.keys():
+        navRegionsBySide[deg].global_transform = Transform3D(Basis.IDENTITY.rotated(Vector3.UP, global_rotation.y), global_transform.origin)
 
 # enable the navregion representing the floor at current rotation
-func detect_and_enable_floor_navregion():
+func nav_detect_and_enable_only_floor():
+    nav_disable_regions()
     # determine which region to enable
-    var roundedZRotation = round(global_rotation_degrees.z)
+    var roundedZRotation = snappedf(global_rotation_degrees.z, 90.0)
     # both -180 and 180 represent the same nav region to activate
     if roundedZRotation == -180.0:
         roundedZRotation = 180.0
     # enable the correct nav region
+    navRegionsBySide[roundedZRotation].set_process(true)
     navRegionsBySide[roundedZRotation].enabled = true
 
-func get_top_nav_verts() -> PackedVector3Array:
+func nav_get_top_verts() -> PackedVector3Array:
     var closeYValue = -stairRise/2 + stairWidth/2 + navCellHeight
     var farYValue = stairRise/2 + stairWidth/2 + navCellHeight
-    return get_vertical_nav_verts(closeYValue, farYValue)
+    return nav_get_vertical_verts(closeYValue, farYValue)
 
-func get_right_nav_verts() -> PackedVector3Array:
-    var xValue = -stairWidth/2 - navCellHeight
-    return get_horizontal_nav_verts(xValue)
+func nav_get_right_verts() -> PackedVector3Array:
+    return nav_get_horizontal_verts(true)
 
-func get_bottom_nav_verts() -> PackedVector3Array:
+func nav_get_bottom_verts() -> PackedVector3Array:
     var closeYValue = stairRise/2 + stairWidth/2 + navCellHeight
     var farYValue = -stairRise/2 + stairWidth/2 + navCellHeight
-    return get_vertical_nav_verts(closeYValue, farYValue)
+    return nav_get_vertical_verts(closeYValue, farYValue)
 
-func get_vertical_nav_verts(closeYValue: float, farYValue: float) -> PackedVector3Array:
+func nav_get_left_verts() -> PackedVector3Array:
+    return nav_get_horizontal_verts(false)
+
+func nav_get_vertical_verts(closeYValue: float, farYValue: float) -> PackedVector3Array:
     var xValue = stairWidth/2 - navAgentRadius
     var zValue = stairRun/2
     return PackedVector3Array([
@@ -114,32 +140,23 @@ func get_vertical_nav_verts(closeYValue: float, farYValue: float) -> PackedVecto
         Vector3(-xValue, farYValue, -zValue)
     ])
 
-func get_left_nav_verts() -> PackedVector3Array:
-    var xValue = stairWidth/2 + navCellHeight
-    return get_horizontal_nav_verts(xValue)
-
-func get_horizontal_nav_verts(xValue: float):
+func nav_get_horizontal_verts(isRight: bool):
+    var nearXValue = stairRise/2 - stairWidth/2 + navAgentRadius
+    var farXValue = stairRise/2 + stairWidth/2 - navAgentRadius
+    if isRight:
+        nearXValue *= -1
+        farXValue *= -1
+    var yValue = stairWidth / 2 + navCellHeight
     var zValue = stairRun/2
     return PackedVector3Array([
-        Vector3(xValue, -stairRise/2 + stairWidth/2 - navAgentRadius, zValue),
-        Vector3(xValue, stairRise/2 + stairWidth/2 - navAgentRadius, -zValue),
-        Vector3(xValue, -stairRise/2 - stairWidth/2 + navAgentRadius, -zValue),
-        Vector3(xValue, stairRise/2 - stairWidth/2 + navAgentRadius, zValue),
+        Vector3(farXValue, yValue, zValue),
+        Vector3(-nearXValue, yValue, -zValue),
+        Vector3(nearXValue, yValue, zValue),
+        Vector3(-farXValue, yValue, -zValue),
     ])
 
-func on_checkpoint_reached() -> void:
-    storedParent = get_parent()
-    storedTransform = Transform3D(transform)
-
-func on_stairs_pivot_started():
-    pivoting = true
+func nav_disable_regions() -> void:
     for nextNavKey in navRegionsBySide.keys():
-        navRegionsBySide[nextNavKey].enabled = false
-
-@warning_ignore("unused_parameter")
-func on_stairs_pivot_finished(cancelled: bool):
-    pivoting = false
-    # update transforms to new position
-    for nextNavKey in navRegionsBySide.keys():
-        update_nav_region_transform(navRegionsBySide[nextNavKey])
-    detect_and_enable_floor_navregion()
+        if navRegionsBySide[nextNavKey].enabled:
+            navRegionsBySide[nextNavKey].set_process(false)
+            navRegionsBySide[nextNavKey].enabled = false

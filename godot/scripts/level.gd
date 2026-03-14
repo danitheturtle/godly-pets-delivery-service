@@ -6,10 +6,9 @@ class_name Level
 @onready var levelCheckpoint = $Sub1/Checkpoint
 
 func restart_level():
-    var resetableChildren = find_children("*")
+    var resetableChildren = Utils.get_children_in_group(self, "resetable", true)
     for child in resetableChildren:
-        if child.is_in_group("resetable"):
-            child.reset(true)
+        child.reset(true)
     State.touchedNodes = []
     if levelCheckpoint is Checkpoint:
         levelCheckpoint.activate_checkpoint()

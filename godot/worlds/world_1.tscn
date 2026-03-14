@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cyksofbl60ciy" path="res://game_objects/checkpoint/checkpoint.tscn" id="6_wkq5h"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0p53a"]
-vertices = PackedVector3Array(13.75, 1.7650003, -63.85872, 13.75, 1.7650003, -54.35872, 23.5, 1.7650003, -54.35872, 23.5, 1.7650003, -63.85872, -9.75, -9.235, -33.60872, -9.75, -9.235, -24.858719, 9.75, -9.235, -24.858719, 9.75, -9.235, -33.60872, 19.75, 1.7650003, 24.641281, 19.75, 1.7650003, 34.39128, 39.25, 1.7650003, 34.39128, 39.25, 1.7650003, 24.641281, -9.75, -9.235, 24.891281, -9.75, -9.235, 34.64128, 9.75, -9.235, 34.64128, 9.75, -9.235, 24.891281, -4.25, 69.265, 32.14128, -4.25, 69.265, 51.89128, 5.5, 69.265, 51.89128, 5.5, 69.265, 32.14128, -5.5, 35.515, 82.89128, -5.5, 35.515, 92.39128, 4.25, 35.515, 92.39128, 4.25, 35.515, 82.89128)
+vertices = PackedVector3Array(13.75, 1.75, -63.848907, 13.75, 1.75, -54.098907, 23.5, 1.75, -54.098907, 23.5, 1.75, -63.848907, -9.75, -9.25, -34.098907, -9.75, -9.25, -24.348907, 9.75, -9.25, -24.348907, 9.75, -9.25, -34.098907, 19.75, 2, 24.651093, 19.75, 2, 34.401093, 39.25, 2, 34.401093, 39.25, 2, 24.651093, -9.75, -9.25, 24.901093, -9.75, -9.25, 34.651093, 9.75, -9.25, 34.651093, 9.75, -9.25, 24.901093, -4.25, 69.5, 32.151093, -4.25, 69.5, 51.901093, 5.5, 69.5, 51.901093, 5.5, 69.5, 32.151093, -5.5, 35.5, 82.90109, -5.5, 35.5, 92.40109, 4.25, 35.5, 92.40109, 4.25, 35.5, 82.90109)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13), PackedInt32Array(19, 18, 16), PackedInt32Array(16, 18, 17), PackedInt32Array(23, 22, 20), PackedInt32Array(20, 22, 21)]
 geometry_parsed_geometry_type = 1
 geometry_source_geometry_mode = 1
@@ -23,15 +23,15 @@ size = Vector3(21, 1, 11)
 size = Vector3(21, 1, 11)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0p53a"]
-size = Vector3(21, 1, 10)
+size = Vector3(21, 1, 11)
 
 [sub_resource type="BoxMesh" id="BoxMesh_wkq5h"]
-size = Vector3(21, 1, 10)
+size = Vector3(21, 1, 11)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_wkq5h"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_s2u2n"]
 size = Vector3(11, 1, 11)
 
-[sub_resource type="BoxMesh" id="BoxMesh_a02j0"]
+[sub_resource type="BoxMesh" id="BoxMesh_05ppg"]
 size = Vector3(11, 1, 11)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a02j0"]
@@ -39,6 +39,12 @@ size = Vector3(5, 3, 5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_s2u2n"]
 size = Vector3(5, 3, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wkq5h"]
+size = Vector3(11, 1, 11)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a02j0"]
+size = Vector3(11, 1, 11)
 
 [node name="World1" unique_id=206715187 instance=ExtResource("1_nlsqv")]
 
@@ -55,7 +61,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.70969, -9.727724, 29.76148
 transform = Transform3D(1, 8.742278e-08, 8.742278e-08, 8.742278e-08, -1, 0, 8.742278e-08, 7.642742e-15, -1, -1.2785581e-06, -5.625, 14.625)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Level1/Sub1/Static" parent_id_path=PackedInt32Array(713561273) index="0" unique_id=1363727340]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.227724, 29.853167)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.25, 29.872604)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level1/Sub1/Static/StaticBody3D" index="0" unique_id=832498751]
 shape = SubResource("BoxShape3D_fwsfs")
@@ -77,7 +83,7 @@ transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.82
 [node name="Static" type="Node3D" parent="Level1/Sub2" index="3" unique_id=580895410 groups=["bake_navmesh"]]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Level1/Sub2/Static" index="0" unique_id=871813117]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.25, 1.0150003, 29.25547)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.25, 1.01, 29.25)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level1/Sub2/Static/StaticBody3D" index="0" unique_id=1893443339]
 shape = SubResource("BoxShape3D_0p53a")
@@ -102,14 +108,14 @@ transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -5.6
 [node name="Static" type="Node3D" parent="Level1/Sub3" index="4" unique_id=1675446303 groups=["bake_navmesh"]]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Level1/Sub3/Static" index="0" unique_id=1587029333]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.624277, 0.9893192, -29.85872)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6335945, 0.9882884, -29.848906)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level1/Sub3/Static/StaticBody3D" index="0" unique_id=1817873285]
-shape = SubResource("BoxShape3D_wkq5h")
+shape = SubResource("BoxShape3D_s2u2n")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level1/Sub3/Static/StaticBody3D" index="1" unique_id=942381116]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014362812, 0)
-mesh = SubResource("BoxMesh_a02j0")
+mesh = SubResource("BoxMesh_05ppg")
 
 [node name="Level2" type="Node3D" parent="." index="5" unique_id=976266159]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.25, 11.25, 58.5)
@@ -142,7 +148,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9073486e-05, 16.875, 14.62
 [node name="Static" type="Node3D" parent="Level2/Sub1" index="7" unique_id=1121158443 groups=["bake_navmesh"]]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Level2/Sub1/Static" index="0" unique_id=1685891372]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3288269, -10.248693, -29.005795)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32900047, -10.25, -29)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level2/Sub1/Static/StaticBody3D" index="0" unique_id=1777088797]
 shape = SubResource("BoxShape3D_fwsfs")

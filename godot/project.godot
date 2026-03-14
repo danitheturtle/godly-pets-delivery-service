@@ -40,6 +40,7 @@ enabled=PackedStringArray("res://addons/snap_to_stair_grid_gizmo/plugin.cfg")
 
 resetable=""
 bake_navmesh=""
+remove_at_runtime=""
 
 [input]
 
@@ -166,7 +167,7 @@ level_select={
 
 [navigation]
 
-3d/default_edge_connection_margin=0.5
+3d/default_edge_connection_margin=0.8
 
 [physics]
 

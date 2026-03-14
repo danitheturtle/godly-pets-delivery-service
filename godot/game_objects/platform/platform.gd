@@ -1,21 +1,30 @@
 extends AnimatableBody3D
 class_name Platform
 
-# imports0
-const PlatformNavmeshRes = preload("res://game_objects/platform/platform_navmesh.gd")
+# imports
 const collisionErrorMaterial: Material = preload("res://assets/materials/rotation_error.material")
+
 # editor-controlled values
 @export var secondsPerRotation: float = 1.0
 @export var secondsPerStairRotation: float = 1.0
 @export var rotationStops: int = 4
 
+# node refs
 @onready var pivotsParent: Node3D = $Pivots
 @onready var actorDetector: Area3D = $ActorDetector
 @onready var parentLevel = Utils.get_parent_level(self)
 
+#signals
+signal platform_rotation_started
+signal platform_rotation_cancelled
+signal platform_rotation_finished
+
+signal stairs_pivot_started
+signal stairs_pivot_cancelled
+signal stairs_pivot_finished
+
 # StiarGrid info representing place in the level
 var closestCheckpoint: Checkpoint
-var nav: PlatformNavmesh
 
 #rotation animation state
 var basisStops: Array[Basis] = []
@@ -78,12 +87,12 @@ func _ready() -> void:
     actorDetector.body_exited.connect(on_exited_control_area)
     # listen for checkpoints
     SignalBus.checkpoint_activated.connect(on_checkpoint_reached)
-    #generate navmesh
-    nav = PlatformNavmeshRes.new(get_world_3d(), self)
 
 func _physics_process(delta: float) -> void:
     # handle platform animation
     if (rotationDir == 0):
+        if clockwiseQueued || counterClockwiseQueued:
+            platform_rotation_started.emit()
         if (clockwiseQueued):
             clockwiseQueued = false
             rotationDir += -1
@@ -96,6 +105,8 @@ func _physics_process(delta: float) -> void:
         rotate_platform(delta)
     # handle pivot animation
     if (pivotsRotationDir == 0):
+        if pivotsClockwiseQueued || pivotsCounterClockwiseQueued:
+            stairs_pivot_started.emit()
         if (pivotsClockwiseQueued):
             pivotsClockwiseQueued = false
             pivotsRotationDir += -1
@@ -160,6 +171,7 @@ func rotate_platform(delta: float) -> void:
     transform.basis = Basis(basisStops[fromIndex]).slerp(basisStops[toIndex], normalizedPositionInRotation).orthonormalized()
     # if rotation finished
     if (normalizedPositionInRotation >= 1.0):
+        platform_rotation_finished.emit(rotationCancelled)
         rotationCancelled = false
         rotationIndex = toIndex
         rotationDir = 0
@@ -173,6 +185,7 @@ func rotate_pivots(delta: float) -> void:
     for i in range(rotationStops):
         pivots[i].transform.basis = Basis(pivotsBasisStops[i*rotationStops + fromIndex]).slerp(pivotsBasisStops[i*rotationStops + toIndex], normalizedPositionInRotation).orthonormalized()
     if (normalizedPositionInRotation >= 1.0):
+        stairs_pivot_finished.emit(pivotsRotationCancelled)
         pivotsRotationCancelled = false
         pivotsRotationIndex = toIndex
         pivotsRotationDir = 0
@@ -185,6 +198,7 @@ func attach_adjacent_stairs() -> void:
         var pivotCollisions = nextPivot.get_parent().get_overlapping_bodies()
         for col in pivotCollisions:
             if col is Stairs:
+                col.attach_to_platform(self)
                 attachedStairRefs.append(col)
                 col.collisionArea.body_entered.connect(on_body_entered_stair_area)
                 col.secondaryCollisionArea.body_entered.connect(on_body_entered_stair_secondary_area)
@@ -241,12 +255,14 @@ func handle_collision(collisionLayer: int, body: Node3D):
         rotationDir *= -1
         rotationTimer = secondsPerRotation - rotationTimer
         play_collision_animation(body)
+        platform_rotation_cancelled.emit()
     if pivotsRotationDir != 0 && !pivotsRotationCancelled:
         pivotsRotationCancelled = true
         pivotsRotationIndex = wrapi(pivotsRotationIndex + pivotsRotationDir, 0, 4)
         pivotsRotationDir *= -1
         pivotsRotationTimer = secondsPerRotation - pivotsRotationTimer
         play_collision_animation(body)
+        stairs_pivot_cancelled.emit()
 
 func play_collision_animation(body: PhysicsBody3D) -> void:
     # get physics object's mesh

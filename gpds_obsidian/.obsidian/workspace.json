@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Todo/Started/Navmesh.md",
+                "file": "Core Pillars.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Navmesh"
+              "title": "Core Pillars"
             }
           }
         ]
@@ -169,10 +169,11 @@
       "bases:Create new base": false
     }
   },
-  "active": "328136d1d053f47e",
+  "active": "05c536962d781d60",
   "lastOpenFiles": [
-    "Todo/Fix stair collision.md",
+    "Mechanics/Pets activate checkpoints, not player.md",
     "Todo/Started/Navmesh.md",
+    "Todo/Fix stair collision.md",
     "Mechanics/Stretch/Stair Graph.md",
     "Prototype Stuff Implemented/Player Controller.md",
     "Todo/I18n singleton.md",
@@ -196,7 +197,6 @@
     "Todo/Config system.md",
     "Todo/Started/Walls that physically block rotation.md",
     "Prototype Stuff Implemented/Level Select.md",
-    "Mechanics/Two stairs that meet end-to-end connect.md",
     "Todo/Started",
     "Mechanics Brainstorm/pets",
     "Prototype Stuff Implemented",

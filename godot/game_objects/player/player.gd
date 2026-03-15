@@ -1,12 +1,14 @@
 extends CharacterBody3D
 class_name Player
 
-@export var PLAYER_SPEED = 8
+@export var PLAYER_SPEED = 8.0
 @export var CAMERA_ANGULAR_VELOCITY = 0.1
-@export var GRAVITY = -30
 @export var STRONGER_DOWNWARD_GRAVITY_THRESHOLD = 3.0
 @export var STRONGER_GRAVITY_MULTIPLIER = 1.75
-@export var JUMP_IMPULSE = 12
+@export var JUMP_IMPULSE = 12.0
+@export var PUSH_FORCE = 10.0
+var GRAVITY = ProjectSettings.get_setting("physics/3d/default_gravity")
+var GRAVITY_VECTOR = ProjectSettings.get_setting("physics/3d/default_gravity_vector")
 
 # child nodes
 @onready var camera = $PlayerCamera
@@ -38,10 +40,21 @@ func _physics_process(_delta: float) -> void:
         jumping = false
     #apply gravity acceleration. apply more strongly if falling
     if (velocity.y >= STRONGER_DOWNWARD_GRAVITY_THRESHOLD):
-        velocity += Vector3(0,GRAVITY*_delta,0)
+        velocity += GRAVITY*_delta * GRAVITY_VECTOR
     else:
-        velocity += Vector3(0,GRAVITY*STRONGER_GRAVITY_MULTIPLIER*_delta,0)
+        velocity += GRAVITY*STRONGER_GRAVITY_MULTIPLIER*_delta * GRAVITY_VECTOR
+    shove_pet_if_colliding(_delta)
     move_and_slide()
+
+func shove_pet_if_colliding(_delta: float) -> void:
+    for i in get_slide_collision_count():
+        var collision := get_slide_collision(i)
+        var otherCollider = collision.get_collider()
+        if otherCollider is Pet:
+            var pushDir: Vector3 = -collision.get_normal()
+            pushDir.y = 0.0
+            var pushForce = PUSH_FORCE / otherCollider.PET_INERTIA
+            otherCollider.velocity += pushDir * pushForce * _delta
 
 func _unhandled_input(event: InputEvent) -> void:
     if event is InputEventMouseMotion:
@@ -64,9 +77,6 @@ func handle_key_input(event: InputEvent ) -> void:
             eventHandled = true
     elif (event.is_action_released("reset")):
         SignalBus.reset_to_checkpoint.emit()
-        eventHandled = true
-    elif (event.is_action_released("interact")):
-        SignalBus.player_interacted.emit()
         eventHandled = true
     elif (event.is_action_pressed("forward")):
         moveDir = Vector2(moveDir.x, -1)

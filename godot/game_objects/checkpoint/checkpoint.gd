@@ -10,7 +10,7 @@ class_name Checkpoint
 var canActivate = false
 
 func _ready() -> void:
-    SignalBus.player_interacted.connect(on_player_interacted)
+    #SignalBus.player_interacted.connect(on_player_interacted)
     body_entered.connect(on_entered_activation_area)
     body_exited.connect(on_exited_activation_area)
     if isFirstInScene:
@@ -31,9 +31,9 @@ func reset_to_checkpoint() -> void:
         resetable.reset(false)
     State.player.global_transform.origin = global_transform.origin
 
-func on_player_interacted() -> void:
-    if (canActivate && State.lastCheckpoint != self):
-        activate_checkpoint()
+#func on_player_interacted() -> void:
+    #if (canActivate && State.lastCheckpoint != self):
+        #activate_checkpoint()
 
 func on_entered_activation_area(node: Node) -> void:
     if node is Player:

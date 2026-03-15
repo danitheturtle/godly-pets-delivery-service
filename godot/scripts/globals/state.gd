@@ -9,6 +9,7 @@ const levelCountByWorld = { 1: 2, 2: 1 }
 
 # variable state
 var player: Player = null
+var pet: Pet = null
 var world: World = null
 var level: Level = null
 var lastCheckpoint: Checkpoint = null

@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cv8kat48ol8pp" path="res://worlds/base_world.tscn" id="1_nlsqv"]
 [ext_resource type="PackedScene" uid="uid://b7ncvtwv1mvuy" path="res://game_objects/stairs/stairs.tscn" id="2_38vaf"]
+[ext_resource type="Script" uid="uid://dj8cpqujuok15" path="res://game_objects/pet/pet.gd" id="2_wkq5h"]
 [ext_resource type="PackedScene" uid="uid://ch2wrgrciwb6i" path="res://game_objects/checkpoint/sub_checkpoint.tscn" id="4_baolv"]
 [ext_resource type="PackedScene" uid="uid://ck2nk1xw7ihca" path="res://game_objects/platform/square_platform.tscn" id="4_fwsfs"]
 [ext_resource type="Script" uid="uid://bn4n5sbcei8x4" path="res://scripts/level.gd" id="5_0p53a"]
@@ -15,6 +16,13 @@ geometry_source_geometry_mode = 1
 geometry_source_group_name = &"bake_navmesh"
 agent_height = 3.0
 agent_radius = 0.75
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0p53a"]
+radius = 0.75
+
+[sub_resource type="SphereMesh" id="SphereMesh_wkq5h"]
+radius = 0.75
+height = 1.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fwsfs"]
 size = Vector3(21, 1, 11)
@@ -53,6 +61,24 @@ transform = Transform3D(0.9643868, 0, -0.26449588, 0, 1, 0, 0.26449588, 0, 0.964
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." index="3" unique_id=912847266]
 navigation_mesh = SubResource("NavigationMesh_0p53a")
+
+[node name="Pet" type="CharacterBody3D" parent="." index="4" unique_id=2031002915]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.75, 28.777725)
+floor_constant_speed = true
+floor_snap_length = 1.0
+platform_on_leave = 2
+script = ExtResource("2_wkq5h")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Pet" index="0" unique_id=740444057]
+debug_enabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pet" index="1" unique_id=1596491570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("SphereShape3D_0p53a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pet" index="2" unique_id=69419052]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+mesh = SubResource("SphereMesh_wkq5h")
 
 [node name="Checkpoint" parent="Level1/Sub1" parent_id_path=PackedInt32Array(1133198089) index="0" unique_id=24656330]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.70969, -9.727724, 29.761488)
@@ -117,7 +143,7 @@ shape = SubResource("BoxShape3D_s2u2n")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014362812, 0)
 mesh = SubResource("BoxMesh_05ppg")
 
-[node name="Level2" type="Node3D" parent="." index="5" unique_id=976266159]
+[node name="Level2" type="Node3D" parent="." index="6" unique_id=976266159]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.25, 11.25, 58.5)
 script = ExtResource("5_0p53a")
 levelNumber = 2

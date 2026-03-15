@@ -39,7 +39,7 @@ func get_stairs(rotationIndex: int, stairPositionIndex: int):
 func build_refs(worldSpaceState: PhysicsDirectSpaceState3D):
     # store initial pivot locations
     # stairs can be more than 1 long. raycast to find platforms
-    var query = PhysicsRayQueryParameters3D.create()
+    # var query = PhysicsRayQueryParameters3D.create()
     pass
 
 # rotates and updates refs for connected nodes

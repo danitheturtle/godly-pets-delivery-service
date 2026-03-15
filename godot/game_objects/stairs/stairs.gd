@@ -25,6 +25,8 @@ var attachedToPlatform: Platform = null
 var storedParent: Node3D
 var storedTransform: Transform3D
 
+var navInitialized = false
+
 func _enter_tree() -> void:
     # nav regions have relative transforms until runtime to prevent weird object bounding box issues
     for nextNavRegion in find_child("Navigation").get_children():
@@ -45,7 +47,7 @@ func reset(hard: bool = false) -> void:
         reparent(initialParent, false)
         transform = initialTransform
     nav_apply_transform_to_regions()
-    nav_detect_and_enable_only_floor()
+    nav_detect_and_enable_only_floor.call_deferred()
 
 func attach_to_platform(platform: Platform) -> void:
     if platform != attachedToPlatform:
@@ -74,12 +76,13 @@ func on_pivot_started():
 @warning_ignore("unused_parameter")
 func on_pivot_finished(cancelled: bool):
     nav_apply_transform_to_regions()
-    nav_detect_and_enable_only_floor()
+    nav_detect_and_enable_only_floor.call_deferred()
 
 # 
 #  NAVMESH STUFF
 #
 func nav_build_meshes_and_init() -> void:
+    await get_tree().physics_frame
     nav_apply_transform_to_regions()
     await get_tree().physics_frame
     for deg in range(-90, 181, 90):
@@ -99,11 +102,13 @@ func nav_build_meshes_and_init() -> void:
     nav_detect_and_enable_only_floor()
 
 func nav_apply_transform_to_regions() -> void:
+    var newGlobalTransform = Transform3D(Basis.IDENTITY.rotated(Vector3.UP, global_rotation.y), global_transform.origin)
     for deg in navRegionsBySide.keys():
-        navRegionsBySide[deg].global_transform = Transform3D(Basis.IDENTITY.rotated(Vector3.UP, global_rotation.y), global_transform.origin)
+        navRegionsBySide[deg].global_transform = newGlobalTransform
 
 # enable the navregion representing the floor at current rotation
 func nav_detect_and_enable_only_floor():
+    await get_tree().physics_frame
     nav_disable_regions()
     # determine which region to enable
     var roundedZRotation = snappedf(global_rotation_degrees.z, 90.0)
@@ -111,7 +116,6 @@ func nav_detect_and_enable_only_floor():
     if roundedZRotation == -180.0:
         roundedZRotation = 180.0
     # enable the correct nav region
-    navRegionsBySide[roundedZRotation].set_process(true)
     navRegionsBySide[roundedZRotation].enabled = true
 
 func nav_get_top_verts() -> PackedVector3Array:
@@ -158,5 +162,4 @@ func nav_get_horizontal_verts(isRight: bool):
 func nav_disable_regions() -> void:
     for nextNavKey in navRegionsBySide.keys():
         if navRegionsBySide[nextNavKey].enabled:
-            navRegionsBySide[nextNavKey].set_process(false)
             navRegionsBySide[nextNavKey].enabled = false

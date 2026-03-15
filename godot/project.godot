@@ -167,7 +167,7 @@ level_select={
 
 [navigation]
 
-3d/default_edge_connection_margin=0.8
+3d/default_edge_connection_margin=0.5
 
 [physics]
 

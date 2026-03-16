@@ -11,5 +11,4 @@ func restart_level():
         child.reset(true)
     State.touchedNodes = []
     if levelCheckpoint is Checkpoint:
-        levelCheckpoint.activate_checkpoint()
         levelCheckpoint.reset_to_checkpoint()

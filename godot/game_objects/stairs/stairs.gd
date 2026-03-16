@@ -25,8 +25,6 @@ var attachedToPlatform: Platform = null
 var storedParent: Node3D
 var storedTransform: Transform3D
 
-var navInitialized = false
-
 func _enter_tree() -> void:
     # nav regions have relative transforms until runtime to prevent weird object bounding box issues
     for nextNavRegion in find_child("Navigation").get_children():
@@ -60,10 +58,14 @@ func attach_to_platform(platform: Platform) -> void:
                 attachedToPlatform.stairs_pivot_finished.disconnect(on_pivot_finished)
             if attachedToPlatform.is_connected("platform_rotation_finished", on_pivot_started):
                 attachedToPlatform.platform_rotation_finished.disconnect(on_pivot_started)
-        platform.stairs_pivot_started.connect(on_pivot_started)
-        platform.platform_rotation_started.connect(on_pivot_started)
-        platform.stairs_pivot_finished.connect(on_pivot_finished)
-        platform.platform_rotation_finished.connect(on_pivot_finished)
+        if !platform.is_connected("stairs_pivot_started", on_pivot_started):
+            platform.stairs_pivot_started.connect(on_pivot_started)
+        if !platform.is_connected("platform_rotation_started", on_pivot_started):
+            platform.platform_rotation_started.connect(on_pivot_started)
+        if !platform.is_connected("stairs_pivot_finished", on_pivot_finished):
+            platform.stairs_pivot_finished.connect(on_pivot_finished)
+        if !platform.is_connected("platform_rotation_finished", on_pivot_finished):
+            platform.platform_rotation_finished.connect(on_pivot_finished)
         attachedToPlatform = platform
 
 func on_checkpoint_reached() -> void:

@@ -1,17 +1,15 @@
 extends CharacterBody3D
 class_name Pet
 
-@export var PET_SPEED: float = 8.0
+@export var PET_SPEED: float = 12.0
 @export var PET_INERTIA: float = 1.0
-@export var FOLLOW_DISTANCE: float = 2.0
-@export var REGEN_PATH_DISTANCE: float = 5.0
-@export var VELOCITY_EXTRA_DAMP: float = 1.0
-@export var EXTRA_DAMP_ABOVE_SPEED_SQ: float = 3.0
-var SQUARED_FOLLOW_DISTANCE = FOLLOW_DISTANCE * FOLLOW_DISTANCE
-var SQUARED_REGEN_PATH_DISTANCE = REGEN_PATH_DISTANCE * REGEN_PATH_DISTANCE
+@export var FOLLOW_DISTANCE: float = 2.5
+@export var ARRIVE_DISTANCE: float = 16.0
+@export var REGEN_PATH_DISTANCE: float = 3.0
+@export var EXTRA_LINEAR_DAMP: float = 1.25
 var GRAVITY = ProjectSettings.get_setting("physics/3d/default_gravity")
 var GRAVITY_VECTOR = ProjectSettings.get_setting("physics/3d/default_gravity_vector")
-var LINEAR_DAMP = ProjectSettings.get_setting("physics/3d/default_linear_damp")
+var LINEAR_DAMP = ProjectSettings.get_setting("physics/3d/default_linear_damp") + EXTRA_LINEAR_DAMP
 
 @onready var navAgent: NavigationAgent3D = $NavigationAgent3D
 
@@ -23,25 +21,26 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
     if NavigationServer3D.map_get_iteration_id(navAgent.get_navigation_map()) == 0:
         return
-    var playerToTarget = navAgent.target_position - State.player.global_position
-    var vectorToPlayer = State.player.global_position - global_position
+    var toPlayer = State.player.global_position - global_position
+    var toPlayerLength = toPlayer.length()
+    var velocityYComponent = Vector3(0,velocity.y,0)
     # if not following player or distance to player is less than follow distance, do nothing
-    if followingPlayer && vectorToPlayer.length_squared() > SQUARED_FOLLOW_DISTANCE:
-        if !navAgent.is_navigation_finished() && playerToTarget.length_squared() < SQUARED_REGEN_PATH_DISTANCE:
+    if followingPlayer && toPlayerLength > FOLLOW_DISTANCE:
+        var playerToTarget = navAgent.target_position - State.player.global_position
+        if !navAgent.is_navigation_finished() && playerToTarget.length_squared() <= REGEN_PATH_DISTANCE * REGEN_PATH_DISTANCE:
             var nextPosition = navAgent.get_next_path_position()
-            var pathVelocityComponent = Vector3(global_position.x, 0, global_position.z).direction_to(Vector3(nextPosition.x, 0, nextPosition.z)) * PET_SPEED * _delta
-            velocity += pathVelocityComponent
+            velocity = velocityYComponent + Vector3(global_position.x, 0, global_position.z).direction_to(Vector3(nextPosition.x, 0, nextPosition.z)) * PET_SPEED
         else:
             navAgent.target_position = State.player.global_position
-    # right now the pet will fly off of a platform if its moving too fast
+        # arrive at player with a damping vectorfaw
+        if toPlayerLength < ARRIVE_DISTANCE:
+            velocity = velocityYComponent + Vector3(velocity.x, 0, velocity.z) * toPlayerLength / ARRIVE_DISTANCE
+    else:
+        # apply damping force proportional to velocity
+        var dampingVector = -Vector3(velocity.x, 0, velocity.z) * LINEAR_DAMP
+        velocity += dampingVector * _delta
     # apply gravity
     velocity += GRAVITY*_delta * GRAVITY_VECTOR
-    # apply gamefeel-scaled linear damping on xz plane
-    var dampingVector = -Vector3(velocity.x, 0.0, velocity.z) * VELOCITY_EXTRA_DAMP
-    # lessen damping effect above speed, but also give it a floor of 1.0
-    if velocity.length_squared() < EXTRA_DAMP_ABOVE_SPEED_SQ:
-        dampingVector = dampingVector.normalized()
-    velocity += dampingVector * LINEAR_DAMP * _delta
     move_and_slide()
 
 func _unhandled_input(event: InputEvent) -> void:

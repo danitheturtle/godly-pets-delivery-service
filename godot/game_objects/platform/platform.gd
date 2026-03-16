@@ -54,7 +54,8 @@ var storedRotationIndex: int
 var storedPivotsRotationIndex: int
 
 #local state
-var platformControlled: bool = false
+var playerOnPlatform: bool = false
+var petOnPlatform: bool = false
 var attachedStairRefs: Array[Stairs] = []
 
 func _ready() -> void:
@@ -119,7 +120,7 @@ func _physics_process(delta: float) -> void:
         rotate_pivots(delta)
 
 func _unhandled_key_input(event: InputEvent) -> void:
-    if (!platformControlled): return
+    if (!playerOnPlatform): return
     var eventHandled: bool = false
     # movement
     if (event.is_action_pressed("rotate_clockwise", false, true)):
@@ -220,14 +221,18 @@ func get_pivot_basis_stops(pivot: CollisionShape3D) -> void:
         pivotsBasisStops.append(pivotsBasisStops[childPivotBasisIndex].rotated(Vector3.RIGHT, -j*(PI/2)).orthonormalized())
 
 func on_entered_control_area(node: Node) -> void:
-    if (node is Player):
-        platformControlled = true
-        if (closestCheckpoint != State.lastCheckpoint):
-            closestCheckpoint.activate_checkpoint()
+    if node is Player:
+        playerOnPlatform = true
+    elif node is Pet:
+        petOnPlatform = true
+    if (playerOnPlatform && petOnPlatform && closestCheckpoint != State.lastCheckpoint):
+        closestCheckpoint.activate_checkpoint()
 
 func on_exited_control_area(node: Node) -> void:
-    if (node is Player):
-        platformControlled = false
+    if node is Player:
+        playerOnPlatform = false
+    elif node is Pet:
+        petOnPlatform = false
 
 func on_checkpoint_reached() -> void:
     storedTransform = Transform3D(transform)

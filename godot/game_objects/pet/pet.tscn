@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://catnllcvadgh5"]
+
+[ext_resource type="Script" uid="uid://dj8cpqujuok15" path="res://game_objects/pet/pet.gd" id="1_pl2yc"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0p53a"]
+radius = 0.75
+
+[sub_resource type="SphereMesh" id="SphereMesh_wkq5h"]
+radius = 0.75
+height = 1.5
+
+[node name="Pet" type="CharacterBody3D" unique_id=1047401062]
+floor_constant_speed = true
+floor_snap_length = 1.0
+platform_on_leave = 2
+script = ExtResource("1_pl2yc")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1978479562]
+target_desired_distance = 2.0
+debug_enabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1420369337]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("SphereShape3D_0p53a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=354538448]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+mesh = SubResource("SphereMesh_wkq5h")

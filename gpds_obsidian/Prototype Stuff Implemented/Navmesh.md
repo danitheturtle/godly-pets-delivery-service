@@ -9,3 +9,4 @@ Platform navmesh needs expanded to more easily connect to the moving stairs
 Do navigation obstacles work to block pathing through the generated meshes? If so we don't need a lot of work for platforms that contain obstacles on them
 
 Region adjacency should be set globally to a very forgiving value.
+* region adjacency breaks when the angle is too sharp for some reason. quite frustrating

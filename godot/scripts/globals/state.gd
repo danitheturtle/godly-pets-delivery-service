@@ -5,7 +5,7 @@ const worlds = {
     1: preload("res://worlds/world_1.tscn"),
     2: preload("res://worlds/world_2.tscn")
 }
-const levelCountByWorld = { 1: 2, 2: 1 }
+const levelCountByWorld = { 1: 3, 2: 1 }
 
 # variable state
 var player: Player = null

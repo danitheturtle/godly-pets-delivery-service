@@ -3,11 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://cv8kat48ol8pp" path="res://worlds/base_world.tscn" id="1_nlsqv"]
 [ext_resource type="PackedScene" uid="uid://b7ncvtwv1mvuy" path="res://game_objects/stairs/stairs.tscn" id="2_38vaf"]
 [ext_resource type="PackedScene" uid="uid://catnllcvadgh5" path="res://game_objects/pet/pet.tscn" id="2_a02j0"]
+[ext_resource type="Material" uid="uid://1grc0r8xfcd4" path="res://assets/materials/greybox.tres" id="4_05ppg"]
 [ext_resource type="PackedScene" uid="uid://c7g3ptq5ykm4y" path="res://game_objects/navmesh_helper/navmesh_helper.tscn" id="4_a02j0"]
 [ext_resource type="PackedScene" uid="uid://ch2wrgrciwb6i" path="res://game_objects/checkpoint/sub_checkpoint.tscn" id="4_baolv"]
 [ext_resource type="PackedScene" uid="uid://ck2nk1xw7ihca" path="res://game_objects/platform/square_platform.tscn" id="4_fwsfs"]
 [ext_resource type="Script" uid="uid://bn4n5sbcei8x4" path="res://scripts/level.gd" id="5_0p53a"]
 [ext_resource type="PackedScene" uid="uid://cyksofbl60ciy" path="res://game_objects/checkpoint/checkpoint.tscn" id="6_wkq5h"]
+[ext_resource type="Material" uid="uid://ikghlktxl2rk" path="res://assets/materials/stair_blocker.tres" id="9_2x05o"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0p53a"]
 vertices = PackedVector3Array(13, 2, -59.469215, 13, 2, -57.719215, 13.75, 2, -57.219215, 16.75, 2, -54.219215, 17.25, 2, -53.219215, 19, 2, -53.219215, 19.5, 2, -54.219215, 13.75, 2, -59.969215, 23.5, 1.75, -54.219215, 23.5, 1.75, -63.719215, 13.75, 1.75, -63.719215, 13.75, 1.75, -54.219215, -1.25, -9.25, -24.969215, -0.75, -9.25, -24.219215, 0.75, -9.25, -24.219215, 1.25, -9.25, -33.469215, 0.75, -9.25, -34.219215, -0.75, -9.25, -34.219215, -1.25, -9.25, -33.469215, 1.25, -9.25, -24.969215, 3.25, -9.25, -24.969215, 3.25, -9.25, -33.469215, -3.25, -9.25, -33.469215, -3.25, -9.25, -24.969215, -9.75, -9.25, -33.469215, -9.75, -9.25, -24.969215, 9.75, -9.25, -24.969215, 9.75, -9.25, -33.469215, 1.25, -9.25, 24.780785, 1, -9.25, 24.280785, -1, -9.25, 24.280785, -1.25, -9.25, 24.780785, -9.75, -9.25, 33.280785, 9.75, -9.25, 33.280785, 9.75, -9.25, 24.780785, -9.75, -9.25, 24.780785, 28, 2, 33.530785, 28.5, 2, 34.280785, 30, 2, 34.280785, 30.5, 2, 25.030785, 30, 2, 24.280785, 28.5, 2, 24.280785, 28, 2, 25.030785, 30.5, 2, 33.530785, 32.5, 2, 33.530785, 32.5, 2, 25.030785, 26, 2, 25.030785, 26, 2, 33.530785, 19.75, 2, 25.030785, 19.75, 2, 33.530785, 39.25, 2, 33.530785, 39.25, 2, 25.030785, -5, 69.5, 39.530785, -5, 69.5, 41.280785, -4.25, 69.5, 41.780785, -4.25, 69.5, 39.030785, -4.25, 69.5, 51.780785, 5.5, 69.5, 51.780785, 5.5, 69.5, 32.030785, -4.25, 69.5, 32.030785, -5, 35.75, 86.780785, -5, 35.75, 88.530785, -4.25, 35.75, 89.030785, 4.25, 35.75, 89.030785, 5, 35.75, 88.530785, 5, 35.75, 86.780785, 4.25, 35.75, 86.280785, -4.25, 35.75, 86.280785, -4.25, 35.75, 82.780785, 4.25, 35.75, 82.780785, -4.25, 35.75, 92.530785, 4.25, 35.75, 92.530785)
@@ -39,17 +41,29 @@ size = Vector3(11, 1, 11)
 [sub_resource type="BoxMesh" id="BoxMesh_05ppg"]
 size = Vector3(11, 1, 11)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_fwsfs"]
-size = Vector3(21, 1, 9.75)
+[sub_resource type="BoxShape3D" id="BoxShape3D_plnos"]
+size = Vector3(3, 11, 3)
 
-[sub_resource type="BoxMesh" id="BoxMesh_wkq5h"]
-size = Vector3(21, 1, 9.75)
+[sub_resource type="BoxMesh" id="BoxMesh_2x05o"]
+size = Vector3(3, 11, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a02j0"]
 size = Vector3(5, 3, 5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_s2u2n"]
 size = Vector3(5, 3, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dw8lb"]
+size = Vector3(3, 21, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v5ns0"]
+size = Vector3(3, 21, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fwsfs"]
+size = Vector3(21, 1, 9.75)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wkq5h"]
+size = Vector3(21, 1, 9.75)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wkq5h"]
 size = Vector3(9.75, 1, 11)
@@ -80,6 +94,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.75, 28.777725)
 
 [node name="Checkpoint" parent="Level1/Sub1" parent_id_path=PackedInt32Array(1133198089) index="0" unique_id=24656330]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.70969, -9.727724, 29.761488)
+isSubCheckpoint = null
 
 [node name="Staircase" parent="Level1/Sub1" parent_id_path=PackedInt32Array(1133198089) index="2" unique_id=131645656 instance=ExtResource("2_38vaf")]
 transform = Transform3D(1, 8.742278e-08, 8.742278e-08, 8.742278e-08, -1, 0, 8.742278e-08, 7.642742e-15, -1, -1.2785581e-06, -5.625, 14.625)
@@ -91,6 +106,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.25, 29)
 shape = SubResource("BoxShape3D_vjvj4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level1/Sub1/Static/StaticBody3D" index="1" unique_id=1877679566]
+material_override = ExtResource("4_05ppg")
 mesh = SubResource("BoxMesh_wljuq")
 
 [node name="NavmeshHelper" parent="Level1/Sub1/Static" parent_id_path=PackedInt32Array(713561273) index="1" unique_id=1072783753 instance=ExtResource("4_a02j0")]
@@ -101,6 +117,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.25, -11.25, -58.5)
 
 [node name="SubCheckpoint" parent="Level1/Sub2" index="0" unique_id=1155096228 instance=ExtResource("4_baolv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.753845, 1.5150003, 28.344904)
+isFirstInScene = null
 
 [node name="Platform" parent="Level1/Sub2" index="1" unique_id=1874884055 instance=ExtResource("4_fwsfs")]
 
@@ -117,6 +134,7 @@ shape = SubResource("BoxShape3D_2x05o")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level1/Sub2/Static/StaticBody3D" index="1" unique_id=2014488141]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0130701065, 0)
+material_override = ExtResource("4_05ppg")
 mesh = SubResource("BoxMesh_s6qf0")
 
 [node name="NavmeshHelper" parent="Level1/Sub2/Static" index="1" unique_id=1155343030 instance=ExtResource("4_a02j0")]
@@ -134,6 +152,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.249996, 0, -29.249998)
 
 [node name="SubCheckpoint" parent="Level1/Sub3" index="0" unique_id=1607201582 instance=ExtResource("4_baolv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.694675, 1.5216613, -26.447771)
+isFirstInScene = null
 
 [node name="Platform" parent="Level1/Sub3" index="1" unique_id=1840473985 instance=ExtResource("4_fwsfs")]
 
@@ -153,6 +172,7 @@ shape = SubResource("BoxShape3D_s2u2n")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level1/Sub3/Static/StaticBody3D" index="1" unique_id=942381116]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014362812, 0)
+material_override = ExtResource("4_05ppg")
 mesh = SubResource("BoxMesh_05ppg")
 
 [node name="NavmeshHelper" parent="Level1/Sub3/Static" index="1" unique_id=471403858 instance=ExtResource("4_a02j0")]
@@ -174,6 +194,8 @@ levelNumber = 2
 
 [node name="Checkpoint" parent="Level2/Sub1" index="0" unique_id=2066935558 instance=ExtResource("6_wkq5h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6757374, -9.737352, -26.841507)
+isFirstInScene = null
+isSubCheckpoint = null
 
 [node name="Platform" parent="Level2/Sub1" index="1" unique_id=989720734 instance=ExtResource("4_fwsfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.335144e-05, 0, 0)
@@ -193,7 +215,41 @@ transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, -1.3
 [node name="Staircase1" parent="Level2/Sub1" index="6" unique_id=511839582 instance=ExtResource("2_38vaf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9073486e-05, 16.875, 14.625)
 
-[node name="Static" type="Node3D" parent="Level2/Sub1" index="7" unique_id=1121158443 groups=["bake_navmesh"]]
+[node name="StairBlocker" type="StaticBody3D" parent="Level2/Sub1" index="7" unique_id=957330527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -10.5)
+collision_layer = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level2/Sub1/StairBlocker" index="0" unique_id=1245001933]
+shape = SubResource("BoxShape3D_plnos")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level2/Sub1/StairBlocker" index="1" unique_id=480471127]
+material_override = ExtResource("9_2x05o")
+mesh = SubResource("BoxMesh_2x05o")
+
+[node name="StairBlocker1" type="StaticBody3D" parent="Level2/Sub1" index="8" unique_id=1354238086]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19)
+collision_layer = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level2/Sub1/StairBlocker1" index="0" unique_id=1987947832]
+shape = SubResource("BoxShape3D_a02j0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level2/Sub1/StairBlocker1" index="1" unique_id=1840056913]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014362812, 0)
+material_override = ExtResource("9_2x05o")
+mesh = SubResource("BoxMesh_s2u2n")
+
+[node name="StairBlocker2" type="StaticBody3D" parent="Level2/Sub1" index="9" unique_id=1866438819]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -10.5, -4, 0)
+collision_layer = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level2/Sub1/StairBlocker2" index="0" unique_id=313905462]
+shape = SubResource("BoxShape3D_dw8lb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level2/Sub1/StairBlocker2" index="1" unique_id=229824560]
+material_override = ExtResource("9_2x05o")
+mesh = SubResource("BoxMesh_v5ns0")
+
+[node name="Static" type="Node3D" parent="Level2/Sub1" index="10" unique_id=1121158443 groups=["bake_navmesh"]]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Level2/Sub1/Static" index="0" unique_id=1685891372]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -10.25, -29.25)
@@ -202,6 +258,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -10.25, -29.25)
 shape = SubResource("BoxShape3D_fwsfs")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level2/Sub1/Static/StaticBody3D" index="1" unique_id=1524329656]
+material_override = ExtResource("4_05ppg")
 mesh = SubResource("BoxMesh_wkq5h")
 
 [node name="NavmeshHelper" parent="Level2/Sub1/Static" index="1" unique_id=1451831761 instance=ExtResource("4_a02j0")]
@@ -219,6 +276,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.50002, 33.75, 29.25)
 
 [node name="SubCheckpoint" parent="Level2/Sub2" index="0" unique_id=1806827507 instance=ExtResource("4_baolv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.07747, -9.76281, -3.6054382)
+isFirstInScene = null
 
 [node name="Platform" parent="Level2/Sub2" index="1" unique_id=1539693064 instance=ExtResource("4_fwsfs")]
 
@@ -243,7 +301,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.5, -58.5)
 [node name="Staircase" parent="Level2/Sub2" index="8" unique_id=9051338 instance=ExtResource("2_38vaf")]
 transform = Transform3D(4.371139e-08, 3.821371e-15, -1, 8.742278e-08, -1, 0, -1, -8.742278e-08, -4.371139e-08, 14.625, -5.625, 0)
 
-[node name="Staircase2" parent="Level2/Sub2" index="9" unique_id=196533087 instance=ExtResource("2_38vaf")]
+[node name="Staircase1" parent="Level2/Sub2" index="9" unique_id=196533087 instance=ExtResource("2_38vaf")]
 transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 0, 5.625, -43.875)
 
 [node name="StairBlocker" type="StaticBody3D" parent="Level2/Sub2" index="10" unique_id=590627162]
@@ -255,6 +313,7 @@ shape = SubResource("BoxShape3D_a02j0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level2/Sub2/StairBlocker" index="1" unique_id=367594317]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014362812, 0)
+material_override = ExtResource("9_2x05o")
 mesh = SubResource("BoxMesh_s2u2n")
 
 [node name="StairBlocker1" type="StaticBody3D" parent="Level2/Sub2" index="11" unique_id=1784285130]
@@ -266,6 +325,7 @@ shape = SubResource("BoxShape3D_a02j0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level2/Sub2/StairBlocker1" index="1" unique_id=1534218148]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014362812, 0)
+material_override = ExtResource("9_2x05o")
 mesh = SubResource("BoxMesh_s2u2n")
 
 [node name="Static" type="Node3D" parent="Level2/Sub2" index="12" unique_id=957817713 groups=["bake_navmesh"]]
@@ -278,6 +338,7 @@ shape = SubResource("BoxShape3D_wkq5h")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level2/Sub2/Static/StaticBody3D" index="1" unique_id=1532850244]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014362812, 0)
+material_override = ExtResource("4_05ppg")
 mesh = SubResource("BoxMesh_a02j0")
 
 [node name="NavmeshHelper" parent="Level2/Sub2/Static" index="1" unique_id=1277472422 instance=ExtResource("4_a02j0")]
@@ -290,29 +351,44 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1, 0, 0)
 shape = SubResource("BoxShape3D_05ppg")
 
-[node name="SubCheckpoint1" parent="Level2" index="2" unique_id=327578057 instance=ExtResource("4_baolv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.306286, 57.759834, -8.35981)
+[node name="Level3" type="Node3D" parent="." index="7" unique_id=1002648715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.24998, 78.75, 40.5)
+script = ExtResource("5_0p53a")
+levelNumber = 3
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Level2" index="3" unique_id=1317469084 groups=["bake_navmesh"]]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -28.696932, 57.259834, -16.50676)
+[node name="Sub1" type="Node3D" parent="Level3" index="0" unique_id=1609284381]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level2/StaticBody3D" index="0" unique_id=1931669128]
+[node name="Checkpoint" parent="Level3/Sub1" index="0" unique_id=144045366 instance=ExtResource("6_wkq5h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.306267, -9.740166, 9.64019)
+
+[node name="Platform" parent="Level3/Sub1" index="1" unique_id=322832196 instance=ExtResource("4_fwsfs")]
+
+[node name="Staircase" parent="Level3/Sub1" index="2" unique_id=932428289 instance=ExtResource("2_38vaf")]
+transform = Transform3D(-1.1924881e-08, -1.0425061e-15, 1, 8.742278e-08, -1, 0, 1, 8.742278e-08, 1.1924881e-08, -14.625, -5.625, 0)
+
+[node name="Static" type="Node3D" parent="Level3/Sub1" index="3" unique_id=692468829]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level3/Sub1/Static" index="0" unique_id=1317469084 groups=["bake_navmesh"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -28.696913, -10.240166, 1.4932404)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level3/Sub1/Static/StaticBody3D" index="0" unique_id=1931669128]
 shape = SubResource("BoxShape3D_wljuq")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level2/StaticBody3D" index="1" unique_id=896730648]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level3/Sub1/Static/StaticBody3D" index="1" unique_id=896730648]
+material_override = ExtResource("4_05ppg")
 mesh = SubResource("BoxMesh_0p53a")
 
-[node name="NavmeshHelper" parent="Level2" index="4" unique_id=571301959 instance=ExtResource("4_a02j0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -28.696932, 57.259834, -16.50676)
+[node name="NavmeshHelper" parent="Level3/Sub1/Static" index="1" unique_id=571301959 instance=ExtResource("4_a02j0")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -28.696913, -10.240166, 1.4932404)
 
-[node name="CollisionShape3D" parent="Level2/NavmeshHelper" index="0" unique_id=674604497]
+[node name="CollisionShape3D" parent="Level3/Sub1/Static/NavmeshHelper" index="0" unique_id=674604497]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5279617, 0, 4.6707764)
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Level2/NavmeshHelper" index="1" unique_id=1112628748]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Level3/Sub1/Static/NavmeshHelper" index="1" unique_id=1112628748]
 shape = SubResource("BoxShape3D_05ppg")
 
 [editable path="Level1/Sub2/Static/NavmeshHelper"]
 [editable path="Level1/Sub3/Static/NavmeshHelper"]
 [editable path="Level2/Sub1/Static/NavmeshHelper"]
 [editable path="Level2/Sub2/Static/NavmeshHelper"]
-[editable path="Level2/NavmeshHelper"]
+[editable path="Level3/Sub1/Static/NavmeshHelper"]

@@ -2,7 +2,7 @@ extends AnimatableBody3D
 class_name Platform
 
 # imports
-const collisionErrorMaterial: Material = preload("res://assets/materials/rotation_error.material")
+const collisionErrorMaterial: Material = preload("res://assets/materials/rotation_error.tres")
 
 # editor-controlled values
 @export var secondsPerRotation: float = 1.0

@@ -1,1 +1,1 @@
-Remote activation hotkey. Maybe this pet has no locomotion at all, but just teleports using the normal [[Toggle pet following you|"follow" toggle button]]
+Remote activation hotkey. Maybe this pet has no locomotion at all, but just teleports using the normal [[Toggle pet following you|"follow" toggle button]]. Or maybe its a flying pet that doesn't need the platforms but can still help with button activation

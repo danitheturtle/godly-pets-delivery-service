@@ -6,4 +6,9 @@ Maybe some pets can generate items that stay on buttons
 
 Maybe blocks can be put on buttons portal-style, but that's kinda boring
 
-Pet that can teleport to the player?
+[[Pet that can teleport to the player]]
+
+Buttons could:
+* Activate ghost stairs/platforms. When activated, they move normally, and when deactivated, they stay at the position they were moved to.
+* Remove obstacles
+* Open doors

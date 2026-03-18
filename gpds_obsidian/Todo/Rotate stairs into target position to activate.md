@@ -1,1 +1,1 @@
-Basically a stair can be a key. Maybe even a specific stair has to go to a specific place. Putting a stair in its target and leaving it can activate things a-la a button in portal. But instead of a crate its the core mechanic
+Basically a stair can be a key. Maybe even a specific stair has to go to a specific place. Putting a stair in its target and leaving it can activate things a-la a button in portal. But instead of a crate its the core mechanic 

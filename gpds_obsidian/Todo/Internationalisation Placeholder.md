@@ -1,0 +1,1 @@
+This is built-in to godot. read tutorial on it and implement it everywhere text is available for english, french.

@@ -87,7 +87,7 @@ func _ready() -> void:
     actorDetector.body_entered.connect(on_entered_control_area)
     actorDetector.body_exited.connect(on_exited_control_area)
     # listen for checkpoints
-    SignalBus.checkpoint_activated.connect(on_checkpoint_reached)
+    SignalBus.checkpoint_unlocked.connect(on_checkpoint_reached)
 
 func _physics_process(delta: float) -> void:
     # handle platform animation
@@ -225,8 +225,6 @@ func on_entered_control_area(node: Node) -> void:
         playerOnPlatform = true
     elif node is Pet:
         petOnPlatform = true
-    if (playerOnPlatform && petOnPlatform && closestCheckpoint != State.lastCheckpoint):
-        closestCheckpoint.activate_checkpoint()
 
 func on_exited_control_area(node: Node) -> void:
     if node is Player:

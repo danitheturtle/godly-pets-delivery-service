@@ -34,4 +34,4 @@ func show_popup() -> void:
     SignalBus.popup_displayed.emit(popup)
 
 func hide_popup() -> void:
-    SignalBus.popup_closed.emit()
+    SignalBus.popup_closed.emit(popup)

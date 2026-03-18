@@ -7,6 +7,10 @@ class_name Checkpoint
 @onready var animationPlayer = $AnimationPlayer
 @onready var parentLevel = Utils.get_parent_level(self)
 
+# Unlocked when player reaches it, activated when pet reaches it
+var checkpointActivated = false
+
+# local state
 var playerInside = false
 var petInside = false
 
@@ -19,30 +23,35 @@ func _ready() -> void:
 
 func activate_checkpoint() -> void:
     State.set_level(parentLevel)
-    if State.lastCheckpoint != null:
-        if State.lastCheckpoint.animationPlayer is AnimationPlayer:
-            State.lastCheckpoint.animationPlayer.stop()
+    if State.activeCheckpoint != null:
+        if State.activeCheckpoint.animationPlayer is AnimationPlayer:
+            State.activeCheckpoint.animationPlayer.stop()
+    if State.pendingCheckpoint != self:
+        State.pendingCheckpoint = self
+        SignalBus.checkpoint_unlocked.emit()
+    State.activeCheckpoint = self
     animationPlayer.play("checkpoint_active")
-    State.lastCheckpoint = self
-    State.touchedNodes = []
     SignalBus.checkpoint_activated.emit()
+    checkpointActivated = true
 
-func reset_to_checkpoint() -> void:
-    for resetable in State.touchedNodes:
-        resetable.reset(false)
-    State.player.global_position = global_position
-    State.player.velocity = Vector3(0,0,0)
-    var petOffset = (State.player.global_basis.x + -State.player.global_basis.z) * 2.0
-    State.pet.global_position = global_position + petOffset
-    State.pet.velocity = Vector3(0,0,0)
+func reset_to_checkpoint(actorNode: CharacterBody3D, offset: Vector3 = Vector3.ZERO) -> void:
+    actorNode.global_position = global_position + offset
+    actorNode.velocity = Vector3.ZERO
+
+@warning_ignore("unused_parameter")
+func reset(hard: bool = false) -> void:
+    checkpointActivated = false
 
 func on_entered_activation_area(node: Node) -> void:
     if node is Player:
         playerInside = true
+        if !checkpointActivated || (State.pendingCheckpoint != State.activeCheckpoint && State.activeCheckpoint == self):
+            State.pendingCheckpoint = self
+            SignalBus.checkpoint_unlocked.emit()
     elif node is Pet:
         petInside = true
-    if (playerInside && petInside):
-        activate_checkpoint()
+        if !checkpointActivated && State.pendingCheckpoint == self:
+            activate_checkpoint()
 
 func on_exited_activation_area(node: Node) -> void:
     if node is Player:

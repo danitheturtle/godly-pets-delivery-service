@@ -34,7 +34,7 @@ func _ready() -> void:
     storedParent = initialParent
     storedTransform = initialTransform
     # listen for checkpoints
-    SignalBus.checkpoint_activated.connect(on_checkpoint_reached)
+    SignalBus.checkpoint_unlocked.connect(on_checkpoint_reached)
     nav_build_meshes_and_init.call_deferred()
 
 func reset(hard: bool = false) -> void:

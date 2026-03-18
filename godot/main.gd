@@ -47,11 +47,17 @@ func continue_game() -> void:
 
 func restart_level() -> void:
     continue_game()
-    State.level.restart_level()
+    goto_level(State.world.worldNumber, State.level.levelNumber)
 
 func reset_to_checkpoint() -> void:
     continue_game()
-    State.lastCheckpoint.reset_to_checkpoint()
+    for resetable in State.touchedNodes:
+        resetable.reset(false)
+    State.touchedNodes = []
+    if State.pendingCheckpoint != null:
+        State.pendingCheckpoint.reset_to_checkpoint(State.player)
+    if State.activeCheckpoint != null:
+        State.activeCheckpoint.reset_to_checkpoint(State.pet, (State.player.global_basis.x + -State.player.global_basis.z) * 2.0)
 
 func pause_menu() -> void:
     get_tree().paused = true
@@ -71,6 +77,7 @@ func goto_level(worldNumber: int, levelNumber: int) -> void:
         State.world.free()
         loadedWorld = State.worlds[worldNumber].instantiate()
         get_tree().root.add_child(loadedWorld)
-    var selectedLevel = loadedWorld.get_level(levelNumber)
-    selectedLevel.restart_level()
+    loadedWorld.get_level(levelNumber).restart_level()
+    for ln in range(levelNumber+1, State.levelCountByWorld[worldNumber]+1):
+        loadedWorld.get_level(ln).reset_level()
     continue_game()

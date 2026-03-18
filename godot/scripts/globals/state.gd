@@ -12,7 +12,8 @@ var player: Player = null
 var pet: Pet = null
 var world: World = null
 var level: Level = null
-var lastCheckpoint: Checkpoint = null
+var activeCheckpoint: Checkpoint = null
+var pendingCheckpoint: Checkpoint = null
 var touchedNodes: Array[Node3D] = []
 var highestWorldReached: int = 1
 var highestLevelReached: int = 1
@@ -21,9 +22,10 @@ func reinit() -> void:
     player = null
     world = null
     level = null
-    lastCheckpoint = null
+    activeCheckpoint = null
+    pendingCheckpoint = null
     touchedNodes = []
-    highestWorldReached = 2
+    highestWorldReached = 1
     highestLevelReached = 1
 
 func set_world(_world: World) -> void:

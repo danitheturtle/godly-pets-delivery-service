@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cv8kat48ol8pp" path="res://worlds/base_world.tscn" id="1_nlsqv"]
 [ext_resource type="PackedScene" uid="uid://b7ncvtwv1mvuy" path="res://game_objects/stairs/stairs.tscn" id="2_38vaf"]
 [ext_resource type="PackedScene" uid="uid://catnllcvadgh5" path="res://game_objects/pet/pet.tscn" id="2_a02j0"]
+[ext_resource type="PackedScene" uid="uid://bm41jmwi0xr2p" path="res://ui/popups/popup_for_area.tscn" id="3_2x05o"]
 [ext_resource type="Material" uid="uid://1grc0r8xfcd4" path="res://assets/materials/greybox.tres" id="4_05ppg"]
 [ext_resource type="PackedScene" uid="uid://c7g3ptq5ykm4y" path="res://game_objects/navmesh_helper/navmesh_helper.tscn" id="4_a02j0"]
 [ext_resource type="PackedScene" uid="uid://ch2wrgrciwb6i" path="res://game_objects/checkpoint/sub_checkpoint.tscn" id="4_baolv"]
@@ -96,6 +97,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.75, 28.777725)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.70969, -9.727724, 29.761488)
 isSubCheckpoint = null
 
+[node name="PopupForArea" parent="Level1/Sub1/Checkpoint" index="3" unique_id=405273844 instance=ExtResource("3_2x05o")]
+popupText = "Press 'F' to control your pet. By default, this toggles following behavior."
+
+[node name="PopupForArea" parent="Level1/Sub1/Platform/ActorDetector" parent_id_path=PackedInt32Array(322832196, 162572149) index="1" unique_id=233686318 instance=ExtResource("3_2x05o")]
+popupText = "To rotate a platform, press 'Q' or 'E'"
+
 [node name="Staircase" parent="Level1/Sub1" parent_id_path=PackedInt32Array(1133198089) index="2" unique_id=131645656 instance=ExtResource("2_38vaf")]
 transform = Transform3D(1, 8.742278e-08, 8.742278e-08, 8.742278e-08, -1, 0, 8.742278e-08, 7.642742e-15, -1, -1.2785581e-06, -5.625, 14.625)
 
@@ -119,7 +126,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.25, -11.25, -58.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.753845, 1.5150003, 28.344904)
 isFirstInScene = null
 
+[node name="PopupForArea" parent="Level1/Sub2/SubCheckpoint" index="3" unique_id=1416977785 instance=ExtResource("3_2x05o")]
+popupText = "Your pet can activate checkpoints. Press 'R' to return to the latest one if you get stuck."
+
 [node name="Platform" parent="Level1/Sub2" index="1" unique_id=1874884055 instance=ExtResource("4_fwsfs")]
+
+[node name="PopupForArea" parent="Level1/Sub2/Platform/ActorDetector" parent_id_path=PackedInt32Array(1874884055, 162572149) index="1" unique_id=74250632 instance=ExtResource("3_2x05o")]
+popupText = "To pivot adjacent stairs, press 'SHIFT+Q' or 'SHIFT+E'"
 
 [node name="Staircase" parent="Level1/Sub2" index="2" unique_id=1691696802 instance=ExtResource("2_38vaf")]
 transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, 5.6249986, 0, 14.625)
@@ -159,6 +172,9 @@ isFirstInScene = null
 [node name="Platform1" parent="Level1/Sub3" index="2" unique_id=1306423196 instance=ExtResource("4_fwsfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.249996, 0, 29.250002)
 
+[node name="PopupForArea" parent="Level1/Sub3/Platform1/ActorDetector" parent_id_path=PackedInt32Array(1306423196, 162572149) index="1" unique_id=439039735 instance=ExtResource("3_2x05o")]
+popupText = "Upon interacting with a platform, it grabs all adjacent stairs."
+
 [node name="Staircase" parent="Level1/Sub3" index="3" unique_id=1745315528 instance=ExtResource("2_38vaf")]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -5.625, 0, -14.625002)
 
@@ -197,8 +213,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6757374, -9.737352, -26.84
 isFirstInScene = null
 isSubCheckpoint = null
 
+[node name="PopupForArea" parent="Level2/Sub1/Checkpoint" index="3" unique_id=2055016525 instance=ExtResource("3_2x05o")]
+popupText = "Larger green checkpoints mark the start of a level. View level select by pressing 'L'"
+
 [node name="Platform" parent="Level2/Sub1" index="1" unique_id=989720734 instance=ExtResource("4_fwsfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.335144e-05, 0, 0)
+
+[node name="PopupForArea" parent="Level2/Sub1/Platform/ActorDetector" parent_id_path=PackedInt32Array(989720734, 162572149) index="1" unique_id=824687273 instance=ExtResource("3_2x05o")]
+popupText = "Platform rotations and pivots get cancelled if anything blocks the path of connected stairs."
 
 [node name="Platform1" parent="Level2/Sub1" index="2" unique_id=1236378208 instance=ExtResource("4_fwsfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.249985, 11.25, 0)
@@ -387,8 +409,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5279617, 0, 4.6707764)
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Level3/Sub1/Static/NavmeshHelper" index="1" unique_id=1112628748]
 shape = SubResource("BoxShape3D_05ppg")
 
+[editable path="Level1/Sub1/Platform"]
+[editable path="Level1/Sub1/Platform/NavigationRegion3D/NavmeshHelper"]
+[editable path="Level1/Sub2/Platform"]
+[editable path="Level1/Sub2/Platform/NavigationRegion3D/NavmeshHelper"]
 [editable path="Level1/Sub2/Static/NavmeshHelper"]
+[editable path="Level1/Sub3/Platform1"]
+[editable path="Level1/Sub3/Platform1/NavigationRegion3D/NavmeshHelper"]
 [editable path="Level1/Sub3/Static/NavmeshHelper"]
+[editable path="Level2/Sub1/Platform"]
+[editable path="Level2/Sub1/Platform/NavigationRegion3D/NavmeshHelper"]
 [editable path="Level2/Sub1/Static/NavmeshHelper"]
 [editable path="Level2/Sub2/Static/NavmeshHelper"]
 [editable path="Level3/Sub1/Static/NavmeshHelper"]

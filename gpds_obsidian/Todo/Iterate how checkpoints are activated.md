@@ -1,6 +1,10 @@
+3 states - unactivated, unlocked, activated
+
 If you backtrack, the previous checkpoint gets activated which shouldn't happen. if you fall down you can accidentally activate a very far back level which also shouldn't happen
 
-Activating checkpoints should happen automatically once both player and pet have entered activation area (not necessarily at the same time)
+Player and pet unlock and reset to checkpoints separately. Unlocking checkpoints should happen automatically once the pet or player enters activation area. Both pet and player must activate a checkpoint to activate it.
+
+Checkpoint activation area should always lie on the shortest path between levels
 
 activation should only happen once, and has nothing to do with touching the next platform.
 

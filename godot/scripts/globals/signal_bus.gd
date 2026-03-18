@@ -9,3 +9,6 @@ extends Node
 @warning_ignore("unused_signal") signal level_restarted
 @warning_ignore("unused_signal") signal level_select_opened
 @warning_ignore("unused_signal") signal level_selected
+
+@warning_ignore("unused_signal") signal popup_displayed
+@warning_ignore("unused_signal") signal popup_closed

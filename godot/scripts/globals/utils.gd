@@ -17,6 +17,13 @@ func get_parent_level(node: Node) -> Level:
     else:
         return get_parent_level(nodeParent)
 
+func get_child_of_type(parentNode: Node, type: Variant, recursive: bool = false):
+    var allChildren = parentNode.get_children(true) if !recursive else parentNode.find_children("*")
+    if allChildren.size() == 0: return null
+    for nextChild in allChildren:
+        if is_instance_of(nextChild, type):
+            return nextChild
+
 func get_children_of_type(parentNode: Node, type: Variant, recursive: bool = false):
     var foundChildren = []
     var allChildren = parentNode.get_children(true) if !recursive else parentNode.find_children("*")

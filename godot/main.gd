@@ -5,6 +5,7 @@ class_name Main
 @onready var mainMenu = $MainMenu
 @onready var pauseMenu = $PauseMenu
 @onready var levelSelectMenu = $LevelSelectMenu
+@onready var hudMenu = $HUDMenu
 
 func _ready() -> void:
     mainMenu.start_game_pressed.connect(new_game)
@@ -21,11 +22,13 @@ func _ready() -> void:
 
 func main_menu() -> void:
     get_tree().paused = false
+    hudMenu.hide()
     pauseMenu.hide()
     mainMenu.show()
 
 func new_game() -> void:
     mainMenu.hide()
+    hudMenu.show()
     if State.world != null:
         State.world.free()
     State.reinit()
@@ -39,6 +42,7 @@ func continue_game() -> void:
     get_tree().paused = false
     pauseMenu.hide()
     levelSelectMenu.hide()
+    hudMenu.show()
     State.player.capture_mouse()
 
 func restart_level() -> void:
@@ -51,11 +55,13 @@ func reset_to_checkpoint() -> void:
 
 func pause_menu() -> void:
     get_tree().paused = true
+    hudMenu.hide()
     levelSelectMenu.hide()
     pauseMenu.show()
 
 func level_select_menu() -> void:
     get_tree().paused = true
+    hudMenu.hide()
     pauseMenu.hide()
     levelSelectMenu.show()
 

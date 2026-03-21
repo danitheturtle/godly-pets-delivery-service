@@ -16,6 +16,7 @@ const collisionErrorMaterial: Material = preload("res://assets/materials/rotatio
 @onready var pivotsParent: Node3D = $Pivots
 @onready var actorDetector: Area3D = $ActorDetector
 @onready var parentLevel = Utils.get_parent_level(self)
+# @onready var closestCheckpoint = Utils.get_child_of_type(get_parent(), Checkpoint)
 
 #signals
 signal platform_rotation_started
@@ -25,9 +26,6 @@ signal platform_rotation_finished
 signal stairs_pivot_started
 signal stairs_pivot_cancelled
 signal stairs_pivot_finished
-
-# StiarGrid info representing place in the level
-var closestCheckpoint: Checkpoint
 
 #rotation animation state
 var basisStops: Array[Basis] = []
@@ -54,11 +52,6 @@ var attachedStairRefs: Array[Stairs] = []
 func _ready() -> void:
     rotationController = PlatformRotationControllerClass.new(ROTATION_STOPS,SECONDS_PER_ROTATION, MIN_TIME_PER_STOP, "rotate_clockwise", "rotate_counter_clockwise")
     pivotsController = PlatformRotationControllerClass.new(PIVOTS_STOPS,SECONDS_PER_PIVOT, MIN_TIME_PER_STOP, "rotate_pivots_clockwise", "rotate_pivots_counter_clockwise")
-    # get nearest checkpoint
-    for nextChild in get_parent().get_children():
-        if nextChild is Checkpoint:
-            closestCheckpoint = nextChild
-            break
     # calculate the bases this platform can stop at
     basisStops.append(Basis(transform.basis))
     for i in range(1, ROTATION_STOPS):

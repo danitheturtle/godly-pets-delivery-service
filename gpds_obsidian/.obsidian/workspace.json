@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Todo/Iterate platform rotation.md",
+                "file": "Pets/Pet you throw to another platform to control it remotely.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Iterate platform rotation"
+              "title": "Pet you throw to another platform to control it remotely"
             }
           }
         ]
@@ -171,10 +171,16 @@
   },
   "active": "05c536962d781d60",
   "lastOpenFiles": [
+    "Pets/Tentacled Scholar delivered to Space Octopus.md",
+    "Pets/Pet you throw to another platform to control it remotely.md",
+    "Pets/Pet too heavy for most stairs.md",
+    "Pets/Cerberus delivered to Hades.md",
+    "Pets/Dr Craig Hairy Bonkers Ph.D..md",
+    "Pets/Pet that can delete stairs and platforms.md",
+    "Todo/Iterate platform rotation.md",
     "Todo/Rotate stairs into target position to activate.md",
     "Todo/Platforms That Move To Nodes On A Path.md",
     "Todo/Buttons on platforms.md",
-    "Todo/Iterate platform rotation.md",
     "Todo/Two stairs that meet end-to-end connect.md",
     "Mechanics/Force field that only blocks pet.md",
     "Prototype Stuff Implemented/State singleton.md",
@@ -183,20 +189,14 @@
     "Core Pillars.md",
     "Prototype Stuff Implemented/Tutorial popups.md",
     "Prototype Stuff Implemented/HUD CanvasItem.md",
-    "Pets/Tentacled Scholar  delivered to Space Octopus.md",
     "Pets/Chonky duck. Swims between plats, glides down.md",
-    "Pets/Cerberus delivered to Hades.md",
     "Todo/Internationalisation Placeholder.md",
     "Mechanics/Config system.md",
     "Todo/Menuing & Actions with controller.md",
     "Mechanics/Stretch/Undo Redo.md",
-    "Pets/Pet that can delete stairs and platforms.md",
-    "Pets/Pet you throw to another platform to control it remotely.md",
     "Mechanics/Hotkey action prompt UI.md",
     "Pets/Pet that can teleport to the player.md",
-    "Pets/Dr Craig Hairy Bonkers Ph.D..md",
     "Mechanics/Stairs that can only move X times.md",
-    "Mechanics/Iterate level editor gizmo.md",
     "Todo/Started",
     "Mechanics Brainstorm/pets",
     "Prototype Stuff Implemented",

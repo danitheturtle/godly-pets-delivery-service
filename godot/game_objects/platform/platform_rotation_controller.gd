@@ -3,10 +3,10 @@ class_name PlatformRotationController
 # constant after init
 var timerLength: float
 var minTimePerStop: float # minimum time it takes to rotate through 1 stop
-var stops: int
+var stops: int # stops in rotation
 var radPerStop: float # rotation in radians per stop
-var clockwiseAction: String
-var counterClockwiseAction: String
+var clockwiseAction: String # action name for clockwise rotation
+var counterClockwiseAction: String # action name for counter clockwise rotation
 # state
 var active: bool = false # toggle between static / animating state
 var cancelled: bool = false # cancellation state
@@ -25,7 +25,7 @@ var targetPosRad: float = 0.0 # target position along rotation in radians from 0
 var distFromStartRad: float = 0.0 # current rotation relative to startPos from -TAU to TAU
 var distToTargetRad: float = 0.0 # target rotation relative to startPosRad from -TAU to TAU
 var currentToTargetDir: int = 0 # direction of rotation
-
+# stores previous step's values for use on collision
 var previousIndex: int = 0
 var previousPosRad: float = 0.0
 var previousAnimationPos: float = 0.0
@@ -47,12 +47,7 @@ func update(delta: float) -> bool:
     return false
 
 func reset(hard: bool) -> void:
-    active = false
-    cancelled = false
-    queued = 0
-    timer = 0.0
-    minTimerLength = timerLength
-    previousAnimationPos = 0.0
+    finish_rotation()
     currentIndex = 0 if hard else storedIndex
     previousIndex = currentIndex
     startIndex = currentIndex
@@ -60,14 +55,13 @@ func reset(hard: bool) -> void:
     currentPosRad = currentIndex * radPerStop
     startPosRad = currentPosRad
     targetPosRad = currentPosRad
-    distFromStartRad = 0.0
-    distToTargetRad = 0.0
 
 func finish_rotation() -> void:
     active = false
     cancelled = false
     queued = 0
     timer = 0.0
+    minTimerLength = timerLength
     previousAnimationPos = 0.0
     currentIndex = targetIndex
     startIndex = targetIndex

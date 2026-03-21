@@ -1,0 +1,1 @@
+State singleton that can serialise / deserialise for saving.

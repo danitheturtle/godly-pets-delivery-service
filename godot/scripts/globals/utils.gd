@@ -10,6 +10,10 @@ func easeInOutCubic(x: float) -> float:
     else:
         return 1 - ((-2 * x + 2) ** 3) / 2
 
+# compare two floats with a given precision
+func equalsf(a: float, b: float, precision: float = 0.00001):
+    return a + precision >= b && a - precision <= b
+
 func get_parent_level(node: Node) -> Level:
     var nodeParent = node.get_parent()
     if nodeParent is Level || nodeParent == null:
@@ -17,6 +21,7 @@ func get_parent_level(node: Node) -> Level:
     else:
         return get_parent_level(nodeParent)
 
+# gets first found childe of given type
 func get_child_of_type(parentNode: Node, type: Variant, recursive: bool = false):
     var allChildren = parentNode.get_children(true) if !recursive else parentNode.find_children("*")
     if allChildren.size() == 0: return null
@@ -24,6 +29,7 @@ func get_child_of_type(parentNode: Node, type: Variant, recursive: bool = false)
         if is_instance_of(nextChild, type):
             return nextChild
 
+# gets all children of node that are a given type
 func get_children_of_type(parentNode: Node, type: Variant, recursive: bool = false):
     var foundChildren = []
     var allChildren = parentNode.get_children(true) if !recursive else parentNode.find_children("*")
@@ -33,6 +39,7 @@ func get_children_of_type(parentNode: Node, type: Variant, recursive: bool = fal
             foundChildren.append(nextChild)
     return foundChildren
 
+# gets all children of node in given group
 func get_children_in_group(parentNode: Node, groupName: String, recursive: bool = false):
     var foundChildren = []
     var allChildren = parentNode.find_children("*", "", recursive)

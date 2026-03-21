@@ -9,8 +9,8 @@ class_name Stairs
 
 @onready var initialParent = get_parent()
 @onready var initialTransform = Transform3D(transform)
-@onready var collisionArea = $CenterCollisionArea3D
-@onready var secondaryCollisionArea = $EndsArea3D
+@onready var centerCollisionArea = $CenterCollisionArea3D
+@onready var endsCollisionArea = $EndsArea3D
 # if needed, can use colliders to derive stair orientation
 #@onready var topCollider = $Area3D/TopSphereShape3D
 #@onready var bottomCollider = $Area3D/BottomSphereShape3D

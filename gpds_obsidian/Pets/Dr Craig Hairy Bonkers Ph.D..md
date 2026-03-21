@@ -1,3 +1,5 @@
+Craig leaves a trail of stinky craig dust
+
 Craig is such a good kitty he deserves a low poly version of him where he can eat all the waffles and donuts he wants.
 
 Tutorial pet? AKA no special mechanic.

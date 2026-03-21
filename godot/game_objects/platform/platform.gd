@@ -2,12 +2,15 @@ extends AnimatableBody3D
 class_name Platform
 
 # imports
+const PlatformRotationControllerClass = preload("res://game_objects/platform/platform_rotation_controller.gd")
 const collisionErrorMaterial: Material = preload("res://assets/materials/rotation_error.tres")
 
 # editor-controlled values
-@export var secondsPerRotation: float = 1.0
-@export var secondsPerStairRotation: float = 1.0
-@export var rotationStops: int = 4
+@export var SECONDS_PER_ROTATION: float = 1.0
+@export var SECONDS_PER_PIVOT: float = 1.0
+@export var MIN_TIME_PER_STOP: float = 0.35
+@export var ROTATION_STOPS: int = 4
+@export var PIVOTS_STOPS: int = 4
 
 # node refs
 @onready var pivotsParent: Node3D = $Pivots
@@ -28,37 +31,29 @@ var closestCheckpoint: Checkpoint
 
 #rotation animation state
 var basisStops: Array[Basis] = []
-var rotationDir: int = 0
-var rotationIndex: int = 0
-var rotationTimer: float = 0.0
 var rotationCancelled: bool = false
-var clockwiseQueued: bool = false
-var counterClockwiseQueued: bool = false
 
 #pivot animation state
 var pivots: Array[CollisionShape3D] = []
-var pivotsBasisStops: Array[Basis] = [] # 4 for each pivot
-var pivotsRotationDir: int = 0
-var pivotsRotationIndex: int = 0
-var pivotsRotationTimer: float = 0.0
-var pivotsRotationCancelled: bool = false
-var pivotsClockwiseQueued: bool = false
-var pivotsCounterClockwiseQueued: bool = false
+var pBasisStops: Array[Basis] = []
+var pivotsCancelled: bool = false
 
 #reset state
 var initialTransform: Transform3D
 var initialPivotsBases: Array[Basis]
 var storedTransform: Transform3D
 var storedPivotsBases: Array[Basis]
-var storedRotationIndex: int
-var storedPivotsRotationIndex: int
 
 #local state
+var rotationController: PlatformRotationController = null
+var pivotsController: PlatformRotationController = null
 var playerOnPlatform: bool = false
 var petOnPlatform: bool = false
 var attachedStairRefs: Array[Stairs] = []
 
 func _ready() -> void:
+    rotationController = PlatformRotationControllerClass.new(ROTATION_STOPS,SECONDS_PER_ROTATION, MIN_TIME_PER_STOP, "rotate_clockwise", "rotate_counter_clockwise")
+    pivotsController = PlatformRotationControllerClass.new(PIVOTS_STOPS,SECONDS_PER_PIVOT, MIN_TIME_PER_STOP, "rotate_pivots_clockwise", "rotate_pivots_counter_clockwise")
     # get nearest checkpoint
     for nextChild in get_parent().get_children():
         if nextChild is Checkpoint:
@@ -66,131 +61,66 @@ func _ready() -> void:
             break
     # calculate the bases this platform can stop at
     basisStops.append(Basis(transform.basis))
-    var rotationPerStepRad: float = TAU / rotationStops
-    for i in range(1, rotationStops):
-        basisStops.append(basisStops[0].rotated(Vector3.UP, i*rotationPerStepRad).orthonormalized())
-    # get array of stair pivot areas and their basis stops
+    for i in range(1, ROTATION_STOPS):
+        basisStops.append(basisStops[0].rotated(Vector3.UP, -i*rotationController.radPerStop).orthonormalized())
+    # get array of stair pivot colliders
     for childPivot: Node in pivotsParent.get_children():
         if childPivot is Area3D:
             var collider: CollisionShape3D = childPivot.get_child(0)
             pivots.append(collider)
-            get_pivot_basis_stops(collider)
+    # calculate the bases that pivots can stop at
+    pBasisStops.append(Basis(pivots[0].transform.basis))
+    for j in range(1,PIVOTS_STOPS):
+        pBasisStops.append(pBasisStops[0].rotated(Vector3.FORWARD, j*pivotsController.radPerStop).orthonormalized())
     # setup reset state
     initialTransform = Transform3D(transform)
     storedTransform = initialTransform
     for nextPivot in pivots:
         initialPivotsBases.append(nextPivot.transform.basis)
     storedPivotsBases = Array(initialPivotsBases)
-    storedRotationIndex = 0
-    storedPivotsRotationIndex = 0
-    # make sure the actor detector is monitoring for changes, and rig up its collision signal to a local function
+    # monitor actorDetector area for other bodies
     actorDetector.body_entered.connect(on_entered_control_area)
     actorDetector.body_exited.connect(on_exited_control_area)
     # listen for checkpoints
     SignalBus.checkpoint_unlocked.connect(on_checkpoint_reached)
 
 func _physics_process(delta: float) -> void:
-    # handle platform animation
-    if (rotationDir == 0):
-        if clockwiseQueued || counterClockwiseQueued:
-            platform_rotation_started.emit()
-        if (clockwiseQueued):
-            clockwiseQueued = false
-            rotationDir += -1
-            attach_adjacent_stairs()
-        if (counterClockwiseQueued):
-            counterClockwiseQueued = false
-            rotationDir += 1
-            attach_adjacent_stairs()
+    var rotationFinished = rotationController.update(delta)
+    var pivotsFinished = pivotsController.update(delta)
+    # update platform basis based on animation state
+    if !rotationFinished:
+        transform.basis = Basis(basisStops[rotationController.startIndex]).rotated(Vector3.UP, -rotationController.distFromStartRad).orthonormalized()
     else:
-        rotate_platform(delta)
-    # handle pivot animation
-    if (pivotsRotationDir == 0):
-        if pivotsClockwiseQueued || pivotsCounterClockwiseQueued:
-            stairs_pivot_started.emit()
-        if (pivotsClockwiseQueued):
-            pivotsClockwiseQueued = false
-            pivotsRotationDir += -1
-            attach_adjacent_stairs()
-        if (pivotsCounterClockwiseQueued):
-            pivotsCounterClockwiseQueued = false
-            pivotsRotationDir += 1
-            attach_adjacent_stairs()
+        on_rotation_finished()
+    # update pivot bases based on animation state
+    if !pivotsFinished:
+        for i in range(PIVOTS_STOPS):
+            pivots[i].transform.basis = Basis(pBasisStops[pivotsController.startIndex]).rotated(Vector3.FORWARD, pivotsController.distFromStartRad).orthonormalized()
     else:
-        rotate_pivots(delta)
+        on_pivots_finished()
 
 func _unhandled_key_input(event: InputEvent) -> void:
     if (!playerOnPlatform): return
-    var eventHandled: bool = false
-    # movement
-    if (event.is_action_pressed("rotate_clockwise", false, true)):
-        counterClockwiseQueued = false
-        clockwiseQueued = true
-        eventHandled = true
-    if (event.is_action_pressed("rotate_counter_clockwise", false, true)):
-        clockwiseQueued = false
-        counterClockwiseQueued = true
-        eventHandled = true
-    if (event.is_action_pressed("rotate_pivots_clockwise", false, true)):
-        pivotsCounterClockwiseQueued = false
-        pivotsClockwiseQueued = true
-        eventHandled = true
-    if (event.is_action_pressed("rotate_pivots_counter_clockwise", false, true)):
-        pivotsClockwiseQueued = false
-        pivotsCounterClockwiseQueued = true
-        eventHandled = true
+    var rotationInputResult = rotationController.on_unhandled_key_input(event)
+    if rotationInputResult == "rotation_started":
+        on_rotation_started()
+    var pivotsInputResult = pivotsController.on_unhandled_key_input(event)
+    if pivotsInputResult == "rotation_started":
+        on_pivots_started()
+    var eventHandled = rotationInputResult == "handled" || rotationInputResult == "rotation_started" || pivotsInputResult == "handled" || pivotsInputResult == "rotation_started"
     # tell game event was handled and stop propagating
     if (eventHandled):
         State.touchedNodes.append(self)
         get_tree().root.set_input_as_handled()
 
 func reset(hard: bool = false) -> void:
-    # reinitialize animation variables
-    rotationDir = 0
-    rotationTimer = 0.0
-    rotationCancelled = false
-    pivotsRotationDir = 0
-    pivotsRotationTimer = 0.0
-    pivotsRotationCancelled = false
-    clockwiseQueued = false
-    counterClockwiseQueued = false
-    pivotsClockwiseQueued = false
-    pivotsCounterClockwiseQueued = false
+    rotationController.reset(hard)
+    pivotsController.reset(hard)
     disconnect_attached_stair_signals()
     # hard or soft reset variables
-    rotationIndex = 0 if hard else storedRotationIndex
-    pivotsRotationIndex = 0 if hard else storedPivotsRotationIndex
     transform = initialTransform if hard else storedTransform
-    for i in rotationStops:
+    for i in ROTATION_STOPS:
         pivots[i].transform.basis = initialPivotsBases[i] if hard else storedPivotsBases[i]
-
-func rotate_platform(delta: float) -> void:
-    rotationTimer += delta
-    var fromIndex: int = rotationIndex
-    var toIndex: int = wrapi(rotationIndex + rotationDir, 0, rotationStops)
-    var normalizedPositionInRotation = Utils.easeInOutCubic(Utils.normf(rotationTimer, 0.0, secondsPerRotation))
-    transform.basis = Basis(basisStops[fromIndex]).slerp(basisStops[toIndex], normalizedPositionInRotation).orthonormalized()
-    # if rotation finished
-    if (normalizedPositionInRotation >= 1.0):
-        platform_rotation_finished.emit(rotationCancelled)
-        rotationCancelled = false
-        rotationIndex = toIndex
-        rotationDir = 0
-        rotationTimer = 0.0
-
-func rotate_pivots(delta: float) -> void:
-    pivotsRotationTimer += delta
-    var fromIndex: int = pivotsRotationIndex
-    var toIndex: int = wrapi(pivotsRotationIndex + pivotsRotationDir, 0, 4)
-    var normalizedPositionInRotation = Utils.easeInOutCubic(Utils.normf(pivotsRotationTimer, 0.0, secondsPerStairRotation))
-    for i in range(rotationStops):
-        pivots[i].transform.basis = Basis(pivotsBasisStops[i*rotationStops + fromIndex]).slerp(pivotsBasisStops[i*rotationStops + toIndex], normalizedPositionInRotation).orthonormalized()
-    if (normalizedPositionInRotation >= 1.0):
-        stairs_pivot_finished.emit(pivotsRotationCancelled)
-        pivotsRotationCancelled = false
-        pivotsRotationIndex = toIndex
-        pivotsRotationDir = 0
-        pivotsRotationTimer = 0.0
 
 func attach_adjacent_stairs() -> void:
     disconnect_attached_stair_signals()
@@ -201,24 +131,18 @@ func attach_adjacent_stairs() -> void:
             if col is Stairs:
                 col.attach_to_platform(self)
                 attachedStairRefs.append(col)
-                col.collisionArea.body_entered.connect(on_body_entered_stair_area)
-                col.secondaryCollisionArea.body_entered.connect(on_body_entered_stair_secondary_area)
+                col.centerCollisionArea.body_entered.connect(on_body_entered_stair_center_area)
+                col.endsCollisionArea.body_entered.connect(on_body_entered_stair_ends_area)
                 if col.get_parent() != nextPivot:
                     State.touchedNodes.append(col)
                     col.reparent(nextPivot, true)
 
 func disconnect_attached_stair_signals() -> void:
     for attachedStair in attachedStairRefs:
-        if attachedStair.collisionArea.is_connected("body_entered", on_body_entered_stair_area):
-            attachedStair.collisionArea.body_entered.disconnect(on_body_entered_stair_area)
-        if attachedStair.secondaryCollisionArea.is_connected("body_entered", on_body_entered_stair_secondary_area):
-            attachedStair.secondaryCollisionArea.body_entered.disconnect(on_body_entered_stair_secondary_area)
-
-func get_pivot_basis_stops(pivot: CollisionShape3D) -> void:
-    var childPivotBasisIndex = pivotsBasisStops.size()
-    pivotsBasisStops.append(Basis(pivot.transform.basis))
-    for j in range(1,4):
-        pivotsBasisStops.append(pivotsBasisStops[childPivotBasisIndex].rotated(Vector3.RIGHT, -j*(PI/2)).orthonormalized())
+        if attachedStair.centerCollisionArea.is_connected("body_entered", on_body_entered_stair_center_area):
+            attachedStair.centerCollisionArea.body_entered.disconnect(on_body_entered_stair_center_area)
+        if attachedStair.endsCollisionArea.is_connected("body_entered", on_body_entered_stair_ends_area):
+            attachedStair.endsCollisionArea.body_entered.disconnect(on_body_entered_stair_ends_area)
 
 func on_entered_control_area(node: Node) -> void:
     if node is Player:
@@ -236,13 +160,30 @@ func on_checkpoint_reached() -> void:
     storedTransform = Transform3D(transform)
     for i in range(pivots.size()):
         storedPivotsBases[i] = pivots[i].transform.basis
-    storedRotationIndex = rotationIndex
-    storedPivotsRotationIndex = pivotsRotationIndex
+    rotationController.on_checkpoint_reached()
+    pivotsController.on_checkpoint_reached()
 
-func on_body_entered_stair_area(body: Node3D) -> void:
+func on_rotation_started() -> void:
+    platform_rotation_started.emit()
+    attach_adjacent_stairs()
+
+func on_rotation_finished() -> void:
+    platform_rotation_finished.emit(rotationController.cancelled)
+    transform.basis = basisStops[rotationController.currentIndex]
+
+func on_pivots_started() -> void:
+    stairs_pivot_started.emit()
+    attach_adjacent_stairs()
+
+func on_pivots_finished() -> void:
+    stairs_pivot_finished.emit(pivotsController.cancelled)
+    for i in range(PIVOTS_STOPS):
+        pivots[i].transform.basis = pBasisStops[pivotsController.currentIndex]
+
+func on_body_entered_stair_center_area(body: Node3D) -> void:
     handle_collision(2, body)
 
-func on_body_entered_stair_secondary_area(body: Node3D) -> void:
+func on_body_entered_stair_ends_area(body: Node3D) -> void:
     handle_collision(3, body)
 
 func handle_collision(collisionLayer: int, body: Node3D):
@@ -251,21 +192,15 @@ func handle_collision(collisionLayer: int, body: Node3D):
     for nextAttachedStair in attachedStairRefs:
         if body == nextAttachedStair:
             return
-    # play animation and error sound on entering body
-    if rotationDir != 0 && !rotationCancelled:
-        rotationCancelled = true
-        rotationIndex = wrapi(rotationIndex + rotationDir, 0, rotationStops)
-        rotationDir *= -1
-        rotationTimer = secondsPerRotation - rotationTimer
-        play_collision_animation(body)
+    var collision = false
+    if rotationController.on_collision():
+        collision = true
         platform_rotation_cancelled.emit()
-    if pivotsRotationDir != 0 && !pivotsRotationCancelled:
-        pivotsRotationCancelled = true
-        pivotsRotationIndex = wrapi(pivotsRotationIndex + pivotsRotationDir, 0, 4)
-        pivotsRotationDir *= -1
-        pivotsRotationTimer = secondsPerRotation - pivotsRotationTimer
-        play_collision_animation(body)
+    if pivotsController.on_collision():
+        collision = true
         stairs_pivot_cancelled.emit()
+    if collision:
+        play_collision_animation(body)
 
 func play_collision_animation(body: PhysicsBody3D) -> void:
     # get physics object's mesh

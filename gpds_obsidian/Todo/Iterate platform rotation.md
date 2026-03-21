@@ -1,20 +1,23 @@
 First player input of rotation/pivot command:
-* Store `startIndex`.
-* Reset `currentPos` and `queuedRotations` / `queuedPivots` to 0, then increment/decrement `queuedRotations` / `queuedPivots` based on input direction.
-* Set `rotating` or `pivoting` to true.
+* Set `active` to true.
+* Store `currentIndex` as `startIndex` and calculate `startPosRad`
+* Reset `timer`, `distFromStartRad`, `currentPosRad` and `queued` to 0
 
 Every input:
-* Count key presses using `queuedRotations` / `queuedPivots`, with overall sign representing direction.
+* Count key presses using `queued`, with overall sign representing direction.
 	* Increment / decrement based on direction
 	* Cap value at rotation/pivot stop count (one full rotation)
-* Wrap `startIndex` + `queuedRotations` to get `targetIndex` immediately on every input, to be reflected in the UI
+* Wrap `startIndex` + `queued` to get `targetIndex` immediately on every input, to be reflected in the UI
+* get `distToTargetRad` from `queued` * `radPerStop`
 
 Every loop:
-* If rotating or pivoting and `currentPos` != `targetPos`, rotate to target in the correct direction with angular velocity scaled to keep the `ROTATION_TIME` constant no matter how far objects travel or how player input might change it
-* Store the `currentPos` in the rotation in degrees from -180 to 180.
-* At increments of 360/stops, clamp basis to stored basis to avoid float errors
+* Get position in animation from 0.0 to 1.0 based on `timer` and `timerLength` and anim function
+* If `active` and `distFromStartRad` != `distToTargetRad`, get magnitude and direction of difference
+	* mag =||target - current||
+	* dir = +1 if target > current else -1
+* remap anim position into range 0-`rotationDiff` to get next step of rotation
 * If object would rotate through one of its stops, set the `currentIndex`
-* if `currentPos` == `targetPos`, set `rotating` or `pivoting` to false
+* when times up or if currentRotationRad + nextStep > targetRotationRad, set `active` to false and exit early
 
 UI:
 * 2d plane above every pivot and on floor of platform that acts as a circular progress bar.
@@ -26,4 +29,4 @@ UI:
 
 Notes:
 * Collision returns object to the `currentIndex`, not the `startIndex`
-* Manually wrap between -180 and 180 since quaternions are a fuck and we can just avoid them with indexed bases
+* Manually wrap around 0 since quaternions are a fuck and we can just avoid them with indexed bases

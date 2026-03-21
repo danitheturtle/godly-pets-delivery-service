@@ -6,8 +6,8 @@ const PlatformRotationClass = preload("res://game_objects/platform/platform_rota
 const collisionErrorMaterial: Material = preload("res://assets/materials/rotation_error.tres")
 
 # editor-controlled values
-@export var SECONDS_PER_ROTATION: float = 3.0
-@export var SECONDS_PER_PIVOT: float = 3.0
+@export var SECONDS_PER_ROTATION: float = 1.0
+@export var SECONDS_PER_PIVOT: float = 1.0
 @export var ROTATION_STOPS: int = 4
 @export var PIVOTS_STOPS: int = 4
 
@@ -65,14 +65,17 @@ func _ready() -> void:
     # calculate the bases this platform can stop at
     basisStops.append(Basis(transform.basis))
     for i in range(1, ROTATION_STOPS):
-        basisStops.append(basisStops[0].rotated(Vector3.UP, i*rotationHandler.rotationState.radPerStop).orthonormalized())
+        basisStops.append(basisStops[0].rotated(Vector3.UP, -i*rotationHandler.rotationState.radPerStop).orthonormalized())
+    
     # get array of stair pivot colliders
     for childPivot: Node in pivotsParent.get_children():
         if childPivot is Area3D:
             var collider: CollisionShape3D = childPivot.get_child(0)
             pivots.append(collider)
     # calculate the bases that pivots can stop at
-    get_pivot_basis_stops(pivots[0])
+    pBasisStops.append(Basis(pivots[0].transform.basis))
+    for j in range(1,PIVOTS_STOPS):
+        pBasisStops.append(pBasisStops[0].rotated(Vector3.FORWARD, j*rotationHandler.pivotsState.radPerStop).orthonormalized())
     # setup reset state
     initialTransform = Transform3D(transform)
     storedTransform = initialTransform
@@ -113,12 +116,12 @@ func reset(hard: bool = false) -> void:
 
 func rotate_platform() -> void:
     var rs = rotationHandler.rotationState
-    transform.basis = Basis(basisStops[rs.currentIndex]).rotated(Vector3.UP, rs.currentRotationRad).orthonormalized()
+    transform.basis = Basis(basisStops[rs.startIndex]).rotated(Vector3.UP, -rs.distFromStartRad).orthonormalized()
 
 func rotate_pivots() -> void:
     var ps = rotationHandler.pivotsState
-    for i in range(ROTATION_STOPS):
-        pivots[i].transform.basis = Basis(pBasisStops[ps.currentIndex]).rotated(Vector3.FORWARD, ps.currentRotationRad).orthonormalized()
+    for i in range(PIVOTS_STOPS):
+        pivots[i].transform.basis = Basis(pBasisStops[ps.startIndex]).rotated(Vector3.FORWARD, ps.distFromStartRad).orthonormalized()
 
 func attach_adjacent_stairs() -> void:
     disconnect_attached_stair_signals()
@@ -142,11 +145,6 @@ func disconnect_attached_stair_signals() -> void:
         if attachedStair.endsCollisionArea.is_connected("body_entered", on_body_entered_stair_ends_area):
             attachedStair.endsCollisionArea.body_entered.disconnect(on_body_entered_stair_ends_area)
 
-func get_pivot_basis_stops(pivot: CollisionShape3D) -> void:
-    pBasisStops.append(Basis(pivot.transform.basis))
-    for j in range(1,PIVOTS_STOPS):
-        pBasisStops.append(pBasisStops[0].rotated(Vector3.FORWARD, -j*rotationHandler.pivotsState.radPerStop).orthonormalized())
-
 func on_entered_control_area(node: Node) -> void:
     if node is Player:
         playerOnPlatform = true
@@ -169,9 +167,18 @@ func on_rotation_started() -> void:
     platform_rotation_started.emit()
     attach_adjacent_stairs()
 
+func on_rotation_finished() -> void:
+    platform_rotation_finished.emit(rotationHandler.rotationState.cancelled)
+    transform.basis = basisStops[rotationHandler.rotationState.currentIndex]
+
 func on_pivot_started() -> void:
     stairs_pivot_started.emit()
     attach_adjacent_stairs()
+
+func on_pivot_finished() -> void:
+    stairs_pivot_finished.emit(rotationHandler.pivotsState.cancelled)
+    for i in range(PIVOTS_STOPS):
+        pivots[i].transform.basis = pBasisStops[rotationHandler.pivotsState.currentIndex]
 
 func on_body_entered_stair_center_area(body: Node3D) -> void:
     handle_collision(2, body)

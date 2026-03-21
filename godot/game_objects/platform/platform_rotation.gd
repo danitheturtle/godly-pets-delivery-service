@@ -1,37 +1,45 @@
 class_name PlatformRotation
 
 class RotationState:
+    # constant after init
+    var timerLength: float = 1.0
+    var stops: int = 4
+    var radPerStop: float = 0.0 # rotation in radians per stop
+    # state
     var active: bool = false # toggle between static / animating state
     var cancelled: bool = false # cancellation state
     var queued: int = 0 # player input queue
+    var timer: float = 0.0 # rotation animation timer
+    # rotation indices
     var storedIndex: int = 0 # used for soft/hard reset
     var currentIndex: int = 0 # current stop index, updated continuously
-    var currentRotationRad: float = 0.0 # offset in radians from current index
     var startIndex: int = 0 # used during rotation
     var targetIndex: int = 0 # used during rotation
-    var startPosRad: float = 0.0 # start position along rotation in radians
-    var distFromStartRad: float = 0.0 # current rotation relative to startPos
-    var targetRotationRad: float = 0.0 # target rotation relative to startPosRad
-    var timer: float = 0.0 # rotation animation timer
-    var stops: int = 4 # runtime constant
-    var radPerStop: float = 0.0 # rotation in radians per stop
-    var timerLength: float = 1.0 # runtime constant
+    # rotation radians
+    var startPosRad: float = 0.0 # start position along rotation in radians from 0 - TAU
+    var currentPosRad: float = 0.0 # current position along rotation in radians from 0 - TAU
+    var targetPosRad: float = 0.0 # target position along rotation in radians from 0 - TAU
+    var distFromStartRad: float = 0.0 # current rotation relative to startPos from -TAU to TAU
+    var distToTargetRad: float = 0.0 # target rotation relative to startPosRad from -TAU to TAU
     # constructor
     func _init(_stops: int, _timerLength: float) -> void:
         stops = _stops
         timerLength = _timerLength
         radPerStop = TAU / _stops
     # reset state
-    func reset() -> void:
+    func reset(hard: bool) -> void:
         active = false
         cancelled = false
         queued = 0
         timer = 0.0
+        currentIndex = 0 if hard else storedIndex
         startIndex = currentIndex
-        startPosRad = radPerStop * startIndex
         targetIndex = currentIndex
+        currentPosRad = currentIndex * radPerStop
+        startPosRad = currentPosRad
+        targetPosRad = currentPosRad
         distFromStartRad = 0.0
-        targetRotationRad = 0.0
+        distToTargetRad = 0.0
 
 var platform: Platform
 var rotationState: RotationState
@@ -44,59 +52,61 @@ func _init(_stops: int, _pivotStops: int, _secsPerRotation: float, _secsPerPivot
 
 func update(delta: float) -> void:
     if rotationState.active:
-        if rotationState.timer >= rotationState.timerLength:
+        var finished = update_rotation(delta, rotationState)
+        if finished:
             finish_rotation(rotationState)
-        else:
-            update_rotation(delta, rotationState)
+            platform.on_rotation_finished()
     if pivotsState.active:
-        if pivotsState.timer >= pivotsState.timerLength:
+        var finished = update_rotation(delta, pivotsState)
+        if finished:
             finish_rotation(pivotsState)
-        else:
-            update_rotation(delta, pivotsState)
+            platform.on_pivot_finished()
 
 func reset(hard: bool) -> void:
-    rotationState.reset()
-    rotationState.currentIndex = 0 if hard else rotationState.storedIndex
-    pivotsState.reset()
-    pivotsState.currentIndex = 0 if hard else pivotsState.storedIndex
+    rotationState.reset(hard)
+    pivotsState.reset(hard)
 
 func start_rotation(s: RotationState) -> void:
-    s.reset()
     s.active = true
-
-func update_rotation(delta: float, s: RotationState) -> void:
-    s.timer += delta
-    var posInAnimation = Utils.easeInOutCubic(Utils.normf(s.timer, 0.0, s.timerLength))
-    # travel x distance in n time where x is distance between currentPos and targetPos and n is remaining time
-    var rotationDiff = absf(s.targetRotationRad) - absf(s.distFromStartRad)
-    var remainingRotation = rotationDiff
-    if s.targetRotationRad < 0:
-        remainingRotation *= -1
-    var nextRotationDelta = remap(posInAnimation, 0.0, 1.0, 0.0, absf(remainingRotation))
-    s.distFromStartRad += nextRotationDelta
-    var nextRotationPos = s.startPosRad + s.distFromStartRad
-    if nextRotationDelta >= 0.0:
-        if nextRotationPos >= 0.0:
-            s.currentIndex = wrapi(floor(nextRotationPos / s.radPerStop), 0, s.stops)
-        else:
-            s.currentIndex = wrapi(ceil(nextRotationPos / s.radPerStop), 0, s.stops)
-    else:
-        if nextRotationPos >= 0.0:
-            s.currentIndex = wrapi(ceil(nextRotationPos / s.radPerStop), 0, s.stops)
-        else:
-            s.currentIndex = wrapi(floor(nextRotationPos / s.radPerStop), 0, s.stops)
-    s.currentRotationRad = fmod(s.distFromStartRad, s.radPerStop)
+    s.cancelled = false
 
 func finish_rotation(s: RotationState) -> void:
     s.active = false
+    s.queued = 0
+    s.timer = 0.0
     s.currentIndex = s.targetIndex
+    s.startIndex = s.targetIndex
+    s.currentPosRad = s.targetPosRad
+    s.startPosRad = s.targetPosRad
+    s.distFromStartRad = 0.0
+    s.distToTargetRad = 0.0
+
+func update_rotation(delta: float, s: RotationState) -> bool:
+    s.timer += delta
+    var posInAnimation = Utils.easeInOutCubic(Utils.normf(s.timer, 0.0, s.timerLength))
+    var remainingTime = s.timerLength - s.timer
+    if (Utils.equalsf(remainingTime, 0.0)): return true
+    var remainingUpdates = remainingTime / delta
+    var currentToTargetMagnitude = absf(s.distToTargetRad - s.distFromStartRad)
+    var currentToTargetDir = 1 if s.distToTargetRad >= s.distFromStartRad else -1
+    
+    var nextRotationUpdate = currentToTargetDir * currentToTargetMagnitude / remainingUpdates
+    
+    s.distFromStartRad += nextRotationUpdate
+    s.currentPosRad = wrapf(s.startPosRad + s.distFromStartRad, 0.0, TAU)
+    if currentToTargetDir >= 0:
+        s.currentIndex = floori(s.currentPosRad / s.radPerStop)
+    else:
+        s.currentIndex = ceili(s.currentPosRad / s.radPerStop)
+    return false
 
 func apply_rotation_input(dir: int, s: RotationState) -> void:
     # increment / decrement queued rotation, clamp at stops
-    s.queued = clampi(s.queued + dir, -(s.stops-1), s.stops-1)
+    s.queued = clampi(s.queued + dir, -s.stops, s.stops)
     # update target index and rotation position
     s.targetIndex = wrapi(s.startIndex + s.queued, 0, s.stops)
-    s.targetRotationRad = s.queued * s.radPerStop
+    s.targetPosRad = s.targetIndex * s.radPerStop
+    s.distToTargetRad = s.queued * s.radPerStop
 
 func on_collision() -> bool:
     if rotationState.active && !rotationState.cancelled:

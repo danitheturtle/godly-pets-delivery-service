@@ -10,6 +10,7 @@ class RotationState:
     var cancelled: bool = false # cancellation state
     var queued: int = 0 # player input queue
     var timer: float = 0.0 # rotation animation timer
+    var lastAnimationPos: float = 0.0
     # rotation indices
     var storedIndex: int = 0 # used for soft/hard reset
     var currentIndex: int = 0 # current stop index, updated continuously
@@ -32,6 +33,7 @@ class RotationState:
         cancelled = false
         queued = 0
         timer = 0.0
+        lastAnimationPos = 0.0
         currentIndex = 0 if hard else storedIndex
         startIndex = currentIndex
         targetIndex = currentIndex
@@ -74,6 +76,7 @@ func finish_rotation(s: RotationState) -> void:
     s.active = false
     s.queued = 0
     s.timer = 0.0
+    s.lastAnimationPos = 0.0
     s.currentIndex = s.targetIndex
     s.startIndex = s.targetIndex
     s.currentPosRad = s.targetPosRad
@@ -85,12 +88,11 @@ func update_rotation(delta: float, s: RotationState) -> bool:
     s.timer += delta
     var posInAnimation = Utils.easeInOutCubic(Utils.normf(s.timer, 0.0, s.timerLength))
     var remainingTime = s.timerLength - s.timer
+    # early exit if animation is finished
     if (Utils.equalsf(remainingTime, 0.0)): return true
-    var remainingUpdates = remainingTime / delta
     var currentToTargetMagnitude = absf(s.distToTargetRad - s.distFromStartRad)
     var currentToTargetDir = 1 if s.distToTargetRad >= s.distFromStartRad else -1
-    
-    var nextRotationUpdate = currentToTargetDir * currentToTargetMagnitude / remainingUpdates
+    var nextRotationUpdate = currentToTargetDir * remap(posInAnimation, s.lastAnimationPos, 1.0, 0.0, currentToTargetMagnitude)
     
     s.distFromStartRad += nextRotationUpdate
     s.currentPosRad = wrapf(s.startPosRad + s.distFromStartRad, 0.0, TAU)
@@ -98,6 +100,7 @@ func update_rotation(delta: float, s: RotationState) -> bool:
         s.currentIndex = floori(s.currentPosRad / s.radPerStop)
     else:
         s.currentIndex = ceili(s.currentPosRad / s.radPerStop)
+    s.lastAnimationPos = posInAnimation
     return false
 
 func apply_rotation_input(dir: int, s: RotationState) -> void:

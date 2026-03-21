@@ -107,7 +107,6 @@ size = Vector3(21, 1, 11)
 
 [node name="Player" parent="." index="1" unique_id=66642413]
 transform = Transform3D(0.9643868, 0, -0.26449588, 0, 1, 0, 0.26449588, 0, 0.9643868, -7.524418, -9.727724, 33.461044)
-PLAYER_SPEED = 16.0
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." index="3" unique_id=912847266]
 navigation_mesh = SubResource("NavigationMesh_0p53a")

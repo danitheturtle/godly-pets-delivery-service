@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Pets/Pet you throw to another platform to control it remotely.md",
+                "file": "Mechanics/Stretch/Optional hidden exits like monkeyball.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Pet you throw to another platform to control it remotely"
+              "title": "Optional hidden exits like monkeyball"
             }
           }
         ]
@@ -171,6 +171,19 @@
   },
   "active": "05c536962d781d60",
   "lastOpenFiles": [
+    "Mechanics/Stretch/Stair Graph.md",
+    "Mechanics/Stretch/Drone freecam.md",
+    "Mechanics/Stretch/Optional hidden exits like monkeyball.md",
+    "Todo/Dr Craig Hairy Bonkers Ph.D..md",
+    "Todo/Platforms That Move To Nodes On A Path.md",
+    "Todo/Iterate platform rotation.md",
+    "Mechanics/Levers activated by specific stair movement.md",
+    "Mechanics/Config system.md",
+    "Decorations/Flocking.md",
+    "Bugs/Stair collision is framerate dependent.md",
+    "Bugs",
+    "Todo/Two stairs that meet end-to-end connect.md",
+    "Pets/Pet you throw to another platform to control it remotely.md",
     "Prototype Stuff Implemented/State singleton.md",
     "Prototype Stuff Implemented/Iterate how checkpoints are activated.md",
     "Pets/Tentacled Scholar delivered to Space Octopus.md",
@@ -179,25 +192,13 @@
     "Todo/Started",
     "Todo/Iterate how checkpoints are activated.md",
     "Pets/Tentacled Scholar  delivered to Space Octopus.md",
-    "Pets/Pet you throw to another platform to control it remotely.md",
     "Pets/Pet too heavy for most stairs.md",
     "Pets/Cerberus delivered to Hades.md",
-    "Pets/Dr Craig Hairy Bonkers Ph.D..md",
     "Pets/Pet that can delete stairs and platforms.md",
-    "Todo/Iterate platform rotation.md",
     "Todo/Rotate stairs into target position to activate.md",
-    "Todo/Platforms That Move To Nodes On A Path.md",
     "Todo/Buttons on platforms.md",
-    "Todo/Two stairs that meet end-to-end connect.md",
     "Todo/Iterate popup functionality.md",
     "Core Pillars.md",
-    "Prototype Stuff Implemented/Tutorial popups.md",
-    "Prototype Stuff Implemented/HUD CanvasItem.md",
-    "Pets/Chonky duck. Swims between plats, glides down.md",
-    "Todo/Internationalisation Placeholder.md",
-    "Mechanics/Config system.md",
-    "Todo/Menuing & Actions with controller.md",
-    "Mechanics/Stretch/Undo Redo.md",
     "Mechanics Brainstorm/pets",
     "Prototype Stuff Implemented",
     "Mechanics/Stretch",

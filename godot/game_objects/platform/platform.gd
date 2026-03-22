@@ -15,7 +15,11 @@ const collisionErrorMaterial: Material = preload("res://assets/materials/rotatio
 # node refs
 @onready var pivotsParent: Node3D = $Pivots
 @onready var actorDetector: Area3D = $ActorDetector
-@onready var parentLevel = Utils.get_parent_level(self)
+@onready var rotationProgressBar: RotationProgressViewport = $RotationProgressViewport
+@onready var pivotProgressBar: RotationProgressViewport = $PivotsProgressViewport
+@onready var parentLevel: Level = Utils.get_parent_level(self)
+@onready var rotationProgressBarMesh: MeshInstance3D = $RotationProgressBar
+@onready var pivotProgressBarMeshes = Utils.get_children_of_type($Pivots, MeshInstance3D, true)
 # @onready var closestCheckpoint = Utils.get_child_of_type(get_parent(), Checkpoint)
 
 #signals
@@ -50,6 +54,7 @@ var petOnPlatform: bool = false
 var attachedStairRefs: Array[Stairs] = []
 
 func _ready() -> void:
+    # setup rotation controllers
     rotationController = PlatformRotationControllerClass.new(ROTATION_STOPS,SECONDS_PER_ROTATION, MIN_TIME_PER_STOP, "rotate_clockwise", "rotate_counter_clockwise")
     pivotsController = PlatformRotationControllerClass.new(PIVOTS_STOPS,SECONDS_PER_PIVOT, MIN_TIME_PER_STOP, "rotate_pivots_clockwise", "rotate_pivots_counter_clockwise")
     # calculate the bases this platform can stop at
@@ -71,6 +76,9 @@ func _ready() -> void:
     for nextPivot in pivots:
         initialPivotsBases.append(nextPivot.transform.basis)
     storedPivotsBases = Array(initialPivotsBases)
+    # setup rotation progress UI
+    rotationProgressBar.set_tracked_state(rotationController)
+    pivotProgressBar.set_tracked_state(pivotsController)
     # monitor actorDetector area for other bodies
     actorDetector.body_entered.connect(on_entered_control_area)
     actorDetector.body_exited.connect(on_exited_control_area)
@@ -83,6 +91,7 @@ func _physics_process(delta: float) -> void:
     # update platform basis based on animation state
     if !rotationFinished:
         transform.basis = Basis(basisStops[rotationController.startIndex]).rotated(Vector3.UP, -rotationController.distFromStartRad).orthonormalized()
+        #rotationProgressBarMesh.global_rotation.y = rotationController.currentPosRad
     else:
         on_rotation_finished()
     # update pivot bases based on animation state
@@ -120,17 +129,26 @@ func attach_adjacent_stairs() -> void:
     attachedStairRefs = []
     for nextPivot in pivots:
         var pivotCollisions = nextPivot.get_parent().get_overlapping_bodies()
-        for col in pivotCollisions:
-            if col is Stairs:
-                col.attach_to_platform(self)
-                attachedStairRefs.append(col)
-                col.centerCollisionArea.body_entered.connect(on_body_entered_stair_center_area)
-                col.endsCollisionArea.body_entered.connect(on_body_entered_stair_ends_area)
-                if col.get_parent() != nextPivot:
-                    State.touchedNodes.append(col)
-                    col.reparent(nextPivot, true)
+        var stairProgressBar = Utils.get_child_of_type(nextPivot.get_parent(), MeshInstance3D)
+        for nextStair in pivotCollisions:
+            if nextStair is Stairs:
+                nextStair.attach_to_platform(self)
+                attachedStairRefs.append(nextStair)
+                nextStair.centerCollisionArea.body_entered.connect(on_body_entered_stair_center_area)
+                nextStair.endsCollisionArea.body_entered.connect(on_body_entered_stair_ends_area)
+                stairProgressBar.show()
+                if nextStair.get_parent() != nextPivot:
+                    State.touchedNodes.append(nextStair)
+                    nextStair.reparent(nextPivot, true)
+                    # stair can be attached at two points. If topCollider is closer, add 180 deg to this value
+                    var distToBottomCollider = (global_position - nextStair.bottomCollider.global_position).length_squared()
+                    var distToTopCollider = (global_position - nextStair.topCollider.global_position).length_squared()
+                    stairProgressBar.global_rotation_degrees.z = nextStair.global_rotation_degrees.z \
+                        + (180.0 if distToBottomCollider > distToTopCollider else 0.0)
 
 func disconnect_attached_stair_signals() -> void:
+    for nextProgressMesh in pivotProgressBarMeshes:
+        nextProgressMesh.hide()
     for attachedStair in attachedStairRefs:
         if attachedStair.centerCollisionArea.is_connected("body_entered", on_body_entered_stair_center_area):
             attachedStair.centerCollisionArea.body_entered.disconnect(on_body_entered_stair_center_area)
@@ -157,10 +175,14 @@ func on_checkpoint_reached() -> void:
     pivotsController.on_checkpoint_reached()
 
 func on_rotation_started() -> void:
+    # rotate progress bar relative to player so they see it. Negate start position by adding it
+    rotationProgressBarMesh.global_rotation.y = snappedf(State.player.global_rotation.y, rotationController.radPerStop) + rotationController.startPosRad
+    rotationProgressBarMesh.show()
     platform_rotation_started.emit()
     attach_adjacent_stairs()
 
 func on_rotation_finished() -> void:
+    rotationProgressBarMesh.hide()
     platform_rotation_finished.emit(rotationController.cancelled)
     transform.basis = basisStops[rotationController.currentIndex]
 

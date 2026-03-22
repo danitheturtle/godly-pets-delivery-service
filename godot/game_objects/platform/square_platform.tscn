@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b6r0nkerqmy6f" path="res://game_objects/platform/platform.gd" id="1_klhda"]
 [ext_resource type="Material" uid="uid://cjmm1qrpgx86i" path="res://assets/materials/rotating_platform.tres" id="2_a0etf"]
 [ext_resource type="PackedScene" uid="uid://c7g3ptq5ykm4y" path="res://game_objects/navmesh_helper/navmesh_helper.tscn" id="3_a0etf"]
+[ext_resource type="PackedScene" uid="uid://sjum5wwp2fxe" path="res://game_objects/platform/rotation_progress_display/rotation_progress_display.tscn" id="4_y6q0f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sgp6g"]
 size = Vector3(9.75, 3, 9.75)
@@ -24,6 +25,29 @@ size = Vector3(11.25, 3, 3)
 size = Vector3(7, 3, 7)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pi4wo"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_y6q0f"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_kmny0"]
+viewport_path = NodePath("PivotsProgressViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0vq5e"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_kmny0")
+
+[sub_resource type="QuadMesh" id="QuadMesh_kmny0"]
+size = Vector2(5, 5)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0vq5e"]
+viewport_path = NodePath("RotationProgressViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvqt6"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_0vq5e")
 
 [node name="SquarePlatform" type="AnimatableBody3D" unique_id=322832196 groups=["resetable"]]
 collision_layer = 5
@@ -66,12 +90,24 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pivots/zNegPivot" unique_id=1734060162]
 shape = SubResource("SphereShape3D_pi4wo")
 
+[node name="ProgressBar" type="MeshInstance3D" parent="Pivots/zNegPivot" unique_id=1058085514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+visible = false
+mesh = SubResource("QuadMesh_y6q0f")
+surface_material_override/0 = SubResource("StandardMaterial3D_0vq5e")
+
 [node name="xPosPivot" type="Area3D" parent="Pivots" unique_id=1400685562]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.875, 0, 0)
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pivots/xPosPivot" unique_id=901714807]
 shape = SubResource("SphereShape3D_pi4wo")
+
+[node name="ProgressBar" type="MeshInstance3D" parent="Pivots/xPosPivot" unique_id=671366020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+visible = false
+mesh = SubResource("QuadMesh_y6q0f")
+surface_material_override/0 = SubResource("StandardMaterial3D_0vq5e")
 
 [node name="zPosPivot" type="Area3D" parent="Pivots" unique_id=570565777]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 4.875)
@@ -80,11 +116,36 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pivots/zPosPivot" unique_id=1480487102]
 shape = SubResource("SphereShape3D_pi4wo")
 
+[node name="ProgressBar" type="MeshInstance3D" parent="Pivots/zPosPivot" unique_id=2127774179]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+visible = false
+mesh = SubResource("QuadMesh_y6q0f")
+surface_material_override/0 = SubResource("StandardMaterial3D_0vq5e")
+
 [node name="xNegPivot" type="Area3D" parent="Pivots" unique_id=2032389142]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.875, 0, 0)
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pivots/xNegPivot" unique_id=1135876003]
 shape = SubResource("SphereShape3D_pi4wo")
+
+[node name="ProgressBar" type="MeshInstance3D" parent="Pivots/xNegPivot" unique_id=146738279]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+visible = false
+mesh = SubResource("QuadMesh_y6q0f")
+surface_material_override/0 = SubResource("StandardMaterial3D_0vq5e")
+
+[node name="PivotsProgressViewport" parent="." unique_id=206222469 instance=ExtResource("4_y6q0f")]
+
+[node name="RotationProgressViewport" parent="." unique_id=1705062214 instance=ExtResource("4_y6q0f")]
+size = Vector2i(1024, 1024)
+progressColor = Color(0.06300899, 0.69900477, 0.75297207, 1)
+relativeRotation = true
+
+[node name="RotationProgressBar" type="MeshInstance3D" parent="." unique_id=709336466]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 1.55, 0)
+visible = false
+mesh = SubResource("QuadMesh_kmny0")
+surface_material_override/0 = SubResource("StandardMaterial3D_wvqt6")
 
 [editable path="NavigationRegion3D/NavmeshHelper"]

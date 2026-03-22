@@ -1,0 +1,3 @@
+We're not using `move_and_collide` for pivots because the reparent situation is too complex. Instead we're manually updating the basis every frame based on `delta_time`. If the framerate is very low its possible that a fast stair rotation skips over a collider.
+
+Not sure what the fix is yet. maybe a max value for delta time? Anims will lag with framerate but that's probably ok. That's a bandaid though

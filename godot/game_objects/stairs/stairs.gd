@@ -12,18 +12,25 @@ class_name Stairs
 @onready var centerCollisionArea = $CenterCollisionArea3D
 @onready var endsCollisionArea = $EndsArea3D
 # if needed, can use colliders to derive stair orientation
-#@onready var topCollider = $Area3D/TopSphereShape3D
-#@onready var bottomCollider = $Area3D/BottomSphereShape3D
+@onready var topCollider = $EndsArea3D/TopSphereShape3D
+@onready var bottomCollider = $EndsArea3D/BottomSphereShape3D
 @onready var navRegionsBySide: Dictionary[float, NavigationRegion3D] = {
     0.0: $Navigation/TopRegion,
     -90.0: $Navigation/RightRegion,
     180.0: $Navigation/BottomRegion,
     90.0: $Navigation/LeftRegion
 }
+var rotationDegToIndex: Dictionary[float, int] = {
+    0.0: 0,
+    -90.0: 1,
+    180.0: 2,
+    90.0: 3
+}
 
 var attachedToPlatform: Platform = null
 var storedParent: Node3D
 var storedTransform: Transform3D
+var stairPosition: int
 
 func _enter_tree() -> void:
     # nav regions have relative transforms until runtime to prevent weird object bounding box issues
@@ -117,6 +124,8 @@ func nav_detect_and_enable_only_floor():
     # both -180 and 180 represent the same nav region to activate
     if roundedZRotation == -180.0:
         roundedZRotation = 180.0
+    # save position for external use
+    stairPosition = rotationDegToIndex[roundedZRotation]
     # enable the correct nav region
     navRegionsBySide[roundedZRotation].enabled = true
 

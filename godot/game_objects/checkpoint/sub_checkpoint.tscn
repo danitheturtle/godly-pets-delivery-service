@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ch2wrgrciwb6i"]
 
 [ext_resource type="PackedScene" uid="uid://cyksofbl60ciy" path="res://game_objects/checkpoint/checkpoint.tscn" id="1_4lmp5"]
-[ext_resource type="Material" uid="uid://dnp7r0mjmob3n" path="res://assets/materials/sub_checkpoint.tres" id="2_smi40"]
+[ext_resource type="Material" uid="uid://dnp7r0mjmob3n" path="res://assets/materials/sub_checkpoint.material.tres" id="2_smi40"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_smi40"]
 size = Vector3(0.5, 4, 0.5)

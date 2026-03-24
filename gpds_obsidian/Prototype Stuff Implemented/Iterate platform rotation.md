@@ -1,3 +1,5 @@
+actual implementation details differ but I saved the design doc for reference:
+
 First player input of rotation/pivot command:
 * Set `active` to true.
 * Store `currentIndex` as `startIndex` and calculate `startPosRad`

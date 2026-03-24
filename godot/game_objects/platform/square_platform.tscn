@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ck2nk1xw7ihca"]
 
 [ext_resource type="Script" uid="uid://b6r0nkerqmy6f" path="res://game_objects/platform/platform.gd" id="1_klhda"]
-[ext_resource type="Material" uid="uid://cjmm1qrpgx86i" path="res://assets/materials/rotating_platform.tres" id="2_a0etf"]
+[ext_resource type="Material" uid="uid://cjmm1qrpgx86i" path="res://assets/materials/rotating_platform.material.tres" id="2_a0etf"]
 [ext_resource type="PackedScene" uid="uid://c7g3ptq5ykm4y" path="res://game_objects/navmesh_helper/navmesh_helper.tscn" id="3_a0etf"]
 [ext_resource type="PackedScene" uid="uid://sjum5wwp2fxe" path="res://game_objects/platform/rotation_progress_display/rotation_progress_display.tscn" id="4_y6q0f"]
 

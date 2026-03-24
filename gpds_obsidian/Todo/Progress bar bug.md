@@ -1,0 +1,1 @@
+not quite deterministic. need better calculation to find the furthest collider and whether its above/below/left/right of player

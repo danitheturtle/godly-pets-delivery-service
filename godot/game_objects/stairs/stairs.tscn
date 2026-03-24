@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://b7ncvtwv1mvuy"]
 
 [ext_resource type="Script" uid="uid://uj5of8tsma8f" path="res://game_objects/stairs/stairs.gd" id="1_t8gvg"]
-[ext_resource type="Material" uid="uid://kkcf67f142xa" path="res://assets/materials/stairs.tres" id="2_7w3rt"]
-[ext_resource type="ArrayMesh" uid="uid://d3ywv5epcksy6" path="res://assets/stairs.obj" id="2_alqbs"]
-[ext_resource type="Shape3D" uid="uid://b6nqhrfkchyh8" path="res://assets/stairs.tres" id="3_frutw"]
+[ext_resource type="ArrayMesh" uid="uid://d3ywv5epcksy6" path="res://assets/stairs/stairs.obj" id="2_alqbs"]
+[ext_resource type="Material" uid="uid://buxbl2mipatqn" path="res://assets/stairs/material/stairs.material.tres" id="3_7w3rt"]
+[ext_resource type="Shape3D" uid="uid://1lgun6rpxjtp" path="res://assets/stairs/stairs.collider.tres" id="3_frutw"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_7w3rt"]
 
@@ -27,8 +27,8 @@ script = ExtResource("1_t8gvg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=641967968]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
-material_override = ExtResource("2_7w3rt")
 mesh = ExtResource("2_alqbs")
+surface_material_override/0 = ExtResource("3_7w3rt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1129599342]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)

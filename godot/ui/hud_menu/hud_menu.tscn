@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dnjv1gj08j8bo"]
 
-[ext_resource type="Texture2D" uid="uid://clt4iyabv43li" path="res://assets/sprites/crosshair.png" id="1_6k6t2"]
+[ext_resource type="Texture2D" uid="uid://clt4iyabv43li" path="res://assets/ui/crosshair.png" id="1_6k6t2"]
 [ext_resource type="Script" uid="uid://du6keckrlid2j" path="res://ui/hud_menu/hud_menu.gd" id="1_cg6vh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_068i4"]

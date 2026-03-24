@@ -3,7 +3,7 @@ class_name Platform
 
 # imports
 const PlatformRotationControllerClass = preload("res://game_objects/platform/platform_rotation_controller.gd")
-const collisionErrorMaterial: Material = preload("res://assets/materials/rotation_error.tres")
+const collisionErrorMaterial: Material = preload("res://assets/materials/rotation_error.material.tres")
 
 # editor-controlled values
 @export var SECONDS_PER_ROTATION: float = 1.0

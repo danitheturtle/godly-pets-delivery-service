@@ -1,4 +1,4 @@
-Can't decide if this is actually necessary
+Can't decide if this is actually necessary. Leaning towards not
 
 The stair graph is a representation of all possible states of a level.
 

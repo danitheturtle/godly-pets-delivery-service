@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dk1fw7mjvpgqi"]
+
+[ext_resource type="Script" uid="uid://chpjt5oee4g5o" path="res://game_objects/stairs_slot/stairs_slot.gd" id="1_maea4"]
+[ext_resource type="ArrayMesh" uid="uid://bclsnyyipiw73" path="res://assets/stairs_slot/stairs_slot.obj" id="1_vcyg2"]
+[ext_resource type="ArrayMesh" uid="uid://37o7wuwow2an" path="res://assets/stairs_slot/stairs_slot_indicator.obj" id="2_hmamr"]
+[ext_resource type="Shader" uid="uid://dafuumkywk2ds" path="res://assets/stairs_slot/material/stairs_slot_indicator.material.tres" id="3_maea4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_maea4"]
+radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_maea4"]
+albedo_color = Color(0.56, 0.56, 0.56, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gma7y"]
+albedo_color = Color(0.74509805, 0.54509807, 0.14901961, 1)
+emission_enabled = true
+emission = Color(0.74509805, 0.54509807, 0.14901961, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_iu323"]
+material = SubResource("StandardMaterial3D_gma7y")
+top_radius = 0.75
+bottom_radius = 0.75
+height = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gma7y"]
+render_priority = 0
+shader = ExtResource("3_maea4")
+shader_parameter/Color = Color(0.747011, 0.544472, 0.149385, 1)
+
+[node name="StairsSlot" type="Area3D" unique_id=1409511783]
+script = ExtResource("1_maea4")
+
+[node name="StairsCollisionShape" type="CollisionShape3D" parent="." unique_id=2036589328]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_maea4")
+
+[node name="StairsSlotMesh" type="MeshInstance3D" parent="." unique_id=193602211]
+mesh = ExtResource("1_vcyg2")
+surface_material_override/0 = SubResource("StandardMaterial3D_maea4")
+
+[node name="StairsSlotMesh2" type="MeshInstance3D" parent="." unique_id=1357867676]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+mesh = SubResource("CylinderMesh_iu323")
+
+[node name="StairsSlotIndicator" type="MeshInstance3D" parent="." unique_id=902377175]
+mesh = ExtResource("2_hmamr")
+surface_material_override/0 = SubResource("ShaderMaterial_gma7y")

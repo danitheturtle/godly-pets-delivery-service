@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://0mevr3i1chgs"]
 
-[ext_resource type="Texture2D" uid="uid://bslat30vpjehi" path="res://assets/sprites/info-icon.png" id="1_510g8"]
+[ext_resource type="Texture2D" uid="uid://bslat30vpjehi" path="res://assets/ui/info-icon.png" id="1_510g8"]
 
 [node name="InfoTemplate" type="HBoxContainer" unique_id=913283793]
 size_flags_horizontal = 3

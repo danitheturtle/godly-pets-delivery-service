@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Todo/Progress bar bug.md",
+                "file": "Todo/Stair slots - put stair in place to activate.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Progress bar bug"
+              "title": "Stair slots - put stair in place to activate"
             }
           }
         ]
@@ -171,8 +171,8 @@
   },
   "active": "05c536962d781d60",
   "lastOpenFiles": [
-    "Todo/Stair slots - put stair in place to activate.md",
     "Todo/Progress bar bug.md",
+    "Todo/Stair slots - put stair in place to activate.md",
     "Todo/Floor Buttons.md",
     "Decorations/Donuts and other baked goods.md",
     "Todo/Add cancelled state to progress UI.md",

@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://bn4n5sbcei8x4" path="res://scripts/level.gd" id="5_0p53a"]
 [ext_resource type="PackedScene" uid="uid://cyksofbl60ciy" path="res://game_objects/checkpoint/checkpoint.tscn" id="6_wkq5h"]
 [ext_resource type="Material" uid="uid://ikghlktxl2rk" path="res://assets/materials/stair_blocker.material.tres" id="9_2x05o"]
-[ext_resource type="Script" uid="uid://b6r0nkerqmy6f" path="res://game_objects/platform/platform.gd" id="12_vjvj4"]
 [ext_resource type="PackedScene" uid="uid://dk1fw7mjvpgqi" path="res://game_objects/stairs_slot/stairs_slot.tscn" id="13_wljuq"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0p53a"]
@@ -26,23 +25,23 @@ agent_radius = 0.75
 [sub_resource type="BoxShape3D" id="BoxShape3D_u583p"]
 size = Vector3(18.75, 3, 9.25)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_plnos"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_s6qf0"]
 viewport_path = NodePath("PivotsProgressViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u583p"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vjvj4"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_plnos")
+albedo_texture = SubResource("ViewportTexture_s6qf0")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_dw8lb"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_wljuq"]
 viewport_path = NodePath("RotationProgressViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v5ns0"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_plnos"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_dw8lb")
+albedo_texture = SubResource("ViewportTexture_wljuq")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vjvj4"]
 size = Vector3(21, 1, 9.75)
@@ -53,23 +52,23 @@ size = Vector3(21, 1, 9.75)
 [sub_resource type="BoxShape3D" id="BoxShape3D_v5ns0"]
 size = Vector3(19.75, 3, 7)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_24asp"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_u583p"]
 viewport_path = NodePath("PivotsProgressViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwytn"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dw8lb"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_24asp")
+albedo_texture = SubResource("ViewportTexture_u583p")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_o8xi3"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_v5ns0"]
 viewport_path = NodePath("RotationProgressViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g8a7o"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_24asp"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_o8xi3")
+albedo_texture = SubResource("ViewportTexture_v5ns0")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2x05o"]
 size = Vector3(21, 1, 9.75)
@@ -80,27 +79,27 @@ size = Vector3(21, 1, 9.75)
 [sub_resource type="BoxShape3D" id="BoxShape3D_s6qf0"]
 size = Vector3(3, 1, 3)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_715fp"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_uwytn"]
 resource_local_to_scene = true
 size = Vector3(11.75, 3, 10.5)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_k0vai"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_o8xi3"]
 viewport_path = NodePath("PivotsProgressViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_chas8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g8a7o"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_k0vai")
+albedo_texture = SubResource("ViewportTexture_o8xi3")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_8eumd"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_715fp"]
 viewport_path = NodePath("RotationProgressViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mn85"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k0vai"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_8eumd")
+albedo_texture = SubResource("ViewportTexture_715fp")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s2u2n"]
 size = Vector3(11, 1, 11)
@@ -108,27 +107,27 @@ size = Vector3(11, 1, 11)
 [sub_resource type="BoxMesh" id="BoxMesh_05ppg"]
 size = Vector3(11, 1, 11)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_cby42"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_chas8"]
 resource_local_to_scene = true
 size = Vector3(20.25, 3, 10.5)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_epqdx"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_8eumd"]
 viewport_path = NodePath("PivotsProgressViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ctc8y"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mn85"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_epqdx")
+albedo_texture = SubResource("ViewportTexture_8eumd")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ib2iy"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_cby42"]
 viewport_path = NodePath("RotationProgressViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4o5x1"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_epqdx"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_ib2iy")
+albedo_texture = SubResource("ViewportTexture_cby42")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_plnos"]
 size = Vector3(3, 11, 3)
@@ -154,27 +153,27 @@ size = Vector3(21, 1, 9.75)
 [sub_resource type="BoxMesh" id="BoxMesh_wkq5h"]
 size = Vector3(21, 1, 9.75)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_cfvn6"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ctc8y"]
 resource_local_to_scene = true
 size = Vector3(9.5, 3, 10.5)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_c1nsx"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ib2iy"]
 viewport_path = NodePath("PivotsProgressViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jwvn0"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4o5x1"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_c1nsx")
+albedo_texture = SubResource("ViewportTexture_ib2iy")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_4ym2o"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_cfvn6"]
 viewport_path = NodePath("RotationProgressViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vrq7l"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c1nsx"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_4ym2o")
+albedo_texture = SubResource("ViewportTexture_cfvn6")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wkq5h"]
 size = Vector3(9.75, 1, 11)
@@ -185,7 +184,7 @@ size = Vector3(9.75, 1, 11)
 [sub_resource type="BoxShape3D" id="BoxShape3D_05ppg"]
 size = Vector3(3, 1, 3)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_augi5"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_jwvn0"]
 resource_local_to_scene = true
 size = Vector3(10.25, 3, 22)
 
@@ -220,19 +219,19 @@ popupText = "Press 'F' to control your pet. By default, this toggles following b
 popupText = "To rotate a platform, press 'Q' or 'E'"
 
 [node name="ProgressBar" parent="Level1/Sub1/Platform/Pivots/zNegPivot" parent_id_path=PackedInt32Array(322832196, 1204731783) index="1" unique_id=1058085514]
-surface_material_override/0 = SubResource("StandardMaterial3D_u583p")
+surface_material_override/0 = SubResource("StandardMaterial3D_vjvj4")
 
 [node name="ProgressBar" parent="Level1/Sub1/Platform/Pivots/xPosPivot" parent_id_path=PackedInt32Array(322832196, 1400685562) index="1" unique_id=671366020]
-surface_material_override/0 = SubResource("StandardMaterial3D_u583p")
+surface_material_override/0 = SubResource("StandardMaterial3D_vjvj4")
 
 [node name="ProgressBar" parent="Level1/Sub1/Platform/Pivots/zPosPivot" parent_id_path=PackedInt32Array(322832196, 570565777) index="1" unique_id=2127774179]
-surface_material_override/0 = SubResource("StandardMaterial3D_u583p")
+surface_material_override/0 = SubResource("StandardMaterial3D_vjvj4")
 
 [node name="ProgressBar" parent="Level1/Sub1/Platform/Pivots/xNegPivot" parent_id_path=PackedInt32Array(322832196, 2032389142) index="1" unique_id=146738279]
-surface_material_override/0 = SubResource("StandardMaterial3D_u583p")
+surface_material_override/0 = SubResource("StandardMaterial3D_vjvj4")
 
 [node name="RotationProgressBar" parent="Level1/Sub1/Platform" parent_id_path=PackedInt32Array(322832196) index="7" unique_id=709336466]
-surface_material_override/0 = SubResource("StandardMaterial3D_v5ns0")
+surface_material_override/0 = SubResource("StandardMaterial3D_plnos")
 
 [node name="Staircase" parent="Level1/Sub1" parent_id_path=PackedInt32Array(1133198089) index="2" unique_id=131645656 instance=ExtResource("2_38vaf")]
 transform = Transform3D(1, 8.742278e-08, 8.742278e-08, 8.742278e-08, -1, 0, 8.742278e-08, 7.642742e-15, -1, -1.2785581e-06, -5.625, 14.625)
@@ -269,19 +268,19 @@ popupText = "Press 'R' to return you and your pet to the furthest checkpoints ea
 popupText = "To pivot adjacent stairs, press 'SHIFT+Q' or 'SHIFT+E'"
 
 [node name="ProgressBar" parent="Level1/Sub2/Platform/Pivots/zNegPivot" parent_id_path=PackedInt32Array(1874884055, 1204731783) index="1" unique_id=1058085514]
-surface_material_override/0 = SubResource("StandardMaterial3D_uwytn")
+surface_material_override/0 = SubResource("StandardMaterial3D_dw8lb")
 
 [node name="ProgressBar" parent="Level1/Sub2/Platform/Pivots/xPosPivot" parent_id_path=PackedInt32Array(1874884055, 1400685562) index="1" unique_id=671366020]
-surface_material_override/0 = SubResource("StandardMaterial3D_uwytn")
+surface_material_override/0 = SubResource("StandardMaterial3D_dw8lb")
 
 [node name="ProgressBar" parent="Level1/Sub2/Platform/Pivots/zPosPivot" parent_id_path=PackedInt32Array(1874884055, 570565777) index="1" unique_id=2127774179]
-surface_material_override/0 = SubResource("StandardMaterial3D_uwytn")
+surface_material_override/0 = SubResource("StandardMaterial3D_dw8lb")
 
 [node name="ProgressBar" parent="Level1/Sub2/Platform/Pivots/xNegPivot" parent_id_path=PackedInt32Array(1874884055, 2032389142) index="1" unique_id=146738279]
-surface_material_override/0 = SubResource("StandardMaterial3D_uwytn")
+surface_material_override/0 = SubResource("StandardMaterial3D_dw8lb")
 
 [node name="RotationProgressBar" parent="Level1/Sub2/Platform" index="7" unique_id=709336466]
-surface_material_override/0 = SubResource("StandardMaterial3D_g8a7o")
+surface_material_override/0 = SubResource("StandardMaterial3D_24asp")
 
 [node name="Staircase" parent="Level1/Sub2" index="2" unique_id=1691696802 instance=ExtResource("2_38vaf")]
 transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, 5.6249986, 0, 14.625)
@@ -317,7 +316,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.694675, 1.5216613, -26.447
 
 [node name="ActivationArea" parent="Level1/Sub3/SubCheckpoint" index="2" unique_id=726556215]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.375, 1.5, -2.75)
-shape = SubResource("BoxShape3D_715fp")
+shape = SubResource("BoxShape3D_uwytn")
 
 [node name="Platform" parent="Level1/Sub3" index="1" unique_id=1840473985 instance=ExtResource("4_fwsfs")]
 
@@ -328,19 +327,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.249996, 0, 29.250002)
 popupText = "Upon interacting with a platform, it grabs all adjacent stairs."
 
 [node name="ProgressBar" parent="Level1/Sub3/Platform1/Pivots/zNegPivot" parent_id_path=PackedInt32Array(1306423196, 1204731783) index="1" unique_id=1058085514]
-surface_material_override/0 = SubResource("StandardMaterial3D_chas8")
+surface_material_override/0 = SubResource("StandardMaterial3D_g8a7o")
 
 [node name="ProgressBar" parent="Level1/Sub3/Platform1/Pivots/xPosPivot" parent_id_path=PackedInt32Array(1306423196, 1400685562) index="1" unique_id=671366020]
-surface_material_override/0 = SubResource("StandardMaterial3D_chas8")
+surface_material_override/0 = SubResource("StandardMaterial3D_g8a7o")
 
 [node name="ProgressBar" parent="Level1/Sub3/Platform1/Pivots/zPosPivot" parent_id_path=PackedInt32Array(1306423196, 570565777) index="1" unique_id=2127774179]
-surface_material_override/0 = SubResource("StandardMaterial3D_chas8")
+surface_material_override/0 = SubResource("StandardMaterial3D_g8a7o")
 
 [node name="ProgressBar" parent="Level1/Sub3/Platform1/Pivots/xNegPivot" parent_id_path=PackedInt32Array(1306423196, 2032389142) index="1" unique_id=146738279]
-surface_material_override/0 = SubResource("StandardMaterial3D_chas8")
+surface_material_override/0 = SubResource("StandardMaterial3D_g8a7o")
 
 [node name="RotationProgressBar" parent="Level1/Sub3/Platform1" index="7" unique_id=709336466]
-surface_material_override/0 = SubResource("StandardMaterial3D_7mn85")
+surface_material_override/0 = SubResource("StandardMaterial3D_k0vai")
 
 [node name="Staircase" parent="Level1/Sub3" index="3" unique_id=1745315528 instance=ExtResource("2_38vaf")]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -5.625, 0, -14.625002)
@@ -380,7 +379,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6757374, -9.737352, -26.84
 
 [node name="ActivationArea" parent="Level2/Sub1/Checkpoint" index="2" unique_id=726556215]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.625, 1.5, -1.75)
-shape = SubResource("BoxShape3D_cby42")
+shape = SubResource("BoxShape3D_chas8")
 
 [node name="PopupForArea" parent="Level2/Sub1/Checkpoint" index="3" unique_id=2055016525 instance=ExtResource("3_2x05o")]
 popupText = "Complete a level by reaching the tall green checkpoint with your pet. View level select by pressing 'L'."
@@ -392,19 +391,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.335144e-05, 0, 0)
 popupText = "Platform rotation / pivot gets cancelled if anything blocks the path of connected stairs."
 
 [node name="ProgressBar" parent="Level2/Sub1/Platform/Pivots/zNegPivot" parent_id_path=PackedInt32Array(989720734, 1204731783) index="1" unique_id=1058085514]
-surface_material_override/0 = SubResource("StandardMaterial3D_ctc8y")
+surface_material_override/0 = SubResource("StandardMaterial3D_7mn85")
 
 [node name="ProgressBar" parent="Level2/Sub1/Platform/Pivots/xPosPivot" parent_id_path=PackedInt32Array(989720734, 1400685562) index="1" unique_id=671366020]
-surface_material_override/0 = SubResource("StandardMaterial3D_ctc8y")
+surface_material_override/0 = SubResource("StandardMaterial3D_7mn85")
 
 [node name="ProgressBar" parent="Level2/Sub1/Platform/Pivots/zPosPivot" parent_id_path=PackedInt32Array(989720734, 570565777) index="1" unique_id=2127774179]
-surface_material_override/0 = SubResource("StandardMaterial3D_ctc8y")
+surface_material_override/0 = SubResource("StandardMaterial3D_7mn85")
 
 [node name="ProgressBar" parent="Level2/Sub1/Platform/Pivots/xNegPivot" parent_id_path=PackedInt32Array(989720734, 2032389142) index="1" unique_id=146738279]
-surface_material_override/0 = SubResource("StandardMaterial3D_ctc8y")
+surface_material_override/0 = SubResource("StandardMaterial3D_7mn85")
 
 [node name="RotationProgressBar" parent="Level2/Sub1/Platform" index="7" unique_id=709336466]
-surface_material_override/0 = SubResource("StandardMaterial3D_4o5x1")
+surface_material_override/0 = SubResource("StandardMaterial3D_epqdx")
 
 [node name="Platform1" parent="Level2/Sub1" index="2" unique_id=1236378208 instance=ExtResource("4_fwsfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.249985, 11.25, 0)
@@ -485,7 +484,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.07747, -9.76281, -3.605438
 
 [node name="ActivationArea" parent="Level2/Sub2/SubCheckpoint" index="2" unique_id=726556215]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 1.5, 3.75)
-shape = SubResource("BoxShape3D_cfvn6")
+shape = SubResource("BoxShape3D_ctc8y")
 
 [node name="Platform" parent="Level2/Sub2" index="1" unique_id=1539693064 instance=ExtResource("4_fwsfs")]
 
@@ -496,19 +495,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.25, -29.25)
 popupText = "Collision of *any* connected stair blocks pivot or rotation of *every* connected stair"
 
 [node name="ProgressBar" parent="Level2/Sub2/Platform1/Pivots/zNegPivot" parent_id_path=PackedInt32Array(1465344573, 1204731783) index="1" unique_id=1058085514]
-surface_material_override/0 = SubResource("StandardMaterial3D_jwvn0")
+surface_material_override/0 = SubResource("StandardMaterial3D_4o5x1")
 
 [node name="ProgressBar" parent="Level2/Sub2/Platform1/Pivots/xPosPivot" parent_id_path=PackedInt32Array(1465344573, 1400685562) index="1" unique_id=671366020]
-surface_material_override/0 = SubResource("StandardMaterial3D_jwvn0")
+surface_material_override/0 = SubResource("StandardMaterial3D_4o5x1")
 
 [node name="ProgressBar" parent="Level2/Sub2/Platform1/Pivots/zPosPivot" parent_id_path=PackedInt32Array(1465344573, 570565777) index="1" unique_id=2127774179]
-surface_material_override/0 = SubResource("StandardMaterial3D_jwvn0")
+surface_material_override/0 = SubResource("StandardMaterial3D_4o5x1")
 
 [node name="ProgressBar" parent="Level2/Sub2/Platform1/Pivots/xNegPivot" parent_id_path=PackedInt32Array(1465344573, 2032389142) index="1" unique_id=146738279]
-surface_material_override/0 = SubResource("StandardMaterial3D_jwvn0")
+surface_material_override/0 = SubResource("StandardMaterial3D_4o5x1")
 
 [node name="RotationProgressBar" parent="Level2/Sub2/Platform1" index="7" unique_id=709336466]
-surface_material_override/0 = SubResource("StandardMaterial3D_vrq7l")
+surface_material_override/0 = SubResource("StandardMaterial3D_c1nsx")
 
 [node name="Platform2" parent="Level2/Sub2" index="3" unique_id=91525572 instance=ExtResource("4_fwsfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -58.5)
@@ -590,7 +589,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.306267, -9.740166, 9.6401
 
 [node name="ActivationArea" parent="Level3/Sub1/Checkpoint" index="2" unique_id=726556215]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.625, 1.5, -7.5)
-shape = SubResource("BoxShape3D_augi5")
+shape = SubResource("BoxShape3D_jwvn0")
 
 [node name="Platform" parent="Level3/Sub1" index="1" unique_id=322832196 instance=ExtResource("4_fwsfs")]
 
@@ -618,13 +617,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5279617, 0, 4.6707764)
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Level3/Sub1/Static/NavmeshHelper" index="1" unique_id=1112628748]
 shape = SubResource("BoxShape3D_05ppg")
 
-[node name="SquarePlatform" type="AnimatableBody3D" parent="Level3/Sub1" index="4" unique_id=1531144148 groups=["resetable"] instance=ExtResource("4_fwsfs")]
+[node name="SquarePlatform" parent="Level3/Sub1" index="4" unique_id=1531144148 instance=ExtResource("4_fwsfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5571162e-06, 11.25, 29.25)
-collision_layer = 5
-script = ExtResource("12_vjvj4")
 
-[node name="StairsSlot" parent="Level3/Sub1" index="5" unique_id=1409511783 instance=ExtResource("13_wljuq")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.9073486e-06, 11.25, 24.375244)
+[node name="StairsSlot" parent="Level3/Sub1/SquarePlatform" index="8" unique_id=1409511783 instance=ExtResource("13_wljuq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.875)
 
 [editable path="Level1/Sub1/Checkpoint"]
 [editable path="Level1/Sub1/Platform"]

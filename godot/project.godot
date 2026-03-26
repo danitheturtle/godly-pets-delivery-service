@@ -42,6 +42,7 @@ resetable=""
 bake_navmesh=""
 remove_at_runtime=""
 activator=""
+activable=""
 
 [input]
 

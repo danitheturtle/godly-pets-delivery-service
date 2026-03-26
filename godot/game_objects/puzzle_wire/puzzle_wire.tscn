@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://4jcvmcg22mul"]
+
+[ext_resource type="Script" uid="uid://bnjm1skpous2j" path="res://game_objects/puzzle_wire/puzzle_wire.gd" id="1_4tlee"]
+
+[node name="PuzzleWire" type="Node" unique_id=1406703561 groups=["activable", "activator"]]
+script = ExtResource("1_4tlee")

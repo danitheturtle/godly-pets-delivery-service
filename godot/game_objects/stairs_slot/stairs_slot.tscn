@@ -4,7 +4,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bclsnyyipiw73" path="res://assets/stairs_slot/stairs_slot.obj" id="1_vcyg2"]
 [ext_resource type="ArrayMesh" uid="uid://cjqqoyd51bjd0" path="res://assets/stairs_slot/stairs_slot_indicator.obj" id="2_hmamr"]
 [ext_resource type="Shader" uid="uid://dafuumkywk2ds" path="res://assets/stairs_slot/material/stairs_slot_indicator.material.tres" id="3_maea4"]
-[ext_resource type="ArrayMesh" uid="uid://37o7wuwow2an" path="res://assets/stairs_slot/stairs_slot_gradient_indicator.obj" id="4_gma7y"]
+[ext_resource type="ArrayMesh" uid="uid://37o7wuwow2an" path="res://assets/stairs_slot/stairs_slot_gradient.obj" id="4_gma7y"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_maea4"]
 radius = 1.0
@@ -22,10 +22,11 @@ render_priority = 0
 shader = ExtResource("3_maea4")
 shader_parameter/Color = Color(0.747011, 0.544472, 0.149385, 1)
 
-[node name="StairsSlot" type="Area3D" unique_id=1409511783]
+[node name="StairsSlot" type="Area3D" unique_id=1409511783 groups=["activator", "resetable"]]
 script = ExtResource("1_maea4")
 
 [node name="StairsCollisionShape" type="CollisionShape3D" parent="." unique_id=2036589328]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25)
 shape = SubResource("SphereShape3D_maea4")
 
 [node name="StairsSlotMesh" type="MeshInstance3D" parent="." unique_id=193602211]
@@ -33,12 +34,12 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 mesh = ExtResource("1_vcyg2")
 surface_material_override/0 = SubResource("StandardMaterial3D_maea4")
 
-[node name="StairsSlotMesh2" type="MeshInstance3D" parent="." unique_id=1357867676]
+[node name="StairsSlotIndicatorMesh" type="MeshInstance3D" parent="." unique_id=1357867676]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 mesh = ExtResource("2_hmamr")
 surface_material_override/0 = SubResource("StandardMaterial3D_iu323")
 
-[node name="StairsSlotIndicator" type="MeshInstance3D" parent="." unique_id=902377175]
+[node name="StairsSlotGradientMesh" type="MeshInstance3D" parent="." unique_id=902377175]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 mesh = ExtResource("4_gma7y")
 surface_material_override/0 = SubResource("ShaderMaterial_gma7y")

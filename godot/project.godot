@@ -41,6 +41,7 @@ enabled=PackedStringArray("res://addons/snap_to_stair_grid_gizmo/plugin.cfg")
 resetable=""
 bake_navmesh=""
 remove_at_runtime=""
+activator=""
 
 [input]
 

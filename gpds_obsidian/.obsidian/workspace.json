@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Todo/Puzzle wires and logic box.md",
+                "file": "Todo/Iterate stair slot mesh.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Puzzle wires and logic box"
+              "title": "Iterate stair slot mesh"
             }
           }
         ]
@@ -169,10 +169,11 @@
       "bases:Create new base": false
     }
   },
-  "active": "05c536962d781d60",
+  "active": "328136d1d053f47e",
   "lastOpenFiles": [
+    "Todo/Puzzle wires and logic box.md",
     "Todo/Stair slots - put stair in place to activate.md",
-    "Mechanics/Iterate stair slot mesh.md",
+    "Todo/Iterate stair slot mesh.md",
     "Todo/Progress bar bug.md",
     "Todo/Floor Buttons.md",
     "Decorations/Donuts and other baked goods.md",
@@ -180,7 +181,6 @@
     "Mechanics/Stretch/Stair Graph.md",
     "Core Pillars.md",
     "Mechanics/Stretch/Runtime color palette.md",
-    "Todo/Puzzle wires and logic box.md",
     "Mechanics/Ghost platforms and stairs, toggled externally.md",
     "Mechanics/Stairs that can only move X times.md",
     "Mechanics/Two stairs that meet end-to-end connect.md",

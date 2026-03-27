@@ -2,4 +2,4 @@
 * done - Thicken radial indicator so its squared off with gradient emitter and more visible from a distance.
 * done - Put square target that's an emitter in centre of pivot to balance it
 * done - shrink side circles by 10-30%
-* increase distance between center coils
+* increase distance between centre coils

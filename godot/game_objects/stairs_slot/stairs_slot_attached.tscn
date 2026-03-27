@@ -3,37 +3,35 @@
 [ext_resource type="PackedScene" uid="uid://dk1fw7mjvpgqi" path="res://game_objects/stairs_slot/stairs_slot.tscn" id="1_qmgb0"]
 [ext_resource type="Shader" uid="uid://dafuumkywk2ds" path="res://assets/stairs_slot/material/stairs_slot_indicator.material.tres" id="2_ekke4"]
 [ext_resource type="ArrayMesh" uid="uid://dv2mvq12vdjir" path="res://assets/stairs_slot/stairs_slot_platform_attachment.obj" id="3_c7dwq"]
+[ext_resource type="Material" uid="uid://b8umcmv2x5feb" path="res://assets/materials/activable.material.tres" id="4_r0hur"]
 [ext_resource type="ArrayMesh" uid="uid://cip0q0ibl4kh1" path="res://assets/stairs_slot/stairs_slot_platform_attachment_indicator.obj" id="4_s6kqt"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c7dwq"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0n7ph"]
 resource_local_to_scene = true
 albedo_color = Color(0.74509805, 0.54509807, 0.14901961, 1)
 emission_enabled = true
 emission = Color(0.74509805, 0.54509807, 0.14901961, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_s6kqt"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q2pyo"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_ekke4")
 shader_parameter/Color = Color(0.747011, 0.544472, 0.149385, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_maea4"]
-albedo_color = Color(0.3816, 0.57900006, 0.72, 1)
-
 [node name="StairsSlot" unique_id=1409511783 instance=ExtResource("1_qmgb0")]
 
 [node name="StairsSlotIndicatorMesh" parent="." index="2" unique_id=1357867676]
-surface_material_override/0 = SubResource("StandardMaterial3D_c7dwq")
+surface_material_override/0 = SubResource("StandardMaterial3D_0n7ph")
 
 [node name="StairsSlotGradientMesh" parent="." index="3" unique_id=902377175]
-surface_material_override/0 = SubResource("ShaderMaterial_s6kqt")
+surface_material_override/0 = SubResource("ShaderMaterial_q2pyo")
 
 [node name="StairsSlotPlatformAttachmentMesh" type="MeshInstance3D" parent="." index="4" unique_id=634515453]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 mesh = ExtResource("3_c7dwq")
-surface_material_override/0 = SubResource("StandardMaterial3D_maea4")
+surface_material_override/0 = ExtResource("4_r0hur")
 
 [node name="StairsSlotPlatformAttachmentIndicatorMesh" type="MeshInstance3D" parent="." index="5" unique_id=302635041]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 mesh = ExtResource("4_s6kqt")
-surface_material_override/0 = SubResource("StandardMaterial3D_c7dwq")
+surface_material_override/0 = SubResource("StandardMaterial3D_0n7ph")

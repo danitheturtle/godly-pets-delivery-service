@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "4afd14f3777f16af",
+        "id": "e9434acf56f81ace",
         "type": "tabs",
         "children": [
           {
-            "id": "05c536962d781d60",
+            "id": "659547c90a503771",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Todo/Iterate stair slot mesh.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Iterate stair slot mesh"
+              "title": "New tab"
             }
           }
         ]
@@ -169,10 +165,10 @@
       "bases:Create new base": false
     }
   },
-  "active": "328136d1d053f47e",
+  "active": "659547c90a503771",
   "lastOpenFiles": [
+    "Prototype Stuff Implemented/Iterate stair slot mesh.md",
     "Prototype Stuff Implemented/Stair slots - put stair in place to activate.md",
-    "Todo/Iterate stair slot mesh.md",
     "Todo/Puzzle wires and logic box.md",
     "Todo/Progress bar bug.md",
     "Todo/Floor Buttons.md",

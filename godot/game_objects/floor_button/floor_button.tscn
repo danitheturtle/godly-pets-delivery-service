@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dkefm4y1vv63j"]
+
+[ext_resource type="Material" uid="uid://b8umcmv2x5feb" path="res://assets/materials/activable.material.tres" id="1_geahk"]
+[ext_resource type="Script" uid="uid://c6w3k7ob5k7dm" path="res://game_objects/floor_button/floor_button.gd" id="1_tr2ad"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tr2ad"]
+size = Vector3(3, 3, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_23fvv"]
+size = Vector3(3, 0.05, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xu4vg"]
+size = Vector3(2.5, 0.175, 2.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvkx6"]
+albedo_color = Color(0.74509805, 0.54509807, 0.14901961, 1)
+emission_enabled = true
+emission = Color(0.74509805, 0.54509807, 0.14901961, 1)
+
+[node name="FloorButton" type="Area3D" unique_id=879256620 groups=["activator"]]
+script = ExtResource("1_tr2ad")
+
+[node name="FloorButtonCollisionShape" type="CollisionShape3D" parent="." unique_id=499492633]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_tr2ad")
+
+[node name="FloorButtonMesh" type="MeshInstance3D" parent="." unique_id=661940579]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+material_override = ExtResource("1_geahk")
+mesh = SubResource("BoxMesh_23fvv")
+
+[node name="FloorButtonIndicatorMesh" type="MeshInstance3D" parent="." unique_id=1312372148]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.145, 0)
+mesh = SubResource("BoxMesh_xu4vg")
+surface_material_override/0 = SubResource("StandardMaterial3D_pvkx6")

@@ -42,11 +42,11 @@ var editorHelper: ForceFieldEditorHelper = null
         petFieldState = initialPetFieldState
         if editorHelper != null: pet_field_toggle(initialPetFieldState)
 @export_category("Force Field Size")
-@export_range(1.0, 100.0, 0.5, "or_greater") var fieldWidth: float = 5.5:
+@export_range(3.0, 30.0, 0.5, "or_greater") var fieldWidth: float = 5.5:
     set(new_value):
         if editorHelper != null: editorHelper.update_field_width(new_value)
         fieldWidth = new_value
-@export_range(1.0, 100.0, 0.5, "or_greater") var fieldHeight: float = 5.5:
+@export_range(3.0, 30.0, 0.5, "or_greater") var fieldHeight: float = 5.5:
     set(new_value):
         if editorHelper != null: editorHelper.update_field_height(new_value)
         fieldHeight = new_value
@@ -78,10 +78,6 @@ func _ready() -> void:
 
 func create_editor_helper() -> void:
     editorHelper = ForceFieldEditorHelperRes.new(self)
-
-func _process(delta) -> void:
-    if editorHelper != null:
-        editorHelper.update(delta)
 
 func on_player_wire_high() -> void: player_field_toggle(!initialPlayerFieldState)
 

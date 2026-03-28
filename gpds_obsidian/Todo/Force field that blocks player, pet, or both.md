@@ -10,7 +10,7 @@ This is the "door" of the game. Flat plane for now, in the future use Path3D to 
 * Visual can be horizontal lines to represent no pet, vertical to represent no player, and grid to represent blocking both. Color blind friendly
 
 Maybe it can toggle state between player / pet
-Could turn on and off through environment interaction
+Turn on and off through environment interaction
 Could move independently or attached to a platform/staircase
 
 Maybe it only blocks one or two sides of a staircase, or a single pivot of a platform.

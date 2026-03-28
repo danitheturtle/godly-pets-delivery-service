@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://bpft2kjfjgpax"]
+
+[ext_resource type="Script" uid="uid://v8b7iwjsy7h" path="res://game_objects/force_field/force_field.gd" id="1_bgvmm"]
+[ext_resource type="Material" uid="uid://b8umcmv2x5feb" path="res://assets/materials/activable.material.tres" id="1_deavy"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_n2l07"]
+resource_local_to_scene = true
+size = Vector3(5.5, 0.5, 0.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_abq8x"]
+resource_local_to_scene = true
+top_radius = 0.125
+bottom_radius = 0.125
+height = 5.5
+radial_segments = 8
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bgvmm"]
+transparency = 1
+albedo_color = Color(0.9842159, 0, 0.37016585, 0.5882353)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bgvmm"]
+resource_local_to_scene = true
+size = Vector3(5.5, 5.5, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_deavy"]
+resource_local_to_scene = true
+size = Vector3(0.5, 5.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akcdx"]
+transparency = 1
+albedo_color = Color(0.9112347, 0.29324645, 0, 0.5882353)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bgvmm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abq8x"]
+albedo_color = Color(0.74509805, 0.54509807, 0.14901961, 1)
+emission_enabled = true
+emission = Color(0.74509805, 0.54509807, 0.14901961, 1)
+
+[node name="ForceField" type="Node3D" unique_id=2133525442 groups=["activable"]]
+script = ExtResource("1_bgvmm")
+
+[node name="VerticalPlayerEmitter" type="MeshInstance3D" parent="." unique_id=1113369850]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 5.75, 0)
+visible = false
+mesh = SubResource("BoxMesh_n2l07")
+surface_material_override/0 = ExtResource("1_deavy")
+
+[node name="VisualField" type="Node3D" parent="VerticalPlayerEmitter" unique_id=100407275]
+
+[node name="Cylinder" type="MeshInstance3D" parent="VerticalPlayerEmitter/VisualField" unique_id=271379129]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -3, 0)
+mesh = SubResource("CylinderMesh_abq8x")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_bgvmm")
+
+[node name="Collider" type="StaticBody3D" parent="VerticalPlayerEmitter" unique_id=54266460]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VerticalPlayerEmitter/Collider" unique_id=1097148859]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+shape = SubResource("BoxShape3D_bgvmm")
+
+[node name="HorizontalPetEmitter" type="MeshInstance3D" parent="." unique_id=1309454049]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 2.75, 0)
+visible = false
+mesh = SubResource("BoxMesh_deavy")
+surface_material_override/0 = ExtResource("1_deavy")
+
+[node name="VisualField" type="Node3D" parent="HorizontalPetEmitter" unique_id=1044272065]
+
+[node name="Cylinder" type="MeshInstance3D" parent="HorizontalPetEmitter/VisualField" unique_id=236425633]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 3, 2.5, 0)
+mesh = SubResource("CylinderMesh_abq8x")
+surface_material_override/0 = SubResource("StandardMaterial3D_akcdx")
+
+[node name="Collider" type="StaticBody3D" parent="HorizontalPetEmitter" unique_id=640781378]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HorizontalPetEmitter/Collider" unique_id=1895315842]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+shape = SubResource("BoxShape3D_bgvmm")
+
+[node name="IndicatorMesh" type="MeshInstance3D" parent="." unique_id=930039958]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 6, 0)
+mesh = SubResource("BoxMesh_bgvmm")
+surface_material_override/0 = SubResource("StandardMaterial3D_abq8x")

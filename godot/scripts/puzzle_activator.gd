@@ -5,14 +5,14 @@ extends Area3D
 signal wire_high
 signal wire_low
 
+var inactiveColor: Color = Color("be8b26") # TODO refactor into color system
+var activeColor: Color = Color("4b9fce") # TODO refactor into color system
+
 const DEBOUNCE_SECONDS: float = 0.065
 
 var activatingNodeRef: CollisionObject3D = null
 var active: bool = false
 var cooldownTimer: float = 0.0
-
-var inactiveColor: Color = Color("be8b26")
-var activeColor: Color = Color("4b9fce")
 
 func _ready() -> void:
     body_entered.connect(on_body_entered)

@@ -1,4 +1,4 @@
-This is the "door" of the game, but it can be any planar surface including curved. Most commonly just a plane.
+This is the "door" of the game. Flat plane for now, in the future use Path3D to make dynamic fields that can curve around things.
 
 * Toggles between states via external control (like a stair target)
 * Transparent in all states

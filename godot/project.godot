@@ -165,7 +165,9 @@ level_select={
 3d_physics/layer_1="collides_with_actors"
 3d_physics/layer_2="collides_with_stair_ends"
 3d_physics/layer_3="collides_with_stairs"
+3d_physics/layer_4="collides_with_player"
 3d_physics/layer_5="navmesh_only"
+3d_physics/layer_8="collides_with_pets"
 
 [navigation]
 

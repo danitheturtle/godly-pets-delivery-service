@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://b6r0nkerqmy6f" path="res://game_objects/platform/platform.gd" id="1_klhda"]
 [ext_resource type="Material" uid="uid://cjmm1qrpgx86i" path="res://assets/materials/rotating_platform.material.tres" id="2_a0etf"]
-[ext_resource type="PackedScene" uid="uid://c7g3ptq5ykm4y" path="res://game_objects/navmesh_helper/navmesh_helper.tscn" id="3_a0etf"]
 [ext_resource type="PackedScene" uid="uid://sjum5wwp2fxe" path="res://game_objects/platform/rotation_progress_display/rotation_progress_display.tscn" id="4_y6q0f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sgp6g"]
@@ -15,6 +14,7 @@ size = Vector3(9.75, 3, 9.75)
 vertices = PackedVector3Array(-4.875, 2, -0.875, -4.875, 2, 0.875, -4.125, 2, 1.375, -4.125, 2, -1.375, -1.375, 2, 4.125, -0.875, 2, 4.875, 0.875, 2, 4.875, 1.375, 2, 4.125, 4.125, 2, 1.375, 4.875, 2, 0.875, 4.875, 2, -0.875, 4.125, 2, -1.375, 1.375, 2, -4.125, 0.875, 2, -4.875, -0.875, 2, -4.875, -1.375, 2, -4.125, -4.125, 2, -4.125, -4.125, 2, 4.125, 4.125, 2, 4.125, 4.125, 2, -4.125)
 polygons = [PackedInt32Array(0, 3, 1), PackedInt32Array(1, 3, 2), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(14, 13, 12), PackedInt32Array(8, 7, 11), PackedInt32Array(11, 7, 4), PackedInt32Array(11, 4, 2), PackedInt32Array(11, 2, 15), PackedInt32Array(3, 16, 15), PackedInt32Array(14, 12, 15), PackedInt32Array(15, 12, 11), PackedInt32Array(2, 3, 15), PackedInt32Array(4, 17, 2), PackedInt32Array(8, 18, 7), PackedInt32Array(12, 19, 11)]
 geometry_parsed_geometry_type = 1
+geometry_collision_mask = 4278190096
 agent_height = 3.0
 agent_radius = 0.75
 
@@ -63,16 +63,18 @@ mesh = SubResource("BoxMesh_o5qli")
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=791488372]
 navigation_mesh = SubResource("NavigationMesh_ia4b8")
 
-[node name="NavmeshHelper" parent="NavigationRegion3D" unique_id=1072783753 instance=ExtResource("3_a0etf")]
+[node name="NavmeshHelper" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1880770015]
+collision_layer = 16
+collision_mask = 16
 
-[node name="CollisionShape3D" parent="NavigationRegion3D/NavmeshHelper" index="0" unique_id=674604497]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/NavmeshHelper" unique_id=1119912593]
 shape = SubResource("BoxShape3D_sgp6g")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/NavmeshHelper" unique_id=1860583133]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/NavmeshHelper" unique_id=1425322017]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 shape = SubResource("BoxShape3D_ia4b8")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="NavigationRegion3D/NavmeshHelper" unique_id=2093513247]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="NavigationRegion3D/NavmeshHelper" unique_id=739600231]
 shape = SubResource("BoxShape3D_ia4b8")
 
 [node name="ActorDetector" type="Area3D" parent="." unique_id=162572149]
@@ -147,5 +149,3 @@ transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, 
 visible = false
 mesh = SubResource("QuadMesh_kmny0")
 surface_material_override/0 = SubResource("StandardMaterial3D_wvqt6")
-
-[editable path="NavigationRegion3D/NavmeshHelper"]

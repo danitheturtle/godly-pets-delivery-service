@@ -30,7 +30,7 @@ var editorHelper: ForceFieldEditorHelper = null
         if editorHelper != null: enable_pet_field(new_value != null)
 @export var inactiveColor: Color = Color("be8b26") # TODO refactor into color system
 @export var activeColor: Color = Color("4b9fce") # TODO refactor into color system
-@export_category("Initial State")
+@export_category("Toggleable State")
 @export var initialPlayerFieldState: bool = true:
     set(new_value):
         initialPlayerFieldState = playerFieldActivator != null && new_value

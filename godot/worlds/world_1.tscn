@@ -195,6 +195,70 @@ size = Vector3(21, 1, 9.75)
 [sub_resource type="BoxMesh" id="BoxMesh_ajhgj"]
 size = Vector3(21, 1, 9.75)
 
+[sub_resource type="BoxMesh" id="BoxMesh_vjvj4"]
+resource_local_to_scene = true
+size = Vector3(14.5, 0.5, 0.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wljuq"]
+resource_local_to_scene = true
+top_radius = 0.125
+bottom_radius = 0.125
+height = 12.0
+radial_segments = 8
+rings = 1
+cap_top = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bgvmm"]
+transparency = 1
+albedo_color = Color(0.9842159, 0, 0.37016585, 0.5882353)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_24asp"]
+resource_local_to_scene = true
+size = Vector3(14.5, 12, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uwytn"]
+resource_local_to_scene = true
+size = Vector3(14.5, 0.125, 0.125)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o8xi3"]
+resource_local_to_scene = true
+albedo_color = Color(0.74509805, 0.54509807, 0.14901961, 1)
+emission_enabled = true
+emission = Color(0.74509805, 0.54509807, 0.14901961, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g8a7o"]
+resource_local_to_scene = true
+size = Vector3(0.5, 12, 0.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_715fp"]
+resource_local_to_scene = true
+top_radius = 0.125
+bottom_radius = 0.125
+height = 14.5
+radial_segments = 8
+rings = 1
+cap_top = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akcdx"]
+transparency = 1
+albedo_color = Color(0.9112347, 0.29324645, 0, 0.5882353)
+
+[sub_resource type="BoxMesh" id="BoxMesh_k0vai"]
+resource_local_to_scene = true
+size = Vector3(0.125, 12, 0.125)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8eumd"]
+resource_local_to_scene = true
+albedo_color = Color(0.74509805, 0.54509807, 0.14901961, 1)
+emission_enabled = true
+emission = Color(0.74509805, 0.54509807, 0.14901961, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mn85"]
+resource_local_to_scene = true
+albedo_color = Color(0.74509805, 0.54509807, 0.14901961, 1)
+emission_enabled = true
+emission = Color(0.74509805, 0.54509807, 0.14901961, 1)
+
 [node name="World1" unique_id=206715187 instance=ExtResource("1_nlsqv")]
 
 [node name="Player" parent="." index="1" unique_id=66642413]
@@ -622,16 +686,174 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5109406, 0, 4.1110067)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4890671, 0, -4.197107)
 shape = SubResource("BoxShape3D_05ppg")
 
-[node name="RotatingStaircase" parent="Level3/Sub1" index="4" unique_id=1445667540 instance=ExtResource("2_38vaf")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14.625, 5.625, 6.3927905e-07)
-
-[node name="SquarePlatform" parent="Level3/Sub1" index="5" unique_id=2085263089 instance=ExtResource("4_fwsfs")]
+[node name="SquarePlatform" parent="Level3/Sub1" index="4" unique_id=2085263089 instance=ExtResource("4_fwsfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.25, 11.25, 1.2785581e-06)
 
-[node name="ForceField" parent="Level3/Sub1" index="6" unique_id=2133525442 node_paths=PackedStringArray("playerFieldActivator", "petFieldActivator") instance=ExtResource("14_wljuq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20, 10, 0)
+[node name="ForceField" parent="Level3/Sub1" index="5" unique_id=2133525442 node_paths=PackedStringArray("playerFieldActivator", "petFieldActivator") instance=ExtResource("14_wljuq")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 17.25, 5, 0)
 playerFieldActivator = NodePath("../Platform/FloorButton")
 petFieldActivator = NodePath("../Platform/FloorButton")
+fieldWidth = 14.5
+fieldHeight = 12.0
+
+[node name="VerticalPlayerEmitter" parent="Level3/Sub1/ForceField" index="0" unique_id=1113369850]
+process_mode = 0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.25, 0)
+mesh = SubResource("BoxMesh_vjvj4")
+
+[node name="Laser" parent="Level3/Sub1/ForceField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 100407275) index="0" unique_id=271379129]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, -6.25, 0)
+mesh = SubResource("CylinderMesh_wljuq")
+
+[node name="Laser1" parent="Level3/Sub1/ForceField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 100407275) index="1" unique_id=1961894755]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, -6.25, 0)
+mesh = SubResource("CylinderMesh_wljuq")
+
+[node name="Laser2" parent="Level3/Sub1/ForceField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 100407275) index="2" unique_id=57668432]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -6.25, 0)
+mesh = SubResource("CylinderMesh_wljuq")
+
+[node name="Laser3" parent="Level3/Sub1/ForceField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 100407275) index="3" unique_id=1820551865]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, -6.25, 0)
+mesh = SubResource("CylinderMesh_wljuq")
+
+[node name="Laser4" parent="Level3/Sub1/ForceField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 100407275) index="4" unique_id=975003695]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -6.25, 0)
+mesh = SubResource("CylinderMesh_wljuq")
+
+[node name="_MeshInstance3D_63275" type="MeshInstance3D" parent="Level3/Sub1/ForceField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 100407275) index="5" unique_id=903452055]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -6.25, 0)
+mesh = SubResource("CylinderMesh_wljuq")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_bgvmm")
+
+[node name="_MeshInstance3D_63276" type="MeshInstance3D" parent="Level3/Sub1/ForceField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 100407275) index="6" unique_id=483365312]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -6.25, 0)
+mesh = SubResource("CylinderMesh_wljuq")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_bgvmm")
+
+[node name="@MeshInstance3D@68623" type="MeshInstance3D" parent="Level3/Sub1/ForceField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 100407275) index="7" unique_id=321690650]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -6.25, 0)
+mesh = SubResource("CylinderMesh_wljuq")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_bgvmm")
+
+[node name="@MeshInstance3D@68630" type="MeshInstance3D" parent="Level3/Sub1/ForceField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 100407275) index="8" unique_id=1497915888]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -6.25, 0)
+mesh = SubResource("CylinderMesh_wljuq")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_bgvmm")
+
+[node name="@MeshInstance3D@68631" type="MeshInstance3D" parent="Level3/Sub1/ForceField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 100407275) index="9" unique_id=1574908751]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -6.25, 0)
+mesh = SubResource("CylinderMesh_wljuq")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_bgvmm")
+
+[node name="@MeshInstance3D@68632" type="MeshInstance3D" parent="Level3/Sub1/ForceField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 100407275) index="10" unique_id=1472095064]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, -6.25, 0)
+mesh = SubResource("CylinderMesh_wljuq")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_bgvmm")
+
+[node name="@MeshInstance3D@68633" type="MeshInstance3D" parent="Level3/Sub1/ForceField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 100407275) index="11" unique_id=708370124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, -6.25, 0)
+mesh = SubResource("CylinderMesh_wljuq")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_bgvmm")
+
+[node name="@MeshInstance3D@68634" type="MeshInstance3D" parent="Level3/Sub1/ForceField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 100407275) index="12" unique_id=1690434313]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -6.25, 0)
+mesh = SubResource("CylinderMesh_wljuq")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_bgvmm")
+
+[node name="@MeshInstance3D@68635" type="MeshInstance3D" parent="Level3/Sub1/ForceField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 100407275) index="13" unique_id=965297343]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, -6.25, 0)
+mesh = SubResource("CylinderMesh_wljuq")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_bgvmm")
+
+[node name="CollisionShape3D" parent="Level3/Sub1/ForceField/VerticalPlayerEmitter/Collider" parent_id_path=PackedInt32Array(2133525442, 54266460) index="0" unique_id=1097148859]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.25, 0)
+shape = SubResource("BoxShape3D_24asp")
+
+[node name="PlayerIndicatorMesh" parent="Level3/Sub1/ForceField/VerticalPlayerEmitter" index="2" unique_id=834096677]
+mesh = SubResource("BoxMesh_uwytn")
+surface_material_override/0 = SubResource("StandardMaterial3D_o8xi3")
+
+[node name="HorizontalPetEmitter" parent="Level3/Sub1/ForceField" index="1" unique_id=1309454049]
+process_mode = 0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 6, 0)
+mesh = SubResource("BoxMesh_g8a7o")
+
+[node name="Laser" parent="Level3/Sub1/ForceField/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 1044272065) index="0" unique_id=236425633]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 7.5, 5.25, 0)
+mesh = SubResource("CylinderMesh_715fp")
+
+[node name="Laser1" parent="Level3/Sub1/ForceField/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 1044272065) index="1" unique_id=1296369937]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 7.5, 4.25, 0)
+mesh = SubResource("CylinderMesh_715fp")
+
+[node name="Laser2" parent="Level3/Sub1/ForceField/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 1044272065) index="2" unique_id=1172847682]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 7.5, 3.25, 0)
+mesh = SubResource("CylinderMesh_715fp")
+
+[node name="Laser3" parent="Level3/Sub1/ForceField/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 1044272065) index="3" unique_id=1399064121]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 7.5, 2.25, 0)
+mesh = SubResource("CylinderMesh_715fp")
+
+[node name="Laser4" parent="Level3/Sub1/ForceField/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 1044272065) index="4" unique_id=1494767158]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 7.5, 1.25, 0)
+mesh = SubResource("CylinderMesh_715fp")
+
+[node name="_MeshInstance3D_63282" type="MeshInstance3D" parent="Level3/Sub1/ForceField/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 1044272065) index="5" unique_id=1952077582]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 7.5, 0.25, 0)
+mesh = SubResource("CylinderMesh_715fp")
+surface_material_override/0 = SubResource("StandardMaterial3D_akcdx")
+
+[node name="@MeshInstance3D@68624" type="MeshInstance3D" parent="Level3/Sub1/ForceField/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 1044272065) index="6" unique_id=339390232]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 7.5, -0.75, 0)
+mesh = SubResource("CylinderMesh_715fp")
+surface_material_override/0 = SubResource("StandardMaterial3D_akcdx")
+
+[node name="@MeshInstance3D@68625" type="MeshInstance3D" parent="Level3/Sub1/ForceField/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 1044272065) index="7" unique_id=1924497611]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 7.5, -1.75, 0)
+mesh = SubResource("CylinderMesh_715fp")
+surface_material_override/0 = SubResource("StandardMaterial3D_akcdx")
+
+[node name="@MeshInstance3D@68626" type="MeshInstance3D" parent="Level3/Sub1/ForceField/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 1044272065) index="8" unique_id=223914335]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 7.5, -2.75, 0)
+mesh = SubResource("CylinderMesh_715fp")
+surface_material_override/0 = SubResource("StandardMaterial3D_akcdx")
+
+[node name="@MeshInstance3D@68627" type="MeshInstance3D" parent="Level3/Sub1/ForceField/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 1044272065) index="9" unique_id=139732537]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 7.5, -3.75, 0)
+mesh = SubResource("CylinderMesh_715fp")
+surface_material_override/0 = SubResource("StandardMaterial3D_akcdx")
+
+[node name="@MeshInstance3D@68628" type="MeshInstance3D" parent="Level3/Sub1/ForceField/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 1044272065) index="10" unique_id=984831317]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 7.5, -4.75, 0)
+mesh = SubResource("CylinderMesh_715fp")
+surface_material_override/0 = SubResource("StandardMaterial3D_akcdx")
+
+[node name="@MeshInstance3D@68629" type="MeshInstance3D" parent="Level3/Sub1/ForceField/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 1044272065) index="11" unique_id=528392336]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 7.5, -5.75, 0)
+mesh = SubResource("CylinderMesh_715fp")
+surface_material_override/0 = SubResource("StandardMaterial3D_akcdx")
+
+[node name="CollisionShape3D" parent="Level3/Sub1/ForceField/HorizontalPetEmitter/Collider" parent_id_path=PackedInt32Array(2133525442, 640781378) index="0" unique_id=1895315842]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 0)
+shape = SubResource("BoxShape3D_24asp")
+
+[node name="PetIndicatorMesh" parent="Level3/Sub1/ForceField/HorizontalPetEmitter" index="2" unique_id=2029169123]
+mesh = SubResource("BoxMesh_k0vai")
+surface_material_override/0 = SubResource("StandardMaterial3D_8eumd")
+
+[node name="IndicatorMesh" parent="Level3/Sub1/ForceField" index="2" unique_id=930039958]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.75, 12.5, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_7mn85")
 
 [editable path="Level1/Sub1/Checkpoint"]
 [editable path="Level1/Sub1/Platform"]
@@ -649,3 +871,4 @@ petFieldActivator = NodePath("../Platform/FloorButton")
 [editable path="Level2/Sub2/Static/NavmeshHelper"]
 [editable path="Level3/Sub1/Checkpoint"]
 [editable path="Level3/Sub1/Static/NavmeshHelper"]
+[editable path="Level3/Sub1/ForceField"]

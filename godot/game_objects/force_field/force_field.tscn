@@ -14,6 +14,7 @@ bottom_radius = 0.125
 height = 5.5
 radial_segments = 8
 rings = 1
+cap_top = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bgvmm"]
 transparency = 1
@@ -44,6 +45,7 @@ bottom_radius = 0.125
 height = 5.5
 radial_segments = 8
 rings = 1
+cap_top = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akcdx"]
 transparency = 1
@@ -73,14 +75,37 @@ script = ExtResource("1_bgvmm")
 [node name="VerticalPlayerEmitter" type="MeshInstance3D" parent="." unique_id=1113369850]
 process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.75, 0)
-visible = false
 mesh = SubResource("BoxMesh_n2l07")
 surface_material_override/0 = ExtResource("1_deavy")
 
 [node name="VisualField" type="Node3D" parent="VerticalPlayerEmitter" unique_id=100407275]
 
 [node name="Laser" type="MeshInstance3D" parent="VerticalPlayerEmitter/VisualField" unique_id=271379129]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -3, 0)
+mesh = SubResource("CylinderMesh_abq8x")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_bgvmm")
+
+[node name="Laser1" type="MeshInstance3D" parent="VerticalPlayerEmitter/VisualField" unique_id=1961894755]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -3, 0)
+mesh = SubResource("CylinderMesh_abq8x")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_bgvmm")
+
+[node name="Laser2" type="MeshInstance3D" parent="VerticalPlayerEmitter/VisualField" unique_id=57668432]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+mesh = SubResource("CylinderMesh_abq8x")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_bgvmm")
+
+[node name="Laser3" type="MeshInstance3D" parent="VerticalPlayerEmitter/VisualField" unique_id=1820551865]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -3, 0)
+mesh = SubResource("CylinderMesh_abq8x")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_bgvmm")
+
+[node name="Laser4" type="MeshInstance3D" parent="VerticalPlayerEmitter/VisualField" unique_id=975003695]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -3, 0)
 mesh = SubResource("CylinderMesh_abq8x")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_bgvmm")
@@ -101,14 +126,33 @@ surface_material_override/0 = SubResource("StandardMaterial3D_5jdaf")
 [node name="HorizontalPetEmitter" type="MeshInstance3D" parent="." unique_id=1309454049]
 process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2.75, 0)
-visible = false
 mesh = SubResource("BoxMesh_deavy")
 surface_material_override/0 = ExtResource("1_deavy")
 
 [node name="VisualField" type="Node3D" parent="HorizontalPetEmitter" unique_id=1044272065]
 
 [node name="Laser" type="MeshInstance3D" parent="HorizontalPetEmitter/VisualField" unique_id=236425633]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 3, 2.5, 0)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 3, 2, 0)
+mesh = SubResource("CylinderMesh_bgvmm")
+surface_material_override/0 = SubResource("StandardMaterial3D_akcdx")
+
+[node name="Laser1" type="MeshInstance3D" parent="HorizontalPetEmitter/VisualField" unique_id=1296369937]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 3, 1, 0)
+mesh = SubResource("CylinderMesh_bgvmm")
+surface_material_override/0 = SubResource("StandardMaterial3D_akcdx")
+
+[node name="Laser2" type="MeshInstance3D" parent="HorizontalPetEmitter/VisualField" unique_id=1172847682]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 3, 0, 0)
+mesh = SubResource("CylinderMesh_bgvmm")
+surface_material_override/0 = SubResource("StandardMaterial3D_akcdx")
+
+[node name="Laser3" type="MeshInstance3D" parent="HorizontalPetEmitter/VisualField" unique_id=1399064121]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 3, -1, 0)
+mesh = SubResource("CylinderMesh_bgvmm")
+surface_material_override/0 = SubResource("StandardMaterial3D_akcdx")
+
+[node name="Laser4" type="MeshInstance3D" parent="HorizontalPetEmitter/VisualField" unique_id=1494767158]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 3, -2, 0)
 mesh = SubResource("CylinderMesh_bgvmm")
 surface_material_override/0 = SubResource("StandardMaterial3D_akcdx")
 

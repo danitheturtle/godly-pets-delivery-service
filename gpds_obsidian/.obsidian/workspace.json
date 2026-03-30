@@ -13,12 +13,20 @@
             "state": {
               "type": "markdown",
               "state": {
+<<<<<<< Updated upstream
                 "file": "Todo/Force field that blocks player, pet, or both.md",
+=======
+                "file": "Pets/Pet you throw to another platform to control it remotely.md",
+>>>>>>> Stashed changes
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
+<<<<<<< Updated upstream
               "title": "Force field that blocks player, pet, or both"
+=======
+              "title": "Pet you throw to another platform to control it remotely"
+>>>>>>> Stashed changes
             }
           }
         ]
@@ -171,6 +179,7 @@
   },
   "active": "659547c90a503771",
   "lastOpenFiles": [
+<<<<<<< Updated upstream
     "Todo/Force field that blocks player, pet, or both.md",
     "Core Pillars.md",
     "Prototype Stuff Implemented/Puzzle wires and logic box.md",
@@ -199,6 +208,35 @@
     "Mechanics/Stretch/Drone freecam.md",
     "Bugs",
     "Todo/Started",
+=======
+    "Todo/Started/State singleton.md",
+    "Todo/Started",
+    "Todo/Iterate how checkpoints are activated.md",
+    "Pets/Tentacled Scholar  delivered to Space Octopus.md",
+    "Pets/Tentacled Scholar delivered to Space Octopus.md",
+    "Pets/Pet you throw to another platform to control it remotely.md",
+    "Pets/Pet too heavy for most stairs.md",
+    "Pets/Cerberus delivered to Hades.md",
+    "Pets/Dr Craig Hairy Bonkers Ph.D..md",
+    "Pets/Pet that can delete stairs and platforms.md",
+    "Todo/Iterate platform rotation.md",
+    "Todo/Rotate stairs into target position to activate.md",
+    "Todo/Platforms That Move To Nodes On A Path.md",
+    "Todo/Buttons on platforms.md",
+    "Todo/Two stairs that meet end-to-end connect.md",
+    "Mechanics/Force field that only blocks pet.md",
+    "Prototype Stuff Implemented/State singleton.md",
+    "Todo/Iterate popup functionality.md",
+    "Prototype Stuff Implemented/Iterate how checkpoints are activated.md",
+    "Core Pillars.md",
+    "Prototype Stuff Implemented/Tutorial popups.md",
+    "Prototype Stuff Implemented/HUD CanvasItem.md",
+    "Pets/Chonky duck. Swims between plats, glides down.md",
+    "Todo/Internationalisation Placeholder.md",
+    "Mechanics/Config system.md",
+    "Todo/Menuing & Actions with controller.md",
+    "Mechanics/Stretch/Undo Redo.md",
+>>>>>>> Stashed changes
     "Mechanics Brainstorm/pets",
     "Prototype Stuff Implemented",
     "Mechanics/Stretch",

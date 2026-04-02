@@ -1,32 +1,24 @@
 {
   "main": {
-    "id": "45360c3eec27b600",
+    "id": "04e400c26b8a49d4",
     "type": "split",
     "children": [
       {
-        "id": "e9434acf56f81ace",
+        "id": "ed5d5678706c4a9a",
         "type": "tabs",
         "children": [
           {
-            "id": "659547c90a503771",
+            "id": "f4ca99cd1abdfe70",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-<<<<<<< Updated upstream
-                "file": "Todo/Force field that blocks player, pet, or both.md",
-=======
-                "file": "Pets/Pet you throw to another platform to control it remotely.md",
->>>>>>> Stashed changes
+                "file": "Mechanics/Limited Stairs that can only move X times.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-<<<<<<< Updated upstream
-              "title": "Force field that blocks player, pet, or both"
-=======
-              "title": "Pet you throw to another platform to control it remotely"
->>>>>>> Stashed changes
+              "title": "Limited Stairs that can only move X times"
             }
           }
         ]
@@ -35,15 +27,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "2458e93948a9e863",
+    "id": "0e11c18f2c04c41a",
     "type": "split",
     "children": [
       {
-        "id": "f6a52692df09fd68",
+        "id": "ae1f4b945da673a9",
         "type": "tabs",
         "children": [
           {
-            "id": "328136d1d053f47e",
+            "id": "e52005d6c3d5a4ec",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -56,7 +48,7 @@
             }
           },
           {
-            "id": "03e35997dc3e9076",
+            "id": "731a7fc95eb3c2a4",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -73,7 +65,7 @@
             }
           },
           {
-            "id": "714fec3444ca0b60",
+            "id": "a71fbf4c631f2d74",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -86,23 +78,23 @@
       }
     ],
     "direction": "horizontal",
-    "width": 331.5
+    "width": 300
   },
   "right": {
-    "id": "dcaaf1139cf2bb93",
+    "id": "85003b48f9380afd",
     "type": "split",
     "children": [
       {
-        "id": "caa204b2fe375b81",
+        "id": "06f7554d5874ef51",
         "type": "tabs",
         "children": [
           {
-            "id": "51167f8dcf617285",
+            "id": "27564fd33e402ffc",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Game Pitch.md",
+                "file": "Mechanics/Limited Stairs that can only move X times.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -112,25 +104,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Game Pitch"
+              "title": "Backlinks for Limited Stairs that can only move X times"
             }
           },
           {
-            "id": "a198e57edb8b3a77",
+            "id": "3241356475a0bde4",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Game Pitch.md",
+                "file": "Mechanics/Limited Stairs that can only move X times.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Game Pitch"
+              "title": "Outgoing links from Limited Stairs that can only move X times"
             }
           },
           {
-            "id": "a2059e5fcf7f56f0",
+            "id": "90b79633a5087dc8",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -145,18 +137,18 @@
             }
           },
           {
-            "id": "6a7bbcff195173de",
+            "id": "07e852c463dbd89b",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Game Pitch.md",
+                "file": "Mechanics/Limited Stairs that can only move X times.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Game Pitch"
+              "title": "Outline of Limited Stairs that can only move X times"
             }
           }
         ]
@@ -177,72 +169,19 @@
       "bases:Create new base": false
     }
   },
-  "active": "659547c90a503771",
+  "active": "f4ca99cd1abdfe70",
   "lastOpenFiles": [
-<<<<<<< Updated upstream
-    "Todo/Force field that blocks player, pet, or both.md",
-    "Core Pillars.md",
-    "Prototype Stuff Implemented/Puzzle wires and logic box.md",
-    "Prototype Stuff Implemented/Floor Buttons.md",
-    "Prototype Stuff Implemented/Iterate stair slot mesh.md",
-    "Prototype Stuff Implemented/Stair slots - put stair in place to activate.md",
-    "Todo/Progress bar bug.md",
-    "Decorations/Donuts and other baked goods.md",
-    "Todo/Add cancelled state to progress UI.md",
-    "Mechanics/Stretch/Stair Graph.md",
-    "Mechanics/Stretch/Runtime color palette.md",
-    "Mechanics/Ghost platforms and stairs, toggled externally.md",
-    "Mechanics/Stairs that can only move X times.md",
     "Mechanics/Two stairs that meet end-to-end connect.md",
-    "Mechanics/Platforms That Move To Nodes On A Path.md",
-    "Mechanics/Platform that rotates stairs in different axis.md",
-    "Mechanics/Platform control tablet.md",
-    "Mechanics/Levers activated by specific stair movement.md",
-    "Prototype Stuff Implemented/Toggle pet following you.md",
-    "Mechanics/Iterate level editor gizmo.md",
-    "Todo/Save system.md",
+    "Mechanics/Limited Stairs that can only move X times.md",
+    "Mechanics/Show bound hotkey in action prompt UI.md",
+    "Bugs/Backtracking breaks things.md",
+    "Todo/Progress bar bug.md",
     "Todo/Menuing & Actions with controller.md",
+    "Todo/Iterate level editor gizmo.md",
     "Todo/Internationalisation Placeholder.md",
-    "Prototype Stuff Implemented/Iterate platform rotation.md",
-    "Mechanics/Stretch/Optional hidden exits like monkeyball.md",
-    "Mechanics/Stretch/Drone freecam.md",
-    "Bugs",
-    "Todo/Started",
-=======
-    "Todo/Started/State singleton.md",
-    "Todo/Started",
-    "Todo/Iterate how checkpoints are activated.md",
-    "Pets/Tentacled Scholar  delivered to Space Octopus.md",
-    "Pets/Tentacled Scholar delivered to Space Octopus.md",
-    "Pets/Pet you throw to another platform to control it remotely.md",
-    "Pets/Pet too heavy for most stairs.md",
-    "Pets/Cerberus delivered to Hades.md",
-    "Pets/Dr Craig Hairy Bonkers Ph.D..md",
-    "Pets/Pet that can delete stairs and platforms.md",
-    "Todo/Iterate platform rotation.md",
-    "Todo/Rotate stairs into target position to activate.md",
-    "Todo/Platforms That Move To Nodes On A Path.md",
-    "Todo/Buttons on platforms.md",
-    "Todo/Two stairs that meet end-to-end connect.md",
-    "Mechanics/Force field that only blocks pet.md",
-    "Prototype Stuff Implemented/State singleton.md",
-    "Todo/Iterate popup functionality.md",
-    "Prototype Stuff Implemented/Iterate how checkpoints are activated.md",
-    "Core Pillars.md",
-    "Prototype Stuff Implemented/Tutorial popups.md",
-    "Prototype Stuff Implemented/HUD CanvasItem.md",
-    "Pets/Chonky duck. Swims between plats, glides down.md",
-    "Todo/Internationalisation Placeholder.md",
-    "Mechanics/Config system.md",
-    "Todo/Menuing & Actions with controller.md",
-    "Mechanics/Stretch/Undo Redo.md",
->>>>>>> Stashed changes
-    "Mechanics Brainstorm/pets",
-    "Prototype Stuff Implemented",
-    "Mechanics/Stretch",
-    "Todo",
-    "Decorations",
-    "Pets",
-    "Mechanics"
+    "Todo/Dr Craig Hairy Bonkers Ph.D..md",
+    "Todo/Add cancelled state to progress UI.md",
+    "Prototype Stuff Implemented/Force field that blocks player, pet, or both.md",
+    "Mechanics/Platform Path.md"
   ]
 }

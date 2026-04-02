@@ -138,9 +138,11 @@ mesh = SubResource("QuadMesh_y6q0f")
 surface_material_override/0 = SubResource("StandardMaterial3D_0vq5e")
 
 [node name="PivotsProgressViewport" parent="." unique_id=206222469 instance=ExtResource("4_y6q0f")]
+render_target_update_mode = 4
 
 [node name="RotationProgressViewport" parent="." unique_id=1705062214 instance=ExtResource("4_y6q0f")]
 size = Vector2i(1024, 1024)
+render_target_update_mode = 4
 progressColor = Color(0.06300899, 0.69900477, 0.75297207, 1)
 relativeRotation = true
 

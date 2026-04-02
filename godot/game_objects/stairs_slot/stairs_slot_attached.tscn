@@ -6,13 +6,13 @@
 [ext_resource type="Material" uid="uid://b8umcmv2x5feb" path="res://assets/materials/activable.material.tres" id="4_r0hur"]
 [ext_resource type="ArrayMesh" uid="uid://cip0q0ibl4kh1" path="res://assets/stairs_slot/stairs_slot_platform_attachment_indicator.obj" id="4_s6kqt"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0n7ph"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6kqt"]
 resource_local_to_scene = true
 albedo_color = Color(0.74509805, 0.54509807, 0.14901961, 1)
 emission_enabled = true
 emission = Color(0.74509805, 0.54509807, 0.14901961, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_q2pyo"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r0hur"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_ekke4")
@@ -21,10 +21,10 @@ shader_parameter/Color = Color(0.747011, 0.544472, 0.149385, 1)
 [node name="StairsSlot" unique_id=1409511783 instance=ExtResource("1_qmgb0")]
 
 [node name="StairsSlotIndicatorMesh" parent="." index="2" unique_id=1357867676]
-surface_material_override/0 = SubResource("StandardMaterial3D_0n7ph")
+surface_material_override/0 = SubResource("StandardMaterial3D_s6kqt")
 
 [node name="StairsSlotGradientMesh" parent="." index="3" unique_id=902377175]
-surface_material_override/0 = SubResource("ShaderMaterial_q2pyo")
+surface_material_override/0 = SubResource("ShaderMaterial_r0hur")
 
 [node name="StairsSlotPlatformAttachmentMesh" type="MeshInstance3D" parent="." index="4" unique_id=634515453]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
@@ -34,4 +34,4 @@ surface_material_override/0 = ExtResource("4_r0hur")
 [node name="StairsSlotPlatformAttachmentIndicatorMesh" type="MeshInstance3D" parent="." index="5" unique_id=302635041]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 mesh = ExtResource("4_s6kqt")
-surface_material_override/0 = SubResource("StandardMaterial3D_0n7ph")
+surface_material_override/0 = SubResource("StandardMaterial3D_s6kqt")

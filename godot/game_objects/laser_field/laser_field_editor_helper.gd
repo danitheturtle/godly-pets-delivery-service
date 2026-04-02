@@ -1,17 +1,17 @@
 @tool
-class_name ForceFieldEditorHelper
+class_name LaserFieldEditorHelper
 
 const EMITTER_HALF_WIDTH = 0.25
 const LASER_WIDTH = 0.25
 const LASER_GAP = LASER_WIDTH * 3
 
-var parent: ForceField
+var parent: LaserField
 var collisionShape: Shape3D = null
 
 var verticalPlayerLasers: Array[MeshInstance3D] = []
 var horizontalPetLasers: Array[MeshInstance3D] = []
 
-func _init(_parent: ForceField) -> void:
+func _init(_parent: LaserField) -> void:
     parent = _parent
     collisionShape = parent.playerCollider.get_child(0).shape
     for nextChild in parent.playerVisualField.get_children():

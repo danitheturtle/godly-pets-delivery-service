@@ -1,8 +1,14 @@
-Switch between stair and platform placement with hotkey
+Switch between platform and "puzzle piece" placement with hotkey. stairs are selectable as a type of "puzzle piece"
 
-add handle to ends of staircases to add another staircase or platform. reuse the existing toggle
+add handle to ends of staircases to add another puzzle piece or platform. reuse the existing toggle
 
-Selecting type of platform/stair to place next from sidebar dock
+Select type of platform/puzzle piece to place next from sidebar dock
+
+Platforms:
+* Square
+Puzzle Pieces:
+* Staircase
+* Stair Slot
 
 Disable handles where platforms / stairs already exist (this means we gotta run the stair graph at editor time? not sure its possible)
 

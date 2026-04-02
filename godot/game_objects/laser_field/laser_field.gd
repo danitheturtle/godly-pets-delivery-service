@@ -1,10 +1,10 @@
 @tool
 extends Node3D
-class_name ForceField
+class_name LaserField
 
 # editor only utils
-const ForceFieldEditorHelperRes = preload("res://game_objects/force_field/force_field_editor_helper.gd")
-var editorHelper: ForceFieldEditorHelper = null
+const LaserFieldEditorHelperRes = preload("res://game_objects/laser_field/laser_field_editor_helper.gd")
+var editorHelper: LaserFieldEditorHelper = null
 
 @onready var verticalPlayerEmitter: MeshInstance3D = $VerticalPlayerEmitter
 @onready var playerCollider: StaticBody3D = $VerticalPlayerEmitter/Collider
@@ -21,27 +21,33 @@ var editorHelper: ForceFieldEditorHelper = null
 @export var playerFieldActivator: Node = null:
     set(new_value):
         playerFieldActivator = new_value
-        if new_value == null: initialPlayerFieldState = false
-        if editorHelper != null: enable_player_field(new_value != null)
+        if new_value: playerFieldEnabled = true
 @export var petFieldActivator: Node = null:
     set(new_value):
         petFieldActivator = new_value
-        if new_value == null: initialPetFieldState = false
-        if editorHelper != null: enable_pet_field(new_value != null)
+        if new_value: petFieldEnabled = true
 @export var inactiveColor: Color = Color("be8b26") # TODO refactor into color system
 @export var activeColor: Color = Color("4b9fce") # TODO refactor into color system
 @export_category("Toggleable State")
-@export var initialPlayerFieldState: bool = true:
+@export var playerFieldEnabled: bool = false:
     set(new_value):
-        initialPlayerFieldState = playerFieldActivator != null && new_value
+        playerFieldEnabled = new_value
+        if editorHelper != null: enable_player_field(new_value)
+@export var petFieldEnabled: bool = false:
+    set(new_value):
+        petFieldEnabled = new_value
+        if editorHelper != null: enable_pet_field(new_value)
+@export var initialPlayerFieldState: bool = false:
+    set(new_value):
+        initialPlayerFieldState = playerFieldEnabled && new_value
         playerFieldState = initialPlayerFieldState
         if editorHelper != null: player_field_toggle(initialPlayerFieldState)
-@export var initialPetFieldState: bool = true:
+@export var initialPetFieldState: bool = false:
     set(new_value):
-        initialPetFieldState = petFieldActivator != null && new_value
+        initialPetFieldState = petFieldEnabled && new_value
         petFieldState = initialPetFieldState
         if editorHelper != null: pet_field_toggle(initialPetFieldState)
-@export_category("Force Field Size")
+@export_category("Laser Field Size")
 @export_range(3.0, 30.0, 0.5, "or_greater") var fieldWidth: float = 5.5:
     set(new_value):
         if editorHelper != null: editorHelper.update_field_width(new_value)
@@ -56,9 +62,9 @@ var playerFieldState: bool = false
 var petFieldState: bool = false
 
 func _ready() -> void:
-    enable_player_field(playerFieldActivator != null)
+    enable_player_field(playerFieldEnabled)
     player_field_toggle(initialPlayerFieldState)
-    enable_pet_field(petFieldActivator != null)
+    enable_pet_field(petFieldEnabled)
     pet_field_toggle(initialPetFieldState)
     if Engine.is_editor_hint():
         create_editor_helper.call_deferred()
@@ -66,18 +72,18 @@ func _ready() -> void:
         if playerFieldActivator != null:
             playerFieldActivator.wire_high.connect(on_player_wire_high)
             playerFieldActivator.wire_low.connect(on_player_wire_low)
-        else:
+        elif !playerFieldEnabled:
             verticalPlayerEmitter.free()
         if petFieldActivator != null:
             petFieldActivator.wire_high.connect(on_pet_wire_high)
             petFieldActivator.wire_low.connect(on_pet_wire_low)
-        else:
+        elif !petFieldEnabled:
             horizontalPetEmitter.free()
-    playerFieldState = playerFieldActivator != null && initialPlayerFieldState
-    petFieldState = petFieldActivator != null && initialPetFieldState
+    playerFieldState = playerFieldEnabled && initialPlayerFieldState
+    petFieldState = petFieldEnabled && initialPetFieldState
 
 func create_editor_helper() -> void:
-    editorHelper = ForceFieldEditorHelperRes.new(self)
+    editorHelper = LaserFieldEditorHelperRes.new(self)
 
 func on_player_wire_high() -> void: player_field_toggle(!initialPlayerFieldState)
 

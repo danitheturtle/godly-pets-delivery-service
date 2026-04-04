@@ -656,6 +656,27 @@ mesh = SubResource("BoxMesh_wljuq")
 [node name="NavmeshHelper" parent="Level1/Sub1/Static" parent_id_path=PackedInt32Array(713561273) index="1" unique_id=1072783753 instance=ExtResource("4_a02j0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.25, 25.25)
 
+[node name="RotatingStaircase" parent="Level1/Sub1" parent_id_path=PackedInt32Array(1133198089) index="4" unique_id=2027389206 instance=ExtResource("2_38vaf")]
+transform = Transform3D(-5.2125306e-16, 1.1924881e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, 1.1924881e-08, -14.625, 0, -5.625)
+
+[node name="@AnimatableBody3D@33170" parent="Level1/Sub1" parent_id_path=PackedInt32Array(1133198089) index="5" unique_id=1430818260 instance=ExtResource("2_38vaf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.625, -14.625)
+
+[node name="SquarePlatform" parent="Level1/Sub1" parent_id_path=PackedInt32Array(1133198089) index="6" unique_id=137758212 instance=ExtResource("4_fwsfs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.25, -29.25)
+
+[node name="@AnimatableBody3D@39387" parent="Level1/Sub1" parent_id_path=PackedInt32Array(1133198089) index="7" unique_id=593143603 instance=ExtResource("2_38vaf")]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 14.625, 0, -5.6249995)
+
+[node name="@AnimatableBody3D@39780" parent="Level1/Sub1" parent_id_path=PackedInt32Array(1133198089) index="8" unique_id=1120170641 instance=ExtResource("2_38vaf")]
+transform = Transform3D(-5.2125306e-16, -1.1924881e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, 1.1924881e-08, 14.625, 11.25, -34.875)
+
+[node name="@AnimatableBody3D@40173" parent="Level1/Sub1" parent_id_path=PackedInt32Array(1133198089) index="9" unique_id=1234200549 instance=ExtResource("2_38vaf")]
+transform = Transform3D(1, 8.742278e-08, 8.742278e-08, 8.742278e-08, -1, 0, 8.742278e-08, 7.642742e-15, -1, -1.2785581e-06, 16.875, -43.875)
+
+[node name="@AnimatableBody3D@40566" parent="Level1/Sub1" parent_id_path=PackedInt32Array(1133198089) index="10" unique_id=476101402 instance=ExtResource("2_38vaf")]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, -14.625, 11.25, -34.875)
+
 [node name="Sub2" type="Node3D" parent="Level1" parent_id_path=PackedInt32Array(82572587) index="1" unique_id=1316250205]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.25, -11.25, -58.5)
 
@@ -998,21 +1019,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.186735, -9.740166, 6.7422
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0741272, 1.5, -5.3447876)
 shape = SubResource("BoxShape3D_ajhgj")
 
-[node name="Platform" parent="Level3/Sub1" index="1" unique_id=322832196 instance=ExtResource("4_fwsfs")]
+[node name="Platform" parent="Level3/Sub1" index="1" unique_id=562984273 instance=ExtResource("4_fwsfs")]
 
-[node name="PopupForArea" parent="Level3/Sub1/Platform/ActorDetector" parent_id_path=PackedInt32Array(322832196, 162572149) index="1" unique_id=1969281209 instance=ExtResource("3_2x05o")]
+[node name="PopupForArea" parent="Level3/Sub1/Platform/ActorDetector" parent_id_path=PackedInt32Array(562984273, 162572149) index="1" unique_id=1969281209 instance=ExtResource("3_2x05o")]
 popupText = "You and your pet can activate Buttons. Buttons toggle things like Force Fields which block player and pet movement. Force Fields do not collide with Stairs."
 
-[node name="ProgressBar" parent="Level3/Sub1/Platform/Pivots/zNegPivot" parent_id_path=PackedInt32Array(322832196, 1204731783) index="1" unique_id=1058085514]
+[node name="ProgressBar" parent="Level3/Sub1/Platform/Pivots/zNegPivot" parent_id_path=PackedInt32Array(562984273, 1204731783) index="1" unique_id=1058085514]
 surface_material_override/0 = SubResource("StandardMaterial3D_56def")
 
-[node name="ProgressBar" parent="Level3/Sub1/Platform/Pivots/xPosPivot" parent_id_path=PackedInt32Array(322832196, 1400685562) index="1" unique_id=671366020]
+[node name="ProgressBar" parent="Level3/Sub1/Platform/Pivots/xPosPivot" parent_id_path=PackedInt32Array(562984273, 1400685562) index="1" unique_id=671366020]
 surface_material_override/0 = SubResource("StandardMaterial3D_56def")
 
-[node name="ProgressBar" parent="Level3/Sub1/Platform/Pivots/zPosPivot" parent_id_path=PackedInt32Array(322832196, 570565777) index="1" unique_id=2127774179]
+[node name="ProgressBar" parent="Level3/Sub1/Platform/Pivots/zPosPivot" parent_id_path=PackedInt32Array(562984273, 570565777) index="1" unique_id=2127774179]
 surface_material_override/0 = SubResource("StandardMaterial3D_56def")
 
-[node name="ProgressBar" parent="Level3/Sub1/Platform/Pivots/xNegPivot" parent_id_path=PackedInt32Array(322832196, 2032389142) index="1" unique_id=146738279]
+[node name="ProgressBar" parent="Level3/Sub1/Platform/Pivots/xNegPivot" parent_id_path=PackedInt32Array(562984273, 2032389142) index="1" unique_id=146738279]
 surface_material_override/0 = SubResource("StandardMaterial3D_56def")
 
 [node name="RotationProgressBar" parent="Level3/Sub1/Platform" index="7" unique_id=709336466]

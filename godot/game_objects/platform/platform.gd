@@ -140,11 +140,12 @@ func attach_adjacent_stairs() -> void:
                 if nextStair.get_parent() != nextPivot:
                     State.touchedNodes.append(nextStair)
                     nextStair.reparent(nextPivot, true)
-                    # stair can be attached at two points. If topCollider is closer, add 180 deg to this value
+                    # stair can be attached at two points. If topCollider is closer, invert rotation
                     var distToBottomCollider = (global_position - nextStair.bottomCollider.global_position).length_squared()
                     var distToTopCollider = (global_position - nextStair.topCollider.global_position).length_squared()
-                    stairProgressBar.global_rotation_degrees.z = nextStair.global_rotation_degrees.z \
-                        + (180.0 if distToBottomCollider > distToTopCollider else 0.0)
+                    stairProgressBar.global_rotation_degrees.z = nextStair.rotation_degrees.z + nextStair.rotation_degrees.y
+                    if distToBottomCollider >= distToTopCollider:
+                        stairProgressBar.global_rotation_degrees.z *= -1
 
 func disconnect_attached_stair_signals() -> void:
     for nextProgressMesh in pivotProgressBarMeshes:

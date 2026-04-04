@@ -12,10 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://cyksofbl60ciy" path="res://game_objects/checkpoint/checkpoint.tscn" id="6_wkq5h"]
 [ext_resource type="Material" uid="uid://ikghlktxl2rk" path="res://assets/materials/stair_blocker.material.tres" id="9_2x05o"]
 [ext_resource type="PackedScene" uid="uid://dkefm4y1vv63j" path="res://game_objects/floor_button/floor_button.tscn" id="12_vjvj4"]
-[ext_resource type="Script" uid="uid://b6r0nkerqmy6f" path="res://game_objects/platform/platform.gd" id="13_wljuq"]
 [ext_resource type="PackedScene" uid="uid://cyj5168a87odh" path="res://game_objects/stairs_slot/stairs_slot_attached.tscn" id="14_dw8lb"]
 [ext_resource type="PackedScene" uid="uid://bpft2kjfjgpax" path="res://game_objects/laser_field/laser_field.tscn" id="14_wljuq"]
-[ext_resource type="Script" uid="uid://uj5of8tsma8f" path="res://game_objects/stairs/stairs.gd" id="15_plnos"]
 [ext_resource type="PackedScene" uid="uid://4jcvmcg22mul" path="res://game_objects/puzzle_wire/puzzle_wire.tscn" id="15_v5ns0"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0p53a"]
@@ -29,6 +27,33 @@ agent_radius = 0.75
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u583p"]
 size = Vector3(18.75, 3, 9.25)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_plnos"]
+viewport_path = NodePath("PivotsProgressViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u583p"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_plnos")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dw8lb"]
+viewport_path = NodePath("RotationProgressViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v5ns0"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_dw8lb")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vjvj4"]
+size = Vector3(21, 1, 9.75)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wljuq"]
+size = Vector3(21, 1, 9.75)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v5ns0"]
+size = Vector3(19.75, 3, 7)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_24asp"]
 viewport_path = NodePath("PivotsProgressViewport")
@@ -48,23 +73,27 @@ transparency = 1
 shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_o8xi3")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_vjvj4"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_2x05o"]
 size = Vector3(21, 1, 9.75)
 
-[sub_resource type="BoxMesh" id="BoxMesh_wljuq"]
+[sub_resource type="BoxMesh" id="BoxMesh_s6qf0"]
 size = Vector3(21, 1, 9.75)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_v5ns0"]
-size = Vector3(19.75, 3, 7)
+[sub_resource type="BoxShape3D" id="BoxShape3D_s6qf0"]
+size = Vector3(3, 1, 3)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_715fp"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_715fp"]
+resource_local_to_scene = true
+size = Vector3(11.75, 3, 10.5)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_k0vai"]
 viewport_path = NodePath("PivotsProgressViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_chas8"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_715fp")
+albedo_texture = SubResource("ViewportTexture_k0vai")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_8eumd"]
 viewport_path = NodePath("RotationProgressViewport")
@@ -75,18 +104,15 @@ transparency = 1
 shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_8eumd")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2x05o"]
-size = Vector3(21, 1, 9.75)
+[sub_resource type="BoxShape3D" id="BoxShape3D_s2u2n"]
+size = Vector3(11, 1, 11)
 
-[sub_resource type="BoxMesh" id="BoxMesh_s6qf0"]
-size = Vector3(21, 1, 9.75)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_s6qf0"]
-size = Vector3(3, 1, 3)
+[sub_resource type="BoxMesh" id="BoxMesh_05ppg"]
+size = Vector3(11, 1, 11)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cby42"]
 resource_local_to_scene = true
-size = Vector3(11.75, 3, 10.5)
+size = Vector3(20.25, 3, 10.5)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_epqdx"]
 viewport_path = NodePath("PivotsProgressViewport")
@@ -105,34 +131,6 @@ resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_ib2iy")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_s2u2n"]
-size = Vector3(11, 1, 11)
-
-[sub_resource type="BoxMesh" id="BoxMesh_05ppg"]
-size = Vector3(11, 1, 11)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_cfvn6"]
-resource_local_to_scene = true
-size = Vector3(20.25, 3, 10.5)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_c1nsx"]
-viewport_path = NodePath("PivotsProgressViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jwvn0"]
-resource_local_to_scene = true
-transparency = 1
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_c1nsx")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_4ym2o"]
-viewport_path = NodePath("RotationProgressViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vrq7l"]
-resource_local_to_scene = true
-transparency = 1
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_4ym2o")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_plnos"]
 size = Vector3(3, 11, 3)
@@ -158,9 +156,40 @@ size = Vector3(21, 1, 9.75)
 [sub_resource type="BoxMesh" id="BoxMesh_wkq5h"]
 size = Vector3(21, 1, 9.75)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ajhgj"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_cfvn6"]
 resource_local_to_scene = true
 size = Vector3(9.25, 3, 10.75)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_c1nsx"]
+viewport_path = NodePath("PivotsProgressViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jwvn0"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_c1nsx")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4ym2o"]
+viewport_path = NodePath("RotationProgressViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vrq7l"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_4ym2o")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wkq5h"]
+size = Vector3(9.75, 1, 11)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a02j0"]
+size = Vector3(9.75, 1, 11)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_05ppg"]
+size = Vector3(3, 1, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ajhgj"]
+resource_local_to_scene = true
+size = Vector3(9.09967, 3, 20.110474)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_k4j5e"]
 viewport_path = NodePath("PivotsProgressViewport")
@@ -180,60 +209,29 @@ transparency = 1
 shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_8g3ot")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_wkq5h"]
-size = Vector3(9.75, 1, 11)
-
-[sub_resource type="BoxMesh" id="BoxMesh_a02j0"]
-size = Vector3(9.75, 1, 11)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_05ppg"]
-size = Vector3(3, 1, 3)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_vykqj"]
-resource_local_to_scene = true
-size = Vector3(9.09967, 3, 20.110474)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_h63h4"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_vykqj"]
 viewport_path = NodePath("PivotsProgressViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r4qvq"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h63h4"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_h63h4")
+albedo_texture = SubResource("ViewportTexture_vykqj")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ed2gg"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_r4qvq"]
 viewport_path = NodePath("RotationProgressViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5xggv"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ed2gg"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_ed2gg")
+albedo_texture = SubResource("ViewportTexture_r4qvq")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_yvjrl"]
-viewport_path = NodePath("PivotsProgressViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t45ow"]
-resource_local_to_scene = true
-transparency = 1
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_yvjrl")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_5u223"]
-viewport_path = NodePath("RotationProgressViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tv7rr"]
-resource_local_to_scene = true
-transparency = 1
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_5u223")
-
-[sub_resource type="BoxMesh" id="BoxMesh_4q5hb"]
+[sub_resource type="BoxMesh" id="BoxMesh_5xggv"]
 resource_local_to_scene = true
 size = Vector3(12.5, 0.5, 0.5)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_a6byf"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_t45ow"]
 resource_local_to_scene = true
 top_radius = 0.125
 bottom_radius = 0.125
@@ -255,25 +253,25 @@ cap_top = false
 transparency = 1
 albedo_color = Color(0.9842159, 0, 0.37016585, 0.5882353)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_jf6hk"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_5u223"]
 resource_local_to_scene = true
 size = Vector3(12.5, 22.5, 0.5)
 
-[sub_resource type="BoxMesh" id="BoxMesh_3rqyq"]
+[sub_resource type="BoxMesh" id="BoxMesh_tv7rr"]
 resource_local_to_scene = true
 size = Vector3(12.5, 0.125, 0.125)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6lw3v"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4q5hb"]
 resource_local_to_scene = true
 albedo_color = Color(0.74509805, 0.54509807, 0.14901961, 1)
 emission_enabled = true
 emission = Color(0.74509805, 0.54509807, 0.14901961, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_euc61"]
+[sub_resource type="BoxMesh" id="BoxMesh_yre0q"]
 resource_local_to_scene = true
 size = Vector3(0.5, 22.5, 0.5)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_kn7xl"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_a6byf"]
 resource_local_to_scene = true
 top_radius = 0.125
 bottom_radius = 0.125
@@ -308,27 +306,27 @@ cap_top = false
 transparency = 1
 albedo_color = Color(0.9112347, 0.29324645, 0, 0.5882353)
 
-[sub_resource type="BoxMesh" id="BoxMesh_2784n"]
+[sub_resource type="BoxMesh" id="BoxMesh_jf6hk"]
 resource_local_to_scene = true
 size = Vector3(0.125, 22.5, 0.125)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8aib8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3rqyq"]
 resource_local_to_scene = true
 albedo_color = Color(0.74509805, 0.54509807, 0.14901961, 1)
 emission_enabled = true
 emission = Color(0.74509805, 0.54509807, 0.14901961, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nviv0"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6lw3v"]
 resource_local_to_scene = true
 albedo_color = Color(0.74509805, 0.54509807, 0.14901961, 1)
 emission_enabled = true
 emission = Color(0.74509805, 0.54509807, 0.14901961, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_2axlg"]
+[sub_resource type="BoxMesh" id="BoxMesh_euc61"]
 resource_local_to_scene = true
 size = Vector3(12.5, 0.5, 0.5)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_ywicp"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_kn7xl"]
 resource_local_to_scene = true
 top_radius = 0.125
 bottom_radius = 0.125
@@ -346,25 +344,25 @@ radial_segments = 8
 rings = 1
 cap_top = false
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_q2amy"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_2784n"]
 resource_local_to_scene = true
 size = Vector3(12.5, 8.5, 0.5)
 
-[sub_resource type="BoxMesh" id="BoxMesh_y6rem"]
+[sub_resource type="BoxMesh" id="BoxMesh_8aib8"]
 resource_local_to_scene = true
 size = Vector3(12.5, 0.125, 0.125)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yqvec"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nviv0"]
 resource_local_to_scene = true
 albedo_color = Color(0.74509805, 0.54509807, 0.14901961, 1)
 emission_enabled = true
 emission = Color(0.74509805, 0.54509807, 0.14901961, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_b2yhj"]
+[sub_resource type="BoxMesh" id="BoxMesh_2axlg"]
 resource_local_to_scene = true
 size = Vector3(0.5, 8.5, 0.5)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_ufh2e"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_ywicp"]
 resource_local_to_scene = true
 top_radius = 0.125
 bottom_radius = 0.125
@@ -382,17 +380,17 @@ radial_segments = 8
 rings = 1
 cap_top = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_g4jxh"]
+[sub_resource type="BoxMesh" id="BoxMesh_q2amy"]
 resource_local_to_scene = true
 size = Vector3(0.125, 8.5, 0.125)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_etbnd"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6rem"]
 resource_local_to_scene = true
 albedo_color = Color(0.74509805, 0.54509807, 0.14901961, 1)
 emission_enabled = true
 emission = Color(0.74509805, 0.54509807, 0.14901961, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oy0ll"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yqvec"]
 resource_local_to_scene = true
 albedo_color = Color(0.74509805, 0.54509807, 0.14901961, 1)
 emission_enabled = true
@@ -404,49 +402,58 @@ size = Vector3(21, 1, 9.75)
 [sub_resource type="BoxMesh" id="BoxMesh_ajhgj"]
 size = Vector3(21, 1, 9.75)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_f6a8p"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_b2yhj"]
 resource_local_to_scene = true
 size = Vector3(9.75, 3, 10.25)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_dw8lb"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ufh2e"]
 viewport_path = NodePath("PivotsProgressViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v5ns0"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4jxh"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_dw8lb")
+albedo_texture = SubResource("ViewportTexture_ufh2e")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_uwytn"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_etbnd"]
 viewport_path = NodePath("RotationProgressViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o8xi3"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oy0ll"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_uwytn")
+albedo_texture = SubResource("ViewportTexture_etbnd")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_g8a7o"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_f6a8p"]
 viewport_path = NodePath("PivotsProgressViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8eumd"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jj1nu"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_g8a7o")
+albedo_texture = SubResource("ViewportTexture_f6a8p")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_7mn85"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_jg0fx"]
 viewport_path = NodePath("RotationProgressViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ib2iy"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s3oow"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_7mn85")
+albedo_texture = SubResource("ViewportTexture_jg0fx")
 
-[sub_resource type="BoxMesh" id="BoxMesh_jj1nu"]
+[sub_resource type="BoxMesh" id="BoxMesh_yrm5u"]
 resource_local_to_scene = true
 size = Vector3(8.5, 0.5, 0.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_fq81i"]
+resource_local_to_scene = true
+top_radius = 0.125
+bottom_radius = 0.125
+height = 8.5
+radial_segments = 8
+rings = 1
+cap_top = false
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_jg0fx"]
 resource_local_to_scene = true
@@ -461,23 +468,32 @@ cap_top = false
 transparency = 1
 albedo_color = Color(0.9842159, 0, 0.37016585, 0.5882353)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_s3oow"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_uvjib"]
 resource_local_to_scene = true
 size = Vector3(8.5, 8.5, 0.5)
 
-[sub_resource type="BoxMesh" id="BoxMesh_yrm5u"]
+[sub_resource type="BoxMesh" id="BoxMesh_2qc3n"]
 resource_local_to_scene = true
 size = Vector3(8.5, 0.125, 0.125)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fq81i"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nge0g"]
 resource_local_to_scene = true
 albedo_color = Color(0.74509805, 0.54509807, 0.14901961, 1)
 emission_enabled = true
 emission = Color(0.74509805, 0.54509807, 0.14901961, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_uvjib"]
+[sub_resource type="BoxMesh" id="BoxMesh_36c7v"]
 resource_local_to_scene = true
 size = Vector3(0.5, 8.5, 0.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vqrxk"]
+resource_local_to_scene = true
+top_radius = 0.125
+bottom_radius = 0.125
+height = 8.5
+radial_segments = 8
+rings = 1
+cap_top = false
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_2qc3n"]
 resource_local_to_scene = true
@@ -492,25 +508,34 @@ cap_top = false
 transparency = 1
 albedo_color = Color(0.9112347, 0.29324645, 0, 0.5882353)
 
-[sub_resource type="BoxMesh" id="BoxMesh_nge0g"]
+[sub_resource type="BoxMesh" id="BoxMesh_7fx43"]
 resource_local_to_scene = true
 size = Vector3(0.125, 8.5, 0.125)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_36c7v"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s07m0"]
 resource_local_to_scene = true
 albedo_color = Color(0.74509805, 0.54509807, 0.14901961, 1)
 emission_enabled = true
 emission = Color(0.74509805, 0.54509807, 0.14901961, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vqrxk"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_53akl"]
 resource_local_to_scene = true
 albedo_color = Color(0.74509805, 0.54509807, 0.14901961, 1)
 emission_enabled = true
 emission = Color(0.74509805, 0.54509807, 0.14901961, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_dw8lb"]
+[sub_resource type="BoxMesh" id="BoxMesh_evoh4"]
 resource_local_to_scene = true
 size = Vector3(9.5, 0.5, 0.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_fd7oo"]
+resource_local_to_scene = true
+top_radius = 0.125
+bottom_radius = 0.125
+height = 20.0
+radial_segments = 8
+rings = 1
+cap_top = false
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_v5ns0"]
 resource_local_to_scene = true
@@ -521,23 +546,32 @@ radial_segments = 8
 rings = 1
 cap_top = false
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_o8xi3"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_xh4el"]
 resource_local_to_scene = true
 size = Vector3(9.5, 20, 0.5)
 
-[sub_resource type="BoxMesh" id="BoxMesh_g8a7o"]
+[sub_resource type="BoxMesh" id="BoxMesh_wslnm"]
 resource_local_to_scene = true
 size = Vector3(9.5, 0.125, 0.125)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_715fp"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvqhc"]
 resource_local_to_scene = true
 albedo_color = Color(0.74509805, 0.54509807, 0.14901961, 1)
 emission_enabled = true
 emission = Color(0.74509805, 0.54509807, 0.14901961, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_k0vai"]
+[sub_resource type="BoxMesh" id="BoxMesh_egb2i"]
 resource_local_to_scene = true
 size = Vector3(0.5, 20, 0.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rmxse"]
+resource_local_to_scene = true
+top_radius = 0.125
+bottom_radius = 0.125
+height = 9.5
+radial_segments = 8
+rings = 1
+cap_top = false
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_chas8"]
 resource_local_to_scene = true
@@ -548,17 +582,17 @@ radial_segments = 8
 rings = 1
 cap_top = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_8eumd"]
+[sub_resource type="BoxMesh" id="BoxMesh_yl67s"]
 resource_local_to_scene = true
 size = Vector3(0.125, 20, 0.125)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cby42"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_erugm"]
 resource_local_to_scene = true
 albedo_color = Color(0.74509805, 0.54509807, 0.14901961, 1)
 emission_enabled = true
 emission = Color(0.74509805, 0.54509807, 0.14901961, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_epqdx"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wlk0w"]
 resource_local_to_scene = true
 albedo_color = Color(0.74509805, 0.54509807, 0.14901961, 1)
 emission_enabled = true
@@ -592,19 +626,19 @@ popupText = "Press 'F' to control your pet. By default, this toggles following b
 popupText = "To rotate a platform, press 'Q' or 'E'"
 
 [node name="ProgressBar" parent="Level1/Sub1/Platform/Pivots/zNegPivot" parent_id_path=PackedInt32Array(322832196, 1204731783) index="1" unique_id=1058085514]
-surface_material_override/0 = SubResource("StandardMaterial3D_uwytn")
+surface_material_override/0 = SubResource("StandardMaterial3D_u583p")
 
 [node name="ProgressBar" parent="Level1/Sub1/Platform/Pivots/xPosPivot" parent_id_path=PackedInt32Array(322832196, 1400685562) index="1" unique_id=671366020]
-surface_material_override/0 = SubResource("StandardMaterial3D_uwytn")
+surface_material_override/0 = SubResource("StandardMaterial3D_u583p")
 
 [node name="ProgressBar" parent="Level1/Sub1/Platform/Pivots/zPosPivot" parent_id_path=PackedInt32Array(322832196, 570565777) index="1" unique_id=2127774179]
-surface_material_override/0 = SubResource("StandardMaterial3D_uwytn")
+surface_material_override/0 = SubResource("StandardMaterial3D_u583p")
 
 [node name="ProgressBar" parent="Level1/Sub1/Platform/Pivots/xNegPivot" parent_id_path=PackedInt32Array(322832196, 2032389142) index="1" unique_id=146738279]
-surface_material_override/0 = SubResource("StandardMaterial3D_uwytn")
+surface_material_override/0 = SubResource("StandardMaterial3D_u583p")
 
 [node name="RotationProgressBar" parent="Level1/Sub1/Platform" parent_id_path=PackedInt32Array(322832196) index="7" unique_id=709336466]
-surface_material_override/0 = SubResource("StandardMaterial3D_g8a7o")
+surface_material_override/0 = SubResource("StandardMaterial3D_v5ns0")
 
 [node name="Staircase" parent="Level1/Sub1" parent_id_path=PackedInt32Array(1133198089) index="2" unique_id=131645656 instance=ExtResource("2_38vaf")]
 transform = Transform3D(1, 8.742278e-08, 8.742278e-08, 8.742278e-08, -1, 0, 8.742278e-08, 7.642742e-15, -1, -1.2785581e-06, -5.625, 14.625)
@@ -641,19 +675,19 @@ popupText = "Press 'R' to return you and your pet to the furthest checkpoints ea
 popupText = "To pivot adjacent stairs, press 'SHIFT+Q' or 'SHIFT+E'"
 
 [node name="ProgressBar" parent="Level1/Sub2/Platform/Pivots/zNegPivot" parent_id_path=PackedInt32Array(1874884055, 1204731783) index="1" unique_id=1058085514]
-surface_material_override/0 = SubResource("StandardMaterial3D_chas8")
+surface_material_override/0 = SubResource("StandardMaterial3D_uwytn")
 
 [node name="ProgressBar" parent="Level1/Sub2/Platform/Pivots/xPosPivot" parent_id_path=PackedInt32Array(1874884055, 1400685562) index="1" unique_id=671366020]
-surface_material_override/0 = SubResource("StandardMaterial3D_chas8")
+surface_material_override/0 = SubResource("StandardMaterial3D_uwytn")
 
 [node name="ProgressBar" parent="Level1/Sub2/Platform/Pivots/zPosPivot" parent_id_path=PackedInt32Array(1874884055, 570565777) index="1" unique_id=2127774179]
-surface_material_override/0 = SubResource("StandardMaterial3D_chas8")
+surface_material_override/0 = SubResource("StandardMaterial3D_uwytn")
 
 [node name="ProgressBar" parent="Level1/Sub2/Platform/Pivots/xNegPivot" parent_id_path=PackedInt32Array(1874884055, 2032389142) index="1" unique_id=146738279]
-surface_material_override/0 = SubResource("StandardMaterial3D_chas8")
+surface_material_override/0 = SubResource("StandardMaterial3D_uwytn")
 
 [node name="RotationProgressBar" parent="Level1/Sub2/Platform" index="7" unique_id=709336466]
-surface_material_override/0 = SubResource("StandardMaterial3D_7mn85")
+surface_material_override/0 = SubResource("StandardMaterial3D_g8a7o")
 
 [node name="Staircase" parent="Level1/Sub2" index="2" unique_id=1691696802 instance=ExtResource("2_38vaf")]
 transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, 5.6249986, 0, 14.625)
@@ -689,7 +723,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.694675, 1.5216613, -26.447
 
 [node name="ActivationArea" parent="Level1/Sub3/SubCheckpoint" index="2" unique_id=726556215]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.375, 1.5, -2.75)
-shape = SubResource("BoxShape3D_cby42")
+shape = SubResource("BoxShape3D_715fp")
 
 [node name="Platform" parent="Level1/Sub3" index="1" unique_id=1840473985 instance=ExtResource("4_fwsfs")]
 
@@ -700,19 +734,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.249996, 0, 29.250002)
 popupText = "Upon interacting with a platform, it grabs all adjacent stairs."
 
 [node name="ProgressBar" parent="Level1/Sub3/Platform1/Pivots/zNegPivot" parent_id_path=PackedInt32Array(1306423196, 1204731783) index="1" unique_id=1058085514]
-surface_material_override/0 = SubResource("StandardMaterial3D_ctc8y")
+surface_material_override/0 = SubResource("StandardMaterial3D_chas8")
 
 [node name="ProgressBar" parent="Level1/Sub3/Platform1/Pivots/xPosPivot" parent_id_path=PackedInt32Array(1306423196, 1400685562) index="1" unique_id=671366020]
-surface_material_override/0 = SubResource("StandardMaterial3D_ctc8y")
+surface_material_override/0 = SubResource("StandardMaterial3D_chas8")
 
 [node name="ProgressBar" parent="Level1/Sub3/Platform1/Pivots/zPosPivot" parent_id_path=PackedInt32Array(1306423196, 570565777) index="1" unique_id=2127774179]
-surface_material_override/0 = SubResource("StandardMaterial3D_ctc8y")
+surface_material_override/0 = SubResource("StandardMaterial3D_chas8")
 
 [node name="ProgressBar" parent="Level1/Sub3/Platform1/Pivots/xNegPivot" parent_id_path=PackedInt32Array(1306423196, 2032389142) index="1" unique_id=146738279]
-surface_material_override/0 = SubResource("StandardMaterial3D_ctc8y")
+surface_material_override/0 = SubResource("StandardMaterial3D_chas8")
 
 [node name="RotationProgressBar" parent="Level1/Sub3/Platform1" index="7" unique_id=709336466]
-surface_material_override/0 = SubResource("StandardMaterial3D_4o5x1")
+surface_material_override/0 = SubResource("StandardMaterial3D_7mn85")
 
 [node name="Staircase" parent="Level1/Sub3" index="3" unique_id=1745315528 instance=ExtResource("2_38vaf")]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -5.625, 0, -14.625002)
@@ -752,7 +786,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6757374, -9.737352, -26.84
 
 [node name="ActivationArea" parent="Level2/Sub1/Checkpoint" index="2" unique_id=726556215]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.625, 1.5, -1.75)
-shape = SubResource("BoxShape3D_cfvn6")
+shape = SubResource("BoxShape3D_cby42")
 
 [node name="PopupForArea" parent="Level2/Sub1/Checkpoint" index="3" unique_id=2055016525 instance=ExtResource("3_2x05o")]
 popupText = "Complete a level by reaching the tall green checkpoint with your pet. View level select by pressing 'L'."
@@ -764,19 +798,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.335144e-05, 0, 0)
 popupText = "Platform rotation / pivot gets cancelled if anything blocks the path of connected stairs."
 
 [node name="ProgressBar" parent="Level2/Sub1/Platform/Pivots/zNegPivot" parent_id_path=PackedInt32Array(989720734, 1204731783) index="1" unique_id=1058085514]
-surface_material_override/0 = SubResource("StandardMaterial3D_jwvn0")
+surface_material_override/0 = SubResource("StandardMaterial3D_ctc8y")
 
 [node name="ProgressBar" parent="Level2/Sub1/Platform/Pivots/xPosPivot" parent_id_path=PackedInt32Array(989720734, 1400685562) index="1" unique_id=671366020]
-surface_material_override/0 = SubResource("StandardMaterial3D_jwvn0")
+surface_material_override/0 = SubResource("StandardMaterial3D_ctc8y")
 
 [node name="ProgressBar" parent="Level2/Sub1/Platform/Pivots/zPosPivot" parent_id_path=PackedInt32Array(989720734, 570565777) index="1" unique_id=2127774179]
-surface_material_override/0 = SubResource("StandardMaterial3D_jwvn0")
+surface_material_override/0 = SubResource("StandardMaterial3D_ctc8y")
 
 [node name="ProgressBar" parent="Level2/Sub1/Platform/Pivots/xNegPivot" parent_id_path=PackedInt32Array(989720734, 2032389142) index="1" unique_id=146738279]
-surface_material_override/0 = SubResource("StandardMaterial3D_jwvn0")
+surface_material_override/0 = SubResource("StandardMaterial3D_ctc8y")
 
 [node name="RotationProgressBar" parent="Level2/Sub1/Platform" index="7" unique_id=709336466]
-surface_material_override/0 = SubResource("StandardMaterial3D_vrq7l")
+surface_material_override/0 = SubResource("StandardMaterial3D_4o5x1")
 
 [node name="Platform1" parent="Level2/Sub1" index="2" unique_id=1236378208 instance=ExtResource("4_fwsfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.249985, 11.25, 0)
@@ -857,7 +891,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.327469, -9.76281, -2.35543
 
 [node name="ActivationArea" parent="Level2/Sub2/SubCheckpoint" index="2" unique_id=726556215]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.125, 1.5, 2.125)
-shape = SubResource("BoxShape3D_ajhgj")
+shape = SubResource("BoxShape3D_cfvn6")
 
 [node name="Platform" parent="Level2/Sub2" index="1" unique_id=1539693064 instance=ExtResource("4_fwsfs")]
 
@@ -868,19 +902,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.25, -29.25)
 popupText = "Collision of *any* connected stair blocks pivot or rotation of *every* connected stair"
 
 [node name="ProgressBar" parent="Level2/Sub2/Platform1/Pivots/zNegPivot" parent_id_path=PackedInt32Array(1465344573, 1204731783) index="1" unique_id=1058085514]
-surface_material_override/0 = SubResource("StandardMaterial3D_56def")
+surface_material_override/0 = SubResource("StandardMaterial3D_jwvn0")
 
 [node name="ProgressBar" parent="Level2/Sub2/Platform1/Pivots/xPosPivot" parent_id_path=PackedInt32Array(1465344573, 1400685562) index="1" unique_id=671366020]
-surface_material_override/0 = SubResource("StandardMaterial3D_56def")
+surface_material_override/0 = SubResource("StandardMaterial3D_jwvn0")
 
 [node name="ProgressBar" parent="Level2/Sub2/Platform1/Pivots/zPosPivot" parent_id_path=PackedInt32Array(1465344573, 570565777) index="1" unique_id=2127774179]
-surface_material_override/0 = SubResource("StandardMaterial3D_56def")
+surface_material_override/0 = SubResource("StandardMaterial3D_jwvn0")
 
 [node name="ProgressBar" parent="Level2/Sub2/Platform1/Pivots/xNegPivot" parent_id_path=PackedInt32Array(1465344573, 2032389142) index="1" unique_id=146738279]
-surface_material_override/0 = SubResource("StandardMaterial3D_56def")
+surface_material_override/0 = SubResource("StandardMaterial3D_jwvn0")
 
 [node name="RotationProgressBar" parent="Level2/Sub2/Platform1" index="7" unique_id=709336466]
-surface_material_override/0 = SubResource("StandardMaterial3D_3bjci")
+surface_material_override/0 = SubResource("StandardMaterial3D_vrq7l")
 
 [node name="Platform2" parent="Level2/Sub2" index="3" unique_id=91525572 instance=ExtResource("4_fwsfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -58.5)
@@ -962,7 +996,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.186735, -9.740166, 6.7422
 
 [node name="ActivationArea" parent="Level3/Sub1/Checkpoint" index="2" unique_id=726556215]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0741272, 1.5, -5.3447876)
-shape = SubResource("BoxShape3D_vykqj")
+shape = SubResource("BoxShape3D_ajhgj")
 
 [node name="Platform" parent="Level3/Sub1" index="1" unique_id=322832196 instance=ExtResource("4_fwsfs")]
 
@@ -970,19 +1004,19 @@ shape = SubResource("BoxShape3D_vykqj")
 popupText = "You and your pet can activate Buttons. Buttons toggle things like Force Fields which block player and pet movement. Force Fields do not collide with Stairs."
 
 [node name="ProgressBar" parent="Level3/Sub1/Platform/Pivots/zNegPivot" parent_id_path=PackedInt32Array(322832196, 1204731783) index="1" unique_id=1058085514]
-surface_material_override/0 = SubResource("StandardMaterial3D_r4qvq")
+surface_material_override/0 = SubResource("StandardMaterial3D_56def")
 
 [node name="ProgressBar" parent="Level3/Sub1/Platform/Pivots/xPosPivot" parent_id_path=PackedInt32Array(322832196, 1400685562) index="1" unique_id=671366020]
-surface_material_override/0 = SubResource("StandardMaterial3D_r4qvq")
+surface_material_override/0 = SubResource("StandardMaterial3D_56def")
 
 [node name="ProgressBar" parent="Level3/Sub1/Platform/Pivots/zPosPivot" parent_id_path=PackedInt32Array(322832196, 570565777) index="1" unique_id=2127774179]
-surface_material_override/0 = SubResource("StandardMaterial3D_r4qvq")
+surface_material_override/0 = SubResource("StandardMaterial3D_56def")
 
 [node name="ProgressBar" parent="Level3/Sub1/Platform/Pivots/xNegPivot" parent_id_path=PackedInt32Array(322832196, 2032389142) index="1" unique_id=146738279]
-surface_material_override/0 = SubResource("StandardMaterial3D_r4qvq")
+surface_material_override/0 = SubResource("StandardMaterial3D_56def")
 
 [node name="RotationProgressBar" parent="Level3/Sub1/Platform" index="7" unique_id=709336466]
-surface_material_override/0 = SubResource("StandardMaterial3D_5xggv")
+surface_material_override/0 = SubResource("StandardMaterial3D_3bjci")
 
 [node name="FloorButton" parent="Level3/Sub1/Platform" index="8" unique_id=879256620 instance=ExtResource("12_vjvj4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -994,19 +1028,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.25, 11.25, 0)
 popupText = "Vertical Laser Fields block the player, not pets. Horizontal Laser Fields do the opposite."
 
 [node name="ProgressBar" parent="Level3/Sub1/Platform1/Pivots/zNegPivot" parent_id_path=PackedInt32Array(2085263089, 1204731783) index="1" unique_id=1058085514]
-surface_material_override/0 = SubResource("StandardMaterial3D_t45ow")
+surface_material_override/0 = SubResource("StandardMaterial3D_h63h4")
 
 [node name="ProgressBar" parent="Level3/Sub1/Platform1/Pivots/xPosPivot" parent_id_path=PackedInt32Array(2085263089, 1400685562) index="1" unique_id=671366020]
-surface_material_override/0 = SubResource("StandardMaterial3D_t45ow")
+surface_material_override/0 = SubResource("StandardMaterial3D_h63h4")
 
 [node name="ProgressBar" parent="Level3/Sub1/Platform1/Pivots/zPosPivot" parent_id_path=PackedInt32Array(2085263089, 570565777) index="1" unique_id=2127774179]
-surface_material_override/0 = SubResource("StandardMaterial3D_t45ow")
+surface_material_override/0 = SubResource("StandardMaterial3D_h63h4")
 
 [node name="ProgressBar" parent="Level3/Sub1/Platform1/Pivots/xNegPivot" parent_id_path=PackedInt32Array(2085263089, 2032389142) index="1" unique_id=146738279]
-surface_material_override/0 = SubResource("StandardMaterial3D_t45ow")
+surface_material_override/0 = SubResource("StandardMaterial3D_h63h4")
 
 [node name="RotationProgressBar" parent="Level3/Sub1/Platform1" index="7" unique_id=709336466]
-surface_material_override/0 = SubResource("StandardMaterial3D_tv7rr")
+surface_material_override/0 = SubResource("StandardMaterial3D_ed2gg")
 
 [node name="Platform2" parent="Level3/Sub1" index="3" unique_id=1496580502 instance=ExtResource("4_fwsfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.25, 22.5, -29.25)
@@ -1032,27 +1066,27 @@ fieldHeight = 22.5
 process_mode = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.75, 0)
 visible = true
-mesh = SubResource("BoxMesh_4q5hb")
+mesh = SubResource("BoxMesh_5xggv")
 
 [node name="Laser" parent="Level3/Sub1/LaserField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 100407275) index="0" unique_id=271379129]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, -11.5, 0)
-mesh = SubResource("CylinderMesh_a6byf")
+mesh = SubResource("CylinderMesh_t45ow")
 
 [node name="Laser1" parent="Level3/Sub1/LaserField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 100407275) index="1" unique_id=1961894755]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -11.5, 0)
-mesh = SubResource("CylinderMesh_a6byf")
+mesh = SubResource("CylinderMesh_t45ow")
 
 [node name="Laser2" parent="Level3/Sub1/LaserField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 100407275) index="2" unique_id=57668432]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, -11.5, 0)
-mesh = SubResource("CylinderMesh_a6byf")
+mesh = SubResource("CylinderMesh_t45ow")
 
 [node name="Laser3" parent="Level3/Sub1/LaserField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 100407275) index="3" unique_id=1820551865]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -11.5, 0)
-mesh = SubResource("CylinderMesh_a6byf")
+mesh = SubResource("CylinderMesh_t45ow")
 
 [node name="Laser4" parent="Level3/Sub1/LaserField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 100407275) index="4" unique_id=975003695]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -11.5, 0)
-mesh = SubResource("CylinderMesh_a6byf")
+mesh = SubResource("CylinderMesh_t45ow")
 
 [node name="@MeshInstance3D@60420" type="MeshInstance3D" parent="Level3/Sub1/LaserField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(2133525442, 100407275) index="5" unique_id=342162441]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -11.5, 0)
@@ -1098,38 +1132,38 @@ surface_material_override/0 = SubResource("StandardMaterial3D_dw8lb")
 
 [node name="CollisionShape3D" parent="Level3/Sub1/LaserField/VerticalPlayerEmitter/Collider" parent_id_path=PackedInt32Array(2133525442, 54266460) index="0" unique_id=1097148859]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.5, 0)
-shape = SubResource("BoxShape3D_jf6hk")
+shape = SubResource("BoxShape3D_5u223")
 
 [node name="PlayerIndicatorMesh" parent="Level3/Sub1/LaserField/VerticalPlayerEmitter" index="2" unique_id=834096677]
-mesh = SubResource("BoxMesh_3rqyq")
-surface_material_override/0 = SubResource("StandardMaterial3D_6lw3v")
+mesh = SubResource("BoxMesh_tv7rr")
+surface_material_override/0 = SubResource("StandardMaterial3D_4q5hb")
 
 [node name="HorizontalPetEmitter" parent="Level3/Sub1/LaserField" index="1" unique_id=1309454049]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 11.25, 0)
-mesh = SubResource("BoxMesh_euc61")
+mesh = SubResource("BoxMesh_yre0q")
 
 [node name="VisualField" parent="Level3/Sub1/LaserField/HorizontalPetEmitter" index="0" unique_id=1044272065]
 visible = false
 
 [node name="Laser" parent="Level3/Sub1/LaserField/HorizontalPetEmitter/VisualField" index="0" unique_id=236425633]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 6.5, 10.5, 0)
-mesh = SubResource("CylinderMesh_kn7xl")
+mesh = SubResource("CylinderMesh_a6byf")
 
 [node name="Laser1" parent="Level3/Sub1/LaserField/HorizontalPetEmitter/VisualField" index="1" unique_id=1296369937]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 6.5, 9.5, 0)
-mesh = SubResource("CylinderMesh_kn7xl")
+mesh = SubResource("CylinderMesh_a6byf")
 
 [node name="Laser2" parent="Level3/Sub1/LaserField/HorizontalPetEmitter/VisualField" index="2" unique_id=1172847682]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 6.5, 8.5, 0)
-mesh = SubResource("CylinderMesh_kn7xl")
+mesh = SubResource("CylinderMesh_a6byf")
 
 [node name="Laser3" parent="Level3/Sub1/LaserField/HorizontalPetEmitter/VisualField" index="3" unique_id=1399064121]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 6.5, 7.5, 0)
-mesh = SubResource("CylinderMesh_kn7xl")
+mesh = SubResource("CylinderMesh_a6byf")
 
 [node name="Laser4" parent="Level3/Sub1/LaserField/HorizontalPetEmitter/VisualField" index="4" unique_id=1494767158]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 6.5, 6.5, 0)
-mesh = SubResource("CylinderMesh_kn7xl")
+mesh = SubResource("CylinderMesh_a6byf")
 
 [node name="@MeshInstance3D@26079" type="MeshInstance3D" parent="Level3/Sub1/LaserField/HorizontalPetEmitter/VisualField" index="5" unique_id=2064627154]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 6.5, 5.5, 0)
@@ -1221,15 +1255,15 @@ process_mode = 4
 
 [node name="CollisionShape3D" parent="Level3/Sub1/LaserField/HorizontalPetEmitter/Collider" index="0" unique_id=1895315842]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, 0)
-shape = SubResource("BoxShape3D_jf6hk")
+shape = SubResource("BoxShape3D_5u223")
 
 [node name="PetIndicatorMesh" parent="Level3/Sub1/LaserField/HorizontalPetEmitter" index="2" unique_id=2029169123]
-mesh = SubResource("BoxMesh_2784n")
-surface_material_override/0 = SubResource("StandardMaterial3D_8aib8")
+mesh = SubResource("BoxMesh_jf6hk")
+surface_material_override/0 = SubResource("StandardMaterial3D_3rqyq")
 
 [node name="IndicatorMesh" parent="Level3/Sub1/LaserField" index="2" unique_id=930039958]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.75, 23, 0)
-surface_material_override/0 = SubResource("StandardMaterial3D_nviv0")
+surface_material_override/0 = SubResource("StandardMaterial3D_6lw3v")
 
 [node name="LaserField1" parent="Level3/Sub1" index="8" unique_id=131956192 instance=ExtResource("14_wljuq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.249996, 16.5, -14.75)
@@ -1240,30 +1274,30 @@ fieldHeight = 8.5
 
 [node name="VerticalPlayerEmitter" parent="Level3/Sub1/LaserField1" index="0" unique_id=1113369850]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.75, 0)
-mesh = SubResource("BoxMesh_2axlg")
+mesh = SubResource("BoxMesh_euc61")
 
 [node name="VisualField" parent="Level3/Sub1/LaserField1/VerticalPlayerEmitter" index="0" unique_id=100407275]
 visible = false
 
 [node name="Laser" parent="Level3/Sub1/LaserField1/VerticalPlayerEmitter/VisualField" index="0" unique_id=271379129]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, -4.5, 0)
-mesh = SubResource("CylinderMesh_ywicp")
+mesh = SubResource("CylinderMesh_kn7xl")
 
 [node name="Laser1" parent="Level3/Sub1/LaserField1/VerticalPlayerEmitter/VisualField" index="1" unique_id=1961894755]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -4.5, 0)
-mesh = SubResource("CylinderMesh_ywicp")
+mesh = SubResource("CylinderMesh_kn7xl")
 
 [node name="Laser2" parent="Level3/Sub1/LaserField1/VerticalPlayerEmitter/VisualField" index="2" unique_id=57668432]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, -4.5, 0)
-mesh = SubResource("CylinderMesh_ywicp")
+mesh = SubResource("CylinderMesh_kn7xl")
 
 [node name="Laser3" parent="Level3/Sub1/LaserField1/VerticalPlayerEmitter/VisualField" index="3" unique_id=1820551865]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -4.5, 0)
-mesh = SubResource("CylinderMesh_ywicp")
+mesh = SubResource("CylinderMesh_kn7xl")
 
 [node name="Laser4" parent="Level3/Sub1/LaserField1/VerticalPlayerEmitter/VisualField" index="4" unique_id=975003695]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -4.5, 0)
-mesh = SubResource("CylinderMesh_ywicp")
+mesh = SubResource("CylinderMesh_kn7xl")
 
 [node name="@MeshInstance3D@23677" type="MeshInstance3D" parent="Level3/Sub1/LaserField1/VerticalPlayerEmitter/VisualField" index="5" unique_id=734089824]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -4.5, 0)
@@ -1312,37 +1346,37 @@ process_mode = 4
 
 [node name="CollisionShape3D" parent="Level3/Sub1/LaserField1/VerticalPlayerEmitter/Collider" index="0" unique_id=1097148859]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5, 0)
-shape = SubResource("BoxShape3D_q2amy")
+shape = SubResource("BoxShape3D_2784n")
 
 [node name="PlayerIndicatorMesh" parent="Level3/Sub1/LaserField1/VerticalPlayerEmitter" index="2" unique_id=834096677]
-mesh = SubResource("BoxMesh_y6rem")
-surface_material_override/0 = SubResource("StandardMaterial3D_yqvec")
+mesh = SubResource("BoxMesh_8aib8")
+surface_material_override/0 = SubResource("StandardMaterial3D_nviv0")
 
 [node name="HorizontalPetEmitter" parent="Level3/Sub1/LaserField1" index="1" unique_id=1309454049]
 process_mode = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 4.25, 0)
 visible = true
-mesh = SubResource("BoxMesh_b2yhj")
+mesh = SubResource("BoxMesh_2axlg")
 
 [node name="Laser" parent="Level3/Sub1/LaserField1/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(131956192, 1044272065) index="0" unique_id=236425633]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 6.5, 3.5, 0)
-mesh = SubResource("CylinderMesh_ufh2e")
+mesh = SubResource("CylinderMesh_ywicp")
 
 [node name="Laser1" parent="Level3/Sub1/LaserField1/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(131956192, 1044272065) index="1" unique_id=1296369937]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 6.5, 2.5, 0)
-mesh = SubResource("CylinderMesh_ufh2e")
+mesh = SubResource("CylinderMesh_ywicp")
 
 [node name="Laser2" parent="Level3/Sub1/LaserField1/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(131956192, 1044272065) index="2" unique_id=1172847682]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 6.5, 1.5, 0)
-mesh = SubResource("CylinderMesh_ufh2e")
+mesh = SubResource("CylinderMesh_ywicp")
 
 [node name="Laser3" parent="Level3/Sub1/LaserField1/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(131956192, 1044272065) index="3" unique_id=1399064121]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 6.5, 0.5, 0)
-mesh = SubResource("CylinderMesh_ufh2e")
+mesh = SubResource("CylinderMesh_ywicp")
 
 [node name="Laser4" parent="Level3/Sub1/LaserField1/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(131956192, 1044272065) index="4" unique_id=1494767158]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 6.5, -0.5, 0)
-mesh = SubResource("CylinderMesh_ufh2e")
+mesh = SubResource("CylinderMesh_ywicp")
 
 [node name="@MeshInstance3D@23686" type="MeshInstance3D" parent="Level3/Sub1/LaserField1/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(131956192, 1044272065) index="5" unique_id=1501357395]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 6.5, -1.5, 0)
@@ -1361,15 +1395,15 @@ surface_material_override/0 = SubResource("StandardMaterial3D_k0vai")
 
 [node name="CollisionShape3D" parent="Level3/Sub1/LaserField1/HorizontalPetEmitter/Collider" parent_id_path=PackedInt32Array(131956192, 640781378) index="0" unique_id=1895315842]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, 0)
-shape = SubResource("BoxShape3D_q2amy")
+shape = SubResource("BoxShape3D_2784n")
 
 [node name="PetIndicatorMesh" parent="Level3/Sub1/LaserField1/HorizontalPetEmitter" index="2" unique_id=2029169123]
-mesh = SubResource("BoxMesh_g4jxh")
-surface_material_override/0 = SubResource("StandardMaterial3D_etbnd")
+mesh = SubResource("BoxMesh_q2amy")
+surface_material_override/0 = SubResource("StandardMaterial3D_y6rem")
 
 [node name="IndicatorMesh" parent="Level3/Sub1/LaserField1" index="2" unique_id=930039958]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.75, 9, 0)
-surface_material_override/0 = SubResource("StandardMaterial3D_oy0ll")
+surface_material_override/0 = SubResource("StandardMaterial3D_yqvec")
 
 [node name="Static" type="Node3D" parent="Level3/Sub1" index="9" unique_id=692468829 groups=["bake_navmesh"]]
 
@@ -1401,7 +1435,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, -9.75, -1.8796787)
 
 [node name="ActivationArea" parent="Level3/Sub2/SubCheckpoint" index="2" unique_id=726556215]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.875, 1.5, 1.625)
-shape = SubResource("BoxShape3D_f6a8p")
+shape = SubResource("BoxShape3D_b2yhj")
 
 [node name="Platform" parent="Level3/Sub2" index="1" unique_id=1473482489 instance=ExtResource("4_fwsfs")]
 
@@ -1409,32 +1443,28 @@ shape = SubResource("BoxShape3D_f6a8p")
 popupText = "Stair Slots are activated when Stairs are rotated into position to fill them."
 
 [node name="ProgressBar" parent="Level3/Sub2/Platform/Pivots/zNegPivot" parent_id_path=PackedInt32Array(1473482489, 1204731783) index="1" unique_id=1058085514]
-surface_material_override/0 = SubResource("StandardMaterial3D_v5ns0")
+surface_material_override/0 = SubResource("StandardMaterial3D_g4jxh")
 
 [node name="ProgressBar" parent="Level3/Sub2/Platform/Pivots/xPosPivot" parent_id_path=PackedInt32Array(1473482489, 1400685562) index="1" unique_id=671366020]
-surface_material_override/0 = SubResource("StandardMaterial3D_v5ns0")
+surface_material_override/0 = SubResource("StandardMaterial3D_g4jxh")
 
 [node name="ProgressBar" parent="Level3/Sub2/Platform/Pivots/zPosPivot" parent_id_path=PackedInt32Array(1473482489, 570565777) index="1" unique_id=2127774179]
-surface_material_override/0 = SubResource("StandardMaterial3D_v5ns0")
+surface_material_override/0 = SubResource("StandardMaterial3D_g4jxh")
 
 [node name="ProgressBar" parent="Level3/Sub2/Platform/Pivots/xNegPivot" parent_id_path=PackedInt32Array(1473482489, 2032389142) index="1" unique_id=146738279]
-surface_material_override/0 = SubResource("StandardMaterial3D_v5ns0")
+surface_material_override/0 = SubResource("StandardMaterial3D_g4jxh")
 
 [node name="RotationProgressBar" parent="Level3/Sub2/Platform" index="7" unique_id=709336466]
-surface_material_override/0 = SubResource("StandardMaterial3D_o8xi3")
+surface_material_override/0 = SubResource("StandardMaterial3D_oy0ll")
 
 [node name="FloorButton" parent="Level3/Sub2/Platform" index="8" unique_id=1926480133 instance=ExtResource("12_vjvj4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="Platform1" type="AnimatableBody3D" parent="Level3/Sub2" index="2" unique_id=1089019840 groups=["resetable"] instance=ExtResource("4_fwsfs")]
+[node name="Platform1" parent="Level3/Sub2" index="2" unique_id=1089019840 instance=ExtResource("4_fwsfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.25, 11.25, 1.2785581e-06)
-collision_layer = 5
-script = ExtResource("13_wljuq")
 
-[node name="Platform2" type="AnimatableBody3D" parent="Level3/Sub2" index="3" unique_id=75698865 groups=["resetable"] instance=ExtResource("4_fwsfs")]
+[node name="Platform2" parent="Level3/Sub2" index="3" unique_id=75698865 instance=ExtResource("4_fwsfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.5, 9.2975534e-07)
-collision_layer = 5
-script = ExtResource("13_wljuq")
 
 [node name="Platform3" parent="Level3/Sub2" index="4" unique_id=36844284 instance=ExtResource("4_fwsfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.25, -29.25)
@@ -1443,19 +1473,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.25, -29.25)
 popupText = "Stair Slots often must be activated together in order to progress."
 
 [node name="ProgressBar" parent="Level3/Sub2/Platform3/Pivots/zNegPivot" parent_id_path=PackedInt32Array(36844284, 1204731783) index="1" unique_id=1058085514]
-surface_material_override/0 = SubResource("StandardMaterial3D_8eumd")
+surface_material_override/0 = SubResource("StandardMaterial3D_jj1nu")
 
 [node name="ProgressBar" parent="Level3/Sub2/Platform3/Pivots/xPosPivot" parent_id_path=PackedInt32Array(36844284, 1400685562) index="1" unique_id=671366020]
-surface_material_override/0 = SubResource("StandardMaterial3D_8eumd")
+surface_material_override/0 = SubResource("StandardMaterial3D_jj1nu")
 
 [node name="ProgressBar" parent="Level3/Sub2/Platform3/Pivots/zPosPivot" parent_id_path=PackedInt32Array(36844284, 570565777) index="1" unique_id=2127774179]
-surface_material_override/0 = SubResource("StandardMaterial3D_8eumd")
+surface_material_override/0 = SubResource("StandardMaterial3D_jj1nu")
 
 [node name="ProgressBar" parent="Level3/Sub2/Platform3/Pivots/xNegPivot" parent_id_path=PackedInt32Array(36844284, 2032389142) index="1" unique_id=146738279]
-surface_material_override/0 = SubResource("StandardMaterial3D_8eumd")
+surface_material_override/0 = SubResource("StandardMaterial3D_jj1nu")
 
 [node name="RotationProgressBar" parent="Level3/Sub2/Platform3" index="7" unique_id=709336466]
-surface_material_override/0 = SubResource("StandardMaterial3D_ib2iy")
+surface_material_override/0 = SubResource("StandardMaterial3D_s3oow")
 
 [node name="StairsSlot" parent="Level3/Sub2/Platform3" index="8" unique_id=1409511783 instance=ExtResource("14_dw8lb")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 4.875)
@@ -1469,17 +1499,11 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0
 [node name="Staircase" parent="Level3/Sub2" index="6" unique_id=344824606 instance=ExtResource("2_38vaf")]
 transform = Transform3D(-1.1924881e-08, -1.0425061e-15, 1, 8.742278e-08, -1, 0, 1, 8.742278e-08, 1.1924881e-08, -14.625, -5.625, 0)
 
-[node name="Staircase1" type="AnimatableBody3D" parent="Level3/Sub2" index="7" unique_id=243484014 groups=["resetable"] instance=ExtResource("2_38vaf")]
+[node name="Staircase1" parent="Level3/Sub2" index="7" unique_id=243484014 instance=ExtResource("2_38vaf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28.125, -14.624999)
-collision_layer = 7
-sync_to_physics = false
-script = ExtResource("15_plnos")
 
-[node name="Staircase2" type="AnimatableBody3D" parent="Level3/Sub2" index="8" unique_id=1609638295 groups=["resetable"] instance=ExtResource("2_38vaf")]
+[node name="Staircase2" parent="Level3/Sub2" index="8" unique_id=1609638295 instance=ExtResource("2_38vaf")]
 transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 0, 5.625, -43.875)
-collision_layer = 7
-sync_to_physics = false
-script = ExtResource("15_plnos")
 
 [node name="PuzzleWire" parent="Level3/Sub2" index="9" unique_id=1406703561 node_paths=PackedStringArray("activators") instance=ExtResource("15_v5ns0")]
 activators = [NodePath("../Platform3/StairsSlot"), NodePath("../Platform4/StairsSlot")]
@@ -1499,27 +1523,27 @@ fieldHeight = 8.5
 process_mode = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.75, 0)
 visible = true
-mesh = SubResource("BoxMesh_jj1nu")
+mesh = SubResource("BoxMesh_yrm5u")
 
 [node name="Laser" parent="Level3/Sub2/LaserField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(1832827446, 100407275) index="0" unique_id=271379129]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, -4.5, 0)
-mesh = SubResource("CylinderMesh_jg0fx")
+mesh = SubResource("CylinderMesh_fq81i")
 
 [node name="Laser1" parent="Level3/Sub2/LaserField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(1832827446, 100407275) index="1" unique_id=1961894755]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -4.5, 0)
-mesh = SubResource("CylinderMesh_jg0fx")
+mesh = SubResource("CylinderMesh_fq81i")
 
 [node name="Laser2" parent="Level3/Sub2/LaserField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(1832827446, 100407275) index="2" unique_id=57668432]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -4.5, 0)
-mesh = SubResource("CylinderMesh_jg0fx")
+mesh = SubResource("CylinderMesh_fq81i")
 
 [node name="Laser3" parent="Level3/Sub2/LaserField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(1832827446, 100407275) index="3" unique_id=1820551865]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -4.5, 0)
-mesh = SubResource("CylinderMesh_jg0fx")
+mesh = SubResource("CylinderMesh_fq81i")
 
 [node name="Laser4" parent="Level3/Sub2/LaserField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(1832827446, 100407275) index="4" unique_id=975003695]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -4.5, 0)
-mesh = SubResource("CylinderMesh_jg0fx")
+mesh = SubResource("CylinderMesh_fq81i")
 
 [node name="@MeshInstance3D@86089" type="MeshInstance3D" parent="Level3/Sub2/LaserField/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(1832827446, 100407275) index="5" unique_id=1386401829]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -4.5, 0)
@@ -1541,37 +1565,37 @@ surface_material_override/0 = SubResource("StandardMaterial3D_bgvmm")
 
 [node name="CollisionShape3D" parent="Level3/Sub2/LaserField/VerticalPlayerEmitter/Collider" parent_id_path=PackedInt32Array(1832827446, 54266460) index="0" unique_id=1097148859]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5, 0)
-shape = SubResource("BoxShape3D_s3oow")
+shape = SubResource("BoxShape3D_uvjib")
 
 [node name="PlayerIndicatorMesh" parent="Level3/Sub2/LaserField/VerticalPlayerEmitter" index="2" unique_id=834096677]
-mesh = SubResource("BoxMesh_yrm5u")
-surface_material_override/0 = SubResource("StandardMaterial3D_fq81i")
+mesh = SubResource("BoxMesh_2qc3n")
+surface_material_override/0 = SubResource("StandardMaterial3D_nge0g")
 
 [node name="HorizontalPetEmitter" parent="Level3/Sub2/LaserField" index="1" unique_id=1309454049]
 process_mode = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 4.25, 0)
 visible = true
-mesh = SubResource("BoxMesh_uvjib")
+mesh = SubResource("BoxMesh_36c7v")
 
 [node name="Laser" parent="Level3/Sub2/LaserField/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(1832827446, 1044272065) index="0" unique_id=236425633]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 4.5, 3.5, 0)
-mesh = SubResource("CylinderMesh_2qc3n")
+mesh = SubResource("CylinderMesh_vqrxk")
 
 [node name="Laser1" parent="Level3/Sub2/LaserField/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(1832827446, 1044272065) index="1" unique_id=1296369937]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 4.5, 2.5, 0)
-mesh = SubResource("CylinderMesh_2qc3n")
+mesh = SubResource("CylinderMesh_vqrxk")
 
 [node name="Laser2" parent="Level3/Sub2/LaserField/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(1832827446, 1044272065) index="2" unique_id=1172847682]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 4.5, 1.5, 0)
-mesh = SubResource("CylinderMesh_2qc3n")
+mesh = SubResource("CylinderMesh_vqrxk")
 
 [node name="Laser3" parent="Level3/Sub2/LaserField/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(1832827446, 1044272065) index="3" unique_id=1399064121]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 4.5, 0.5, 0)
-mesh = SubResource("CylinderMesh_2qc3n")
+mesh = SubResource("CylinderMesh_vqrxk")
 
 [node name="Laser4" parent="Level3/Sub2/LaserField/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(1832827446, 1044272065) index="4" unique_id=1494767158]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 4.5, -0.5, 0)
-mesh = SubResource("CylinderMesh_2qc3n")
+mesh = SubResource("CylinderMesh_vqrxk")
 
 [node name="@MeshInstance3D@86094" type="MeshInstance3D" parent="Level3/Sub2/LaserField/HorizontalPetEmitter/VisualField" parent_id_path=PackedInt32Array(1832827446, 1044272065) index="5" unique_id=1342670213]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 4.5, -1.5, 0)
@@ -1590,15 +1614,15 @@ surface_material_override/0 = SubResource("StandardMaterial3D_kexql")
 
 [node name="CollisionShape3D" parent="Level3/Sub2/LaserField/HorizontalPetEmitter/Collider" parent_id_path=PackedInt32Array(1832827446, 640781378) index="0" unique_id=1895315842]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 0)
-shape = SubResource("BoxShape3D_s3oow")
+shape = SubResource("BoxShape3D_uvjib")
 
 [node name="PetIndicatorMesh" parent="Level3/Sub2/LaserField/HorizontalPetEmitter" index="2" unique_id=2029169123]
-mesh = SubResource("BoxMesh_nge0g")
-surface_material_override/0 = SubResource("StandardMaterial3D_36c7v")
+mesh = SubResource("BoxMesh_7fx43")
+surface_material_override/0 = SubResource("StandardMaterial3D_s07m0")
 
 [node name="IndicatorMesh" parent="Level3/Sub2/LaserField" index="2" unique_id=930039958]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 9, 0)
-surface_material_override/0 = SubResource("StandardMaterial3D_vqrxk")
+surface_material_override/0 = SubResource("StandardMaterial3D_53akl")
 
 [node name="LaserField1" parent="Level3/Sub2" index="11" unique_id=579956598 node_paths=PackedStringArray("playerFieldActivator") instance=ExtResource("14_wljuq")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14.75, 6.5, 0)
@@ -1612,27 +1636,27 @@ fieldHeight = 20.0
 process_mode = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.25, 0)
 visible = true
-mesh = SubResource("BoxMesh_dw8lb")
+mesh = SubResource("BoxMesh_evoh4")
 
 [node name="Laser" parent="Level3/Sub2/LaserField1/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(579956598, 100407275) index="0" unique_id=271379129]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -10.25, 0)
-mesh = SubResource("CylinderMesh_v5ns0")
+mesh = SubResource("CylinderMesh_fd7oo")
 
 [node name="Laser1" parent="Level3/Sub2/LaserField1/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(579956598, 100407275) index="1" unique_id=1961894755]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -10.25, 0)
-mesh = SubResource("CylinderMesh_v5ns0")
+mesh = SubResource("CylinderMesh_fd7oo")
 
 [node name="Laser2" parent="Level3/Sub2/LaserField1/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(579956598, 100407275) index="2" unique_id=57668432]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -10.25, 0)
-mesh = SubResource("CylinderMesh_v5ns0")
+mesh = SubResource("CylinderMesh_fd7oo")
 
 [node name="Laser3" parent="Level3/Sub2/LaserField1/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(579956598, 100407275) index="3" unique_id=1820551865]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -10.25, 0)
-mesh = SubResource("CylinderMesh_v5ns0")
+mesh = SubResource("CylinderMesh_fd7oo")
 
 [node name="Laser4" parent="Level3/Sub2/LaserField1/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(579956598, 100407275) index="4" unique_id=975003695]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.25, 0)
-mesh = SubResource("CylinderMesh_v5ns0")
+mesh = SubResource("CylinderMesh_fd7oo")
 
 [node name="@MeshInstance3D@143708" type="MeshInstance3D" parent="Level3/Sub2/LaserField1/VerticalPlayerEmitter/VisualField" parent_id_path=PackedInt32Array(579956598, 100407275) index="5" unique_id=765471926]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -10.25, 0)
@@ -1660,38 +1684,38 @@ surface_material_override/0 = SubResource("StandardMaterial3D_bgvmm")
 
 [node name="CollisionShape3D" parent="Level3/Sub2/LaserField1/VerticalPlayerEmitter/Collider" parent_id_path=PackedInt32Array(579956598, 54266460) index="0" unique_id=1097148859]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.25, 0)
-shape = SubResource("BoxShape3D_o8xi3")
+shape = SubResource("BoxShape3D_xh4el")
 
 [node name="PlayerIndicatorMesh" parent="Level3/Sub2/LaserField1/VerticalPlayerEmitter" index="2" unique_id=834096677]
-mesh = SubResource("BoxMesh_g8a7o")
-surface_material_override/0 = SubResource("StandardMaterial3D_715fp")
+mesh = SubResource("BoxMesh_wslnm")
+surface_material_override/0 = SubResource("StandardMaterial3D_lvqhc")
 
 [node name="HorizontalPetEmitter" parent="Level3/Sub2/LaserField1" index="1" unique_id=1309454049]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 10, 0)
-mesh = SubResource("BoxMesh_k0vai")
+mesh = SubResource("BoxMesh_egb2i")
 
 [node name="VisualField" parent="Level3/Sub2/LaserField1/HorizontalPetEmitter" index="0" unique_id=1044272065]
 visible = false
 
 [node name="Laser" parent="Level3/Sub2/LaserField1/HorizontalPetEmitter/VisualField" index="0" unique_id=236425633]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 5, 9.25, 0)
-mesh = SubResource("CylinderMesh_chas8")
+mesh = SubResource("CylinderMesh_rmxse")
 
 [node name="Laser1" parent="Level3/Sub2/LaserField1/HorizontalPetEmitter/VisualField" index="1" unique_id=1296369937]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 5, 8.25, 0)
-mesh = SubResource("CylinderMesh_chas8")
+mesh = SubResource("CylinderMesh_rmxse")
 
 [node name="Laser2" parent="Level3/Sub2/LaserField1/HorizontalPetEmitter/VisualField" index="2" unique_id=1172847682]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 5, 7.25, 0)
-mesh = SubResource("CylinderMesh_chas8")
+mesh = SubResource("CylinderMesh_rmxse")
 
 [node name="Laser3" parent="Level3/Sub2/LaserField1/HorizontalPetEmitter/VisualField" index="3" unique_id=1399064121]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 5, 6.25, 0)
-mesh = SubResource("CylinderMesh_chas8")
+mesh = SubResource("CylinderMesh_rmxse")
 
 [node name="Laser4" parent="Level3/Sub2/LaserField1/HorizontalPetEmitter/VisualField" index="4" unique_id=1494767158]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 5, 5.25, 0)
-mesh = SubResource("CylinderMesh_chas8")
+mesh = SubResource("CylinderMesh_rmxse")
 
 [node name="@MeshInstance3D@143686" type="MeshInstance3D" parent="Level3/Sub2/LaserField1/HorizontalPetEmitter/VisualField" index="5" unique_id=643507446]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 5, 4.25, 0)
@@ -1764,11 +1788,6 @@ mesh = SubResource("CylinderMesh_chas8")
 surface_material_override/0 = SubResource("StandardMaterial3D_kexql")
 
 [node name="@MeshInstance3D@143706" type="MeshInstance3D" parent="Level3/Sub2/LaserField1/HorizontalPetEmitter/VisualField" index="19" unique_id=307661374]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 5, -8.75, 0)
-mesh = SubResource("CylinderMesh_chas8")
-surface_material_override/0 = SubResource("StandardMaterial3D_kexql")
-
-[node name="@MeshInstance3D@143707" type="MeshInstance3D" parent="Level3/Sub2/LaserField1/HorizontalPetEmitter/VisualField" index="20" unique_id=946817558]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 5, -9.75, 0)
 mesh = SubResource("CylinderMesh_chas8")
 surface_material_override/0 = SubResource("StandardMaterial3D_kexql")
@@ -1778,15 +1797,15 @@ process_mode = 4
 
 [node name="CollisionShape3D" parent="Level3/Sub2/LaserField1/HorizontalPetEmitter/Collider" index="0" unique_id=1895315842]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
-shape = SubResource("BoxShape3D_o8xi3")
+shape = SubResource("BoxShape3D_xh4el")
 
 [node name="PetIndicatorMesh" parent="Level3/Sub2/LaserField1/HorizontalPetEmitter" index="2" unique_id=2029169123]
-mesh = SubResource("BoxMesh_8eumd")
-surface_material_override/0 = SubResource("StandardMaterial3D_cby42")
+mesh = SubResource("BoxMesh_yl67s")
+surface_material_override/0 = SubResource("StandardMaterial3D_erugm")
 
 [node name="IndicatorMesh" parent="Level3/Sub2/LaserField1" index="2" unique_id=930039958]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 20.5, 0)
-surface_material_override/0 = SubResource("StandardMaterial3D_epqdx")
+surface_material_override/0 = SubResource("StandardMaterial3D_wlk0w")
 
 [node name="Static" type="Node3D" parent="Level3/Sub2" index="12" unique_id=1864374879 groups=["bake_navmesh"]]
 
@@ -1817,15 +1836,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.75, 56.25, -135)
 [node name="SubCheckpoint" parent="Level3/Sub3" index="0" unique_id=968431192 instance=ExtResource("4_baolv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.261658, 29.25)
 
-[node name="Platform" type="AnimatableBody3D" parent="Level3/Sub3" index="1" unique_id=772084337 groups=["resetable"] instance=ExtResource("4_fwsfs")]
-collision_layer = 5
-script = ExtResource("13_wljuq")
+[node name="Platform" parent="Level3/Sub3" index="1" unique_id=772084337 instance=ExtResource("4_fwsfs")]
 
-[node name="Staircase" type="AnimatableBody3D" parent="Level3/Sub3" index="2" unique_id=370049961 groups=["resetable"] instance=ExtResource("2_38vaf")]
+[node name="Staircase" parent="Level3/Sub3" index="2" unique_id=370049961 instance=ExtResource("2_38vaf")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 5.625, 14.625)
-collision_layer = 7
-sync_to_physics = false
-script = ExtResource("15_plnos")
 
 [node name="Static" type="Node3D" parent="Level3/Sub3" index="3" unique_id=706028772]
 

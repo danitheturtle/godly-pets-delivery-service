@@ -1,0 +1,1 @@
+When the pet gets blocked on its way to the player and the player toggles off pet following, the pet should return to a safe location it won't fall from. 

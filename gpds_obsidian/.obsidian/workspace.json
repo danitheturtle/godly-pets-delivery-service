@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "ed5d5678706c4a9a",
+        "id": "b6c26e4e0e2b5283",
         "type": "tabs",
         "children": [
           {
-            "id": "f4ca99cd1abdfe70",
+            "id": "3725617b476edcf4",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Mechanics/Limited Stairs that can only move X times.md",
+                "file": "Todo/Progress bar bug.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Limited Stairs that can only move X times"
+              "title": "Progress bar bug"
             }
           }
         ]
@@ -169,18 +169,25 @@
       "bases:Create new base": false
     }
   },
-  "active": "f4ca99cd1abdfe70",
+  "active": "3725617b476edcf4",
   "lastOpenFiles": [
-    "Mechanics/Two stairs that meet end-to-end connect.md",
-    "Mechanics/Limited Stairs that can only move X times.md",
-    "Mechanics/Show bound hotkey in action prompt UI.md",
-    "Bugs/Backtracking breaks things.md",
+    "Todo/Add cancelled state to progress UI.md",
+    "Todo/Iterate level editor gizmo.md",
+    "Todo/Save system.md",
     "Todo/Progress bar bug.md",
     "Todo/Menuing & Actions with controller.md",
-    "Todo/Iterate level editor gizmo.md",
     "Todo/Internationalisation Placeholder.md",
     "Todo/Dr Craig Hairy Bonkers Ph.D..md",
-    "Todo/Add cancelled state to progress UI.md",
+    "Mechanics/Stretch/Stair Graph.md",
+    "Prototype Stuff Implemented/Base pet scene.md",
+    "Mechanics/Sneak so you don't fall like minecraft.md",
+    "Core Pillars.md",
+    "Mechanics/Platform that rotates stairs in different axis.md",
+    "Mechanics/Stretch/Reverse pet to last pos if blocked.md",
+    "Mechanics/Limited Stairs that can only move X times.md",
+    "Mechanics/Two stairs that meet end-to-end connect.md",
+    "Mechanics/Show bound hotkey in action prompt UI.md",
+    "Bugs/Backtracking breaks things.md",
     "Prototype Stuff Implemented/Force field that blocks player, pet, or both.md",
     "Mechanics/Platform Path.md"
   ]

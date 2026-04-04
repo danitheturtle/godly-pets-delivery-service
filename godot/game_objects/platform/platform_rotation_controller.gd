@@ -119,7 +119,7 @@ func on_collision() -> bool:
         targetPosRad = targetIndex * radPerStop
         currentToTargetDir *= -1
         distToTargetRad = radPerStop * currentToTargetDir
-        distFromStartRad = previousPosRad - (startPosRad if !Utils.equalsf(startPosRad, 0.0) else TAU)
+        distFromStartRad = distToTargetRad + fmod(distFromStartRad, radPerStop)
         clamp_to_min_timer()
         previousAnimationPos = get_animation_position()
         return true

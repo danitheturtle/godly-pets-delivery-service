@@ -1,8 +1,21 @@
 @tool
 extends EditorNode3DGizmoPlugin
 
-const PlatformResource = preload("res://game_objects/platform/square_platform.tscn")
+const SquarePlatformResource = preload("res://game_objects/platform/square_platform.tscn")
 const StairsResource = preload("res://game_objects/stairs/stairs.tscn")
+const StairsSlotResource = preload("res://game_objects/stairs_slot/stairs_slot.tscn")
+const StairsSlotAttachedResource = preload("res://game_objects/stairs_slot/stairs_slot_attached.tscn")
+
+enum PLATFORM_TYPE { SQUARE = 0 }
+const platformTypeToResourceMap = {
+    PLATFORM_TYPE.SQUARE: SquarePlatformResource
+}
+enum PUZZLE_PIECE_TYPE { STAIRS = 0, STAIRS_SLOT = 1, STAIRS_SLOT_ATTACHED = 2 }
+const puzzlePieceTypeToResourceMap = {
+    PUZZLE_PIECE_TYPE.STAIRS: StairsResource,
+    PUZZLE_PIECE_TYPE.STAIRS_SLOT: StairsSlotResource,
+    PUZZLE_PIECE_TYPE.STAIRS_SLOT_ATTACHED: StairsSlotAttachedResource
+}
 
 var pluginRef = null
 var stairGridState = {}
@@ -57,14 +70,14 @@ func _commit_handle(gizmo, handleId, isSecondary, restore, cancel) -> void:
     
     var rotationToPivot = get_rotation_to_pivot_matrix(pivotIndex)
     if stairGridState.placementMode == "platforms":
-        var newPlatform = PlatformResource.instantiate()
+        var newPlatform = platformTypeToResourceMap[stairGridState.platformType].instantiate()
         var newPlatformTransform = get_next_platform_transform(handleIndex, pivotIndex)
         newPlatformTransform.origin = rotationToPivot * newPlatformTransform.origin + editedNode.transform.origin
         newPlatform.transform = newPlatformTransform
         editedNode.get_parent().add_child(newPlatform)
         newPlatform.owner = sceneRoot
-    elif stairGridState.placementMode == "stairs":
-        var newStairs = StairsResource.instantiate()
+    elif stairGridState.placementMode == "puzzlePieces":
+        var newStairs = puzzlePieceTypeToResourceMap[stairGridState.puzzlePieceType].instantiate()
         var newStairsTransform = get_next_stair_transform(handleIndex, pivotIndex)
         newStairsTransform.origin = rotationToPivot * newStairsTransform.origin + editedNode.transform.origin
         newStairsTransform.basis = rotationToPivot * newStairsTransform.basis

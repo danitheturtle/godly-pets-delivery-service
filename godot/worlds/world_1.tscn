@@ -625,7 +625,6 @@ popupText = "Press 'F' to control your pet. By default, this toggles following b
 [node name="Platform" parent="Level1/Sub1" parent_id_path=PackedInt32Array(1133198089) index="1" unique_id=322832196]
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -679,7 +678,6 @@ popupText = "Press 'R' to return you and your pet to the furthest checkpoints ea
 [node name="Platform" parent="Level1/Sub2" index="1" unique_id=1874884055 instance=ExtResource("4_fwsfs")]
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -740,7 +738,6 @@ shape = SubResource("BoxShape3D_715fp")
 [node name="Platform" parent="Level1/Sub3" index="1" unique_id=1840473985 instance=ExtResource("4_fwsfs")]
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -748,7 +745,6 @@ PIVOTS_STOPS = null
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.249996, 0, 29.250002)
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -817,7 +813,6 @@ popupText = "Complete a level by reaching the tall green checkpoint with your pe
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.335144e-05, 0, 0)
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -843,7 +838,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_4o5x1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.249985, 11.25, 0)
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -851,7 +845,6 @@ PIVOTS_STOPS = null
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.24998, 0, 29.25)
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -859,7 +852,6 @@ PIVOTS_STOPS = null
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9073486e-05, 11.25, 29.25)
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -938,7 +930,6 @@ shape = SubResource("BoxShape3D_cfvn6")
 [node name="Platform" parent="Level2/Sub2" index="1" unique_id=1539693064 instance=ExtResource("4_fwsfs")]
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -946,7 +937,6 @@ PIVOTS_STOPS = null
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.25, -29.25)
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -972,7 +962,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_vrq7l")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -58.5)
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -980,7 +969,6 @@ PIVOTS_STOPS = null
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.25, -29.25)
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -988,7 +976,6 @@ PIVOTS_STOPS = null
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.25, -11.25, -40.5)
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -996,7 +983,6 @@ PIVOTS_STOPS = null
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.25, 0, -11.25)
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -1004,7 +990,6 @@ PIVOTS_STOPS = null
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.5, -58.5)
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -1078,7 +1063,6 @@ shape = SubResource("BoxShape3D_ajhgj")
 [node name="Platform" parent="Level3/Sub1" index="1" unique_id=562984273 instance=ExtResource("4_fwsfs")]
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -1107,7 +1091,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.25, 11.25, 0)
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -1133,7 +1116,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ed2gg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.25, 22.5, -29.25)
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -1141,7 +1123,6 @@ PIVOTS_STOPS = null
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 33.75, -29.25)
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -1149,7 +1130,6 @@ PIVOTS_STOPS = null
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.5, 0)
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -1542,7 +1522,6 @@ shape = SubResource("BoxShape3D_b2yhj")
 [node name="Platform" parent="Level3/Sub2" index="1" unique_id=1473482489 instance=ExtResource("4_fwsfs")]
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -1571,7 +1550,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.25, 11.25, 1.2785581e-06)
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -1579,7 +1557,6 @@ PIVOTS_STOPS = null
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.5, 9.2975534e-07)
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -1587,7 +1564,6 @@ PIVOTS_STOPS = null
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.25, -29.25)
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -1616,7 +1592,6 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.5, -58.5)
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
@@ -1966,7 +1941,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.261658, 29.25)
 [node name="Platform" parent="Level3/Sub3" index="1" unique_id=772084337 instance=ExtResource("4_fwsfs")]
 SECONDS_PER_ROTATION = null
 SECONDS_PER_PIVOT = null
-MIN_TIME_PER_STOP = null
 ROTATION_STOPS = null
 PIVOTS_STOPS = null
 

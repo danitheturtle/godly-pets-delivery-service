@@ -10,7 +10,8 @@ var TesselatePlatforms = preload("res://addons/snap_to_stair_grid_gizmo/tesselat
 var createAdjacentGizmo = CreateAdjacentGizmoRes.new()
 var stairGridState = {
     placementMode = "platforms",
-    gridOrigin = Vector3(0,0,0),
+    platformType = CreateAdjacentGizmoRes.PLATFORM_TYPE.SQUARE,
+    puzzlePieceType = CreateAdjacentGizmoRes.PUZZLE_PIECE_TYPE.STAIRS,
     platformSideCount = 4,
     platformSideLength = 9.75,
     stairSlopeRise = 11.25,
@@ -44,32 +45,26 @@ func _exit_tree() -> void:
     # remove gizmos
     remove_node_3d_gizmo_plugin(createAdjacentGizmo)
 
-func _mode_switch_toggled(toggledOn: bool) -> void:
+func on_mode_switch_toggled(toggledOn: bool) -> void:
     if (toggledOn):
-        stairGridState.placementMode = "stairs"
+        stairGridState.placementMode = "puzzlePieces"
     else:
         stairGridState.placementMode = "platforms"
 
-func _grid_origin_x_changed(nextX: float) -> void:
-    stairGridState.gridOrigin.x = nextX
-    
-func _grid_origin_y_changed(nextY: float) -> void:
-    stairGridState.gridOrigin.y = nextY
+func on_platform_resource_selected(selectedType: int) -> void:
+    stairGridState.platformType = selectedType
 
-func _grid_origin_z_changed(nextZ: float) -> void:
-    stairGridState.gridOrigin.z = nextZ
+func on_puzzle_piece_resource_selected(selectedType: int) -> void:
+    stairGridState.puzzlePieceType = selectedType
 
-func _platform_side_length_changed(nextLength: float) -> void:
+func on_platform_side_length_changed(nextLength: float) -> void:
     stairGridState.platformSideLength = nextLength
 
-func _platform_side_count_changed(nextCount: int) -> void:
+func on_platform_side_count_changed(nextCount: int) -> void:
     stairGridState.platformSideCount = nextCount
 
-func _stair_slope_rise_changed(nextRise: float) -> void:
+func on_stair_slope_rise_changed(nextRise: float) -> void:
     stairGridState.stairSlopeRise = nextRise
 
-func _stair_slope_run_changed(nextRun: float) -> void:
+func on_stair_slope_run_changed(nextRun: float) -> void:
     stairGridState.stairSlopeRun = nextRun
-
-func _tesselate_platforms_clicked() -> void:
-    TesselatePlatforms.tesselate(stairGridState)

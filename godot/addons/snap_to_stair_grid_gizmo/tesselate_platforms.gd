@@ -4,7 +4,6 @@ extends Node
 const PlatformResource = preload("res://game_objects/platform/square_platform.tscn")
 #var stairGridState = {
     #placementMode = "platforms",
-    #gridOrigin = Vector3(0,0,0),
     #platformSideCount = 4,
     #platformSideLength = 9.0,
     #stairSlopeRise = 11.25,

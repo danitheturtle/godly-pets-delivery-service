@@ -2,7 +2,6 @@ class_name PlatformRotationController
 
 # constant after init
 var timerLength: float
-var minTimePerStop: float # minimum time it takes to rotate through 1 stop
 var stops: int # stops in rotation
 var radPerStop: float # rotation in radians per stop
 var clockwiseAction: String # action name for clockwise rotation
@@ -12,7 +11,6 @@ var active: bool = false # toggle between static / animating state
 var cancelled: bool = false # cancellation state
 var queued: int = 0 # player input queue
 var timer: float = 0.0 # rotation animation timer
-var minTimerLength: float = 0.0
 # rotation indices
 var storedIndex: int = 0 # used for soft/hard reset
 var currentIndex: int = 0 # current stop index, updated continuously
@@ -30,11 +28,9 @@ var previousIndex: int = 0
 var previousPosRad: float = 0.0
 var previousAnimationPos: float = 0.0
 
-func _init(_stops: int, _timerLength: float, _minTimePerStop: float, _clockwiseAction: String, _counterClockwiseAction: String) -> void:
+func _init(_stops: int, _timerLength: float, _clockwiseAction: String, _counterClockwiseAction: String) -> void:
     timerLength = _timerLength
-    minTimerLength = _timerLength
     stops = _stops
-    minTimePerStop = _minTimePerStop
     radPerStop = TAU / _stops
     clockwiseAction = _clockwiseAction
     counterClockwiseAction = _counterClockwiseAction
@@ -61,7 +57,6 @@ func finish_rotation() -> void:
     cancelled = false
     queued = 0
     timer = 0.0
-    minTimerLength = timerLength
     previousAnimationPos = 0.0
     currentIndex = targetIndex
     startIndex = targetIndex
@@ -75,7 +70,7 @@ func update_rotation(delta: float) -> bool:
     previousPosRad = currentPosRad
     timer += delta
     var posInAnimation = get_animation_position()
-    var remainingTime = minTimerLength - timer
+    var remainingTime = timerLength - timer
     # early exit if animation is finished
     if (Utils.equalsf(remainingTime, 0.0)):
         return true
@@ -99,16 +94,11 @@ func apply_rotation_input(dir: int) -> void:
     targetPosRad = targetIndex * radPerStop
     distToTargetRad = queued * radPerStop
     # cap time left so platform doesn't snap
-    minTimerLength = max(minTimePerStop * abs(queued), timerLength)
-    clamp_to_min_timer()
+    timer = minf(timer, 0.5)
     previousAnimationPos = get_animation_position()
 
 func get_animation_position() -> float:
-    return Utils.easeInOutCubic(Utils.normf(timer, 0.0, minTimerLength))
-
-func clamp_to_min_timer() -> void:
-    if minTimerLength - timer < minTimePerStop:
-        timer = minTimerLength - minTimePerStop
+    return Utils.easeInOutCubic(Utils.normf(timer, 0.0, timerLength))
 
 func on_collision() -> bool:
     if active && !cancelled:
@@ -120,7 +110,7 @@ func on_collision() -> bool:
         currentToTargetDir *= -1
         distToTargetRad = radPerStop * currentToTargetDir
         distFromStartRad = distToTargetRad + fmod(distFromStartRad, radPerStop)
-        clamp_to_min_timer()
+        timer = minf(timer, 0.5)
         previousAnimationPos = get_animation_position()
         return true
     return false

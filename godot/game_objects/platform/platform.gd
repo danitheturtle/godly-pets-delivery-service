@@ -8,7 +8,6 @@ const collisionErrorMaterial: Material = preload("res://assets/materials/rotatio
 # editor-controlled values
 @export var SECONDS_PER_ROTATION: float = 1.0
 @export var SECONDS_PER_PIVOT: float = 1.0
-@export var MIN_TIME_PER_STOP: float = 0.35
 @export var ROTATION_STOPS: int = 4
 @export var PIVOTS_STOPS: int = 4
 
@@ -55,8 +54,8 @@ var attachedStairRefs: Array[Stairs] = []
 
 func _ready() -> void:
     # setup rotation controllers
-    rotationController = PlatformRotationControllerClass.new(ROTATION_STOPS,SECONDS_PER_ROTATION, MIN_TIME_PER_STOP, "rotate_clockwise", "rotate_counter_clockwise")
-    pivotsController = PlatformRotationControllerClass.new(PIVOTS_STOPS,SECONDS_PER_PIVOT, MIN_TIME_PER_STOP, "rotate_pivots_clockwise", "rotate_pivots_counter_clockwise")
+    rotationController = PlatformRotationControllerClass.new(ROTATION_STOPS,SECONDS_PER_ROTATION, "rotate_clockwise", "rotate_counter_clockwise")
+    pivotsController = PlatformRotationControllerClass.new(PIVOTS_STOPS,SECONDS_PER_PIVOT, "rotate_pivots_clockwise", "rotate_pivots_counter_clockwise")
     # calculate the bases this platform can stop at
     basisStops.append(Basis(transform.basis))
     for i in range(1, ROTATION_STOPS):

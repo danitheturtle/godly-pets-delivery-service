@@ -25,6 +25,12 @@ var stairGridState = {
     #pass
 
 func _enter_tree() -> void:
+    # setup shortcuts
+    var editorModeSwitchInputEventKey = InputEventKey.new()
+    editorModeSwitchInputEventKey.keycode = KEY_ALT
+    var editorModeSwitchShortcut = Shortcut.new()
+    editorModeSwitchShortcut.events.append(editorModeSwitchInputEventKey)
+    EditorInterface.get_editor_settings().add_shortcut("snap_to_stair_grid/editor_mode_switch", editorModeSwitchShortcut)
     # create the settings dock
     dock = EditorDock.new()
     dock.title = "Stair Grid Snap Settings"

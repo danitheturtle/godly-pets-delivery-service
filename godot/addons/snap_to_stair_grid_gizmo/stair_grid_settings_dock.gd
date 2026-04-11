@@ -12,6 +12,7 @@ class_name StairGridSettingsDock
 
 var pluginRef = null
 var stairGridState = {}
+var shortcut: Shortcut = null
 
 func _ready() -> void:
     if (pluginRef != null):
@@ -22,7 +23,16 @@ func _ready() -> void:
         platformSideCountInput.value_changed.connect(pluginRef.on_platform_side_count_changed)
         stairSlopeRise.value_changed.connect(pluginRef.on_stair_slope_rise_changed)
         stairSlopeRun.value_changed.connect(pluginRef.on_stair_slope_run_changed)
+        shortcut = EditorInterface.get_editor_settings().get_shortcut("snap_to_stair_grid/editor_mode_switch")
         initializeFromState(stairGridState)
+
+func _shortcut_input(event: InputEvent) -> void:
+    var eventHandled: bool = false
+    if (shortcut != null && shortcut.matches_event(event)):
+        modeSwitch.button_pressed = !modeSwitch.button_pressed
+        eventHandled = true
+    if (eventHandled):
+        get_tree().root.set_input_as_handled()
 
 func setup(_pluginRef, _stairGridState) -> void:
     pluginRef = _pluginRef

@@ -23,7 +23,7 @@ layout_mode = 2
 
 [node name="ModeSwitchLabel" type="Label" parent="Scroll/VBox" unique_id=292467531]
 layout_mode = 2
-text = "Mode:"
+text = "Mode: (alt to toggle)"
 
 [node name="ModeSwitchHBox" type="HBoxContainer" parent="Scroll/VBox" unique_id=683346050]
 layout_mode = 2

@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://cx6iop8wyl30h"]
 
-[ext_resource type="Script" uid="uid://c6375k1nmsvsw" path="res://addons/snap_to_stair_grid_gizmo/stair_grid_settings_dock.gd" id="1_ejl62"]
+[ext_resource type="Script" uid="uid://c6375k1nmsvsw" path="res://addons/stairs_level_editor/ui/stairs_level_editor_dock.gd" id="1_5snt1"]
 
-[node name="StairGridSettings" type="VFlowContainer" unique_id=938201313]
+[node name="StairsLevelEditor" type="VFlowContainer" unique_id=938201313]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-script = ExtResource("1_ejl62")
+script = ExtResource("1_5snt1")
 metadata/_edit_horizontal_guides_ = [24.0]
 
 [node name="Scroll" type="ScrollContainer" parent="." unique_id=176119813]

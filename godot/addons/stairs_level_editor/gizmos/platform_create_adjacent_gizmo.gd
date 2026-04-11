@@ -1,36 +1,22 @@
 @tool
 extends EditorNode3DGizmoPlugin
 
-const SquarePlatformResource = preload("res://game_objects/platform/square_platform.tscn")
-const StairsResource = preload("res://game_objects/stairs/stairs.tscn")
-const StairsSlotResource = preload("res://game_objects/stairs_slot/stairs_slot.tscn")
-const StairsSlotAttachedResource = preload("res://game_objects/stairs_slot/stairs_slot_attached.tscn")
-
-enum PLATFORM_TYPE { SQUARE = 0 }
-const platformTypeToResourceMap = {
-    PLATFORM_TYPE.SQUARE: SquarePlatformResource
-}
-enum PUZZLE_PIECE_TYPE { STAIRS = 0, STAIRS_SLOT = 1, STAIRS_SLOT_ATTACHED = 2 }
-const puzzlePieceTypeToResourceMap = {
-    PUZZLE_PIECE_TYPE.STAIRS: StairsResource,
-    PUZZLE_PIECE_TYPE.STAIRS_SLOT: StairsSlotResource,
-    PUZZLE_PIECE_TYPE.STAIRS_SLOT_ATTACHED: StairsSlotAttachedResource
-}
+const Constants = preload("res://addons/stairs_level_editor/constants.gd")
 
 var pluginRef = null
-var stairGridState = {}
+var pluginState = {}
 
 func _get_gizmo_name() -> String:
-    return "SnapGizmo"
+    return "PlatformCreateAdjacentGizmo"
 
 func _init() -> void:
     # todo make it look better
     create_material("main", Color(1,0,0))
     create_handle_material("handles")
 
-func setup(_pluginRef, _stairGridState) -> void:
+func setup(_pluginRef, _pluginState) -> void:
     pluginRef = _pluginRef
-    stairGridState = _stairGridState
+    pluginState = _pluginState
 
 func _has_gizmo(node) -> bool:
     if (node is Platform):
@@ -43,9 +29,9 @@ func _redraw(gizmo) -> void:
     var handles = PackedVector3Array()
     # repeat for each pivot
     var pivotAngleRad: float = 0.0
-    var pivotDist = stairGridState.platformSideLength / 2
+    var pivotDist = pluginState.platformSideLength / 2
     # pivots incremented clockwise starting with negative Z (forward)
-    for i in range(stairGridState.platformSideCount):
+    for i in range(pluginState.platformSideCount):
         var rotationToPivot = get_rotation_to_pivot_matrix(i)
         # moving clockwise, add handles 0.5 units away from center of pivot in all 4 directions
         handles.push_back(rotationToPivot * Vector3(0, 0.5, -pivotDist))
@@ -55,7 +41,7 @@ func _redraw(gizmo) -> void:
     gizmo.add_handles(handles, get_material("handles", gizmo), [])
 
 func _get_handle_name(gizmo, handleId, isSecondary) -> String:
-    return "Pivot " + str(floor(handleId / stairGridState.platformSideCount)) + " Pos " + str(handleId % 4)
+    return "Pivot " + str(floor(handleId / pluginState.platformSideCount)) + " Pos " + str(handleId % 4)
 
 # handleId is order in which it was added
 func _commit_handle(gizmo, handleId, isSecondary, restore, cancel) -> void:
@@ -63,21 +49,21 @@ func _commit_handle(gizmo, handleId, isSecondary, restore, cancel) -> void:
     var editedNode = gizmo.get_node_3d()
     
     var handleIndex = handleId % 4
-    var pivotIndex = floor(handleId / stairGridState.platformSideCount)
+    var pivotIndex = floor(handleId / pluginState.platformSideCount)
     
     # TODO: add undo/redo
     #var _undoRedo = pluginRef.get_undo_redo()
     
     var rotationToPivot = get_rotation_to_pivot_matrix(pivotIndex)
-    if stairGridState.placementMode == "platforms":
-        var newPlatform = platformTypeToResourceMap[stairGridState.platformType].instantiate()
+    if pluginState.placementMode == "platforms":
+        var newPlatform = Constants.platformTypeToResourceMap[pluginState.platformType].instantiate()
         var newPlatformTransform = get_next_platform_transform(handleIndex, pivotIndex)
         newPlatformTransform.origin = rotationToPivot * newPlatformTransform.origin + editedNode.transform.origin
         newPlatform.transform = newPlatformTransform
         editedNode.get_parent().add_child(newPlatform)
         newPlatform.owner = sceneRoot
-    elif stairGridState.placementMode == "puzzlePieces":
-        var newStairs = puzzlePieceTypeToResourceMap[stairGridState.puzzlePieceType].instantiate()
+    elif pluginState.placementMode == "puzzlePieces":
+        var newStairs = Constants.puzzlePieceTypeToResourceMap[pluginState.puzzlePieceType].instantiate()
         var newStairsTransform = get_next_stair_transform(handleIndex, pivotIndex)
         newStairsTransform.origin = rotationToPivot * newStairsTransform.origin + editedNode.transform.origin
         newStairsTransform.basis = rotationToPivot * newStairsTransform.basis
@@ -88,38 +74,38 @@ func _commit_handle(gizmo, handleId, isSecondary, restore, cancel) -> void:
 func get_next_platform_transform(handleIndex: int, pivotIndex: int) -> Transform3D:
     var nextPlatformTransform = Transform3D(
         Basis.IDENTITY,
-        Vector3(0,0,-stairGridState.stairSlopeRun - stairGridState.platformSideLength)
+        Vector3(0,0,-pluginState.stairsRun - pluginState.platformSideLength)
     )
     match handleIndex:
         0:
-            nextPlatformTransform.origin.y = stairGridState.stairSlopeRise
+            nextPlatformTransform.origin.y = pluginState.stairsRise
         1:
-            nextPlatformTransform.origin.x = stairGridState.stairSlopeRise
+            nextPlatformTransform.origin.x = pluginState.stairsRise
         2:
-            nextPlatformTransform.origin.y = -1 * stairGridState.stairSlopeRise
+            nextPlatformTransform.origin.y = -1 * pluginState.stairsRise
         3:
-            nextPlatformTransform.origin.x = -1 * stairGridState.stairSlopeRise
+            nextPlatformTransform.origin.x = -1 * pluginState.stairsRise
     return nextPlatformTransform
 
 func get_next_stair_transform(handleIndex: int, pivotIndex: int) -> Transform3D:
     var nextStairTransform = Transform3D(
         Basis.IDENTITY, 
-        Vector3(0,0,-stairGridState.stairSlopeRun / 2 - stairGridState.platformSideLength / 2)
+        Vector3(0,0,-pluginState.stairsRun / 2 - pluginState.platformSideLength / 2)
     )
     match handleIndex:
         0:
-            nextStairTransform.origin.y = stairGridState.stairSlopeRise / 2
+            nextStairTransform.origin.y = pluginState.stairsRise / 2
         1:
             nextStairTransform.basis = nextStairTransform.basis.rotated(Vector3.FORWARD, PI / 2)
-            nextStairTransform.origin.x = stairGridState.stairSlopeRise / 2
+            nextStairTransform.origin.x = pluginState.stairsRise / 2
         2:
             nextStairTransform.basis = nextStairTransform.basis.rotated(Vector3.FORWARD, PI)
-            nextStairTransform.origin.y = -stairGridState.stairSlopeRise / 2
+            nextStairTransform.origin.y = -pluginState.stairsRise / 2
         3:
             nextStairTransform.basis = nextStairTransform.basis.rotated(Vector3.FORWARD, -PI / 2)
-            nextStairTransform.origin.x = -stairGridState.stairSlopeRise / 2
+            nextStairTransform.origin.x = -pluginState.stairsRise / 2
     return nextStairTransform
 
 func get_rotation_to_pivot_matrix(pivotIndex: int) -> Basis:
-    var pivotAngleRad = -pivotIndex * (TAU / stairGridState.platformSideCount)
+    var pivotAngleRad = -pivotIndex * (TAU / pluginState.platformSideCount)
     return Basis.IDENTITY.rotated(Vector3.UP, pivotAngleRad)

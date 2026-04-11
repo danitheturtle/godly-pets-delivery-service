@@ -994,7 +994,7 @@ ROTATION_STOPS = null
 PIVOTS_STOPS = null
 
 [node name="Staircase" parent="Level2/Sub2" index="8" unique_id=9051338 instance=ExtResource("2_38vaf")]
-transform = Transform3D(4.371139e-08, 3.821371e-15, -1, 8.742278e-08, -1, 0, -1, -8.742278e-08, -4.371139e-08, 14.625, -5.625, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 14.625, -5.625, 0)
 
 [node name="Staircase1" parent="Level2/Sub2" index="9" unique_id=196533087 instance=ExtResource("2_38vaf")]
 transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 0, 5.625, -43.875)

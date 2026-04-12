@@ -83,37 +83,6 @@ popup/item_2/id = 2
 [node name="HSeparator2" type="HSeparator" parent="Scroll/VBox" unique_id=1296027281]
 layout_mode = 2
 
-[node name="PlatformPropsLabel" type="Label" parent="Scroll/VBox" unique_id=294143647]
-layout_mode = 2
-text = "Platform Properties:"
-
-[node name="PlatformPropsHBox" type="HBoxContainer" parent="Scroll/VBox" unique_id=625675903]
-layout_mode = 2
-
-[node name="SideCountLabel" type="Label" parent="Scroll/VBox/PlatformPropsHBox" unique_id=85385573]
-layout_mode = 2
-text = "Sides"
-
-[node name="SideCountSpinBox" type="SpinBox" parent="Scroll/VBox/PlatformPropsHBox" unique_id=1732024149]
-layout_mode = 2
-min_value = 3.0
-max_value = 8.0
-value = 4.0
-rounded = true
-custom_arrow_step = 1.0
-
-[node name="SideLengthLabel" type="Label" parent="Scroll/VBox/PlatformPropsHBox" unique_id=940026385]
-layout_mode = 2
-text = "Len"
-
-[node name="SideLengthSpinBox" type="SpinBox" parent="Scroll/VBox/PlatformPropsHBox" unique_id=2049469465]
-layout_mode = 2
-max_value = 0.0
-step = 0.01
-allow_greater = true
-allow_lesser = true
-custom_arrow_step = 0.25
-
 [node name="StairsSlope" type="Label" parent="Scroll/VBox" unique_id=23807063]
 layout_mode = 2
 text = "Stair Slope:"

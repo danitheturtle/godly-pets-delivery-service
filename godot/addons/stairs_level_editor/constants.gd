@@ -29,8 +29,6 @@ static func get_default_state():
         placementMode = "platforms",
         platformType = PLATFORM_TYPE.SQUARE,
         puzzlePieceType = PUZZLE_PIECE_TYPE.STAIRS,
-        platformSideCount = 4,
-        platformSideLength = 9.75,
         stairsRise = 11.25,
         stairsRun = 19.5
     }

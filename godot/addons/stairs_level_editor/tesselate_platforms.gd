@@ -34,10 +34,10 @@ static func place_adjacent_platforms(
     var newlyPlacedPlatforms: Array[Platform] = []
     var origin: Vector3 = platform.transform.origin
     var nextPlatformOrigins: PackedVector3Array = []
-    var translateDist = state.platformSideLength + state.stairsRun
+    var translateDist = platform.RADIUS*2.0 + state.stairsRun
     var shiftDist = state.stairsRise
-    for i in range(state.platformSideCount):
-        var rotationMatrix = Basis.IDENTITY.rotated(Vector3.UP, -i * (TAU / state.platformSideCount))
+    for i in range(platform.ROTATION_STOPS):
+        var rotationMatrix = Basis.IDENTITY.rotated(Vector3.UP, -i * (TAU / platform.ROTATION_STOPS))
         var newLocation1 = rotationMatrix * Vector3(-shiftDist, 0, -translateDist) + platform.transform.origin
         var newLocation1Key = get_platform_key(newLocation1)
         var newLocation2 = rotationMatrix * Vector3(shiftDist, 0, -translateDist) + platform.transform.origin

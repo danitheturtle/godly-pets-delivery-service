@@ -1,14 +1,12 @@
-Switch between platform and "puzzle piece" placement with hotkey. stairs are selectable as a type of "puzzle piece"
+(done) Switch between platform and "puzzle piece" placement with hotkey. stairs are selectable as a type of "puzzle piece"
 
-add handle to ends of staircases to add another puzzle piece or platform. reuse the existing toggle
+(wip) Select type of platform/puzzle piece to place next from sidebar dock
+ - ui done, needs placement code
+ 
+(wip) add handle to ends of staircases to add another puzzle piece or platform. reuse the existing toggle
 
-Select type of platform/puzzle piece to place next from sidebar dock
-
-Platforms:
-* Square
-Puzzle Pieces:
-* Staircase
-* Stair Slot
+Stretch:
+Instead of handles, use mesh representations for things
 
 Disable handles where platforms / stairs already exist (this means we gotta run the stair graph at editor time? not sure its possible)
 
@@ -16,5 +14,3 @@ New gizmo that highlights possible locations for platforms that can be reached f
 * Move selected platform to target location
 * Create new platform at target location
 Can do this by expanding the testing tesselate script I wrote
-
-Instead of handles, use mesh representations for things

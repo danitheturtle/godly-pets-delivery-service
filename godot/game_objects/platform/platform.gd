@@ -8,6 +8,7 @@ const collisionErrorMaterial: Material = preload("res://assets/materials/rotatio
 # editor-controlled values
 @export var SECONDS_PER_ROTATION: float = 1.0
 @export var SECONDS_PER_PIVOT: float = 1.0
+@export var RADIUS: float = 4.875
 @export var ROTATION_STOPS: int = 4
 @export var PIVOTS_STOPS: int = 4
 

@@ -46,21 +46,26 @@ func on_mode_switch_toggled(toggledOn: bool) -> void:
         pluginState.placementMode = "puzzlePieces"
     else:
         pluginState.placementMode = "platforms"
+    update_gizmos()
 
 func on_platform_resource_selected(selectedType: int) -> void:
     pluginState.platformType = selectedType
+    update_gizmos()
 
 func on_puzzle_piece_resource_selected(selectedType: int) -> void:
     pluginState.puzzlePieceType = selectedType
-
-func on_platform_side_length_changed(nextLength: float) -> void:
-    pluginState.platformSideLength = nextLength
-
-func on_platform_side_count_changed(nextCount: int) -> void:
-    pluginState.platformSideCount = nextCount
+    update_gizmos()
 
 func on_stair_slope_rise_changed(nextRise: float) -> void:
     pluginState.stairsRise = nextRise
+    update_gizmos()
 
 func on_stair_slope_run_changed(nextRun: float) -> void:
     pluginState.stairsRun = nextRun
+    update_gizmos()
+
+func update_gizmos() -> void:
+    if platformCreateAdjacentGizmo.editedNode != null:
+        platformCreateAdjacentGizmo.editedNode.update_gizmos()
+    if stairsCreateAdjacentGizmo.editedNode != null:
+        stairsCreateAdjacentGizmo.editedNode.update_gizmos()

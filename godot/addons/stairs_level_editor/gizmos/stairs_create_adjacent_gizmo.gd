@@ -2,9 +2,11 @@
 extends EditorNode3DGizmoPlugin
 
 const Constants = preload("res://addons/stairs_level_editor/constants.gd")
+const Utils = preload("res://addons/stairs_level_editor/level_editor_utils.gd")
 
 var pluginRef = null
 var pluginState = {}
+var editedNode = null
 
 func _get_gizmo_name() -> String:
     return "StairsCreateAdjacentGizmo"
@@ -25,7 +27,7 @@ func _has_gizmo(node) -> bool:
 
 func _redraw(gizmo) -> void:
     gizmo.clear()
-    var editedNode = gizmo.get_node_3d()
+    editedNode = gizmo.get_node_3d()
     var handles = PackedVector3Array()
     var topPos = Vector3(0,pluginState.stairsRise / 2.0, -pluginState.stairsRun / 2.0)
     var bottomPos = Vector3(0,-pluginState.stairsRise / 2.0, pluginState.stairsRun / 2.0)
@@ -38,6 +40,21 @@ func _get_handle_name(gizmo, handleId, isSecondary) -> String:
 
 # handleId is order in which it was added
 func _commit_handle(gizmo, handleId, isSecondary, restore, cancel) -> void:
-    var sceneRoot = EditorInterface.get_edited_scene_root()
-    var editedNode = gizmo.get_node_3d()
-    pass
+    editedNode = gizmo.get_node_3d()
+    if pluginState.placementMode == "platforms":
+        var newPlatform = Constants.platformTypeToResourceMap[pluginState.platformType].instantiate()
+        var newPlatformTransform = get_next_platform_transform(handleId, newPlatform)
+        newPlatformTransform.origin = editedNode.transform.basis * newPlatformTransform.origin + editedNode.transform.origin
+        Utils.add_to_scene(editedNode, newPlatform, newPlatformTransform)
+    elif pluginState.placementMode == "puzzlePieces":
+        pass
+
+func get_next_platform_transform(handleId: int, newPlatform: Platform) -> Transform3D:
+    var nextPlatformTransform = Transform3D.IDENTITY
+    if handleId == 0:
+        nextPlatformTransform.origin.z -= (pluginState.stairsRun / 2.0) + newPlatform.RADIUS
+        nextPlatformTransform.origin.y += pluginState.stairsRise / 2.0
+    elif handleId == 1:
+        nextPlatformTransform.origin.z += (pluginState.stairsRun / 2.0) + newPlatform.RADIUS
+        nextPlatformTransform.origin.y -= pluginState.stairsRise / 2.0
+    return nextPlatformTransform

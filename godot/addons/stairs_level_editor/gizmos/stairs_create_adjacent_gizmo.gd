@@ -50,7 +50,17 @@ func _commit_handle(gizmo, handleId, isSecondary, restore, cancel) -> void:
         newPlatformTransform.origin = editedNode.transform.basis * newPlatformTransform.origin + editedNode.transform.origin
         Utils.add_to_scene(editedNode, newPlatform, newPlatformTransform)
     elif pluginState.placementMode == Constants.PLACEMENT_MODE.PUZZLE_PIECES:
-        pass
+        var newPuzzlePiece = Constants.puzzlePieceTypeToResourceMap[pluginState.puzzlePieceType].instantiate()
+        var newPuzzlePieceTransform = Transform3D.IDENTITY
+        match pluginState.puzzlePieceType:
+            Constants.PUZZLE_PIECE_TYPE.STAIRS:
+                newPuzzlePieceTransform = get_next_stairs_transform(handleId)
+                newPuzzlePieceTransform.basis = editedNode.transform.basis
+            Constants.PUZZLE_PIECE_TYPE.STAIRS_SLOT:
+                newPuzzlePieceTransform = get_next_stairs_slot_transform(handleId)
+                newPuzzlePieceTransform.basis = newPuzzlePieceTransform.basis.rotated(Vector3.UP, editedNode.rotation.y)
+        newPuzzlePieceTransform.origin = editedNode.transform.basis * newPuzzlePieceTransform.origin + editedNode.transform.origin
+        Utils.add_to_scene(editedNode, newPuzzlePiece, newPuzzlePieceTransform)
 
 func get_next_platform_transform(handleId: int, newPlatform: Platform) -> Transform3D:
     var nextPlatformTransform = Transform3D.IDENTITY
@@ -62,8 +72,32 @@ func get_next_platform_transform(handleId: int, newPlatform: Platform) -> Transf
         nextPlatformTransform.origin.y -= pluginState.stairsRise / 2.0
     return nextPlatformTransform
 
-func get_next_stairs_transform(handleId: int, newStairs: Stairs) -> Transform3D:
-    return Transform3D.IDENTITY
+func get_next_stairs_transform(handleId: int) -> Transform3D:
+    var nextStairsTransform = Transform3D.IDENTITY
+    if handleId == 0:
+        nextStairsTransform.origin.z -= pluginState.stairsRun
+        nextStairsTransform.origin.y += pluginState.stairsRise
+    elif handleId == 1:
+        nextStairsTransform.origin.z += pluginState.stairsRun
+        nextStairsTransform.origin.y -= pluginState.stairsRise
+    return nextStairsTransform
+
+func get_next_stairs_slot_transform(handleId: int) -> Transform3D:
+    var nextStairsTransform = Transform3D.IDENTITY
+    if handleId == 0:
+        nextStairsTransform.basis = Basis.IDENTITY.rotated(Vector3.UP, TAU / 2.0)
+        nextStairsTransform.origin.z -= pluginState.stairsRun / 2.0
+        nextStairsTransform.origin.y += pluginState.stairsRise / 2.0
+    elif handleId == 1:
+        nextStairsTransform.origin.z += pluginState.stairsRun / 2.0
+        nextStairsTransform.origin.y -= pluginState.stairsRise / 2.0
+    return nextStairsTransform
 
 func is_gizmo_active() -> bool:
-    return true
+    if pluginState.placementMode == Constants.PLACEMENT_MODE.PLATFORMS:
+        return true
+    else:
+        if (pluginState.puzzlePieceType == Constants.PUZZLE_PIECE_TYPE.STAIRS || 
+            pluginState.puzzlePieceType == Constants.PUZZLE_PIECE_TYPE.STAIRS_SLOT):
+            return true
+    return false

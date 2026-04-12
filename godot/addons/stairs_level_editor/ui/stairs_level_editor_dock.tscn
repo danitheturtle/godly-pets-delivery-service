@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://cx6iop8wyl30h"]
+
+[ext_resource type="Script" uid="uid://c6375k1nmsvsw" path="res://addons/stairs_level_editor/ui/stairs_level_editor_dock.gd" id="1_5snt1"]
+
+[node name="StairsLevelEditor" type="VFlowContainer" unique_id=938201313]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_5snt1")
+metadata/_edit_horizontal_guides_ = [24.0]
+
+[node name="Scroll" type="ScrollContainer" parent="." unique_id=176119813]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="VBox" type="VBoxContainer" parent="Scroll" unique_id=1066949956]
+layout_mode = 2
+
+[node name="ModeSwitchLabel" type="Label" parent="Scroll/VBox" unique_id=292467531]
+layout_mode = 2
+text = "Mode: (alt to toggle)"
+
+[node name="ModeSwitchHBox" type="HBoxContainer" parent="Scroll/VBox" unique_id=683346050]
+layout_mode = 2
+
+[node name="PlatformLabel" type="Label" parent="Scroll/VBox/ModeSwitchHBox" unique_id=1181104494]
+layout_mode = 2
+text = "Platform"
+
+[node name="ModeSwitch" type="CheckButton" parent="Scroll/VBox/ModeSwitchHBox" unique_id=560574736]
+layout_mode = 2
+
+[node name="PuzzlePieceLabel" type="Label" parent="Scroll/VBox/ModeSwitchHBox" unique_id=845720804]
+layout_mode = 2
+text = "Puzzle Piece"
+
+[node name="HSeparator" type="HSeparator" parent="Scroll/VBox" unique_id=1891560516]
+layout_mode = 2
+
+[node name="ResourceSelectionLabel" type="Label" parent="Scroll/VBox" unique_id=1733410724]
+layout_mode = 2
+text = "Resource to use:"
+
+[node name="PlatformTypeHBox" type="HBoxContainer" parent="Scroll/VBox" unique_id=405325463]
+layout_mode = 2
+
+[node name="PlatformTypeLabel" type="Label" parent="Scroll/VBox/PlatformTypeHBox" unique_id=670844905]
+layout_mode = 2
+text = "Platform:"
+
+[node name="PlatformTypeOptionButton" type="OptionButton" parent="Scroll/VBox/PlatformTypeHBox" unique_id=1841766721]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 1
+popup/item_0/text = "Square"
+popup/item_0/id = 0
+
+[node name="PuzzlePieceTypeHBox" type="HBoxContainer" parent="Scroll/VBox" unique_id=1881041189]
+layout_mode = 2
+
+[node name="PuzzlePieceTypeLabel" type="Label" parent="Scroll/VBox/PuzzlePieceTypeHBox" unique_id=508682991]
+layout_mode = 2
+text = "Puzzle Piece: "
+
+[node name="PuzzlePieceTypeOptionButton" type="OptionButton" parent="Scroll/VBox/PuzzlePieceTypeHBox" unique_id=141705266]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 3
+popup/item_0/text = "Stairs"
+popup/item_0/id = 0
+popup/item_1/text = "Stairs Slot"
+popup/item_1/id = 1
+popup/item_2/text = "Attached Stairs Slot"
+popup/item_2/id = 2
+
+[node name="HSeparator2" type="HSeparator" parent="Scroll/VBox" unique_id=1296027281]
+layout_mode = 2
+
+[node name="StairsSlope" type="Label" parent="Scroll/VBox" unique_id=23807063]
+layout_mode = 2
+text = "Stair Slope:"
+
+[node name="StairsSlopeHBox" type="HBoxContainer" parent="Scroll/VBox" unique_id=917901231]
+layout_mode = 2
+
+[node name="StairsRiseLabel" type="Label" parent="Scroll/VBox/StairsSlopeHBox" unique_id=1911734539]
+layout_mode = 2
+text = "Rise"
+
+[node name="StairsRiseSpinBox" type="SpinBox" parent="Scroll/VBox/StairsSlopeHBox" unique_id=2005251170]
+layout_mode = 2
+step = 0.0
+value = 11.25
+allow_greater = true
+custom_arrow_step = 0.25
+
+[node name="StairsRunLabel" type="Label" parent="Scroll/VBox/StairsSlopeHBox" unique_id=557678490]
+layout_mode = 2
+text = "Run"
+
+[node name="StairsRunSpinBox" type="SpinBox" parent="Scroll/VBox/StairsSlopeHBox" unique_id=1637957147]
+layout_mode = 2
+step = 0.0
+value = 19.5
+allow_greater = true
+custom_arrow_step = 0.25

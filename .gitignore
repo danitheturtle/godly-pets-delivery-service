@@ -11,5 +11,6 @@
 **/*.translation
 
 # OS settings and caches
+**/.vscode/
 **/.trash/
 **/.DS_Store

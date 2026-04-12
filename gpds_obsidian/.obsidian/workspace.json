@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Prototype Stuff Implemented/Progress bar bug.md",
+                "file": "Prototype Stuff Implemented/Next iteration of level editor.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Progress bar bug"
+              "title": "Next iteration of level editor"
             }
           }
         ]
@@ -169,13 +169,14 @@
       "bases:Create new base": false
     }
   },
-  "active": "e52005d6c3d5a4ec",
+  "active": "3725617b476edcf4",
   "lastOpenFiles": [
-    "Todo/Add cancelled state to progress UI.md",
-    "Todo/Iterate level editor gizmo.md",
-    "Todo/Save system.md",
-    "Prototype Stuff Implemented/Progress bar bug.md",
+    "Mechanics/Iterate level editor again.md",
+    "Prototype Stuff Implemented/Next iteration of level editor.md",
     "Todo/Menuing & Actions with controller.md",
+    "Prototype Stuff Implemented/Progress bar bug.md",
+    "Todo/Add cancelled state to progress UI.md",
+    "Todo/Save system.md",
     "Todo/Internationalisation Placeholder.md",
     "Todo/Dr Craig Hairy Bonkers Ph.D..md",
     "Mechanics/Stretch/Stair Graph.md",

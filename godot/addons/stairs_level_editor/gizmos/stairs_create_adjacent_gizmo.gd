@@ -6,14 +6,13 @@ const Utils = preload("res://addons/stairs_level_editor/level_editor_utils.gd")
 
 var pluginRef = null
 var pluginState = {}
-var editedNode = null
+var editedNode: Stairs = null
 
 func _get_gizmo_name() -> String:
     return "StairsCreateAdjacentGizmo"
 
 func _init() -> void:
-    # todo make it look better
-    create_material("main", Color(1,0,0))
+    # todo make it look better with icon materials
     create_handle_material("handles")
 
 func setup(_pluginRef, _pluginState) -> void:
@@ -27,7 +26,8 @@ func _has_gizmo(node) -> bool:
 
 func _redraw(gizmo) -> void:
     gizmo.clear()
-    editedNode = gizmo.get_node_3d()
+    editedNode = gizmo.get_node_3d() as Stairs
+    if !is_gizmo_active(): return
     var handles = PackedVector3Array()
     var topPos = Vector3(0,pluginState.stairsRise / 2.0, -pluginState.stairsRun / 2.0)
     var bottomPos = Vector3(0,-pluginState.stairsRise / 2.0, pluginState.stairsRun / 2.0)
@@ -36,17 +36,20 @@ func _redraw(gizmo) -> void:
     gizmo.add_handles(handles, get_material("handles", gizmo), [])
 
 func _get_handle_name(gizmo, handleId, isSecondary) -> String:
+    editedNode = gizmo.get_node_3d() as Stairs
     return "Top of Stairs" if handleId == 0 else "Bottom of Stairs"
 
 # handleId is order in which it was added
 func _commit_handle(gizmo, handleId, isSecondary, restore, cancel) -> void:
-    editedNode = gizmo.get_node_3d()
-    if pluginState.placementMode == "platforms":
+    editedNode = gizmo.get_node_3d() as Stairs
+    # TODO: add undo/redo
+    #var _undoRedo = pluginRef.get_undo_redo()
+    if pluginState.placementMode == Constants.PLACEMENT_MODE.PLATFORMS:
         var newPlatform = Constants.platformTypeToResourceMap[pluginState.platformType].instantiate()
         var newPlatformTransform = get_next_platform_transform(handleId, newPlatform)
         newPlatformTransform.origin = editedNode.transform.basis * newPlatformTransform.origin + editedNode.transform.origin
         Utils.add_to_scene(editedNode, newPlatform, newPlatformTransform)
-    elif pluginState.placementMode == "puzzlePieces":
+    elif pluginState.placementMode == Constants.PLACEMENT_MODE.PUZZLE_PIECES:
         pass
 
 func get_next_platform_transform(handleId: int, newPlatform: Platform) -> Transform3D:
@@ -58,3 +61,9 @@ func get_next_platform_transform(handleId: int, newPlatform: Platform) -> Transf
         nextPlatformTransform.origin.z += (pluginState.stairsRun / 2.0) + newPlatform.RADIUS
         nextPlatformTransform.origin.y -= pluginState.stairsRise / 2.0
     return nextPlatformTransform
+
+func get_next_stairs_transform(handleId: int, newStairs: Stairs) -> Transform3D:
+    return Transform3D.IDENTITY
+
+func is_gizmo_active() -> bool:
+    return true

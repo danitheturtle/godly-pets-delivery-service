@@ -6,14 +6,13 @@ const Utils = preload("res://addons/stairs_level_editor/level_editor_utils.gd")
 
 var pluginRef = null
 var pluginState = {}
-var editedNode = null
+var editedNode: Platform = null
 
 func _get_gizmo_name() -> String:
     return "PlatformCreateAdjacentGizmo"
 
 func _init() -> void:
     # todo make it look better
-    create_material("main", Color(1, 0, 0))
     create_handle_material("handles")
 
 func setup(_pluginRef, _pluginState) -> void:
@@ -21,32 +20,26 @@ func setup(_pluginRef, _pluginState) -> void:
     pluginState = _pluginState
 
 func _has_gizmo(node) -> bool:
-    if (node is Platform):
+    if node is Platform:
         return true
     return false
 
 func _redraw(gizmo) -> void:
     gizmo.clear()
     editedNode = gizmo.get_node_3d() as Platform
+    if !is_gizmo_active(): return
     var handles = PackedVector3Array()
     # repeat for each pivot
     var pivotAngleRad: float = 0.0
     var pivotDist = editedNode.RADIUS
-    # if puzzle piece can be placed as child of platform, only add handles for that
-    if is_child_placement_active():
-        for i in range(editedNode.PIVOTS_STOPS):
-            var rotationToPivot = get_rotation_to_pivot_matrix(i)
-            handles.push_back(rotationToPivot * Vector3(0, 0.0, -pivotDist))
-    # next piece is adjacent, add adjacency handles
-    else:
-        # pivots incremented clockwise starting with negative Z (forward)
-        for i in range(editedNode.PIVOTS_STOPS):
-            var rotationToPivot = get_rotation_to_pivot_matrix(i)
-            # moving clockwise, add handles 1.0 units away from center of pivot in all 4 directions
-            handles.push_back(rotationToPivot * Vector3(0, 1.0, -pivotDist))
-            handles.push_back(rotationToPivot * Vector3(1.0, 0, -pivotDist))
-            handles.push_back(rotationToPivot * Vector3(0, -1.0, -pivotDist))
-            handles.push_back(rotationToPivot * Vector3(-1.0, 0, -pivotDist))
+    # pivots incremented clockwise starting with negative Z (forward)
+    for i in range(editedNode.PIVOTS_STOPS):
+        var rotationToPivot = Utils.get_rotation_to_pivot_matrix(i, editedNode.ROTATION_STOPS)
+        # moving clockwise, add handles 1.0 units away from center of pivot in all 4 directions
+        handles.push_back(rotationToPivot * Vector3(0, 1.0, -pivotDist))
+        handles.push_back(rotationToPivot * Vector3(1.0, 0, -pivotDist))
+        handles.push_back(rotationToPivot * Vector3(0, -1.0, -pivotDist))
+        handles.push_back(rotationToPivot * Vector3(-1.0, 0, -pivotDist))
     gizmo.add_handles(handles, get_material("handles", gizmo), [])
 
 func _get_handle_name(gizmo, handleId, isSecondary) -> String:
@@ -60,32 +53,25 @@ func _commit_handle(gizmo, handleId, isSecondary, restore, cancel) -> void:
     # TODO: add undo/redo
     #var _undoRedo = pluginRef.get_undo_redo()
 
-    # placing as child of platform
-    if is_child_placement_active():
-        var newChildPuzzlePiece = Constants.puzzlePieceTypeToResourceMap[pluginState.puzzlePieceType].instantiate()
-        var newChildPuzzlePieceTransform = get_next_stairs_slot_attached_transform(handleId)
-        Utils.add_to_scene(editedNode.get_child(0), newChildPuzzlePiece, newChildPuzzlePieceTransform)
-    # placing away from platform
-    else:
-        var handleIndex = handleId % 4
-        var pivotIndex = floor(handleId / editedNode.ROTATION_STOPS)
-        var rotationToPivot = get_rotation_to_pivot_matrix(pivotIndex)
-        if pluginState.placementMode == "platforms":
-            var newPlatform = Constants.platformTypeToResourceMap[pluginState.platformType].instantiate()
-            var newPlatformTransform = get_next_platform_transform(handleIndex, editedNode.RADIUS + newPlatform.RADIUS)
-            newPlatformTransform.origin = rotationToPivot * newPlatformTransform.origin + editedNode.transform.origin
-            Utils.add_to_scene(editedNode, newPlatform, newPlatformTransform)
-        elif pluginState.placementMode == "puzzlePieces":
-            var newPuzzlePiece = Constants.puzzlePieceTypeToResourceMap[pluginState.puzzlePieceType].instantiate()
-            var newPuzzlePieceTransform = Transform3D.IDENTITY
-            match pluginState.puzzlePieceType:
-                Constants.PUZZLE_PIECE_TYPE.STAIRS:
-                    newPuzzlePieceTransform = get_next_stairs_transform(handleIndex, editedNode.RADIUS)
-                Constants.PUZZLE_PIECE_TYPE.STAIRS_SLOT:
-                    newPuzzlePieceTransform = get_next_stairs_slot_transform(handleIndex, editedNode.RADIUS)
-            newPuzzlePieceTransform.origin = rotationToPivot * newPuzzlePieceTransform.origin + editedNode.transform.origin
-            newPuzzlePieceTransform.basis = rotationToPivot * newPuzzlePieceTransform.basis
-            Utils.add_to_scene(editedNode, newPuzzlePiece, newPuzzlePieceTransform)
+    var handleIndex = handleId % 4
+    var pivotIndex = floor(handleId / editedNode.ROTATION_STOPS)
+    var rotationToPivot = Utils.get_rotation_to_pivot_matrix(pivotIndex, editedNode.ROTATION_STOPS)
+    if pluginState.placementMode == Constants.PLACEMENT_MODE.PLATFORMS:
+        var newPlatform = Constants.platformTypeToResourceMap[pluginState.platformType].instantiate()
+        var newPlatformTransform = get_next_platform_transform(handleIndex, editedNode.RADIUS + newPlatform.RADIUS)
+        newPlatformTransform.origin = rotationToPivot * newPlatformTransform.origin + editedNode.transform.origin
+        Utils.add_to_scene(editedNode, newPlatform, newPlatformTransform)
+    elif pluginState.placementMode == Constants.PLACEMENT_MODE.PUZZLE_PIECES:
+        var newPuzzlePiece = Constants.puzzlePieceTypeToResourceMap[pluginState.puzzlePieceType].instantiate()
+        var newPuzzlePieceTransform = Transform3D.IDENTITY
+        match pluginState.puzzlePieceType:
+            Constants.PUZZLE_PIECE_TYPE.STAIRS:
+                newPuzzlePieceTransform = get_next_stairs_transform(handleIndex, editedNode.RADIUS)
+            Constants.PUZZLE_PIECE_TYPE.STAIRS_SLOT:
+                newPuzzlePieceTransform = get_next_stairs_slot_transform(handleIndex, editedNode.RADIUS)
+        newPuzzlePieceTransform.origin = rotationToPivot * newPuzzlePieceTransform.origin + editedNode.transform.origin
+        newPuzzlePieceTransform.basis = rotationToPivot * newPuzzlePieceTransform.basis
+        Utils.add_to_scene(editedNode, newPuzzlePiece, newPuzzlePieceTransform)
 
 func get_next_platform_transform(handleIndex: int, platformRadiusTotal: float) -> Transform3D:
     var nextPlatformTransform = Transform3D(
@@ -127,13 +113,10 @@ func get_next_stairs_slot_transform(handleIndex: int, platformRadius: float) -> 
     newTransform.basis = Basis.IDENTITY.rotated(Vector3.UP, TAU / 2.0)
     return newTransform
 
-func get_next_stairs_slot_attached_transform(handleIndex: int) -> Transform3D:
-    var rotationMat = get_rotation_to_pivot_matrix(handleIndex)
-    return Transform3D(rotationMat, rotationMat * Vector3(0, 0, -editedNode.RADIUS))
-
-func get_rotation_to_pivot_matrix(pivotIndex: int) -> Basis:
-    var pivotAngleRad = - pivotIndex * (TAU / editedNode.ROTATION_STOPS)
-    return Basis.IDENTITY.rotated(Vector3.UP, pivotAngleRad)
-
-func is_child_placement_active() -> bool:
-    return pluginState.placementMode == "puzzlePieces" && pluginState.puzzlePieceType == Constants.PUZZLE_PIECE_TYPE.STAIRS_SLOT_ATTACHED
+func is_gizmo_active() -> bool:
+    if pluginState.placementMode == Constants.PLACEMENT_MODE.PLATFORMS:
+        return true
+    elif (pluginState.puzzlePieceType == Constants.PUZZLE_PIECE_TYPE.STAIRS ||
+          pluginState.puzzlePieceType == Constants.PUZZLE_PIECE_TYPE.STAIRS_SLOT):
+        return true
+    return false

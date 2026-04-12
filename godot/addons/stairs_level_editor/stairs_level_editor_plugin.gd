@@ -4,9 +4,12 @@ class_name StairsLevelEditorPlugin
 
 var dock
 const Constants = preload("res://addons/stairs_level_editor/constants.gd")
-
-var platformCreateAdjacentGizmo = Constants.PlatformCreateAdjacentGizmoRes.new()
-var stairsCreateAdjacentGizmo = Constants.StairsCreateAdjacentGizmoRes.new()
+ 
+var allGizmos = [
+    Constants.PlatformCreateAdjacentGizmoRes.new(),
+    Constants.PlatformCreateChildGizmoRes.new(),
+    Constants.StairsCreateAdjacentGizmoRes.new()
+]
 var pluginState = Constants.get_default_state()
 
 func _enter_tree() -> void:
@@ -27,10 +30,9 @@ func _enter_tree() -> void:
     dock.add_child(stairsLevelEditorDock)
     add_dock(dock)
     # put gizmos in tree
-    platformCreateAdjacentGizmo.setup(self, pluginState)
-    stairsCreateAdjacentGizmo.setup(self, pluginState)
-    add_node_3d_gizmo_plugin(platformCreateAdjacentGizmo)
-    add_node_3d_gizmo_plugin(stairsCreateAdjacentGizmo)
+    for nextGizmo in allGizmos:
+        nextGizmo.setup(self, pluginState)
+        add_node_3d_gizmo_plugin(nextGizmo)
 
 func _exit_tree() -> void:
     # remove settings dock
@@ -38,14 +40,14 @@ func _exit_tree() -> void:
     dock.queue_free()
     dock = null
     # remove gizmos
-    remove_node_3d_gizmo_plugin(platformCreateAdjacentGizmo)
-    remove_node_3d_gizmo_plugin(stairsCreateAdjacentGizmo)
+    for nextGizmo in allGizmos:
+        remove_node_3d_gizmo_plugin(nextGizmo)
 
 func on_mode_switch_toggled(toggledOn: bool) -> void:
     if (toggledOn):
-        pluginState.placementMode = "puzzlePieces"
+        pluginState.placementMode = Constants.PLACEMENT_MODE.PUZZLE_PIECES
     else:
-        pluginState.placementMode = "platforms"
+        pluginState.placementMode = Constants.PLACEMENT_MODE.PLATFORMS
     update_gizmos()
 
 func on_platform_resource_selected(selectedType: int) -> void:
@@ -65,7 +67,6 @@ func on_stair_slope_run_changed(nextRun: float) -> void:
     update_gizmos()
 
 func update_gizmos() -> void:
-    if platformCreateAdjacentGizmo.editedNode != null:
-        platformCreateAdjacentGizmo.editedNode.update_gizmos()
-    if stairsCreateAdjacentGizmo.editedNode != null:
-        stairsCreateAdjacentGizmo.editedNode.update_gizmos()
+    for nextGizmo in allGizmos:
+        if nextGizmo.editedNode != null:
+            nextGizmo.editedNode.update_gizmos()

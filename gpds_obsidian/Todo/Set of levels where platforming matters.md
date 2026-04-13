@@ -1,0 +1,1 @@
+Platforming as a solution to the puzzle needs mainline introduction in the tutorial

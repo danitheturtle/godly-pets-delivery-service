@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Prototype Stuff Implemented/Next iteration of level editor.md",
+                "file": "Mechanics/Sneak so you don't fall like minecraft.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Next iteration of level editor"
+              "title": "Sneak so you don't fall like minecraft"
             }
           }
         ]
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 333.5
   },
   "right": {
     "id": "85003b48f9380afd",
@@ -169,10 +169,18 @@
       "bases:Create new base": false
     }
   },
-  "active": "3725617b476edcf4",
+  "active": "e52005d6c3d5a4ec",
   "lastOpenFiles": [
-    "Mechanics/Iterate level editor again.md",
+    "Todo/Set of levels where platforming matters.md",
+    "Mechanics/Platform Path.md",
+    "Mechanics/Platform that rotates stairs in different axis.md",
+    "Mechanics/Platform control tablet.md",
+    "Mechanics/Limited Stairs that can only move X times.md",
+    "Mechanics/Levers activated by specific stair movement.md",
+    "Todo/Try to fix navmesh breaking on reset.md",
+    "Todo/Iterate checkpoints.md",
     "Prototype Stuff Implemented/Next iteration of level editor.md",
+    "Mechanics/Iterate level editor again.md",
     "Todo/Menuing & Actions with controller.md",
     "Prototype Stuff Implemented/Progress bar bug.md",
     "Todo/Add cancelled state to progress UI.md",
@@ -183,13 +191,10 @@
     "Prototype Stuff Implemented/Base pet scene.md",
     "Mechanics/Sneak so you don't fall like minecraft.md",
     "Core Pillars.md",
-    "Mechanics/Platform that rotates stairs in different axis.md",
     "Mechanics/Stretch/Reverse pet to last pos if blocked.md",
-    "Mechanics/Limited Stairs that can only move X times.md",
     "Mechanics/Two stairs that meet end-to-end connect.md",
     "Mechanics/Show bound hotkey in action prompt UI.md",
     "Bugs/Backtracking breaks things.md",
-    "Prototype Stuff Implemented/Force field that blocks player, pet, or both.md",
-    "Mechanics/Platform Path.md"
+    "Prototype Stuff Implemented/Force field that blocks player, pet, or both.md"
   ]
 }

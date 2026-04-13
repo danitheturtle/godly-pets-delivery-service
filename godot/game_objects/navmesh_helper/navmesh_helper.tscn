@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c7g3ptq5ykm4y"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s6qf0"]
+resource_local_to_scene = true
 size = Vector3(3, 1, 3)
 
 [node name="NavmeshHelper" type="StaticBody3D" unique_id=1072783753 groups=["bake_navmesh", "remove_at_runtime"]]

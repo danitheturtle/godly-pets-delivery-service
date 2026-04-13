@@ -29,20 +29,20 @@ var editorHelper: LaserFieldEditorHelper = null
 @export var inactiveColor: Color = Color("be8b26") # TODO refactor into color system
 @export var activeColor: Color = Color("4b9fce") # TODO refactor into color system
 @export_category("Toggleable State")
-@export var playerFieldEnabled: bool = false:
+@export var playerFieldEnabled: bool = true:
     set(new_value):
         playerFieldEnabled = new_value
         if editorHelper != null: enable_player_field(new_value)
-@export var petFieldEnabled: bool = false:
+@export var petFieldEnabled: bool = true:
     set(new_value):
         petFieldEnabled = new_value
         if editorHelper != null: enable_pet_field(new_value)
-@export var initialPlayerFieldState: bool = false:
+@export var initialPlayerFieldState: bool = true:
     set(new_value):
         initialPlayerFieldState = playerFieldEnabled && new_value
         playerFieldState = initialPlayerFieldState
         if editorHelper != null: player_field_toggle(initialPlayerFieldState)
-@export var initialPetFieldState: bool = false:
+@export var initialPetFieldState: bool = true:
     set(new_value):
         initialPetFieldState = petFieldEnabled && new_value
         petFieldState = initialPetFieldState
@@ -58,8 +58,8 @@ var editorHelper: LaserFieldEditorHelper = null
         fieldHeight = new_value
 
 # local state
-var playerFieldState: bool = false
-var petFieldState: bool = false
+var playerFieldState: bool = true
+var petFieldState: bool = true
 
 func _ready() -> void:
     enable_player_field(playerFieldEnabled)

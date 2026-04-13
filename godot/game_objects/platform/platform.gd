@@ -197,13 +197,15 @@ func on_pivots_finished() -> void:
         pivots[i].transform.basis = pBasisStops[pivotsController.currentIndex]
 
 func on_body_entered_stair_center_area(body: Node3D) -> void:
-    handle_collision(2, body)
-
-func on_body_entered_stair_ends_area(body: Node3D) -> void:
     handle_collision(3, body)
 
+func on_body_entered_stair_ends_area(body: Node3D) -> void:
+    handle_collision(2, body)
+
 func handle_collision(collisionLayer: int, body: Node3D):
-    if body == self || (body is PhysicsBody3D && (!body.get_collision_layer_value(collisionLayer))):
+    if body == self:
+        return
+    if body is PhysicsBody3D && !body.get_collision_layer_value(collisionLayer):
         return
     for nextAttachedStair in attachedStairRefs:
         if body == nextAttachedStair:

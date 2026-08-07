@@ -1,0 +1,19 @@
+- Candles
+- Candleholders
+- Stone lantern
+- Flowers
+- Ferns
+- Herbacious ground cover
+- Rocks
+- Rock platforms
+- Grasses
+- Birdhouse
+- Torch
+- Wooden fence
+- Telephone pole
+- Waffle
+- Cookie
+- Pottery
+- Vase
+- Flower pots
+- Flower planter

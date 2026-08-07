@@ -5,3 +5,9 @@
 
 Other design considerations
 * Puzzles should be solvable in black and white (colorblind friendly)
+
+Artstyle
+* Flat, vibrant colors
+* No gradients except weathering; cell shaded transitions for core texture
+* Accentuate edges with lighter / darker colors
+* Minimal normal maps

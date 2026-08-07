@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Mechanics/Sneak so you don't fall like minecraft.md",
+                "file": "Core Pillars.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Sneak so you don't fall like minecraft"
+              "title": "Core Pillars"
             }
           }
         ]
@@ -41,7 +41,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -169,32 +171,34 @@
       "bases:Create new base": false
     }
   },
-  "active": "e52005d6c3d5a4ec",
+  "active": "3725617b476edcf4",
   "lastOpenFiles": [
+    "Todo/Asset Autumn brainstorm.md",
+    "Todo/Add cancelled state to progress UI.md",
+    "Todo/Try to fix navmesh breaking on reset.md",
     "Todo/Set of levels where platforming matters.md",
+    "Todo/Save system.md",
+    "Todo/Menuing & Actions with controller.md",
+    "Todo/Iterate checkpoints.md",
+    "Todo/Internationalisation Placeholder.md",
+    "Todo/Dr Craig Hairy Bonkers Ph.D..md",
+    "Worldbuilding/Final delivery quest is to your own god.md",
+    "Worldbuilding/Framing Device.md",
+    "Worldbuilding/Purgatory and Politics.md",
+    "Worldbuilding/Afterlife Adoption.md",
+    "Pets/Tarantula Bat named Tabatha.md",
+    "Worldbuilding",
+    "Mechanics/Sneak so you don't fall like minecraft.md",
     "Mechanics/Platform Path.md",
     "Mechanics/Platform that rotates stairs in different axis.md",
     "Mechanics/Platform control tablet.md",
     "Mechanics/Limited Stairs that can only move X times.md",
     "Mechanics/Levers activated by specific stair movement.md",
-    "Todo/Try to fix navmesh breaking on reset.md",
-    "Todo/Iterate checkpoints.md",
     "Prototype Stuff Implemented/Next iteration of level editor.md",
     "Mechanics/Iterate level editor again.md",
-    "Todo/Menuing & Actions with controller.md",
     "Prototype Stuff Implemented/Progress bar bug.md",
-    "Todo/Add cancelled state to progress UI.md",
-    "Todo/Save system.md",
-    "Todo/Internationalisation Placeholder.md",
-    "Todo/Dr Craig Hairy Bonkers Ph.D..md",
     "Mechanics/Stretch/Stair Graph.md",
     "Prototype Stuff Implemented/Base pet scene.md",
-    "Mechanics/Sneak so you don't fall like minecraft.md",
-    "Core Pillars.md",
-    "Mechanics/Stretch/Reverse pet to last pos if blocked.md",
-    "Mechanics/Two stairs that meet end-to-end connect.md",
-    "Mechanics/Show bound hotkey in action prompt UI.md",
-    "Bugs/Backtracking breaks things.md",
-    "Prototype Stuff Implemented/Force field that blocks player, pet, or both.md"
+    "Core Pillars.md"
   ]
 }

@@ -9,6 +9,8 @@
 - Grasses
 - Birdhouse
 - Torch
+- Water wheel
+- Booksa
 - Wooden fence
 - Telephone pole
 - Waffle

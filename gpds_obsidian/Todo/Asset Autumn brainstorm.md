@@ -8,9 +8,10 @@
 - Rock platforms
 - Grasses
 - Birdhouse
+- Wooden planks of various sizes
 - Torch
 - Water wheel
-- Booksa
+- Books
 - Wooden fence
 - Telephone pole
 - Waffle

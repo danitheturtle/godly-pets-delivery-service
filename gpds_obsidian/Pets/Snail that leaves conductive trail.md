@@ -1,0 +1,1 @@
+Snail that leaves conductive "wire" on the ground where it walks

@@ -1,4 +1,4 @@
-- Candles
+- Candles 
 - Candleholders
 - Stone lantern
 - Flowers
@@ -10,8 +10,11 @@
 - Birdhouse
 - Wooden planks of various sizes
 - Torch
+- Tree stump
+- Mushrooms
 - Water wheel
 - Books
+- wind chimes
 - Wooden fence
 - Telephone pole
 - Waffle

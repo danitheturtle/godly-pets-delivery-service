@@ -173,8 +173,9 @@
   },
   "active": "3725617b476edcf4",
   "lastOpenFiles": [
-    "Core Pillars.md",
+    "Pets/Snail that leaves conductive trail.md",
     "Todo/Asset Autumn brainstorm.md",
+    "Core Pillars.md",
     "Todo/Add cancelled state to progress UI.md",
     "Todo/Try to fix navmesh breaking on reset.md",
     "Todo/Set of levels where platforming matters.md",
@@ -198,7 +199,6 @@
     "Prototype Stuff Implemented/Next iteration of level editor.md",
     "Mechanics/Iterate level editor again.md",
     "Prototype Stuff Implemented/Progress bar bug.md",
-    "Mechanics/Stretch/Stair Graph.md",
-    "Prototype Stuff Implemented/Base pet scene.md"
+    "Mechanics/Stretch/Stair Graph.md"
   ]
 }

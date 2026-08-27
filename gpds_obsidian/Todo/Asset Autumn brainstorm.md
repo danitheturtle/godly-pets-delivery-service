@@ -22,4 +22,5 @@
 - Pottery
 - Vase
 - Flower pots
+- bamboo
 - Flower planter

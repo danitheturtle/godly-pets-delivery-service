@@ -29,6 +29,7 @@ SignalBus="*uid://dk6y1qaopgk3s"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/hdr/request_hdr_output=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
@@ -181,3 +182,4 @@ level_select={
 [rendering]
 
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0.3019608, 0.3019608, 0.3019608, 1)
